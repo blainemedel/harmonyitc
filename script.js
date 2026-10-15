@@ -29,7 +29,7 @@
     // Update theme meta color tag
     const metaTheme = document.querySelector('meta[name="theme-color"]');
     if (metaTheme) {
-      metaTheme.setAttribute('content', theme === 'light' ? '#f8fafc' : '#070a12');
+      metaTheme.setAttribute('content', theme === 'light' ? '#e6ecf5' : '#181c24');
     }
     // Update canvas particle colors if canvas is active
     if (window.updateCanvasTheme) {
@@ -184,11 +184,11 @@
 
     window.updateCanvasTheme = function (theme) {
       if (theme === 'light') {
-        particleColor = 'rgba(2, 132, 199, 0.4)';
-        lineColor = 'rgba(2, 132, 199, 0.08)';
+        particleColor = 'rgba(37, 99, 235, 0.35)';
+        lineColor = 'rgba(184, 196, 212, 0.45)';
       } else {
-        particleColor = 'rgba(56, 189, 248, 0.45)';
-        lineColor = 'rgba(56, 189, 248, 0.12)';
+        particleColor = 'rgba(56, 189, 248, 0.35)';
+        lineColor = 'rgba(56, 189, 248, 0.08)';
       }
     };
     window.updateCanvasTheme(htmlElement.getAttribute('data-theme') || 'dark');

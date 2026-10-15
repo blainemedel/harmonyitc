@@ -1,82 +1,97 @@
 /* ==========================================================================
-   HarmonyITC &mdash; Work in Progress Landing Page Styles
-   100% Native CSS (No external frameworks or dependencies)
+   HarmonyITC &mdash; Neumorphism (Soft UI) Design System
+   Pure Native CSS3 &bull; Zero External Frameworks &bull; High-Performance
    ========================================================================== */
 
 /* --------------------------------------------------
-   Theme Variables & Design Tokens
+   Theme Variables & Neumorphic Design Tokens
    -------------------------------------------------- */
 :root {
-  /* Color Palette - Dark (Default) */
-  --bg-primary: #070a12;
-  --bg-secondary: #0c121e;
-  --bg-card: rgba(15, 23, 42, 0.72);
-  --bg-card-hover: rgba(22, 33, 58, 0.82);
-  --bg-subtle: rgba(255, 255, 255, 0.04);
-  --bg-input: rgba(10, 16, 28, 0.75);
+  /* Dark Theme (Default) - Stealth Console Neumorphism */
+  --surface: #181c24;
+  --surface-subtle: #1c212b;
+  --surface-elevated: #1f2531;
 
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-accent: rgba(56, 189, 248, 0.35);
-  --border-focus: #38bdf8;
+  --nm-shadow-dark: #0f1217;
+  --nm-shadow-light: #222834;
+  --nm-border-highlight: rgba(255, 255, 255, 0.04);
+  --nm-border-shadow: rgba(0, 0, 0, 0.25);
 
-  --text-primary: #f8fafc;
+  /* Raised Elements (Extruded Surfaces) */
+  --nm-raised-xs: 3px 3px 6px var(--nm-shadow-dark), -3px -3px 6px var(--nm-shadow-light);
+  --nm-raised-sm: 5px 5px 12px var(--nm-shadow-dark), -5px -5px 12px var(--nm-shadow-light);
+  --nm-raised-md: 9px 9px 20px var(--nm-shadow-dark), -9px -9px 20px var(--nm-shadow-light);
+  --nm-raised-lg: 16px 16px 36px var(--nm-shadow-dark), -16px -16px 36px var(--nm-shadow-light);
+  --nm-raised-hover: 12px 12px 26px var(--nm-shadow-dark), -12px -12px 26px var(--nm-shadow-light);
+
+  /* Inset Elements (Carved / Pressed Wells) */
+  --nm-inset-xs: inset 2px 2px 4px var(--nm-shadow-dark), inset -2px -2px 4px var(--nm-shadow-light);
+  --nm-inset-sm: inset 4px 4px 8px var(--nm-shadow-dark), inset -4px -4px 8px var(--nm-shadow-light);
+  --nm-inset-md: inset 6px 6px 14px var(--nm-shadow-dark), inset -6px -6px 14px var(--nm-shadow-light);
+  --nm-inset-deep: inset 8px 8px 18px var(--nm-shadow-dark), inset -8px -8px 18px var(--nm-shadow-light);
+
+  /* Typography Colors */
+  --text-primary: #f1f5f9;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
 
+  /* Accent Glows & Colors */
   --accent-cyan: #38bdf8;
   --accent-blue: #0284c7;
   --accent-indigo: #6366f1;
-  --accent-purple: #818cf8;
-  --accent-emerald: #10b981;
-  --accent-amber: #f59e0b;
+  --accent-glow: rgba(56, 189, 248, 0.28);
+  --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
+  --accent-btn: linear-gradient(145deg, #1b202b, #151820);
+  --accent-btn-active: linear-gradient(145deg, #13161c, #1a1e27);
 
-  --gradient-brand: linear-gradient(135deg, #38bdf8 0%, #6366f1 50%, #a855f7 100%);
-  --gradient-btn: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
-  --gradient-btn-hover: linear-gradient(135deg, #0369a1 0%, #4338ca 100%);
-
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
-  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.38);
-  --shadow-glow: 0 0 35px rgba(56, 189, 248, 0.16);
-
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
+  /* Radii */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 26px;
   --radius-full: 9999px;
 
   --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --transition-smooth: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-theme: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease;
+  --transition-smooth: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+  --transition-theme: background 0.35s ease, color 0.35s ease, box-shadow 0.35s ease;
 }
 
-/* Light Theme Variables */
+/* Light Theme - Clean Ceramic Neumorphism */
 [data-theme="light"] {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #f1f5f9;
-  --bg-card: rgba(255, 255, 255, 0.88);
-  --bg-card-hover: rgba(255, 255, 255, 0.98);
-  --bg-subtle: rgba(15, 23, 42, 0.03);
-  --bg-input: #ffffff;
+  --surface: #e6ecf5;
+  --surface-subtle: #edf2f9;
+  --surface-elevated: #e0e6ef;
 
-  --border-subtle: rgba(15, 23, 42, 0.08);
-  --border-accent: rgba(2, 132, 199, 0.32);
-  --border-focus: #0284c7;
+  --nm-shadow-dark: #b8c4d4;
+  --nm-shadow-light: #ffffff;
+  --nm-border-highlight: rgba(255, 255, 255, 0.8);
+  --nm-border-shadow: rgba(184, 196, 212, 0.3);
 
-  --text-primary: #0f172a;
+  /* Raised Elements */
+  --nm-raised-xs: 3px 3px 6px var(--nm-shadow-dark), -3px -3px 6px var(--nm-shadow-light);
+  --nm-raised-sm: 6px 6px 14px var(--nm-shadow-dark), -6px -6px 14px var(--nm-shadow-light);
+  --nm-raised-md: 10px 10px 22px var(--nm-shadow-dark), -10px -10px 22px var(--nm-shadow-light);
+  --nm-raised-lg: 18px 18px 40px var(--nm-shadow-dark), -18px -18px 40px var(--nm-shadow-light);
+  --nm-raised-hover: 13px 13px 28px var(--nm-shadow-dark), -13px -13px 28px var(--nm-shadow-light);
+
+  /* Inset Elements */
+  --nm-inset-xs: inset 2px 2px 5px var(--nm-shadow-dark), inset -2px -2px 5px var(--nm-shadow-light);
+  --nm-inset-sm: inset 4px 4px 9px var(--nm-shadow-dark), inset -4px -4px 9px var(--nm-shadow-light);
+  --nm-inset-md: inset 6px 6px 14px var(--nm-shadow-dark), inset -6px -6px 14px var(--nm-shadow-light);
+  --nm-inset-deep: inset 8px 8px 18px var(--nm-shadow-dark), inset -8px -8px 18px var(--nm-shadow-light);
+
+  /* Typography Colors */
+  --text-primary: #1e293b;
   --text-secondary: #475569;
   --text-muted: #64748b;
 
+  /* Accent Glows & Colors */
   --accent-cyan: #0284c7;
   --accent-blue: #2563eb;
   --accent-indigo: #4f46e5;
-  --accent-purple: #7c3aed;
-
-  --gradient-brand: linear-gradient(135deg, #0284c7 0%, #4f46e5 50%, #7c3aed 100%);
-  --gradient-btn: linear-gradient(135deg, #0284c7 0%, #4338ca 100%);
-  --gradient-btn-hover: linear-gradient(135deg, #0369a1 0%, #3730a3 100%);
-
-  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
-  --shadow-md: 0 16px 40px rgba(15, 23, 42, 0.08);
-  --shadow-glow: 0 0 35px rgba(2, 132, 199, 0.12);
+  --accent-glow: rgba(37, 99, 235, 0.22);
+  --accent-gradient: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
+  --accent-btn: linear-gradient(145deg, #eef3fb, #d8e1ee);
+  --accent-btn-active: linear-gradient(145deg, #d3dce9, #eef3fb);
 }
 
 /* --------------------------------------------------
@@ -96,7 +111,7 @@ html {
 
 body {
   font-family: var(--font-family);
-  background-color: var(--bg-primary);
+  background-color: var(--surface);
   color: var(--text-primary);
   min-height: 100%;
   line-height: 1.6;
@@ -108,7 +123,7 @@ body {
 }
 
 /* --------------------------------------------------
-   Background Visuals & Ambient Lighting
+   Interactive Background Canvas
    -------------------------------------------------- */
 .background-canvas {
   position: fixed;
@@ -118,37 +133,38 @@ body {
   height: 100%;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.85;
+  opacity: 0.65;
 }
 
+/* Ambient Subtle Lighting */
 .ambient-glow {
   position: fixed;
   border-radius: 50%;
-  filter: blur(120px);
+  filter: blur(140px);
   pointer-events: none;
   z-index: 1;
-  opacity: 0.45;
+  opacity: 0.25;
   transition: opacity 0.5s ease;
 }
 
 [data-theme="light"] .ambient-glow {
-  opacity: 0.22;
+  opacity: 0.15;
 }
 
 .glow-top {
-  top: -120px;
+  top: -150px;
   right: 15%;
-  width: 550px;
-  height: 550px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.32) 0%, rgba(99, 102, 241, 0.15) 60%, transparent 80%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
 }
 
 .glow-bottom {
   bottom: -150px;
   left: 10%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(168, 85, 247, 0.12) 60%, transparent 80%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--accent-indigo) 0%, transparent 70%);
 }
 
 /* --------------------------------------------------
@@ -168,7 +184,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 3rem 1.5rem;
-  max-width: 960px;
+  max-width: 980px;
   margin: 0 auto;
   width: 100%;
 }
@@ -182,15 +198,13 @@ body {
   position: sticky;
   top: 0;
   z-index: 10;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-subtle);
-  background-color: rgba(7, 10, 18, 0.45);
+  background-color: var(--surface);
+  box-shadow: 0 4px 18px var(--nm-shadow-dark);
   transition: var(--transition-theme);
 }
 
 [data-theme="light"] .site-header {
-  background-color: rgba(248, 250, 252, 0.75);
+  box-shadow: 0 4px 16px rgba(184, 196, 212, 0.45);
 }
 
 .header-inner {
@@ -204,7 +218,7 @@ body {
 .brand-logo {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.85rem;
   text-decoration: none;
   color: var(--text-primary);
   font-weight: 700;
@@ -212,13 +226,29 @@ body {
   letter-spacing: -0.02em;
 }
 
-.logo-icon svg {
-  display: block;
-  border-radius: 8px;
+.logo-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  box-shadow: var(--nm-raised-sm);
+  transition: var(--transition-smooth);
+}
+
+.brand-logo:hover .logo-icon {
+  box-shadow: var(--nm-raised-hover);
+  transform: translateY(-1px);
+}
+
+.brand-text {
+  font-weight: 700;
 }
 
 .brand-accent {
-  background: var(--gradient-brand);
+  background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 800;
@@ -230,29 +260,37 @@ body {
   gap: 0.75rem;
 }
 
+/* Tactile Neumorphic Theme Toggle Button */
 .icon-button {
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-subtle);
+  background: var(--surface);
+  border: none;
   color: var(--text-primary);
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-sm);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  box-shadow: var(--nm-raised-sm);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  outline: none;
   transition: var(--transition-smooth);
 }
 
 .icon-button:hover {
-  background: var(--border-subtle);
-  border-color: var(--border-accent);
+  box-shadow: var(--nm-raised-hover);
   transform: translateY(-1px);
+  color: var(--accent-cyan);
+}
+
+.icon-button:active {
+  box-shadow: var(--nm-inset-sm);
+  transform: translateY(1px);
 }
 
 .icon-button:focus-visible {
-  outline: 2px solid var(--border-focus);
-  outline-offset: 2px;
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 3px;
 }
 
 /* Theme Icon Visibility */
@@ -262,26 +300,24 @@ body {
 [data-theme="light"] .icon-moon { display: block; }
 
 /* --------------------------------------------------
-   Hero Card
+   Hero Card & Neumorphic Plate
    -------------------------------------------------- */
 .hero-card {
-  background: var(--bg-card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border-subtle);
+  background: var(--surface);
   border-radius: var(--radius-lg);
-  padding: 3.5rem 3rem;
-  box-shadow: var(--shadow-md), var(--shadow-glow);
+  box-shadow: var(--nm-raised-lg);
+  padding: 3.75rem 3.25rem;
   text-align: center;
   width: 100%;
-  animation: fadeInCard 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  position: relative;
+  animation: fadeInNeumorphic 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
   transition: var(--transition-theme);
 }
 
-@keyframes fadeInCard {
+@keyframes fadeInNeumorphic {
   from {
     opacity: 0;
-    transform: translateY(24px) scale(0.985);
+    transform: translateY(20px) scale(0.99);
   }
   to {
     opacity: 1;
@@ -289,31 +325,32 @@ body {
   }
 }
 
-/* Status Pill */
+/* Status Indicator Pill - Carved Inset Well with Glowing LED */
 .status-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
-  padding: 0.45rem 1.15rem;
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-subtle);
+  gap: 0.75rem;
+  padding: 0.6rem 1.4rem;
+  background: var(--surface);
   border-radius: var(--radius-full);
-  font-size: 0.825rem;
+  box-shadow: var(--nm-inset-sm);
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--text-secondary);
-  margin-bottom: 2rem;
-  box-shadow: var(--shadow-sm);
+  margin-bottom: 2.25rem;
+  border: 1px solid var(--nm-border-highlight);
 }
 
 .pulse-dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background-color: var(--accent-cyan);
   position: relative;
   display: inline-block;
+  box-shadow: 0 0 10px var(--accent-cyan);
 }
 
 .pulse-dot::after {
@@ -321,67 +358,68 @@ body {
   position: absolute;
   top: -4px;
   left: -4px;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background-color: var(--accent-cyan);
-  opacity: 0.45;
-  animation: pulseAnimation 2s infinite ease-out;
+  opacity: 0.5;
+  animation: pulseAnimation 2.2s infinite ease-out;
 }
 
 @keyframes pulseAnimation {
   0% {
     transform: scale(0.6);
-    opacity: 0.8;
+    opacity: 0.9;
   }
   100% {
-    transform: scale(2.2);
+    transform: scale(2.4);
     opacity: 0;
   }
 }
 
-/* Hero Typography */
+/* Typography */
 .hero-title {
-  font-size: 3rem;
+  font-size: 3.1rem;
   line-height: 1.15;
   font-weight: 800;
-  letter-spacing: -0.03em;
-  margin-bottom: 1.25rem;
+  letter-spacing: -0.035em;
+  margin-bottom: 1.35rem;
 }
 
 .gradient-text {
-  background: var(--gradient-brand);
+  background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .hero-description {
   font-size: 1.125rem;
-  line-height: 1.7;
+  line-height: 1.75;
   color: var(--text-secondary);
   max-width: 680px;
-  margin: 0 auto 2.5rem;
+  margin: 0 auto 2.75rem;
 }
 
 /* --------------------------------------------------
-   Progress Bar Section
+   Progress Bar Section (Neumorphic Inset Well)
    -------------------------------------------------- */
 .progress-section {
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-subtle);
+  background: var(--surface);
+  box-shadow: var(--nm-inset-md);
   border-radius: var(--radius-md);
-  padding: 1.5rem 1.75rem;
-  margin-bottom: 2.75rem;
+  padding: 1.75rem 2rem;
+  margin-bottom: 3.25rem;
   text-align: left;
+  border: 1px solid var(--nm-border-highlight);
 }
 
 .progress-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.9rem;
+  font-size: 0.925rem;
   color: var(--text-secondary);
-  margin-bottom: 0.85rem;
+  margin-bottom: 1rem;
 }
 
 .progress-header strong {
@@ -390,32 +428,32 @@ body {
 
 .progress-percent {
   font-family: monospace, var(--font-family);
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--accent-cyan);
+  text-shadow: 0 0 12px var(--accent-glow);
 }
 
+/* Deeply carved progress track */
 .progress-track {
   width: 100%;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.08);
+  height: 12px;
+  background: var(--surface);
+  box-shadow: var(--nm-inset-sm);
   border-radius: var(--radius-full);
   overflow: hidden;
   position: relative;
-  margin-bottom: 1.25rem;
-}
-
-[data-theme="light"] .progress-track {
-  background: rgba(15, 23, 42, 0.08);
+  margin-bottom: 1.4rem;
 }
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #0284c7, #38bdf8, #6366f1);
+  background: var(--accent-gradient);
   border-radius: var(--radius-full);
   position: relative;
   overflow: hidden;
-  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px var(--accent-glow);
+  transition: width 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .progress-shimmer {
@@ -427,10 +465,10 @@ body {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.35) 50%,
     transparent 100%
   );
-  animation: shimmerMove 2.2s infinite;
+  animation: shimmerMove 2.4s infinite;
 }
 
 @keyframes shimmerMove {
@@ -438,87 +476,91 @@ body {
   to { transform: translateX(100%); }
 }
 
+/* Milestone Tags - Tactile Neumorphic Chips */
 .milestones-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.65rem;
+  gap: 0.75rem;
 }
 
 .milestone-tag {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.3rem 0.75rem;
+  gap: 0.45rem;
+  padding: 0.45rem 0.9rem;
   border-radius: var(--radius-full);
-  font-size: 0.775rem;
-  font-weight: 500;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--surface);
+  transition: var(--transition-smooth);
 }
 
 .milestone-tag.done {
-  background: rgba(16, 185, 129, 0.12);
-  color: #34d399;
-  border: 1px solid rgba(16, 185, 129, 0.25);
+  box-shadow: var(--nm-raised-xs);
+  color: #10b981;
 }
 
 .milestone-tag.active {
-  background: rgba(56, 189, 248, 0.12);
+  box-shadow: var(--nm-raised-sm);
   color: var(--accent-cyan);
-  border: 1px solid rgba(56, 189, 248, 0.3);
+  border: 1px solid var(--accent-cyan);
 }
 
 .milestone-tag.pending {
-  background: var(--bg-subtle);
+  box-shadow: var(--nm-inset-xs);
   color: var(--text-muted);
-  border: 1px solid var(--border-subtle);
 }
 
 .milestone-check {
-  font-size: 0.85rem;
+  font-size: 0.875rem;
+  font-weight: 800;
 }
 
 .milestone-indicator {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: var(--accent-cyan);
+  box-shadow: 0 0 6px var(--accent-cyan);
   display: inline-block;
 }
 
 .milestone-dot {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--text-muted);
   display: inline-block;
 }
 
 /* --------------------------------------------------
-   Notification Form
+   Notification Form (Neumorphic Inset Input + Raised Button)
    -------------------------------------------------- */
 .notify-card {
-  max-width: 560px;
-  margin: 0 auto 3.5rem;
+  max-width: 580px;
+  margin: 0 auto 3.75rem;
 }
 
 .notify-heading {
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  margin-bottom: 0.35rem;
-  letter-spacing: -0.01em;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.015em;
 }
 
 .notify-subtext {
-  font-size: 0.925rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
 }
 
 .notify-form {
   display: flex;
-  gap: 0.65rem;
+  gap: 0.85rem;
   width: 100%;
 }
 
+/* Inset Carved Input Well */
 .input-wrapper {
   position: relative;
   flex: 1;
@@ -528,7 +570,7 @@ body {
 
 .input-icon {
   position: absolute;
-  left: 1rem;
+  left: 1.15rem;
   color: var(--text-muted);
   pointer-events: none;
   transition: color 0.2s ease;
@@ -536,20 +578,20 @@ body {
 
 .email-input {
   width: 100%;
-  padding: 0.9rem 1rem 0.9rem 2.85rem;
-  background: var(--bg-input);
-  border: 1px solid var(--border-subtle);
+  padding: 1rem 1.15rem 1rem 3.1rem;
+  background: var(--surface);
+  border: none;
   border-radius: var(--radius-md);
+  box-shadow: var(--nm-inset-md);
   color: var(--text-primary);
   font-size: 0.95rem;
   font-family: inherit;
+  outline: none;
   transition: var(--transition-smooth);
 }
 
 .email-input:focus {
-  outline: none;
-  border-color: var(--border-focus);
-  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.22);
+  box-shadow: var(--nm-inset-md), 0 0 0 2px var(--accent-cyan);
 }
 
 .email-input:focus + .input-icon,
@@ -557,43 +599,53 @@ body {
   color: var(--accent-cyan);
 }
 
+/* Neumorphic Extruded Button with Tactile Push */
 .submit-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.9rem 1.75rem;
-  background: var(--gradient-btn);
-  color: #ffffff;
-  border: none;
+  gap: 0.6rem;
+  padding: 1rem 1.85rem;
+  background: var(--surface);
+  color: var(--accent-cyan);
+  border: 1px solid var(--nm-border-highlight);
   border-radius: var(--radius-md);
+  box-shadow: var(--nm-raised-sm);
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   white-space: nowrap;
+  outline: none;
   transition: var(--transition-smooth);
-  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
 }
 
 .submit-button:hover {
-  background: var(--gradient-btn-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.45);
+  box-shadow: var(--nm-raised-hover);
+  transform: translateY(-2px);
+  color: var(--text-primary);
+  background: var(--accent-gradient);
+  -webkit-background-clip: unset;
+  border-color: transparent;
+  color: #ffffff;
 }
 
 .submit-button:active {
+  box-shadow: var(--nm-inset-sm);
   transform: translateY(1px);
 }
 
 .submit-button:focus-visible {
-  outline: 2px solid var(--border-focus);
-  outline-offset: 2px;
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 3px;
 }
 
 .submit-button:disabled {
-  opacity: 0.65;
+  box-shadow: var(--nm-inset-xs);
+  opacity: 0.6;
   cursor: not-allowed;
   transform: none;
+  background: var(--surface);
+  color: var(--text-muted);
 }
 
 .btn-arrow {
@@ -601,75 +653,75 @@ body {
 }
 
 .submit-button:hover .btn-arrow {
-  transform: translateX(3px);
+  transform: translateX(4px);
 }
 
-/* Feedback messages */
+/* Form Feedback Notification */
 .form-feedback {
-  margin-top: 0.85rem;
-  font-size: 0.875rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
   min-height: 24px;
   transition: all 0.3s ease;
 }
 
 .form-feedback.success {
-  color: #34d399;
-  font-weight: 500;
+  color: #10b981;
+  font-weight: 600;
 }
 
 .form-feedback.error {
   color: #f87171;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* --------------------------------------------------
-   Feature Cards Grid
+   Feature Cards Grid (Raised Neumorphic Tiles)
    -------------------------------------------------- */
 .features-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
+  gap: 1.5rem;
   text-align: left;
 }
 
 .feature-card {
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-subtle);
+  background: var(--surface);
   border-radius: var(--radius-md);
-  padding: 1.5rem;
+  box-shadow: var(--nm-raised-sm);
+  padding: 1.75rem 1.5rem;
+  border: 1px solid var(--nm-border-highlight);
   transition: var(--transition-smooth);
 }
 
 .feature-card:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--border-accent);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--nm-raised-hover);
+  transform: translateY(-4px);
 }
 
+/* Inset Neumorphic Icon Container */
 .feature-icon-box {
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   border-radius: var(--radius-sm);
-  background: rgba(56, 189, 248, 0.1);
-  border: 1px solid rgba(56, 189, 248, 0.2);
+  background: var(--surface);
+  box-shadow: var(--nm-inset-sm);
   color: var(--accent-cyan);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.15rem;
 }
 
 .feature-title {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.55rem;
   letter-spacing: -0.01em;
 }
 
 .feature-desc {
-  font-size: 0.875rem;
-  line-height: 1.55;
+  font-size: 0.885rem;
+  line-height: 1.6;
   color: var(--text-secondary);
 }
 
@@ -678,16 +730,14 @@ body {
    -------------------------------------------------- */
 .site-footer {
   width: 100%;
-  padding: 1.75rem 2rem;
-  border-top: 1px solid var(--border-subtle);
-  background-color: rgba(7, 10, 18, 0.45);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  padding: 2rem;
+  background-color: var(--surface);
+  box-shadow: 0 -4px 18px var(--nm-shadow-dark);
   transition: var(--transition-theme);
 }
 
 [data-theme="light"] .site-footer {
-  background-color: rgba(248, 250, 252, 0.75);
+  box-shadow: 0 -4px 16px rgba(184, 196, 212, 0.35);
 }
 
 .footer-inner {
@@ -701,52 +751,63 @@ body {
 }
 
 .copyright-text {
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   color: var(--text-muted);
 }
 
+/* Tactile Pill Button for Contact */
 .contact-pill-btn {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.45rem 0.95rem;
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-subtle);
+  gap: 0.55rem;
+  padding: 0.55rem 1.15rem;
+  background: var(--surface);
+  border: 1px solid var(--nm-border-highlight);
   border-radius: var(--radius-full);
+  box-shadow: var(--nm-raised-xs);
   color: var(--text-secondary);
-  font-size: 0.825rem;
+  font-size: 0.85rem;
   font-family: inherit;
+  font-weight: 500;
   cursor: pointer;
+  outline: none;
   transition: var(--transition-smooth);
 }
 
 .contact-pill-btn:hover {
-  background: var(--border-subtle);
-  border-color: var(--border-accent);
+  box-shadow: var(--nm-raised-sm);
   color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.contact-pill-btn:active {
+  box-shadow: var(--nm-inset-xs);
+  transform: translateY(1px);
 }
 
 .contact-pill-btn:focus-visible {
-  outline: 2px solid var(--border-focus);
-  outline-offset: 2px;
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 3px;
 }
 
+/* Copy Tooltip */
 .copy-tooltip {
   position: absolute;
-  top: -32px;
+  top: -36px;
   left: 50%;
   transform: translateX(-50%) translateY(4px);
-  background: var(--accent-indigo);
-  color: #ffffff;
-  padding: 0.2rem 0.6rem;
+  background: var(--surface);
+  box-shadow: var(--nm-raised-sm);
+  color: var(--accent-cyan);
+  padding: 0.3rem 0.75rem;
   border-radius: var(--radius-sm);
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   opacity: 0;
   pointer-events: none;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+  border: 1px solid var(--nm-border-highlight);
 }
 
 .copy-tooltip.show {
@@ -759,7 +820,7 @@ body {
    -------------------------------------------------- */
 @media (max-width: 860px) {
   .hero-card {
-    padding: 2.75rem 1.75rem;
+    padding: 2.75rem 1.85rem;
   }
 
   .hero-title {
@@ -768,7 +829,7 @@ body {
 
   .features-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.25rem;
   }
 }
 
@@ -782,7 +843,7 @@ body {
   }
 
   .hero-card {
-    padding: 2rem 1.25rem;
+    padding: 2.25rem 1.25rem;
     border-radius: var(--radius-md);
   }
 
@@ -792,7 +853,7 @@ body {
 
   .hero-description {
     font-size: 1rem;
-    margin-bottom: 1.75rem;
+    margin-bottom: 2rem;
   }
 
   .notify-form {
@@ -801,7 +862,7 @@ body {
 
   .submit-button {
     width: 100%;
-    padding: 0.85rem;
+    padding: 0.95rem;
   }
 
   .milestones-row {
