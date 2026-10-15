@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   
-  <title>HarmonyITC &mdash; Work in Progress</title>
-  <meta name="description" content="HarmonyITC is currently under active development. Enterprise Information Technology & Communications Solutions Platform.">
+  <title data-content="meta.pageTitle">HarmonyITC &mdash; Work in Progress</title>
+  <meta name="description" data-content-attr="content:meta.metaDescription" content="HarmonyITC is currently under active development. Enterprise Information Technology & Communications Solutions Platform.">
   <meta name="theme-color" content="#111a16">
 
   <!-- Favicon -->
@@ -33,10 +33,14 @@
             <line x1="5.64" y1="18.36" x2="18.36" y2="5.64"></line>
           </svg>
         </span>
-        <span class="brand-name">harmony <span class="brand-slash">/</span> itc</span>
+        <span class="brand-name">
+          <span data-content="navigation.brandPrefix">harmony</span>
+          <span class="brand-slash">/</span>
+          <span data-content="navigation.brandSuffix">itc</span>
+        </span>
       </a>
 
-      <nav class="nav-links" aria-label="Main Navigation">
+      <nav class="nav-links" id="nav-links" aria-label="Main Navigation">
         <a href="#services" class="nav-link">Services</a>
         <a href="#platform" class="nav-link">Our work</a>
         <a href="#about" class="nav-link">About</a>
@@ -44,7 +48,7 @@
 
       <div class="header-cta">
         <button id="header-contact-btn" class="pill-btn-lime">
-          <span>Let's talk</span>
+          <span data-content="navigation.ctaButton">Let's talk</span>
           <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="7" y1="17" x2="17" y2="7"></line>
             <polyline points="7 7 17 7 17 17"></polyline>
@@ -61,20 +65,20 @@
       <!-- Left Column: Copy & Actions -->
       <div class="hero-content">
         <div class="eyebrow-tag">
-          <span>IDEAS INTO IMPACT / 01 &bull; WORK IN PROGRESS</span>
+          <span data-content="hero.eyebrow">IDEAS INTO IMPACT / 01 &bull; WORK IN PROGRESS</span>
         </div>
 
-        <h1 class="hero-headline">
+        <h1 class="hero-headline" data-content="hero.headline">
           Software built for what's next.
         </h1>
 
-        <p class="hero-subtext">
+        <p class="hero-subtext" data-content="hero.subtext">
           We design and develop thoughtful digital products and resilient enterprise communications infrastructure that help ambitious businesses move forward.
         </p>
 
         <div class="hero-actions">
           <button id="primary-cta-btn" class="pill-btn-lime large-btn">
-            <span>Start a conversation</span>
+            <span data-content="hero.primaryCta">Start a conversation</span>
             <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <line x1="7" y1="17" x2="17" y2="7"></line>
               <polyline points="7 7 17 7 17 17"></polyline>
@@ -82,7 +86,7 @@
           </button>
 
           <button id="explore-link-btn" class="text-link-action">
-            <span class="link-label">Explore our work</span>
+            <span class="link-label" data-content="hero.secondaryCta">Explore our work</span>
             <svg class="arrow-icon-sm" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <line x1="7" y1="17" x2="17" y2="7"></line>
               <polyline points="7 7 17 7 17 17"></polyline>
@@ -94,7 +98,7 @@
         <div class="status-indicator-box">
           <div class="status-chip">
             <span class="live-dot" aria-hidden="true"></span>
-            <span class="status-chip-text">Platform under active development &bull; Target Release Q1 2027</span>
+            <span class="status-chip-text" data-content="hero.statusIndicator">Platform under active development &bull; Target Release Q1 2027</span>
           </div>
         </div>
       </div>
@@ -103,6 +107,7 @@
       <div class="hero-visual-wrapper">
         <div class="visual-frame">
           <img 
+            id="hero-image"
             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=85" 
             alt="Engineering team collaborating in office with modern workstation monitors"
             class="hero-image"
@@ -114,7 +119,7 @@
         <!-- Floating Badge at Bottom-Left of the Image -->
         <div class="floating-badge">
           <span class="badge-dot" aria-hidden="true"></span>
-          <span class="badge-text">People first. Code second.</span>
+          <span class="badge-text" data-content="hero.floatingBadge">People first. Code second.</span>
         </div>
       </div>
 
@@ -127,16 +132,16 @@
       <button id="modal-close-btn" class="modal-close" aria-label="Close dialog">&times;</button>
       
       <div class="modal-header">
-        <div class="modal-eyebrow">WORK IN PROGRESS</div>
-        <h2 id="modal-title" class="modal-title">Let's build something remarkable.</h2>
-        <p class="modal-description">
+        <div class="modal-eyebrow" data-content="modal.eyebrow">WORK IN PROGRESS</div>
+        <h2 id="modal-title" class="modal-title" data-content="modal.title">Let's build something remarkable.</h2>
+        <p class="modal-description" data-content="modal.description">
           Our new enterprise platform is currently in private development. Leave your email for early access or reach out directly to our engineering desk.
         </p>
       </div>
 
       <form id="contact-form" class="modal-form" novalidate>
         <div class="form-group">
-          <label for="user-email" class="form-label">Your Email</label>
+          <label for="user-email" class="form-label" data-content="modal.emailLabel">Your Email</label>
           <input 
             type="email" 
             id="user-email" 
@@ -147,7 +152,7 @@
           >
         </div>
         <button type="submit" id="modal-submit-btn" class="pill-btn-lime full-width">
-          <span>Notify me upon launch</span>
+          <span data-content="modal.submitButton">Notify me upon launch</span>
           <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="7" y1="17" x2="17" y2="7"></line>
             <polyline points="7 7 17 7 17 17"></polyline>
@@ -158,16 +163,18 @@
       <div id="modal-feedback" class="modal-feedback" role="status" aria-live="polite"></div>
 
       <div class="modal-footer">
-        <span class="direct-label">Or email us directly:</span>
+        <span class="direct-label" data-content="modal.directEmailLabel">Or email us directly:</span>
         <button id="copy-email-btn" class="copy-email-link" title="Click to copy email">
-          <span>inquiries@harmonyitc.com</span>
+          <span data-content="modal.contactEmail">inquiries@harmonyitc.com</span>
           <span id="copy-badge" class="copied-badge">Copied!</span>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Vanilla JavaScript -->
+  <!-- Content Source (Mirror for instant offline support) -->
+  <script src="content.js"></script>
+  <!-- Vanilla JavaScript Dynamic Hydration & Interactivity -->
   <script src="script.js"></script>
 </body>
 </html>

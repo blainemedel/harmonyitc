@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "pageTitle": "HarmonyITC \u2014 Work in Progress",
+    "metaDescription": "HarmonyITC is currently under active development. Enterprise Information Technology & Communications Solutions Platform."
+  },
+  "navigation": {
+    "brandPrefix": "harmony",
+    "brandSuffix": "itc",
+    "links": [
+      { "label": "Services", "href": "#services" },
+      { "label": "Our work", "href": "#platform" },
+      { "label": "About", "href": "#about" }
+    ],
+    "ctaButton": "Let's talk"
+  },
+  "hero": {
+    "eyebrow": "IDEAS INTO IMPACT / 01 \u2022 WORK IN PROGRESS",
+    "headline": "Software built for what's next.",
+    "subtext": "We design and develop thoughtful digital products and resilient enterprise communications infrastructure that help ambitious businesses move forward.",
+    "primaryCta": "Start a conversation",
+    "secondaryCta": "Explore our work",
+    "statusIndicator": "Platform under active development \u2022 Target Release Q1 2027",
+    "floatingBadge": "People first. Code second.",
+    "image": {
+      "src": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=85",
+      "alt": "Engineering team collaborating in office with modern workstation monitors"
+    }
+  },
+  "modal": {
+    "eyebrow": "WORK IN PROGRESS",
+    "title": "Let's build something remarkable.",
+    "description": "Our new enterprise platform is currently in private development. Leave your email for early access or reach out directly to our engineering desk.",
+    "emailLabel": "Your Email",
+    "emailPlaceholder": "you@company.com",
+    "submitButton": "Notify me upon launch",
+    "alreadySubscribedMessage": "You're registered for early platform access!",
+    "successMessage": "Thank you! You will be notified the moment we go live.",
+    "directEmailLabel": "Or email us directly:",
+    "contactEmail": "inquiries@harmonyitc.com"
+  }
+}
