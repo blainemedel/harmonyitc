@@ -7,135 +7,126 @@
   'use strict';
 
   // ---------------------------------------------------------------------------
-  // 1. Theme Management (Dark / Light Mode)
+  // 1. Modal Controls (Start a conversation / Let's talk)
   // ---------------------------------------------------------------------------
-  const STORAGE_THEME_KEY = 'harmony_theme_preference';
-  const htmlElement = document.documentElement;
-  const themeToggleBtn = document.getElementById('theme-toggle');
+  const modalBackdrop = document.getElementById('contact-modal');
+  const modalCloseBtn = document.getElementById('modal-close-btn');
+  const headerContactBtn = document.getElementById('header-contact-btn');
+  const primaryCtaBtn = document.getElementById('primary-cta-btn');
+  const exploreLinkBtn = document.getElementById('explore-link-btn');
 
-  function getPreferredTheme() {
-    const savedTheme = localStorage.getItem(STORAGE_THEME_KEY);
-    if (savedTheme) {
-      return savedTheme;
-    }
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches
-      ? 'light'
-      : 'dark';
-  }
+  function openModal() {
+    if (!modalBackdrop) return;
+    modalBackdrop.classList.add('active');
+    modalBackdrop.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
 
-  function applyTheme(theme) {
-    htmlElement.setAttribute('data-theme', theme);
-    localStorage.setItem(STORAGE_THEME_KEY, theme);
-    // Update theme meta color tag
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    if (metaTheme) {
-      metaTheme.setAttribute('content', theme === 'light' ? '#e6ecf5' : '#181c24');
-    }
-    // Update canvas particle colors if canvas is active
-    if (window.updateCanvasTheme) {
-      window.updateCanvasTheme(theme);
+    const input = document.getElementById('user-email');
+    if (input) {
+      setTimeout(() => input.focus(), 150);
     }
   }
 
-  // Initialize theme
-  applyTheme(getPreferredTheme());
-
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-      const currentTheme = htmlElement.getAttribute('data-theme') || 'dark';
-      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      applyTheme(nextTheme);
-    });
+  function closeModal() {
+    if (!modalBackdrop) return;
+    modalBackdrop.classList.remove('active');
+    modalBackdrop.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
   }
 
-  // Listen for system color scheme changes if user hasn't explicitly set preference
-  if (window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
-      if (!localStorage.getItem(STORAGE_THEME_KEY)) {
-        applyTheme(e.matches ? 'light' : 'dark');
+  if (headerContactBtn) headerContactBtn.addEventListener('click', openModal);
+  if (primaryCtaBtn) primaryCtaBtn.addEventListener('click', openModal);
+  if (exploreLinkBtn) exploreLinkBtn.addEventListener('click', openModal);
+  if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+
+  if (modalBackdrop) {
+    modalBackdrop.addEventListener('click', (e) => {
+      if (e.target === modalBackdrop) {
+        closeModal();
       }
     });
   }
 
-  // ---------------------------------------------------------------------------
-  // 2. Dynamic Year in Footer
-  // ---------------------------------------------------------------------------
-  const yearElement = document.getElementById('current-year');
-  if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
-  }
+  // Close modal on Escape key press
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalBackdrop && modalBackdrop.classList.contains('active')) {
+      closeModal();
+    }
+  });
 
   // ---------------------------------------------------------------------------
-  // 3. Email Notification Form Handling
+  // 2. Early Access Notify Form Handling
   // ---------------------------------------------------------------------------
-  const notifyForm = document.getElementById('notify-form');
-  const emailInput = document.getElementById('email-input');
-  const submitBtn = document.getElementById('submit-btn');
-  const formFeedback = document.getElementById('form-feedback');
-  const STORAGE_SUBSCRIBED_KEY = 'harmony_subscriber_email';
+  const contactForm = document.getElementById('contact-form');
+  const userEmailInput = document.getElementById('user-email');
+  const modalSubmitBtn = document.getElementById('modal-submit-btn');
+  const modalFeedback = document.getElementById('modal-feedback');
+  const STORAGE_KEY = 'harmony_launch_email';
 
   function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
   }
 
-  // Check if user already subscribed previously
-  const previouslySubscribed = localStorage.getItem(STORAGE_SUBSCRIBED_KEY);
-  if (previouslySubscribed && emailInput && submitBtn) {
-    emailInput.value = previouslySubscribed;
-    emailInput.disabled = true;
-    submitBtn.disabled = true;
-    submitBtn.querySelector('.btn-text').textContent = 'Subscribed';
-    formFeedback.textContent = "You're already on the priority launch list. We'll be in touch soon!";
-    formFeedback.className = 'form-feedback success';
+  // Pre-fill if already submitted
+  const savedEmail = localStorage.getItem(STORAGE_KEY);
+  if (savedEmail && userEmailInput && modalSubmitBtn) {
+    userEmailInput.value = savedEmail;
+    userEmailInput.disabled = true;
+    modalSubmitBtn.disabled = true;
+    const btnSpan = modalSubmitBtn.querySelector('span');
+    if (btnSpan) btnSpan.textContent = 'Already on the waitlist';
+    if (modalFeedback) {
+      modalFeedback.textContent = "You're registered for early platform access!";
+      modalFeedback.className = 'modal-feedback success';
+    }
   }
 
-  if (notifyForm) {
-    notifyForm.addEventListener('submit', (e) => {
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const email = emailInput.value.trim();
+      const email = userEmailInput.value.trim();
 
       if (!email) {
-        showFeedback('Please enter your email address.', 'error');
-        emailInput.focus();
+        showModalFeedback('Please enter your email address.', 'error');
+        userEmailInput.focus();
         return;
       }
 
       if (!isValidEmail(email)) {
-        showFeedback('Please enter a valid email address (e.g. name@company.com).', 'error');
-        emailInput.focus();
+        showModalFeedback('Please enter a valid corporate email address.', 'error');
+        userEmailInput.focus();
         return;
       }
 
-      // UI Loading State
-      const btnText = submitBtn.querySelector('.btn-text');
-      const originalText = btnText.textContent;
-      submitBtn.disabled = true;
-      btnText.textContent = 'Registering...';
+      // Button loading state
+      const btnSpan = modalSubmitBtn.querySelector('span');
+      const originalText = btnSpan ? btnSpan.textContent : 'Notify me upon launch';
+      modalSubmitBtn.disabled = true;
+      if (btnSpan) btnSpan.textContent = 'Registering...';
 
-      // Simulate network submission delay
       setTimeout(() => {
-        localStorage.setItem(STORAGE_SUBSCRIBED_KEY, email);
-        emailInput.disabled = true;
-        btnText.textContent = 'Subscribed';
-        showFeedback('Thank you! You have been added to the early access list.', 'success');
-      }, 750);
+        localStorage.setItem(STORAGE_KEY, email);
+        userEmailInput.disabled = true;
+        if (btnSpan) btnSpan.textContent = 'Subscribed';
+        showModalFeedback('Thank you! You will be notified the moment we go live.', 'success');
+      }, 700);
     });
   }
 
-  function showFeedback(message, type) {
-    if (!formFeedback) return;
-    formFeedback.textContent = message;
-    formFeedback.className = `form-feedback ${type}`;
+  function showModalFeedback(message, type) {
+    if (!modalFeedback) return;
+    modalFeedback.textContent = message;
+    modalFeedback.className = `modal-feedback ${type}`;
   }
 
   // ---------------------------------------------------------------------------
-  // 4. Copy Email Address to Clipboard
+  // 3. One-Click Clipboard Email Copy
   // ---------------------------------------------------------------------------
   const copyBtn = document.getElementById('copy-email-btn');
-  const copyToast = document.getElementById('copy-toast');
+  const copyBadge = document.getElementById('copy-badge');
   let copyTimeoutId = null;
 
-  if (copyBtn && copyToast) {
+  if (copyBtn && copyBadge) {
     copyBtn.addEventListener('click', async () => {
       const emailText = 'inquiries@harmonyitc.com';
 
@@ -143,190 +134,24 @@
         if (navigator.clipboard && navigator.clipboard.writeText) {
           await navigator.clipboard.writeText(emailText);
         } else {
-          // Fallback for non-secure or older contexts
-          const textArea = document.createElement('textarea');
-          textArea.value = emailText;
-          textArea.style.position = 'fixed';
-          textArea.style.opacity = '0';
-          document.body.appendChild(textArea);
-          textArea.select();
+          const tempInput = document.createElement('textarea');
+          tempInput.value = emailText;
+          tempInput.style.position = 'fixed';
+          tempInput.style.opacity = '0';
+          document.body.appendChild(tempInput);
+          tempInput.select();
           document.execCommand('copy');
-          document.body.removeChild(textArea);
+          document.body.removeChild(tempInput);
         }
 
-        // Show Copied Toast
-        copyToast.classList.add('show');
+        copyBadge.classList.add('show');
         if (copyTimeoutId) clearTimeout(copyTimeoutId);
         copyTimeoutId = setTimeout(() => {
-          copyToast.classList.remove('show');
-        }, 2200);
+          copyBadge.classList.remove('show');
+        }, 2000);
       } catch (err) {
-        console.error('Failed to copy email:', err);
+        console.error('Copy failed:', err);
       }
     });
-  }
-
-  // ---------------------------------------------------------------------------
-  // 5. Interactive Network Canvas Background
-  // ---------------------------------------------------------------------------
-  const canvas = document.getElementById('network-canvas');
-  if (canvas) {
-    const ctx = canvas.getContext('2d');
-    let width = 0;
-    let height = 0;
-    let animationFrameId = null;
-    let particles = [];
-
-    // Configuration
-    const mouse = { x: null, y: null, maxDistance: 130 };
-    let particleColor = 'rgba(56, 189, 248, 0.45)';
-    let lineColor = 'rgba(56, 189, 248, 0.12)';
-
-    window.updateCanvasTheme = function (theme) {
-      if (theme === 'light') {
-        particleColor = 'rgba(37, 99, 235, 0.35)';
-        lineColor = 'rgba(184, 196, 212, 0.45)';
-      } else {
-        particleColor = 'rgba(56, 189, 248, 0.35)';
-        lineColor = 'rgba(56, 189, 248, 0.08)';
-      }
-    };
-    window.updateCanvasTheme(htmlElement.getAttribute('data-theme') || 'dark');
-
-    function resizeCanvas() {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      ctx.scale(dpr, dpr);
-      initParticles();
-    }
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.radius = Math.random() * 2 + 1;
-        this.vx = (Math.random() - 0.5) * 0.45;
-        this.vy = (Math.random() - 0.5) * 0.45;
-      }
-
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-
-        // Wrap around boundaries
-        if (this.x < 0) this.x = width;
-        if (this.x > width) this.x = 0;
-        if (this.y < 0) this.y = height;
-        if (this.y > height) this.y = 0;
-      }
-
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = particleColor;
-        ctx.fill();
-      }
-    }
-
-    function initParticles() {
-      // Calculate responsive count
-      const area = width * height;
-      const count = Math.min(Math.floor(area / 24000), 55);
-      particles = [];
-      for (let i = 0; i < count; i++) {
-        particles.push(new Particle());
-      }
-    }
-
-    function connectParticles() {
-      const maxDist = 120;
-      const maxDistSq = maxDist * maxDist;
-
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const distSq = dx * dx + dy * dy;
-
-          if (distSq < maxDistSq) {
-            const opacity = 1 - Math.sqrt(distSq) / maxDist;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = lineColor.replace(/[\d.]+\)$/, `${(opacity * 0.18).toFixed(3)})`);
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        }
-
-        // Connect to mouse pointer
-        if (mouse.x !== null && mouse.y !== null) {
-          const dx = particles[i].x - mouse.x;
-          const dy = particles[i].y - mouse.y;
-          const mouseDist = Math.sqrt(dx * dx + dy * dy);
-
-          if (mouseDist < mouse.maxDistance) {
-            const mouseOpacity = 1 - mouseDist / mouse.maxDistance;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = lineColor.replace(/[\d.]+\)$/, `${(mouseOpacity * 0.28).toFixed(3)})`);
-            ctx.lineWidth = 1.2;
-            ctx.stroke();
-          }
-        }
-      }
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-
-      for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
-      }
-
-      connectParticles();
-      animationFrameId = requestAnimationFrame(animate);
-    }
-
-    // Event listeners
-    window.addEventListener('resize', debounce(resizeCanvas, 150));
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
-
-    window.addEventListener('mouseleave', () => {
-      mouse.x = null;
-      mouse.y = null;
-    });
-
-    // Pause animation when tab is inactive to save battery/CPU
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        if (animationFrameId) cancelAnimationFrame(animationFrameId);
-      } else {
-        animate();
-      }
-    });
-
-    // Initialize and start
-    resizeCanvas();
-    animate();
-  }
-
-  // ---------------------------------------------------------------------------
-  // Helper: Debounce
-  // ---------------------------------------------------------------------------
-  function debounce(func, wait) {
-    let timeout;
-    return function (...args) {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(this, args), wait);
-    };
   }
 })();
