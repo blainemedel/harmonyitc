@@ -7,9 +7,18 @@
     "brandPrefix": "harmony",
     "brandSuffix": "itc",
     "links": [
-      { "label": "Services", "href": "#services" },
-      { "label": "Our work", "href": "#platform" },
-      { "label": "About", "href": "#about" }
+      {
+        "label": "Services",
+        "href": "#services"
+      },
+      {
+        "label": "Our works",
+        "href": "#platform"
+      },
+      {
+        "label": "About",
+        "href": "#about"
+      }
     ],
     "ctaButton": "Let's talk"
   },
