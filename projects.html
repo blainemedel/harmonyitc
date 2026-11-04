@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title>Our Projects &mdash; HarmonyITC</title>
+  <meta name="description" content="Explore HarmonyITC's enterprise portfolio: Telecommunications backbone monitors, subscriber billing engines, geospatial field asset mapping, and secure cloud API gateways.">
+  <meta name="theme-color" content="#0c3836">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%2338e2d0'/><path d='M50 20 L50 80 M20 50 L80 50 M29 29 L71 71 M29 71 L71 29' stroke='%230b3735' stroke-width='10' stroke-linecap='round'/></svg>">
+
+  <!-- Google Fonts: Fraunces & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bi-tonal Petrol Teal & Ice-Mint Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating Capsule Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand-logo" aria-label="HarmonyITC Home">
+        <span class="logo-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="12" y1="3" x2="12" y2="21"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="5.64" y1="5.64" x2="18.36" y2="18.36"></line>
+            <line x1="5.64" y1="18.36" x2="18.36" y2="5.64"></line>
+          </svg>
+        </span>
+        <span class="brand-name">harmony<span class="brand-slash">/</span>itc</span>
+      </a>
+
+      <!-- Desktop Capsule Nav Links -->
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="projects.html" class="nav-link active">Our Projects</a>
+        <a href="contact.html" class="nav-link">Contact Us</a>
+      </nav>
+
+      <!-- Desktop Header Action -->
+      <div class="header-cta">
+        <a href="contact.html" class="pill-btn-mint">
+          <span>Get in touch</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="about.html" class="nav-link">About Us</a>
+    <a href="projects.html" class="nav-link active">Our Projects</a>
+    <a href="contact.html" class="nav-link">Contact Us</a>
+    <div style="margin-top: 1rem;">
+      <a href="contact.html" class="pill-btn-mint large-btn" style="width: 100%; justify-content: center;">
+        <span>Get in touch</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="7" y1="17" x2="17" y2="7"></line>
+          <polyline points="7 7 17 7 17 17"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <main>
+    <!-- Projects Header Island -->
+    <section class="hero-wrapper-section">
+      <div class="teal-island-container" style="padding: 4rem 3.5rem;">
+        <div style="max-width: 820px;">
+          <div class="eyebrow-pill">PORTFOLIO &amp; CASE STUDIES</div>
+          <h1 class="hero-brand-display" style="font-size: clamp(2.8rem, 4.8vw, 4.2rem);">
+            Engineered for <em>resilience &amp; scale.</em>
+          </h1>
+          <p class="hero-lead-text">
+            A showcase of production systems architected by HarmonyITC &mdash; from sub-second telecommunications telemetry monitors to full-stack enterprise subscriber platforms.
+          </p>
+
+          <!-- Filter Rail (Inspired by reference UI 'Its Type Variation / Galaxy / Green Pea') -->
+          <div class="filter-rail-container">
+            <button class="filter-btn active" data-filter="all">All Systems</button>
+            <button class="filter-btn" data-filter="telecom">Telecom &amp; Fiber</button>
+            <button class="filter-btn" data-filter="software">Enterprise Software</button>
+            <button class="filter-btn" data-filter="geospatial">Geospatial Systems</button>
+            <button class="filter-btn" data-filter="cloud">Cloud &amp; APIs</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Gallery Grid -->
+    <section class="section-wrapper-canvas" style="padding-top: 0;">
+      <div class="teal-island-container" style="padding: 3.5rem;">
+        
+        <div class="gallery-grid-3">
+          <!-- Project 1: Telecom Backbone Monitor -->
+          <div class="gallery-card project-card" data-category="telecom">
+            <div class="gallery-image-box">
+              <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="Backbone fiber distribution and optical telemetry" class="gallery-image">
+              <div class="gallery-arrow-badge">
+                <button class="squircle-arrow-btn-light" data-case-id="telecom-monitor" aria-label="Open Case Study">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+              </div>
+            </div>
+            <div class="gallery-card-body">
+              <div class="gallery-category-pill">TELECOM INFRASTRUCTURE</div>
+              <h3 class="gallery-title">Backbone Fiber Route Monitor</h3>
+              <p class="gallery-desc">
+                Real-time telemetry and optical loss monitoring across distributed regional fiber optic paths, preventing extended subscriber outages.
+              </p>
+              <div class="gallery-metrics-tray">
+                <div style="display: flex; flex-direction: column;">
+                  <span class="g-metric-val">99.99%</span>
+                  <span class="g-metric-lbl">Uptime SLA</span>
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                  <span class="g-metric-val">&lt; 10ms</span>
+                  <span class="g-metric-lbl">Alerting Speed</span>
+                </div>
+              </div>
+              <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center;">
+                <span class="service-pill-tag">WebSockets &bull; Node &bull; GIS</span>
+                <button class="pill-btn-mint" data-case-id="telecom-monitor" style="padding: 0.45rem 1rem; font-size: 0.8rem;">
+                  <span>Case Study</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: Billing & Operations Engine -->
+          <div class="gallery-card project-card" data-category="software">
+            <div class="gallery-image-box">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Enterprise subscriber operations and billing engine" class="gallery-image">
+              <div class="gallery-arrow-badge">
+                <button class="squircle-arrow-btn-light" data-case-id="billing-engine" aria-label="Open Case Study">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+              </div>
+            </div>
+            <div class="gallery-card-body">
+              <div class="gallery-category-pill">ENTERPRISE SOFTWARE</div>
+              <h3 class="gallery-title">Subscriber Billing &amp; Operations</h3>
+              <p class="gallery-desc">
+                Unified business operations platform handling end-to-end subscriber provisioning, recurring billing cycles, technician work orders, and RBAC.
+              </p>
+              <div class="gallery-metrics-tray">
+                <div style="display: flex; flex-direction: column;">
+                  <span class="g-metric-val">50,000+</span>
+                  <span class="g-metric-lbl">Monthly Invoices</span>
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                  <span class="g-metric-val">&lt; 150ms</span>
+                  <span class="g-metric-lbl">Query Latency</span>
+                </div>
+              </div>
+              <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center;">
+                <span class="service-pill-tag">TypeScript &bull; Express &bull; SQL</span>
+                <button class="pill-btn-mint" data-case-id="billing-engine" style="padding: 0.45rem 1rem; font-size: 0.8rem;">
+                  <span>Case Study</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: Geospatial Field Mapping -->
+          <div class="gallery-card project-card" data-category="geospatial">
+            <div class="gallery-image-box">
+              <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=80" alt="Interactive GIS map interface with telemetry" class="gallery-image">
+              <div class="gallery-arrow-badge">
+                <button class="squircle-arrow-btn-light" data-case-id="geo-mapping" aria-label="Open Case Study">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+              </div>
+            </div>
+            <div class="gallery-card-body">
+              <div class="gallery-category-pill">GEOSPATIAL SYSTEMS</div>
+              <h3 class="gallery-title">Field Asset &amp; NAP Mapping Portal</h3>
+              <p class="gallery-desc">
+                High-density interactive map tracking field network access points (NAPs), optical splitter hierarchies, and field splice locations with offline caching.
+              </p>
+              <div class="gallery-metrics-tray">
+                <div style="display: flex; flex-direction: column;">
+                  <span class="g-metric-val">12,000+</span>
+                  <span class="g-metric-lbl">Assets Tracked</span>
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                  <span class="g-metric-val">100%</span>
+                  <span class="g-metric-lbl">Offline Resiliency</span>
+                </div>
+              </div>
+              <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center;">
+                <span class="service-pill-tag">PostGIS &bull; Mapbox &bull; PWA</span>
+                <button class="pill-btn-mint" data-case-id="geo-mapping" style="padding: 0.45rem 1rem; font-size: 0.8rem;">
+                  <span>Case Study</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4: Cloud API Gateway -->
+          <div class="gallery-card project-card" data-category="cloud">
+            <div class="gallery-image-box">
+              <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80" alt="Cloud server network and high security API gateway" class="gallery-image">
+              <div class="gallery-arrow-badge">
+                <button class="squircle-arrow-btn-light" data-case-id="cloud-gateway" aria-label="Open Case Study">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+              </div>
+            </div>
+            <div class="gallery-card-body">
+              <div class="gallery-category-pill">CLOUD &amp; APIS</div>
+              <h3 class="gallery-title">Enterprise API Gateway</h3>
+              <p class="gallery-desc">
+                High-throughput reverse proxy and API security layer managing authentication, rate limiting, and compliance audit logs for internal and partner services.
+              </p>
+              <div class="gallery-metrics-tray">
+                <div style="display: flex; flex-direction: column;">
+                  <span class="g-metric-val">25M+</span>
+                  <span class="g-metric-lbl">Monthly Requests</span>
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                  <span class="g-metric-val">99.995%</span>
+                  <span class="g-metric-lbl">Service SLA</span>
+                </div>
+              </div>
+              <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center;">
+                <span class="service-pill-tag">Go &bull; Docker &bull; K8s</span>
+                <button class="pill-btn-mint" data-case-id="cloud-gateway" style="padding: 0.45rem 1rem; font-size: 0.8rem;">
+                  <span>Case Study</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 5: Port Diagnostics Console -->
+          <div class="gallery-card project-card" data-category="telecom software">
+            <div class="gallery-image-box">
+              <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="Telemetry console and network diagnostic charts" class="gallery-image">
+              <div class="gallery-arrow-badge">
+                <button class="squircle-arrow-btn-light" data-case-id="telecom-monitor" aria-label="Open Case Study">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+              </div>
+            </div>
+            <div class="gallery-card-body">
+              <div class="gallery-category-pill">TELECOM &bull; SOFTWARE</div>
+              <h3 class="gallery-title">Optical Port Diagnostics Console</h3>
+              <p class="gallery-desc">
+                Automated testing suite for fiber optic patch panels, giving field engineers instantaneous dBm optical power readings and loss alerts.
+              </p>
+              <div class="gallery-metrics-tray">
+                <div style="display: flex; flex-direction: column;">
+                  <span class="g-metric-val">&lt; 1s</span>
+                  <span class="g-metric-lbl">Port Check Time</span>
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                  <span class="g-metric-val">Zero</span>
+                  <span class="g-metric-lbl">False Alarms</span>
+                </div>
+              </div>
+              <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center;">
+                <span class="service-pill-tag">FastAPI &bull; Python &bull; Streams</span>
+                <button class="pill-btn-mint" data-case-id="telecom-monitor" style="padding: 0.45rem 1rem; font-size: 0.8rem;">
+                  <span>Case Study</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 6: Field Job Dispatch Mobile Hub -->
+          <div class="gallery-card project-card" data-category="software cloud">
+            <div class="gallery-image-box">
+              <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" alt="Mobile technician dispatch app and work order system" class="gallery-image">
+              <div class="gallery-arrow-badge">
+                <button class="squircle-arrow-btn-light" data-case-id="billing-engine" aria-label="Open Case Study">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+              </div>
+            </div>
+            <div class="gallery-card-body">
+              <div class="gallery-category-pill">SOFTWARE &bull; CLOUD</div>
+              <h3 class="gallery-title">Technician Job Dispatch Hub</h3>
+              <p class="gallery-desc">
+                Mobile-optimized field application for on-site technicians to verify work orders, log splice photos, and close tickets with GPS location verification.
+              </p>
+              <div class="gallery-metrics-tray">
+                <div style="display: flex; flex-direction: column;">
+                  <span class="g-metric-val">3x</span>
+                  <span class="g-metric-lbl">Turnaround Speed</span>
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                  <span class="g-metric-val">100%</span>
+                  <span class="g-metric-lbl">Digital Workflows</span>
+                </div>
+              </div>
+              <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center;">
+                <span class="service-pill-tag">TypeScript &bull; PWA &bull; S3</span>
+                <button class="pill-btn-mint" data-case-id="billing-engine" style="padding: 0.45rem 1rem; font-size: 0.8rem;">
+                  <span>Case Study</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Case Study Modal (Petrol Teal & Floating Mint Dialog) -->
+    <div id="case-modal" class="case-modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="case-modal-title">
+      <div class="case-modal-card">
+        <button id="case-modal-close" class="case-modal-close" aria-label="Close dialog">&times;</button>
+        <div id="case-modal-eyebrow" class="eyebrow-pill" style="margin-bottom: 1rem;">CASE STUDY</div>
+        <h2 id="case-modal-title" class="section-title-dark" style="font-size: 2rem;">Project Title</h2>
+        <p id="case-modal-desc" class="section-subtext-dark" style="margin-bottom: 2rem;">Detailed overview of the engineering project.</p>
+
+        <div class="floating-mint-card" style="margin-bottom: 1.5rem; padding: 1.75rem;">
+          <div class="card-eyebrow-mint">THE CHALLENGE</div>
+          <div id="case-modal-challenge" class="card-desc-mint" style="margin-bottom: 0;"></div>
+        </div>
+
+        <div class="floating-mint-card" style="margin-bottom: 1.5rem; padding: 1.75rem;">
+          <div class="card-eyebrow-mint">ARCHITECTURE &amp; SOLUTION</div>
+          <div id="case-modal-solution" class="card-desc-mint" style="margin-bottom: 0;"></div>
+        </div>
+
+        <div class="metric-well-item" style="margin-bottom: 1.5rem;">
+          <div class="metric-label-white" style="color: var(--accent-cyan); font-size: 0.85rem;">TECH STACK</div>
+          <div id="case-modal-tech" style="font-family: monospace; color: var(--text-on-teal); margin-top: 0.35rem; font-size: 0.95rem;"></div>
+        </div>
+
+        <div class="metric-well-item">
+          <div class="metric-label-white" style="color: var(--accent-cyan); font-size: 0.85rem;">PRODUCTION METRICS</div>
+          <div id="case-modal-metrics" style="color: var(--text-on-teal); margin-top: 0.35rem; font-weight: 700;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Collaboration Island Banner -->
+    <section class="section-wrapper-canvas">
+      <div class="teal-island-container cta-island">
+        <div style="max-width: 650px;">
+          <div class="eyebrow-pill">CUSTOM ENGINEERING</div>
+          <h2 class="section-title-dark" style="margin-bottom: 0.75rem;">
+            Need a system tailored to <em>your operations?</em>
+          </h2>
+          <p class="section-subtext-dark">
+            We partner with enterprises to design, build, and deploy high-reliability infrastructure and custom software solutions.
+          </p>
+        </div>
+        <div>
+          <a href="contact.html" class="pill-btn-mint large-btn">
+            <span>Start a conversation</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Footer Island -->
+  <footer class="site-footer">
+    <div class="footer-inner-island">
+      <div class="footer-top">
+        <div>
+          <a href="index.html" class="brand-logo" aria-label="HarmonyITC Home">
+            <span class="logo-mark" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="12" y1="3" x2="12" y2="21"></line>
+                <line x1="3" y1="12" x2="21" y2="21"></line>
+                <line x1="5.64" y1="5.64" x2="18.36" y2="18.36"></line>
+                <line x1="5.64" y1="18.36" x2="18.36" y2="5.64"></line>
+              </svg>
+            </span>
+            <span class="brand-name">harmony<span class="brand-slash">/</span>itc</span>
+          </a>
+          <p class="footer-brand-desc">
+            Enterprise Information Technology &amp; Communications Solutions Platform. Designed for scalability, built for resilience.
+          </p>
+          <div style="margin-top: 1rem;">
+            <span class="eyebrow-pill" style="font-size: 0.75rem; padding: 0.35rem 1rem;">
+              People first. Code second.
+            </span>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-nav-list">
+            <li><a href="index.html" class="footer-nav-link">Home</a></li>
+            <li><a href="about.html" class="footer-nav-link">About Us</a></li>
+            <li><a href="projects.html" class="footer-nav-link">Our Projects</a></li>
+            <li><a href="contact.html" class="footer-nav-link">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Direct Inquiries</h4>
+          <a href="mailto:inquiries@harmonyitc.com" class="footer-email-link">inquiries@harmonyitc.com</a>
+          <p class="footer-sub-text">
+            Direct access to our founding engineering desk. Responses within 24 hours.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 HarmonyITC. All rights reserved.</span>
+        <span>Engineered with precision &amp; care.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -5,176 +5,515 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   
-  <title data-content="meta.pageTitle">HarmonyITC &mdash; Work in Progress</title>
-  <meta name="description" data-content-attr="content:meta.metaDescription" content="HarmonyITC is currently under active development. Enterprise Information Technology & Communications Solutions Platform.">
-  <meta name="theme-color" content="#111a16">
+  <title>HarmonyITC &mdash; Enterprise Information Technology & Communications</title>
+  <meta name="description" content="HarmonyITC designs and engineers resilient digital infrastructure, telecommunications operations, geospatial network assets, and client-facing enterprise software.">
+  <meta name="theme-color" content="#0c3836">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23d4f570'/><path d='M50 20 L50 80 M20 50 L80 50 M29 29 L71 71 M29 71 L71 29' stroke='%23111a16' stroke-width='10' stroke-linecap='round'/></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%2338e2d0'/><path d='M50 20 L50 80 M20 50 L80 50 M29 29 L71 71 M29 71 L71 29' stroke='%230b3735' stroke-width='10' stroke-linecap='round'/></svg>">
 
-  <!-- Google Fonts for Editorial Serif & Clean Sans -->
+  <!-- Google Fonts: Fraunces & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Stylesheet -->
+  <!-- Bi-tonal Petrol Teal & Ice-Mint Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Header / Navigation -->
+
+  <!-- Floating Capsule Header -->
   <header class="site-header">
     <div class="header-inner">
-      <a href="#" class="brand-logo" aria-label="HarmonyITC Home">
+      <a href="index.html" class="brand-logo" aria-label="HarmonyITC Home">
         <span class="logo-mark" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
             <line x1="12" y1="3" x2="12" y2="21"></line>
             <line x1="3" y1="12" x2="21" y2="12"></line>
             <line x1="5.64" y1="5.64" x2="18.36" y2="18.36"></line>
             <line x1="5.64" y1="18.36" x2="18.36" y2="5.64"></line>
           </svg>
         </span>
-        <span class="brand-name">
-          <span data-content="navigation.brandPrefix">harmony</span>
-          <span class="brand-slash">/</span>
-          <span data-content="navigation.brandSuffix">itc</span>
-        </span>
+        <span class="brand-name">harmony<span class="brand-slash">/</span>itc</span>
       </a>
 
-      <nav class="nav-links" id="nav-links" aria-label="Main Navigation">
-        <a href="#services" class="nav-link">Services</a>
-        <a href="#platform" class="nav-link">Our work</a>
-        <a href="#about" class="nav-link">About</a>
+      <!-- Desktop Capsule Nav Links -->
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="projects.html" class="nav-link">Our Projects</a>
+        <a href="contact.html" class="nav-link">Contact Us</a>
       </nav>
 
+      <!-- Desktop Header Action -->
       <div class="header-cta">
-        <button id="header-contact-btn" class="pill-btn-lime">
-          <span data-content="navigation.ctaButton">Let's talk</span>
-          <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <a href="contact.html" class="pill-btn-mint">
+          <span>Get in touch</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="7" y1="17" x2="17" y2="7"></line>
             <polyline points="7 7 17 7 17 17"></polyline>
           </svg>
-        </button>
+        </a>
       </div>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <main class="hero-section">
-    <div class="hero-container">
-      
-      <!-- Left Column: Copy & Actions -->
-      <div class="hero-content">
-        <div class="eyebrow-tag">
-          <span data-content="hero.eyebrow">IDEAS INTO IMPACT / 01 &bull; WORK IN PROGRESS</span>
-        </div>
-
-        <h1 class="hero-headline" data-content="hero.headline">
-          Software built for what's next.
-        </h1>
-
-        <p class="hero-subtext" data-content="hero.subtext">
-          We design and develop thoughtful digital products and resilient enterprise communications infrastructure that help ambitious businesses move forward.
-        </p>
-
-        <div class="hero-actions">
-          <button id="primary-cta-btn" class="pill-btn-lime large-btn">
-            <span data-content="hero.primaryCta">Start a conversation</span>
-            <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"></line>
-              <polyline points="7 7 17 7 17 17"></polyline>
-            </svg>
-          </button>
-
-          <button id="explore-link-btn" class="text-link-action">
-            <span class="link-label" data-content="hero.secondaryCta">Explore our work</span>
-            <svg class="arrow-icon-sm" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"></line>
-              <polyline points="7 7 17 7 17 17"></polyline>
-            </svg>
-          </button>
-        </div>
-
-        <!-- Work In Progress / Status Pill -->
-        <div class="status-indicator-box">
-          <div class="status-chip">
-            <span class="live-dot" aria-hidden="true"></span>
-            <span class="status-chip-text" data-content="hero.statusIndicator">Platform under active development &bull; Target Release Q1 2027</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right Column: Asymmetric Arched Visual Frame -->
-      <div class="hero-visual-wrapper">
-        <div class="visual-frame">
-          <img 
-            id="hero-image"
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=85" 
-            alt="Engineering team collaborating in office with modern workstation monitors"
-            class="hero-image"
-            loading="eager"
-          >
-          <div class="image-gradient-overlay" aria-hidden="true"></div>
-        </div>
-
-        <!-- Floating Badge at Bottom-Left of the Image -->
-        <div class="floating-badge">
-          <span class="badge-dot" aria-hidden="true"></span>
-          <span class="badge-text" data-content="hero.floatingBadge">People first. Code second.</span>
-        </div>
-      </div>
-
-    </div>
-  </main>
-
-  <!-- Interactive Modal / Slide-out for "Start a conversation" & "Let's talk" -->
-  <div id="contact-modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
-    <div class="modal-card">
-      <button id="modal-close-btn" class="modal-close" aria-label="Close dialog">&times;</button>
-      
-      <div class="modal-header">
-        <div class="modal-eyebrow" data-content="modal.eyebrow">WORK IN PROGRESS</div>
-        <h2 id="modal-title" class="modal-title" data-content="modal.title">Let's build something remarkable.</h2>
-        <p class="modal-description" data-content="modal.description">
-          Our new enterprise platform is currently in private development. Leave your email for early access or reach out directly to our engineering desk.
-        </p>
-      </div>
-
-      <form id="contact-form" class="modal-form" novalidate>
-        <div class="form-group">
-          <label for="user-email" class="form-label" data-content="modal.emailLabel">Your Email</label>
-          <input 
-            type="email" 
-            id="user-email" 
-            class="form-input" 
-            placeholder="you@company.com" 
-            required 
-            autocomplete="email"
-          >
-        </div>
-        <button type="submit" id="modal-submit-btn" class="pill-btn-lime full-width">
-          <span data-content="modal.submitButton">Notify me upon launch</span>
-          <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
-        </button>
-      </form>
-
-      <div id="modal-feedback" class="modal-feedback" role="status" aria-live="polite"></div>
-
-      <div class="modal-footer">
-        <span class="direct-label" data-content="modal.directEmailLabel">Or email us directly:</span>
-        <button id="copy-email-btn" class="copy-email-link" title="Click to copy email">
-          <span data-content="modal.contactEmail">inquiries@harmonyitc.com</span>
-          <span id="copy-badge" class="copied-badge">Copied!</span>
-        </button>
-      </div>
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation">
+    <a href="index.html" class="nav-link active">Home</a>
+    <a href="about.html" class="nav-link">About Us</a>
+    <a href="projects.html" class="nav-link">Our Projects</a>
+    <a href="contact.html" class="nav-link">Contact Us</a>
+    <div style="margin-top: 1rem;">
+      <a href="contact.html" class="pill-btn-mint large-btn" style="width: 100%; justify-content: center;">
+        <span>Get in touch</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="7" y1="17" x2="17" y2="7"></line>
+          <polyline points="7 7 17 7 17 17"></polyline>
+        </svg>
+      </a>
     </div>
   </div>
 
-  <!-- Content Source (Mirror for instant offline support) -->
-  <script src="content.js"></script>
-  <!-- Vanilla JavaScript Dynamic Hydration & Interactivity -->
+  <main>
+    <!-- Hero Island Section (Modeled after reference UI) -->
+    <section class="hero-wrapper-section">
+      <div class="teal-island-container hero-island">
+        
+        <!-- Recessed Search & Control Bar inside Island -->
+        <div class="island-search-bar">
+          <div class="inset-search-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span>Search Enterprise Systems, Telecom, GIS...</span>
+            <div class="search-icon-group">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.85rem;">
+            <div class="eyebrow-pill" style="margin-bottom: 0;">
+              ENTERPRISE ITC PLATFORM / 01
+            </div>
+            <a href="contact.html" class="pill-btn-mint" style="padding: 0.5rem 1.25rem; font-size: 0.825rem;">
+              <span>Get Started</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Main Hero Content Grid -->
+        <div class="hero-grid" style="margin-top: 3rem;">
+          
+          <!-- Left Column -->
+          <div class="hero-left-content">
+            <h1 class="hero-brand-display">
+              Software built for <em>what's next.</em>
+            </h1>
+
+            <p class="hero-lead-text">
+              We design and engineer resilient telecommunications infrastructure, geospatial network systems, and high-performance enterprise software that empower ambitious teams to move forward.
+            </p>
+
+            <!-- Bottom Pill Action Tray -->
+            <div class="hero-action-tray">
+              <a href="projects.html" class="pill-btn-mint large-btn">
+                <span>Explore our projects</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+
+              <a href="about.html" class="pill-btn-inset large-btn">
+                <span>About our team</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Column: The Signature Floating Ice-Mint Card + Media Well -->
+          <div class="hero-right-column">
+            <!-- Floating Card (Modeled after 'Apa itu antariksa?' in reference) -->
+            <div class="floating-mint-card">
+              <div class="card-eyebrow-mint">CORE PHILOSOPHY</div>
+              <h2 class="card-title-mint">People first. Code second.</h2>
+              <p class="card-desc-mint">
+                Enterprise technology should feel effortless. We combine physical fiber routing, subscriber lifecycles, and modern cloud architectures into elegant, unified platforms.
+              </p>
+
+              <div class="mint-card-footer">
+                <span class="mint-tag">Active Platform Architecture</span>
+                <a href="projects.html" class="squircle-arrow-btn" aria-label="Explore Projects">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Recessed Photo Well -->
+            <div class="hero-visual-recess">
+              <img 
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=85" 
+                alt="HarmonyITC engineering leads collaborating"
+                loading="eager"
+              >
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Scroll Connector Pill (SKROLL ▼) -->
+      <a href="#capabilities" class="scroll-anchor-pill" aria-label="Scroll to capabilities">
+        <span class="scroll-arrow-icon">▼</span>
+        <span>SKROLL</span>
+      </a>
+    </section>
+
+    <!-- Key Metrics Island Bar -->
+    <section class="section-wrapper-canvas" style="padding-top: 0; padding-bottom: 2rem;">
+      <div class="teal-island-container metrics-island-bar">
+        <div class="metric-well-item">
+          <span class="metric-number-cyan">99.99%</span>
+          <span class="metric-label-white">System Uptime</span>
+          <span class="metric-sub-muted">Engineered for mission-critical telecom carrier standards.</span>
+        </div>
+        <div class="metric-well-item">
+          <span class="metric-number-cyan">&lt; 40ms</span>
+          <span class="metric-label-white">Telemetry Latency</span>
+          <span class="metric-sub-muted">Real-time edge polling and optical attenuation alerting.</span>
+        </div>
+        <div class="metric-well-item">
+          <span class="metric-number-cyan">12,000+</span>
+          <span class="metric-label-white">Km Fiber Mapped</span>
+          <span class="metric-sub-muted">Geospatial tracking of NAPs, splitters, and route trees.</span>
+        </div>
+        <div class="metric-well-item">
+          <span class="metric-number-cyan">100%</span>
+          <span class="metric-label-white">Founding Focus</span>
+          <span class="metric-sub-muted">Direct architecture access to Paulo, Gene, and Bry.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Capabilities Section (Modeled after 'PERBEDAAN' / 'Green Pea' cards) -->
+    <section id="capabilities" class="section-wrapper-canvas">
+      <div class="teal-island-container services-island">
+        
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem;">
+          <div>
+            <div class="eyebrow-pill">CORE CAPABILITIES</div>
+            <h2 class="section-title-dark">Engineering <em>resilient systems</em> from the ground up.</h2>
+          </div>
+          <p class="section-subtext-dark">
+            From deep physical fiber routing to modern reactive web interfaces, we build integrated technology that eliminates bottlenecks.
+          </p>
+        </div>
+
+        <div class="services-grid-2x2">
+          <!-- Card 1 -->
+          <div class="service-mint-card">
+            <div class="service-card-header">
+              <div class="service-icon-well" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+                  <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+                  <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                  <line x1="12" y1="20" x2="12.01" y2="20"></line>
+                </svg>
+              </div>
+              <a href="projects.html" class="squircle-arrow-btn" aria-label="View Telecom Projects">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+            </div>
+            <h3 class="service-card-title">Telecommunications Infrastructure</h3>
+            <p class="service-card-desc">
+              Centralized backbone management, high-throughput network monitoring, and automated optical attenuation telemetry across distributed regional rings.
+            </p>
+            <div class="service-tags-row">
+              <span class="service-pill-tag">Fiber Backbones</span>
+              <span class="service-pill-tag">OTDR Telemetry</span>
+              <span class="service-pill-tag">Failover Routing</span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="service-mint-card">
+            <div class="service-card-header">
+              <div class="service-icon-well" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+              </div>
+              <a href="projects.html" class="squircle-arrow-btn" aria-label="View Software Projects">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+            </div>
+            <h3 class="service-card-title">Enterprise Software Platforms</h3>
+            <p class="service-card-desc">
+              Subscriber provisioning, recurring billing cycles, automated technician dispatch queues, and comprehensive business ERPs with sub-second queries.
+            </p>
+            <div class="service-tags-row">
+              <span class="service-pill-tag">Billing Engines</span>
+              <span class="service-pill-tag">Automated Invoicing</span>
+              <span class="service-pill-tag">Job Orders</span>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="service-mint-card">
+            <div class="service-card-header">
+              <div class="service-icon-well" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                  <line x1="8" y1="2" x2="8" y2="18"></line>
+                  <line x1="16" y1="6" x2="16" y2="22"></line>
+                </svg>
+              </div>
+              <a href="projects.html" class="squircle-arrow-btn" aria-label="View Geospatial Projects">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+            </div>
+            <h3 class="service-card-title">Geospatial Field Assets</h3>
+            <p class="service-card-desc">
+              Interactive GIS mapping for field engineers to trace network access points (NAPs), splitters, and line distribution paths with offline sync.
+            </p>
+            <div class="service-tags-row">
+              <span class="service-pill-tag">PostGIS / GIS</span>
+              <span class="service-pill-tag">NAP Mapping</span>
+              <span class="service-pill-tag">Offline Sync</span>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="service-mint-card">
+            <div class="service-card-header">
+              <div class="service-icon-well" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </div>
+              <a href="projects.html" class="squircle-arrow-btn" aria-label="View Security Projects">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+            </div>
+            <h3 class="service-card-title">API Security &amp; Orchestration</h3>
+            <p class="service-card-desc">
+              High-throughput API gateways, Role-Based Access Control (RBAC), multi-tenant security isolation, and compliance audit logging.
+            </p>
+            <div class="service-tags-row">
+              <span class="service-pill-tag">Zero-Trust</span>
+              <span class="service-pill-tag">Event-Driven</span>
+              <span class="service-pill-tag">Audit Trail</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Featured Projects Gallery (Modeled after bottom gallery in reference) -->
+    <section class="section-wrapper-canvas">
+      <div class="teal-island-container gallery-island">
+        
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; flex-wrap: wrap;">
+          <div>
+            <div class="eyebrow-pill">PORTFOLIO HIGHLIGHTS</div>
+            <h2 class="section-title-dark">Tested in production, <em>built to scale.</em></h2>
+          </div>
+          <a href="projects.html" class="pill-btn-mint">
+            <span>View all projects &amp; case studies</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+        </div>
+
+        <div class="gallery-grid-3">
+          <!-- Gallery Card 1 -->
+          <div class="gallery-card">
+            <div class="gallery-image-box">
+              <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="Backbone fiber distribution monitor" class="gallery-image">
+              <div class="gallery-arrow-badge">
+                <a href="projects.html" class="squircle-arrow-btn-light" aria-label="Project Details">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+              </div>
+            </div>
+            <div class="gallery-card-body">
+              <div class="gallery-category-pill">TELECOM INFRASTRUCTURE</div>
+              <h3 class="gallery-title">Backbone Fiber Route Monitor</h3>
+              <p class="gallery-desc">
+                Real-time optical loss telemetry and automated incident routing across regional network distribution rings.
+              </p>
+              <div class="gallery-metrics-tray">
+                <div style="display: flex; flex-direction: column;">
+                  <span class="g-metric-val">99.99%</span>
+                  <span class="g-metric-lbl">Uptime SLA</span>
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                  <span class="g-metric-val">&lt; 10ms</span>
+                  <span class="g-metric-lbl">Alert Latency</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gallery Card 2 -->
+          <div class="gallery-card">
+            <div class="gallery-image-box">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Enterprise subscriber operations" class="gallery-image">
+              <div class="gallery-arrow-badge">
+                <a href="projects.html" class="squircle-arrow-btn-light" aria-label="Project Details">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+              </div>
+            </div>
+            <div class="gallery-card-body">
+              <div class="gallery-category-pill">ENTERPRISE SOFTWARE</div>
+              <h3 class="gallery-title">Subscriber Billing &amp; Operations</h3>
+              <p class="gallery-desc">
+                End-to-end subscriber billing cycles, automated invoice generation, job order workflows, and role-based access.
+              </p>
+              <div class="gallery-metrics-tray">
+                <div style="display: flex; flex-direction: column;">
+                  <span class="g-metric-val">50,000+</span>
+                  <span class="g-metric-lbl">Monthly Invoices</span>
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                  <span class="g-metric-val">&lt; 150ms</span>
+                  <span class="g-metric-lbl">Query Latency</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gallery Card 3 -->
+          <div class="gallery-card">
+            <div class="gallery-image-box">
+              <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=80" alt="Geospatial map interface" class="gallery-image">
+              <div class="gallery-arrow-badge">
+                <a href="projects.html" class="squircle-arrow-btn-light" aria-label="Project Details">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+              </div>
+            </div>
+            <div class="gallery-card-body">
+              <div class="gallery-category-pill">GEOSPATIAL SYSTEMS</div>
+              <h3 class="gallery-title">Field Asset &amp; NAP Mapping Portal</h3>
+              <p class="gallery-desc">
+                High-density spatial map tracking field splitters, optical fiber paths, and live port occupancy with offline caching.
+              </p>
+              <div class="gallery-metrics-tray">
+                <div style="display: flex; flex-direction: column;">
+                  <span class="g-metric-val">12,000+</span>
+                  <span class="g-metric-lbl">Assets Tracked</span>
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                  <span class="g-metric-val">100%</span>
+                  <span class="g-metric-lbl">Offline Resilient</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Bottom Collaboration Island Banner -->
+    <section class="section-wrapper-canvas">
+      <div class="teal-island-container cta-island">
+        <div style="max-width: 650px;">
+          <div class="eyebrow-pill">LET'S COLLABORATE</div>
+          <h2 class="section-title-dark" style="margin-bottom: 0.75rem;">
+            Ready to build something <em>remarkable?</em>
+          </h2>
+          <p class="section-subtext-dark">
+            Whether you need modern enterprise software, mission-critical network monitoring, or geospatial asset tracking, our core team is ready to talk.
+          </p>
+        </div>
+        <div>
+          <a href="contact.html" class="pill-btn-mint large-btn">
+            <span>Get in touch directly</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Footer Island -->
+  <footer class="site-footer">
+    <div class="footer-inner-island">
+      <div class="footer-top">
+        <div>
+          <a href="index.html" class="brand-logo" aria-label="HarmonyITC Home">
+            <span class="logo-mark" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="12" y1="3" x2="12" y2="21"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="5.64" y1="5.64" x2="18.36" y2="18.36"></line>
+                <line x1="5.64" y1="18.36" x2="18.36" y2="5.64"></line>
+              </svg>
+            </span>
+            <span class="brand-name">harmony<span class="brand-slash">/</span>itc</span>
+          </a>
+          <p class="footer-brand-desc">
+            Enterprise Information Technology &amp; Communications Solutions Platform. Designed for scalability, built for resilience.
+          </p>
+          <div style="margin-top: 1rem;">
+            <span class="eyebrow-pill" style="font-size: 0.75rem; padding: 0.35rem 1rem;">
+              People first. Code second.
+            </span>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-nav-list">
+            <li><a href="index.html" class="footer-nav-link">Home</a></li>
+            <li><a href="about.html" class="footer-nav-link">About Us</a></li>
+            <li><a href="projects.html" class="footer-nav-link">Our Projects</a></li>
+            <li><a href="contact.html" class="footer-nav-link">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Direct Inquiries</h4>
+          <a href="mailto:inquiries@harmonyitc.com" class="footer-email-link">inquiries@harmonyitc.com</a>
+          <p class="footer-sub-text">
+            Direct access to our founding engineering desk. Responses within 24 hours.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 HarmonyITC. All rights reserved.</span>
+        <span>Engineered with precision &amp; care.</span>
+      </div>
+    </div>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
