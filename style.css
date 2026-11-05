@@ -1557,3 +1557,382 @@ a {
     grid-template-columns: 1fr;
   }
 }
+
+/* --------------------------------------------------
+   Interactive Pitch Navigator (index.html Hero)
+   -------------------------------------------------- */
+.pitch-nav-wrapper {
+  margin-top: 1.75rem;
+  width: 100%;
+}
+
+.pitch-nav-label {
+  font-size: 0.785rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-cyan);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pitch-nav-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.pitch-nav-btn {
+  background: var(--teal-panel-dark);
+  color: var(--text-on-teal-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.6rem 1.15rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-teal-inset);
+  transition: var(--transition-tactile);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pitch-nav-btn:hover {
+  color: var(--text-on-teal);
+  border-color: rgba(56, 226, 208, 0.4);
+}
+
+.pitch-nav-btn.active {
+  background: var(--mint-card-solid);
+  color: var(--text-on-mint);
+  border-color: var(--mint-border);
+  box-shadow: var(--shadow-btn-mint);
+}
+
+.pitch-nav-badge {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  background: rgba(56, 226, 208, 0.15);
+  color: var(--accent-cyan);
+}
+
+.pitch-nav-btn.active .pitch-nav-badge {
+  background: var(--teal-panel-solid);
+  color: var(--accent-cyan);
+}
+
+.pitch-nav-panel {
+  margin-top: 1.25rem;
+  background: var(--teal-panel-dark);
+  border: 1px solid rgba(56, 226, 208, 0.25);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-teal-inset);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  transition: var(--transition-tactile);
+}
+
+.pitch-nav-text {
+  font-size: 0.95rem;
+  color: var(--text-on-teal);
+  line-height: 1.55;
+}
+
+.pitch-nav-text strong {
+  color: var(--accent-cyan);
+}
+
+/* --------------------------------------------------
+   Comparison Matrix ("Static Brochure vs. HarmonyITC Engine")
+   -------------------------------------------------- */
+.comparison-island {
+  padding: 3.5rem;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+}
+
+.comparison-card-passive {
+  background: var(--teal-panel-dark);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2.25rem;
+  box-shadow: var(--shadow-teal-inset);
+  display: flex;
+  flex-direction: column;
+}
+
+.comparison-card-engine {
+  background: var(--mint-card-bg);
+  border: 1px solid var(--mint-border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2.25rem;
+  box-shadow: var(--shadow-floating-mint-hover);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.comparison-eyebrow-passive {
+  font-size: 0.775rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #a38282;
+  margin-bottom: 0.75rem;
+}
+
+.comparison-eyebrow-engine {
+  font-size: 0.775rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #13605c;
+  margin-bottom: 0.75rem;
+}
+
+.comparison-title-passive {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #c8d3cf;
+  margin-bottom: 1rem;
+}
+
+.comparison-title-engine {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-on-mint);
+  margin-bottom: 1rem;
+}
+
+.comparison-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  margin-top: 1rem;
+}
+
+.comparison-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.comparison-item-passive {
+  color: var(--text-on-teal-secondary);
+}
+
+.comparison-item-engine {
+  color: var(--text-on-mint-secondary);
+}
+
+.comparison-item-engine strong {
+  color: var(--text-on-mint);
+}
+
+.item-icon-cross {
+  color: #e07a7a;
+  font-size: 1.1rem;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+
+.item-icon-check {
+  color: #0c7a70;
+  font-size: 1.1rem;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------
+   4-Step Consultative Partnership Process (about.html)
+   -------------------------------------------------- */
+.process-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+  margin-top: 2.5rem;
+}
+
+.process-step-card {
+  background: var(--teal-panel-dark);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 1.75rem;
+  box-shadow: var(--shadow-teal-inset);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition-tactile);
+}
+
+.process-step-card:hover {
+  border-color: rgba(56, 226, 208, 0.35);
+  transform: translateY(-4px);
+}
+
+.process-num {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  line-height: 1;
+  margin-bottom: 0.85rem;
+  text-shadow: 0 0 12px var(--accent-cyan-glow);
+}
+
+.process-step-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-on-teal);
+  margin-bottom: 0.75rem;
+}
+
+.process-step-desc {
+  font-size: 0.9rem;
+  color: var(--text-on-teal-secondary);
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------
+   Interactive Priority Brief Builder (contact.html)
+   -------------------------------------------------- */
+.brief-builder-container {
+  background: var(--teal-panel-dark);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-teal-inset);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 3.5rem;
+}
+
+.priority-checklist-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin: 1.75rem 0 2rem;
+}
+
+.priority-choice-card {
+  background: var(--teal-panel-solid);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: 1.35rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: var(--transition-tactile);
+  user-select: none;
+}
+
+.priority-choice-card:hover {
+  border-color: rgba(56, 226, 208, 0.4);
+  transform: translateY(-2px);
+}
+
+.priority-choice-card.selected {
+  background: var(--mint-card-solid);
+  border-color: var(--mint-border);
+  box-shadow: var(--shadow-btn-mint);
+}
+
+.priority-check-box {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: var(--transition-tactile);
+}
+
+.priority-choice-card.selected .priority-check-box {
+  background: var(--teal-panel-solid);
+  border-color: var(--teal-panel-solid);
+  color: var(--accent-cyan);
+}
+
+.priority-choice-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-on-teal);
+  margin-bottom: 0.25rem;
+}
+
+.priority-choice-card.selected .priority-choice-title {
+  color: var(--text-on-mint);
+}
+
+.priority-choice-desc {
+  font-size: 0.85rem;
+  color: var(--text-on-teal-secondary);
+  line-height: 1.5;
+}
+
+.priority-choice-card.selected .priority-choice-desc {
+  color: var(--text-on-mint-secondary);
+}
+
+.brief-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  flex-wrap: wrap;
+}
+
+.brief-status-text {
+  font-size: 0.95rem;
+  color: var(--text-on-teal-secondary);
+}
+
+.brief-status-text strong {
+  color: var(--accent-cyan);
+}
+
+@media (max-width: 1024px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+  .process-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .priority-checklist-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .process-grid-4 {
+    grid-template-columns: 1fr;
+  }
+  .pitch-nav-panel {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .brief-builder-container {
+    padding: 1.75rem 1.25rem;
+  }
+}

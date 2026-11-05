@@ -1,50 +1,29 @@
 {
   "meta": {
-    "pageTitle": "HarmonyITC \u2014 Work in Progress",
-    "metaDescription": "HarmonyITC is currently under active development. Enterprise Information Technology & Communications Solutions Platform."
+    "pageTitle": "HarmonyITC — Client-Centered Web & Business Systems",
+    "metaDescription": "Harmony IT Consultancy engineers client-centered website products that solve business problems, promote your brand 24/7, streamline daily operations, and generate revenue."
   },
   "navigation": {
     "brandPrefix": "harmony",
     "brandSuffix": "itc",
     "links": [
-      {
-        "label": "Services",
-        "href": "#services"
-      },
-      {
-        "label": "Our works",
-        "href": "#platform"
-      },
-      {
-        "label": "About",
-        "href": "#about"
-      }
+      { "label": "Home", "href": "index.html" },
+      { "label": "About Us", "href": "about.html" },
+      { "label": "Our Projects", "href": "projects.html" },
+      { "label": "Contact Us", "href": "contact.html" }
     ],
-    "ctaButton": "Let's talk"
+    "ctaButton": "Start Consultation"
   },
-  "hero": {
-    "eyebrow": "IDEAS INTO IMPACT / 01 \u2022 WORK IN PROGRESS",
-    "headline": "Software built for what's next.",
-    "subtext": "We design and develop thoughtful digital products and resilient enterprise communications infrastructure that help ambitious businesses move forward.",
-    "primaryCta": "Connect with us",
-    "secondaryCta": "Explore our works",
-    "statusIndicator": "Platform under active development \u2022 Target Release Q1 2027",
-    "floatingBadge": "People first. Code second.",
-    "image": {
-      "src": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=85",
-      "alt": "Engineering team collaborating in office with modern workstation monitors"
-    }
-  },
-  "modal": {
-    "eyebrow": "WORK IN PROGRESS",
-    "title": "Let's build something remarkable.",
-    "description": "Our new enterprise platform is currently in private development. Leave your email for early access or reach out directly to our engineering desk.",
-    "emailLabel": "Your Email",
-    "emailPlaceholder": "you@company.com",
-    "submitButton": "Notify me upon launch",
-    "alreadySubscribedMessage": "You're registered for early platform access!",
-    "successMessage": "Thank you! You will be notified the moment we go live.",
-    "directEmailLabel": "Or email us directly:",
-    "contactEmail": "inquiries@harmonyitc.com"
+  "pillars": [
+    { "id": "01", "name": "A Solution to a Problem", "desc": "Diagnosing bottlenecks and eliminating customer friction." },
+    { "id": "02", "name": "Promotional Material & Presence", "desc": "Your 24/7 digital flagship with SEO authority and brand trust." },
+    { "id": "03", "name": "System for Daily Operations", "desc": "Automating bookings, dispatch, invoicing, and customer portals." },
+    { "id": "04", "name": "Income-Generating Engine", "desc": "Converting visitors into revenue through structured funnels and online sales." }
+  ],
+  "contact": {
+    "email": "inquiries@harmonyitc.com",
+    "responseSLA": "< 24 Hours",
+    "hours": "Mon - Fri, 9 AM - 6 PM",
+    "foundingLeads": ["Paulo", "Gene", "Bry"]
   }
 }
