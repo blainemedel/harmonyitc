@@ -7,17 +7,17 @@
   
   <title>About Us &mdash; HarmonyITC</title>
   <meta name="description" content="Meet Harmony IT Consultancy: A client-centered technology consultancy led by Paulo, Gene, and Bry. We put your business first—building digital systems that solve problems, promote your brand, run daily operations, and generate revenue.">
-  <meta name="theme-color" content="#0c3836">
+  <meta name="theme-color" content="#0062ff">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%2338e2d0'/><path d='M50 20 L50 80 M20 50 L80 50 M29 29 L71 71 M29 71 L71 29' stroke='%230b3735' stroke-width='10' stroke-linecap='round'/></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%230062ff'/><path d='M50 20 L50 80 M20 50 L80 50 M29 29 L71 71 M29 71 L71 29' stroke='%23ffffff' stroke-width='10' stroke-linecap='round'/></svg>">
 
-  <!-- Google Fonts: Fraunces & Plus Jakarta Sans -->
+  <!-- Google Fonts: Plus Jakarta Sans & Fraunces -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Bi-tonal Petrol Teal & Ice-Mint Stylesheet -->
+  <!-- Modern Luminous Ice-Blue & Midnight Navy Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -27,9 +27,9 @@
     <div class="header-inner">
       <a href="index.html" class="brand-logo" aria-label="HarmonyITC Home">
         <span class="logo-mark" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
             <line x1="12" y1="3" x2="12" y2="21"></line>
-            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="12" x2="21" y2="21"></line>
             <line x1="5.64" y1="5.64" x2="18.36" y2="18.36"></line>
             <line x1="5.64" y1="18.36" x2="18.36" y2="5.64"></line>
           </svg>
@@ -83,10 +83,14 @@
   </div>
 
   <main>
-    <!-- About Page Header Island -->
+    <!-- About Page Header Island with Ghost Watermark -->
     <section class="hero-wrapper-section">
-      <div class="teal-island-container" style="padding: 4rem 3.5rem;">
-        <div style="max-width: 860px;">
+      <div class="teal-island-container hero-island" style="padding-bottom: 4rem;">
+        
+        <!-- Ghost Watermark Background -->
+        <div class="hero-watermark-bg" aria-hidden="true">ABOUT US</div>
+
+        <div style="max-width: 860px; position: relative; z-index: 2;">
           <div class="eyebrow-pill">OUR CLIENT-CENTERED PHILOSOPHY</div>
           <h1 class="hero-brand-display" style="font-size: clamp(2.8rem, 4.8vw, 4.2rem);">
             Your business first. <em>Technology second.</em>
@@ -113,13 +117,13 @@
             </p>
           </div>
 
-          <!-- Floating Mint Quote Card -->
+          <!-- Floating Card -->
           <div class="floating-mint-card">
             <div class="card-eyebrow-mint">CLIENT-CENTERED GUARANTEE</div>
-            <div style="font-family: var(--font-serif); font-size: 1.4rem; color: var(--text-on-mint); line-height: 1.4; margin-bottom: 1.25rem; font-weight: 700;">
+            <div style="font-family: var(--font-display); font-size: 1.35rem; color: var(--text-dark); line-height: 1.4; margin-bottom: 1.25rem; font-weight: 800;">
               "If a website doesn't solve a tangible business problem and make your daily operations easier, it's just decoration. We build systems that drive profit and peace of mind."
             </div>
-            <div style="font-size: 0.9rem; color: var(--text-on-mint-secondary); font-weight: 600;">
+            <div style="font-size: 0.9rem; color: var(--blue-primary); font-weight: 700;">
               &mdash; Paulo, Gene &amp; Bry (HarmonyITC Founding Team)
             </div>
           </div>
@@ -285,9 +289,14 @@
       </div>
     </section>
 
-    <!-- Bottom Collaboration Island Banner -->
+    <!-- Payrot-Inspired Midnight Navy Island with Protruding 3D Earth Globe Arch Notch -->
     <section class="section-wrapper-canvas">
-      <div class="teal-island-container cta-island">
+      <div class="cta-island">
+        <!-- 3D Earth Globe Emerging from the Notch -->
+        <div class="cta-earth-notch" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&w=400&q=80" alt="3D Globe illustration">
+        </div>
+
         <div style="max-width: 650px;">
           <div class="eyebrow-pill">CONNECT WITH OUR FOUNDERS</div>
           <h2 class="section-title-dark" style="margin-bottom: 0.75rem;">
@@ -305,7 +314,7 @@
               <polyline points="7 7 17 7 17 17"></polyline>
             </svg>
           </a>
-          <a href="projects.html" class="pill-btn-inset large-btn">
+          <a href="projects.html" class="pill-btn-inset large-btn" style="background: rgba(255, 255, 255, 0.12); color: #ffffff; border-color: rgba(255, 255, 255, 0.2);">
             <span>View Solution Case Studies</span>
           </a>
         </div>
