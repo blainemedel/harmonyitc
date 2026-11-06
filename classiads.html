@@ -85,7 +85,7 @@
       ];
 
       return (
-        <div className="min-h-screen bg-[#edf3f8] text-[#172a3a] font-sans antialiased relative overflow-x-hidden p-2 sm:p-6 md:p-10 flex items-center justify-center">
+        <div className="min-h-screen w-full bg-[#edf3f8] text-[#172a3a] font-sans antialiased relative overflow-x-hidden">
           {/* Organic Dappled Sunlight & Leaf Shadow Overlay Effect */}
           <div 
             className="pointer-events-none fixed inset-0 z-0 opacity-40 mix-blend-multiply"
@@ -97,7 +97,7 @@
           />
 
           {/* Decorative Organic Soft Shapes in Background */}
-          <svg className="fixed bottom-0 right-0 w-[55vw] max-w-[850px] pointer-events-none opacity-30 z-0" viewBox="0 0 800 600" fill="none">
+          <svg className="fixed bottom-0 right-0 w-[55vw] max-w-[1200px] pointer-events-none opacity-30 z-0" viewBox="0 0 800 600" fill="none">
             <path d="M150 600C300 450 400 520 600 350C750 220 820 100 850 0V600H150Z" fill="url(#waveGrad)" />
             <defs>
               <linearGradient id="waveGrad" x1="200" y1="200" x2="800" y2="600" gradientUnits="userSpaceOnUse">
@@ -107,8 +107,8 @@
             </defs>
           </svg>
 
-          {/* Main Glassmorphic Panel Container */}
-          <div className="relative z-10 w-full max-w-[1280px] bg-white/85 backdrop-blur-2xl rounded-[32px] sm:rounded-[44px] shadow-[0_20px_60px_rgba(15,35,55,0.08),0_1px_3px_rgba(15,35,55,0.03)] border border-white/90 p-4 sm:p-8 md:p-12 transition-all">
+          {/* Main Glassmorphic Panel Container - Expanded Full Width */}
+          <div className="relative z-10 w-full min-h-screen bg-white/85 backdrop-blur-2xl shadow-[0_20px_60px_rgba(15,35,55,0.06)] border-b border-white/90 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-28 py-6 sm:py-8 md:py-10 transition-all">
             
             {/* ------------------------------------------------------------------ */}
             {/* 1. Header Navigation                                               */}
