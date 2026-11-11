@@ -4,59 +4,78 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  
-  <title>Our Projects &mdash; HarmonyITC</title>
-  <meta name="description" content="Explore real-world website products and business systems engineered by Harmony IT Consultancy. Filter by problem-solvers, promotional brand engines, daily operations systems, and income generators.">
-  <meta name="theme-color" content="#fab818">
+
+  <title>Projects &mdash; Harmony IT Consultancy</title>
+  <meta name="description" content="Explore real-world web platforms, automated booking engines, operations ERPs, and scalable systems built by Harmony IT Consultancy.">
+  <meta name="theme-color" content="#f3f2f8">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23fab818'/><path d='M50 20 L50 80 M20 50 L80 50 M29 29 L71 71 M29 71 L71 29' stroke='%23172a3a' stroke-width='10' stroke-linecap='round'/></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 40'><circle cx='16' cy='20' r='11' fill='none' stroke='%231c2336' stroke-width='4'/><circle cx='28' cy='20' r='11' fill='none' stroke='%23096c7b' stroke-width='4'/></svg>">
 
-  <!-- Google Fonts: Plus Jakarta Sans & Fraunces -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Neumorphism Soft UI Stylesheet -->
+  <!-- Design System Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Floating Capsule Header -->
+  <!-- Ambient Frosted 3D Studio Backdrop -->
+  <div class="ambient-canvas" aria-hidden="true">
+    <div class="ambient-glass-pillar"></div>
+    <div class="ambient-glass-ridge"></div>
+    <svg class="ambient-corner-coil" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="porcelainGrad" cx="45%" cy="45%" r="55%">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+          <stop offset="55%" stop-color="#d5d8e2" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#b4bac8" stop-opacity="0.25"/>
+        </radialGradient>
+      </defs>
+      <circle cx="95" cy="145" r="96" stroke="url(#porcelainGrad)" stroke-width="10"/>
+      <circle cx="95" cy="145" r="80" stroke="url(#porcelainGrad)" stroke-width="8"/>
+      <circle cx="95" cy="145" r="64" stroke="url(#porcelainGrad)" stroke-width="7"/>
+      <circle cx="95" cy="145" r="48" stroke="url(#porcelainGrad)" stroke-width="6"/>
+      <circle cx="95" cy="145" r="32" stroke="url(#porcelainGrad)" stroke-width="5"/>
+    </svg>
+  </div>
+
+  <!-- Crisp White Sticky Header -->
   <header class="site-header">
     <div class="header-inner">
-      <a href="index.html" class="brand-logo" aria-label="HarmonyITC Home">
-        <span class="logo-mark" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-            <line x1="12" y1="3" x2="12" y2="21"></line>
-            <line x1="3" y1="12" x2="21" y2="21"></line>
-            <line x1="5.64" y1="5.64" x2="18.36" y2="18.36"></line>
-            <line x1="5.64" y1="18.36" x2="18.36" y2="5.64"></line>
+      <a href="index.html" class="brand-logo" aria-label="Harmony IT Consultancy Home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="38" height="38" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24.5 7.4A13.4 13.4 0 1 0 24.5 32.6C28.8 30.8 30 25.2 25.5 21.8C22 19.2 16 20.5 16 15.8C16 12.6 18.6 10.6 21.6 11.2" stroke="#1c2336" stroke-width="3.4" stroke-linecap="round"/>
+            <path d="M15.5 32.6A13.4 13.4 0 1 0 15.5 7.4C11.2 9.2 10 14.8 14.5 18.2C18 20.8 24 19.5 24 24.2C24 27.4 21.4 29.4 18.4 28.8" stroke="#096c7b" stroke-width="3.4" stroke-linecap="round"/>
           </svg>
         </span>
-        <span class="brand-name">harmony<span class="brand-slash">/</span>itc</span>
+        <span class="brand-wordmark">
+          <span class="brand-title">HARMONY</span>
+          <span class="brand-subtitle">IT CONSULTANCY</span>
+        </span>
       </a>
 
-      <!-- Desktop Capsule Nav Links -->
-      <nav class="nav-links" aria-label="Main Navigation">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="about.html" class="nav-link">About Us</a>
-        <a href="projects.html" class="nav-link active">Our Projects</a>
-        <a href="contact.html" class="nav-link">Contact Us</a>
-      </nav>
+      <div class="header-right">
+        <nav class="nav-links" aria-label="Main Navigation">
+          <a href="about.html" class="nav-link">About Us</a>
+          <a href="projects.html" class="nav-link active">Projects</a>
+          <a href="contact.html" class="nav-link">Contact Us</a>
+        </nav>
 
-      <!-- Desktop Header Action -->
-      <div class="header-cta">
-        <a href="contact.html" class="pill-btn-mint">
-          <span>Start Consultation</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
+        <a href="contact.html" class="cta-pill-btn">
+          <span>Let's Start</span>
+          <span class="cta-arrow-pocket" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </span>
         </a>
       </div>
 
-      <!-- Mobile Hamburger Toggle -->
       <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
@@ -65,384 +84,297 @@
     </div>
   </header>
 
-  <!-- Mobile Drawer -->
   <div id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation">
     <a href="index.html" class="nav-link">Home</a>
     <a href="about.html" class="nav-link">About Us</a>
-    <a href="projects.html" class="nav-link active">Our Projects</a>
+    <a href="projects.html" class="nav-link active">Projects</a>
     <a href="contact.html" class="nav-link">Contact Us</a>
-    <div style="margin-top: 1rem;">
-      <a href="contact.html" class="pill-btn-mint large-btn" style="width: 100%; justify-content: center;">
-        <span>Start Consultation</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="7" y1="17" x2="17" y2="7"></line>
-          <polyline points="7 7 17 7 17 17"></polyline>
-        </svg>
+    <div style="margin-top: 0.75rem;">
+      <a href="contact.html" class="cta-pill-btn cta-lg" style="width: 100%; justify-content: space-between;">
+        <span>Let's Start</span>
+        <span class="cta-arrow-pocket" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </span>
       </a>
     </div>
   </div>
 
   <main>
-    <!-- Projects Header Island with Ghost Watermark -->
-    <section class="hero-wrapper-section">
-      <div class="teal-island-container hero-island" style="padding-bottom: 4rem;">
-        
-        <!-- Ghost Watermark Background -->
-        <div class="hero-watermark-bg" aria-hidden="true">PROJECTS</div>
+    <!-- Projects Intro & Category Filter -->
+    <section class="page-hero">
+      <div class="section-inner">
+        <div class="page-eyebrow">Client-Centered Portfolio &amp; Case Studies</div>
+        <h1 class="page-title">
+          Built to solve, operate, <strong>and scale</strong> <span class="ink-dark">smarter.</span>
+        </h1>
+        <p class="page-lead">
+          Explore how Harmony IT Consultancy engineers digital products that eliminate operational friction, elevate internet presence, automate daily workflows, and generate measurable revenue.
+        </p>
 
-        <div style="max-width: 860px; position: relative; z-index: 2;">
-          <div class="eyebrow-pill">CLIENT-CENTERED PORTFOLIO &amp; CASE STUDIES</div>
-          <h1 class="hero-brand-display" style="font-size: clamp(2.8rem, 4.8vw, 4.2rem);">
-            Built to solve, operate, <em>and earn.</em>
-          </h1>
-          <p class="hero-lead-text">
-            Explore how Harmony IT Consultancy engineers website products that address the 4 core pillars of your business: eliminating bottlenecks, amplifying internet presence, automating daily operations, and generating measurable revenue.
-          </p>
-
-          <!-- Filter Rail Aligned with the 4 Pillars -->
-          <div class="filter-rail-container" role="tablist" aria-label="Solution Categories">
-            <button class="filter-btn active" data-filter="all">All Solutions</button>
-            <button class="filter-btn" data-filter="problem">Problem Solvers</button>
-            <button class="filter-btn" data-filter="promo">Brand &amp; Presence</button>
-            <button class="filter-btn" data-filter="operations">Daily Operations</button>
-            <button class="filter-btn" data-filter="income">Income Generators</button>
-          </div>
+        <div class="filter-rail" role="tablist" aria-label="Solution Categories">
+          <button class="filter-btn active" data-filter="all">All Solutions</button>
+          <button class="filter-btn" data-filter="problem">Problem Solvers</button>
+          <button class="filter-btn" data-filter="promo">Brand &amp; Presence</button>
+          <button class="filter-btn" data-filter="operations">Daily Operations</button>
+          <button class="filter-btn" data-filter="income">Income Generators</button>
         </div>
       </div>
     </section>
 
-    <!-- Projects Gallery Grid -->
-    <section class="section-wrapper-canvas" style="padding-top: 0;">
-      <div class="teal-island-container" style="padding: 3.5rem;">
-        
+    <!-- Projects Gallery -->
+    <section class="content-section" style="padding-top: 0;">
+      <div class="section-inner">
         <div class="gallery-grid-3">
-          <!-- Project 1: Automated Booking & Client Portal -->
-          <div class="gallery-card project-card" data-category="problem operations income">
-            <div class="gallery-image-box">
-              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Automated appointment scheduling and customer operations portal" class="gallery-image">
-              <div class="gallery-arrow-badge">
-                <button class="squircle-arrow-btn-light" data-case-id="booking-portal" aria-label="Open Case Study">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </button>
-              </div>
+          <!-- Project 1 -->
+          <article class="project-card" data-category="problem operations income">
+            <div class="project-thumb">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Automated appointment scheduling and customer operations portal" loading="lazy">
             </div>
-            <div class="gallery-card-body">
-              <div class="gallery-category-pill">PROBLEM SOLVER &bull; OPERATIONS &bull; REVENUE</div>
-              <h3 class="gallery-title">Automated Booking &amp; Client Services Hub</h3>
-              <p class="gallery-desc">
+            <div class="project-body">
+              <div class="project-cat">Problem Solver &bull; Operations &bull; Revenue</div>
+              <h2 class="project-title">Automated Booking &amp; Client Services Hub</h2>
+              <p class="project-desc">
                 Replaces chaotic phone bookings and manual calendar management with an automated, round-the-clock appointment and deposit-processing engine.
               </p>
-              <div class="gallery-metrics-tray">
-                <div style="display: flex; flex-direction: column;">
-                  <span class="g-metric-val">85%</span>
-                  <span class="g-metric-lbl">Admin Time Saved</span>
+              <div class="project-metrics">
+                <div>
+                  <div class="p-metric-val">85%</div>
+                  <div class="p-metric-lbl">Admin Time Saved</div>
                 </div>
-                <div style="display: flex; flex-direction: column;">
-                  <span class="g-metric-val">+42%</span>
-                  <span class="g-metric-lbl">Online Bookings</span>
+                <div>
+                  <div class="p-metric-val">+42%</div>
+                  <div class="p-metric-lbl">Online Bookings</div>
                 </div>
               </div>
-              <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center;">
-                <span class="service-pill-tag">Daily Booking Hub</span>
-                <button class="pill-btn-mint" data-case-id="booking-portal" style="padding: 0.45rem 1rem; font-size: 0.8rem;">
+              <div class="project-footer">
+                <span class="project-tag-pill">Daily Booking Hub</span>
+                <button class="cta-pill-btn" data-case-id="booking-portal">
                   <span>Case Study</span>
+                  <span class="cta-arrow-pocket" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </span>
                 </button>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- Project 2: High-Conversion E-Commerce & Inventory Engine -->
-          <div class="gallery-card project-card" data-category="promo operations income">
-            <div class="gallery-image-box">
-              <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80" alt="High-conversion online storefront and inventory management" class="gallery-image">
-              <div class="gallery-arrow-badge">
-                <button class="squircle-arrow-btn-light" data-case-id="ecommerce-engine" aria-label="Open Case Study">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </button>
-              </div>
+          <!-- Project 2 -->
+          <article class="project-card" data-category="promo operations income">
+            <div class="project-thumb">
+              <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80" alt="High-conversion online storefront and inventory management" loading="lazy">
             </div>
-            <div class="gallery-card-body">
-              <div class="gallery-category-pill">PROMOTION &bull; OPERATIONS &bull; REVENUE</div>
-              <h3 class="gallery-title">E-Commerce &amp; Live Inventory Platform</h3>
-              <p class="gallery-desc">
+            <div class="project-body">
+              <div class="project-cat">Promotion &bull; Operations &bull; Revenue</div>
+              <h2 class="project-title">E-Commerce &amp; Live Inventory Platform</h2>
+              <p class="project-desc">
                 A 24/7 internet storefront that syncs in-store and online stock in real time, automates digital payments, and captures repeat customer orders.
               </p>
-              <div class="gallery-metrics-tray">
-                <div style="display: flex; flex-direction: column;">
-                  <span class="g-metric-val">3.2x</span>
-                  <span class="g-metric-lbl">Sales Revenue</span>
+              <div class="project-metrics">
+                <div>
+                  <div class="p-metric-val">3.2x</div>
+                  <div class="p-metric-lbl">Sales Revenue</div>
                 </div>
-                <div style="display: flex; flex-direction: column;">
-                  <span class="g-metric-val">Zero</span>
-                  <span class="g-metric-lbl">Stock Over-Sells</span>
+                <div>
+                  <div class="p-metric-val">Zero</div>
+                  <div class="p-metric-lbl">Stock Over-Sells</div>
                 </div>
               </div>
-              <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center;">
-                <span class="service-pill-tag">Automated Sales</span>
-                <button class="pill-btn-mint" data-case-id="ecommerce-engine" style="padding: 0.45rem 1rem; font-size: 0.8rem;">
+              <div class="project-footer">
+                <span class="project-tag-pill">Automated Sales</span>
+                <button class="cta-pill-btn" data-case-id="ecommerce-engine">
                   <span>Case Study</span>
+                  <span class="cta-arrow-pocket" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </span>
                 </button>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- Project 3: Operations & Subscriber Lifecycle System -->
-          <div class="gallery-card project-card" data-category="problem operations income">
-            <div class="gallery-image-box">
-              <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="Enterprise subscriber operations and recurring billing engine" class="gallery-image">
-              <div class="gallery-arrow-badge">
-                <button class="squircle-arrow-btn-light" data-case-id="billing-engine" aria-label="Open Case Study">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </button>
-              </div>
+          <!-- Project 3 -->
+          <article class="project-card" data-category="problem operations income">
+            <div class="project-thumb">
+              <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="Enterprise subscriber operations and recurring billing engine" loading="lazy">
             </div>
-            <div class="gallery-card-body">
-              <div class="gallery-category-pill">OPERATIONS &bull; PROBLEM SOLVER &bull; REVENUE</div>
-              <h3 class="gallery-title">Subscriber Billing &amp; Operations ERP</h3>
-              <p class="gallery-desc">
+            <div class="project-body">
+              <div class="project-cat">Operations &bull; Problem Solver &bull; Revenue</div>
+              <h2 class="project-title">Subscriber Billing &amp; Operations ERP</h2>
+              <p class="project-desc">
                 Automated monthly subscription billing, recurring invoice generation, digital payment reconciliation, and customer lifecycle management.
               </p>
-              <div class="gallery-metrics-tray">
-                <div style="display: flex; flex-direction: column;">
-                  <span class="g-metric-val">50,000+</span>
-                  <span class="g-metric-lbl">Invoices / Mo</span>
+              <div class="project-metrics">
+                <div>
+                  <div class="p-metric-val">50,000+</div>
+                  <div class="p-metric-lbl">Invoices / Mo</div>
                 </div>
-                <div style="display: flex; flex-direction: column;">
-                  <span class="g-metric-val">99.8%</span>
-                  <span class="g-metric-lbl">Auto-Reconciled</span>
+                <div>
+                  <div class="p-metric-val">99.8%</div>
+                  <div class="p-metric-lbl">Auto-Reconciled</div>
                 </div>
               </div>
-              <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center;">
-                <span class="service-pill-tag">Daily Billing Engine</span>
-                <button class="pill-btn-mint" data-case-id="billing-engine" style="padding: 0.45rem 1rem; font-size: 0.8rem;">
+              <div class="project-footer">
+                <span class="project-tag-pill">Daily Billing Engine</span>
+                <button class="cta-pill-btn" data-case-id="billing-engine">
                   <span>Case Study</span>
+                  <span class="cta-arrow-pocket" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </span>
                 </button>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- Project 4: Field Asset & Real-Time Dispatch System -->
-          <div class="gallery-card project-card" data-category="problem operations">
-            <div class="gallery-image-box">
-              <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=80" alt="Interactive geospatial field asset tracking and dispatch map" class="gallery-image">
-              <div class="gallery-arrow-badge">
-                <button class="squircle-arrow-btn-light" data-case-id="geo-mapping" aria-label="Open Case Study">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </button>
-              </div>
+          <!-- Project 4 -->
+          <article class="project-card" data-category="problem operations">
+            <div class="project-thumb">
+              <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=80" alt="Interactive geospatial field asset tracking and dispatch map" loading="lazy">
             </div>
-            <div class="gallery-card-body">
-              <div class="gallery-category-pill">PROBLEM SOLVER &bull; OPERATIONS</div>
-              <h3 class="gallery-title">Field Operations &amp; Asset Dispatch Map</h3>
-              <p class="gallery-desc">
+            <div class="project-body">
+              <div class="project-cat">Problem Solver &bull; Operations</div>
+              <h2 class="project-title">Field Operations &amp; Asset Dispatch Map</h2>
+              <p class="project-desc">
                 Replaces outdated paper logs with a mobile-ready, GPS-synchronized field portal tracking physical assets, technician job orders, and offline data.
               </p>
-              <div class="gallery-metrics-tray">
-                <div style="display: flex; flex-direction: column;">
-                  <span class="g-metric-val">12,000+</span>
-                  <span class="g-metric-lbl">Assets Tracked</span>
+              <div class="project-metrics">
+                <div>
+                  <div class="p-metric-val">12,000+</div>
+                  <div class="p-metric-lbl">Assets Tracked</div>
                 </div>
-                <div style="display: flex; flex-direction: column;">
-                  <span class="g-metric-val">100%</span>
-                  <span class="g-metric-lbl">Offline Resilient</span>
+                <div>
+                  <div class="p-metric-val">100%</div>
+                  <div class="p-metric-lbl">Offline Resilient</div>
                 </div>
               </div>
-              <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center;">
-                <span class="service-pill-tag">Field Operations</span>
-                <button class="pill-btn-mint" data-case-id="geo-mapping" style="padding: 0.45rem 1rem; font-size: 0.8rem;">
+              <div class="project-footer">
+                <span class="project-tag-pill">Field Operations</span>
+                <button class="cta-pill-btn" data-case-id="geo-mapping">
                   <span>Case Study</span>
+                  <span class="cta-arrow-pocket" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </span>
                 </button>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- Project 5: B2B Brand Authority & Lead Generation Portal -->
-          <div class="gallery-card project-card" data-category="promo income">
-            <div class="gallery-image-box">
-              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="B2B corporate website with high-converting lead capture funnels" class="gallery-image">
-              <div class="gallery-arrow-badge">
-                <button class="squircle-arrow-btn-light" data-case-id="b2b-leadgen" aria-label="Open Case Study">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </button>
-              </div>
+          <!-- Project 5 -->
+          <article class="project-card" data-category="promo income">
+            <div class="project-thumb">
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="B2B corporate website with high-converting lead capture funnels" loading="lazy">
             </div>
-            <div class="gallery-card-body">
-              <div class="gallery-category-pill">PROMOTIONAL FLAGSHIP &bull; REVENUE</div>
-              <h3 class="gallery-title">B2B Brand Flagship &amp; Lead Engine</h3>
-              <p class="gallery-desc">
+            <div class="project-body">
+              <div class="project-cat">Promotional Flagship &bull; Revenue</div>
+              <h2 class="project-title">B2B Brand Flagship &amp; Lead Engine</h2>
+              <p class="project-desc">
                 Establishes commanding search authority and provides interactive proposal estimators that turn passive web visits into high-value qualified sales leads.
               </p>
-              <div class="gallery-metrics-tray">
-                <div style="display: flex; flex-direction: column;">
-                  <span class="g-metric-val">+210%</span>
-                  <span class="g-metric-lbl">Qualified Inquiries</span>
+              <div class="project-metrics">
+                <div>
+                  <div class="p-metric-val">+210%</div>
+                  <div class="p-metric-lbl">Qualified Inquiries</div>
                 </div>
-                <div style="display: flex; flex-direction: column;">
-                  <span class="g-metric-val">&lt; 1.2s</span>
-                  <span class="g-metric-lbl">Page Load Time</span>
+                <div>
+                  <div class="p-metric-val">&lt; 1.2s</div>
+                  <div class="p-metric-lbl">Page Load Time</div>
                 </div>
               </div>
-              <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center;">
-                <span class="service-pill-tag">Lead Generation</span>
-                <button class="pill-btn-mint" data-case-id="b2b-leadgen" style="padding: 0.45rem 1rem; font-size: 0.8rem;">
+              <div class="project-footer">
+                <span class="project-tag-pill">Lead Generation</span>
+                <button class="cta-pill-btn" data-case-id="b2b-leadgen">
                   <span>Case Study</span>
+                  <span class="cta-arrow-pocket" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </span>
                 </button>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- Project 6: Mission-Critical Telemetry & Route Monitor -->
-          <div class="gallery-card project-card" data-category="problem operations">
-            <div class="gallery-image-box">
-              <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80" alt="Real-time network and systems infrastructure telemetry monitor" class="gallery-image">
-              <div class="gallery-arrow-badge">
-                <button class="squircle-arrow-btn-light" data-case-id="telecom-monitor" aria-label="Open Case Study">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </button>
-              </div>
+          <!-- Project 6 -->
+          <article class="project-card" data-category="problem operations">
+            <div class="project-thumb">
+              <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80" alt="Real-time network and systems infrastructure telemetry monitor" loading="lazy">
             </div>
-            <div class="gallery-card-body">
-              <div class="gallery-category-pill">PROBLEM SOLVER &bull; OPERATIONS</div>
-              <h3 class="gallery-title">Enterprise Infrastructure Telemetry</h3>
-              <p class="gallery-desc">
-                High-throughput optical loss telemetry and automated incident alert routing, preventing costly subscriber downtime across distributed business branches.
+            <div class="project-body">
+              <div class="project-cat">Problem Solver &bull; Operations</div>
+              <h2 class="project-title">Enterprise Infrastructure Telemetry</h2>
+              <p class="project-desc">
+                High-throughput optical loss telemetry and automated incident alert routing, preventing costly subscriber downtime across distributed branches.
               </p>
-              <div class="gallery-metrics-tray">
-                <div style="display: flex; flex-direction: column;">
-                  <span class="g-metric-val">99.99%</span>
-                  <span class="g-metric-lbl">Uptime SLA</span>
+              <div class="project-metrics">
+                <div>
+                  <div class="p-metric-val">99.99%</div>
+                  <div class="p-metric-lbl">Uptime SLA</div>
                 </div>
-                <div style="display: flex; flex-direction: column;">
-                  <span class="g-metric-val">&lt; 10ms</span>
-                  <span class="g-metric-lbl">Alert Latency</span>
+                <div>
+                  <div class="p-metric-val">&lt; 10ms</div>
+                  <div class="p-metric-lbl">Alert Latency</div>
                 </div>
               </div>
-              <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center;">
-                <span class="service-pill-tag">Uptime Protection</span>
-                <button class="pill-btn-mint" data-case-id="telecom-monitor" style="padding: 0.45rem 1rem; font-size: 0.8rem;">
+              <div class="project-footer">
+                <span class="project-tag-pill">Uptime Protection</span>
+                <button class="cta-pill-btn" data-case-id="telecom-monitor">
                   <span>Case Study</span>
+                  <span class="cta-arrow-pocket" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </span>
                 </button>
               </div>
             </div>
-          </div>
+          </article>
         </div>
-
       </div>
     </section>
 
-    <!-- Case Study Modal (Modern Dialog) -->
+    <!-- Case Study Modal -->
     <div id="case-modal" class="case-modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="case-modal-title">
       <div class="case-modal-card">
         <button id="case-modal-close" class="case-modal-close" aria-label="Close dialog">&times;</button>
-        <div id="case-modal-eyebrow" class="eyebrow-pill" style="margin-bottom: 1rem;">CASE STUDY</div>
-        <h2 id="case-modal-title" class="section-title-dark" style="font-size: 2rem;">Project Title</h2>
-        <p id="case-modal-desc" class="section-subtext-dark" style="margin-bottom: 2rem;">Detailed overview of the engineering project.</p>
+        <div id="case-modal-eyebrow" class="page-eyebrow" style="margin-bottom: 0.75rem;">CASE STUDY</div>
+        <h2 id="case-modal-title" style="font-size: 1.75rem; font-weight: 700; color: var(--ink-navy); margin-bottom: 0.65rem;">Project Title</h2>
+        <p id="case-modal-desc" style="font-size: 0.95rem; color: var(--ink-body); line-height: 1.65; margin-bottom: 1.5rem;">Detailed overview of the engineering project.</p>
 
-        <!-- Block 1: Problem Solved -->
-        <div class="floating-mint-card" style="margin-bottom: 1.5rem; padding: 1.75rem;">
-          <div class="card-eyebrow-mint">01 / THE BUSINESS PROBLEM</div>
-          <div id="case-modal-challenge" class="card-desc-mint" style="margin-bottom: 0;"></div>
+        <div class="modal-block">
+          <div class="modal-block-title">01 / The Business Problem</div>
+          <div id="case-modal-challenge" style="font-size: 0.9rem; color: var(--ink-slate); line-height: 1.6;"></div>
         </div>
 
-        <!-- Block 2: Solution & Daily Operations -->
-        <div class="floating-mint-card" style="margin-bottom: 1.5rem; padding: 1.75rem;">
-          <div class="card-eyebrow-mint">02 / PROMOTIONAL &amp; OPERATIONAL SOLUTION</div>
-          <div id="case-modal-solution" class="card-desc-mint" style="margin-bottom: 0;"></div>
+        <div class="modal-block">
+          <div class="modal-block-title">02 / Promotional &amp; Operational Solution</div>
+          <div id="case-modal-solution" style="font-size: 0.9rem; color: var(--ink-slate); line-height: 1.6;"></div>
         </div>
 
-        <!-- Block 3: Income & Business ROI Metrics -->
-        <div class="metric-well-item" style="margin-bottom: 1.5rem;">
-          <div class="metric-label-white" style="color: var(--text-gold); font-size: 0.85rem;">03 / INCOME &amp; EFFICIENCY ROI</div>
-          <div id="case-modal-metrics" style="color: var(--text-dark); margin-top: 0.35rem; font-weight: 800; font-size: 1.05rem;"></div>
+        <div class="modal-block">
+          <div class="modal-block-title">03 / Income &amp; Efficiency ROI</div>
+          <div id="case-modal-metrics" style="font-size: 0.95rem; font-weight: 700; color: var(--ink-navy);"></div>
         </div>
 
-        <!-- Block 4: System Architecture -->
-        <div class="metric-well-item">
-          <div class="metric-label-white" style="color: var(--text-gold); font-size: 0.85rem;">BUILT WITH</div>
-          <div id="case-modal-tech" style="font-family: monospace; color: var(--text-dark); margin-top: 0.35rem; font-size: 0.95rem;"></div>
+        <div class="modal-block" style="margin-bottom: 0;">
+          <div class="modal-block-title">Built With</div>
+          <div id="case-modal-tech" style="font-family: monospace; font-size: 0.86rem; color: var(--ink-slate);"></div>
         </div>
       </div>
     </div>
-
-    <!-- Payrot-Inspired Midnight Navy Island with Protruding 3D Earth Globe Arch Notch -->
-    <section class="section-wrapper-canvas">
-      <div class="cta-island">
-        <!-- 3D Earth Globe Emerging from the Notch -->
-        <div class="cta-earth-notch" aria-hidden="true">
-          <img src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&w=400&q=80" alt="3D Globe illustration">
-        </div>
-
-        <div style="max-width: 650px;">
-          <div class="eyebrow-pill">CUSTOM BUSINESS ENGINEERING</div>
-          <h2 class="section-title-dark" style="margin-bottom: 0.75rem;">
-            Need a system engineered for <em>your business?</em>
-          </h2>
-          <p class="section-subtext-dark">
-            We partner with growing businesses to design, engineer, and deploy high-converting websites and daily operational systems that produce measurable revenue.
-          </p>
-        </div>
-        <div>
-          <a href="contact.html" class="pill-btn-mint large-btn">
-            <span>Pitch Your Project Requirements</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"></line>
-              <polyline points="7 7 17 7 17 17"></polyline>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <!-- Global Footer Island -->
   <footer class="site-footer">
-    <div class="footer-inner-island">
-      <div class="footer-top">
-        <div>
-          <a href="index.html" class="brand-logo" aria-label="HarmonyITC Home">
-            <span class="logo-mark" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <line x1="12" y1="3" x2="12" y2="21"></line>
-                <line x1="3" y1="12" x2="21" y2="21"></line>
-                <line x1="5.64" y1="5.64" x2="18.36" y2="18.36"></line>
-                <line x1="5.64" y1="18.36" x2="18.36" y2="5.64"></line>
-              </svg>
-            </span>
-            <span class="brand-name">harmony<span class="brand-slash">/</span>itc</span>
-          </a>
-          <p class="footer-brand-desc">
-            Client-Centered Web &amp; Business Systems. We engineer websites that solve problems, promote your brand, run daily operations, and generate income.
-          </p>
-          <div style="margin-top: 1rem;">
-            <span class="eyebrow-pill" style="font-size: 0.75rem; padding: 0.35rem 1rem;">
-              Client's Business First &bull; Technology Second
-            </span>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="footer-col-title">Navigation</h4>
-          <ul class="footer-nav-list">
-            <li><a href="index.html" class="footer-nav-link">Home (Strategic Pitch)</a></li>
-            <li><a href="about.html" class="footer-nav-link">About Us &amp; Team</a></li>
-            <li><a href="projects.html" class="footer-nav-link">Our Projects &amp; Case Studies</a></li>
-            <li><a href="contact.html" class="footer-nav-link">Contact Us &amp; Brief Builder</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="footer-col-title">Direct Inquiries</h4>
-          <a href="mailto:inquiries@harmonyitc.com" class="footer-email-link">inquiries@harmonyitc.com</a>
-          <p class="footer-sub-text">
-            Direct access to our founding engineering desk. Responses within 24 hours.
-          </p>
-        </div>
+    <div class="footer-inner">
+      <div class="footer-micro-row">
+        <span>&copy; 2026 Harmony IT Consultancy. All rights reserved.</span>
+        <nav class="footer-micro-links" aria-label="Footer Navigation">
+          <a href="about.html">About Us</a>
+          <a href="projects.html">Projects</a>
+          <a href="contact.html">Contact Us</a>
+          <a href="mailto:inquiries@harmonyitc.com">inquiries@harmonyitc.com</a>
+        </nav>
       </div>
+    </div>
 
-      <div class="footer-bottom">
-        <span>&copy; 2026 HarmonyITC. All rights reserved.</span>
-        <span>Engineered with precision &amp; care for business growth.</span>
-      </div>
+    <div class="footer-wordmark-wrap" aria-hidden="true">
+      <span class="footer-giant-wordmark">harmony</span>
     </div>
   </footer>
 

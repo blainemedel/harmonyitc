@@ -1,8 +1,5 @@
 /**
- * HarmonyITC &mdash; Multi-Page Interactivity & Pitch Controller
- * Handles mobile drawer navigation, project category filtering,
- * interactive case study modals, the hero pitch focus navigator,
- * the interactive contact priority brief generator, and one-click copy actions.
+ * Harmony IT Consultancy — Multi-Page Interactivity & 3D Kinetic Typography
  */
 
 (function () {
@@ -27,7 +24,7 @@
 
     toggleBtn.addEventListener('click', () => toggleMenu());
 
-    drawer.querySelectorAll('.nav-link').forEach((link) => {
+    drawer.querySelectorAll('.nav-link, .cta-pill-btn').forEach((link) => {
       link.addEventListener('click', () => toggleMenu(false));
     });
 
@@ -39,53 +36,439 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 2. Interactive Pitch Focus Navigator (index.html Hero)
+  // 2. Hero 3D Sculpture Subtle Mouse Parallax (index.html)
   // ---------------------------------------------------------------------------
-  const pillarPitchData = {
-    'problem': {
-      title: 'Pillar 01 / Problem-Solving Engine',
-      text: 'We diagnose where your current workflow leaks customers, time, or revenue—then build custom digital solutions that eliminate those friction points permanently.'
-    },
-    'promo': {
-      title: 'Pillar 02 / Promotional Material & Internet Presence',
-      text: 'Your 24/7 digital flagship: Fast, search-optimized, and professionally designed to build instant trust and make your business commanding online.'
-    },
-    'operations': {
-      title: 'Pillar 03 / System for Daily Business Operations',
-      text: 'Built directly into your daily routine: Automated appointment booking, customer self-service portals, job dispatch queues, and streamlined invoicing.'
-    },
-    'income': {
-      title: 'Pillar 04 / Income-Generating Asset',
-      text: 'A website should never be a dead expense. We engineer automated lead-capture funnels and digital payment flows that convert visitors into revenue.'
-    }
-  };
+  function initHeroParallax() {
+    const stage = document.getElementById('hero-artwork-stage');
+    if (!stage) return;
 
-  function initPitchNavigator() {
-    const navButtons = document.querySelectorAll('.pitch-nav-btn[data-pillar]');
-    const panelText = document.getElementById('pitch-nav-text');
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
 
-    if (!navButtons.length || !panelText) return;
+    const square = stage.querySelector('.hero-dark-square');
+    const letterD = stage.querySelector('.hero-letter-d');
+    const coil = stage.querySelector('.hero-coil-img');
+    const letterS = stage.querySelector('.hero-letter-s');
 
-    navButtons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        navButtons.forEach((b) => {
-          b.classList.remove('active');
-          b.setAttribute('aria-selected', 'false');
-        });
-        btn.classList.add('active');
-        btn.setAttribute('aria-selected', 'true');
+    stage.addEventListener('mousemove', (e) => {
+      const rect = stage.getBoundingClientRect();
+      const nx = (e.clientX - rect.left) / rect.width - 0.5;
+      const ny = (e.clientY - rect.top) / rect.height - 0.5;
 
-        const pillar = btn.getAttribute('data-pillar');
-        const data = pillarPitchData[pillar];
-        if (data) {
-          panelText.innerHTML = `<strong>${data.title}:</strong> ${data.text}`;
-        }
-      });
+      if (square) square.style.transform = `translate3d(${nx * -10}px, ${ny * -10}px, 0)`;
+      if (letterD) letterD.style.transform = `translate3d(${nx * 14}px, ${ny * 12}px, 0)`;
+      if (coil) coil.style.transform = `translate(-4%, 2%) rotate(${-10 + nx * 5}deg) translate3d(${nx * 20}px, ${ny * 18}px, 0)`;
+      if (letterS) letterS.style.transform = `translate3d(${nx * 28}px, ${ny * 24}px, 0)`;
+    });
+
+    stage.addEventListener('mouseleave', () => {
+      if (square) square.style.transform = '';
+      if (letterD) letterD.style.transform = '';
+      if (coil) coil.style.transform = '';
+      if (letterS) letterS.style.transform = '';
     });
   }
 
   // ---------------------------------------------------------------------------
-  // 3. Project Category Filtering (projects.html)
+  // 3. WebGL 3D Kinetic Typography Cylinder (index.html)
+  // ---------------------------------------------------------------------------
+  function createKineticTextCanvas() {
+    const texCanvas = document.createElement('canvas');
+    texCanvas.width = 2048;
+    texCanvas.height = 1024;
+    const ctx = texCanvas.getContext('2d');
+    ctx.clearRect(0, 0, texCanvas.width, texCanvas.height);
+
+    const lines = [
+      { text: 'THE WAIT',   y: 135, size: 196, targetW: 1320 },
+      { text: 'WE PROMISE', y: 405, size: 138, targetW: 1320 },
+      { text: 'IT WILL BE', y: 650, size: 178, targetW: 1320 },
+      { text: 'WORTH',      y: 895, size: 185, targetW: 1200 },
+    ];
+
+    ctx.fillStyle = '#ffffff';
+    ctx.textBaseline = 'middle';
+    ctx.textAlign = 'left';
+
+    const leftX = 360;
+    const fontStack = '"Anton", "Oswald", Impact, "Arial Narrow", sans-serif';
+
+    lines.forEach((item) => {
+      ctx.save();
+      ctx.font = `700 ${item.size}px ${fontStack}`;
+      const metrics = ctx.measureText(item.text);
+      const scaleX = metrics.width > 0 ? Math.min(1.45, Math.max(0.82, item.targetW / metrics.width)) : 1;
+      ctx.translate(leftX, item.y);
+      ctx.scale(scaleX, 1);
+      ctx.fillText(item.text, 0, 0);
+      ctx.restore();
+    });
+
+    return texCanvas;
+  }
+
+  function initKineticCylinder() {
+    const canvas = document.getElementById('kinetic-cylinder-canvas');
+    const fallback = document.getElementById('kinetic-fallback');
+    const stage = document.getElementById('kinetic-stage');
+    if (!canvas) return;
+
+    const gl = canvas.getContext('webgl', {
+      alpha: true,
+      antialias: true,
+      premultipliedAlpha: true,
+    });
+
+    if (!gl) {
+      canvas.style.display = 'none';
+      if (fallback) fallback.style.display = 'block';
+      return;
+    }
+
+    const vsSource = `
+      attribute vec3 aPos;
+      attribute vec2 aUv;
+      uniform mat4 uMvp;
+      varying vec2 vUv;
+      varying vec3 vPos;
+      void main() {
+        vUv = aUv;
+        vPos = aPos;
+        gl_Position = uMvp * vec4(aPos, 1.0);
+      }
+    `;
+
+    const fsSource = `
+      precision mediump float;
+      varying vec2 vUv;
+      varying vec3 vPos;
+      uniform sampler2D uTex;
+      uniform vec3 uColor;
+      uniform float uOpacity;
+      uniform float uScroll;
+      uniform float uIsBack;
+
+      void main() {
+        if (vUv.x < 0.12 || vUv.x > 0.88) discard;
+        float phase = uIsBack > 0.5 ? -0.16 : 0.0;
+        vec2 uv = vec2(vUv.x, fract(vUv.y + uScroll + phase));
+        vec4 tex = texture2D(uTex, uv);
+        if (tex.a < 0.03) discard;
+
+        float fade = uOpacity;
+        float rimFade = smoothstep(0.015, 0.075, min(vUv.y, 1.0 - vUv.y));
+        fade *= rimFade;
+        if (uIsBack > 0.5) {
+          float edgeSoft = smoothstep(-1.3, -0.45, vPos.x) * (1.0 - smoothstep(0.65, 1.35, vPos.x) * 0.25);
+          fade *= mix(0.68, 0.94, edgeSoft);
+        }
+        float finalAlpha = tex.a * fade;
+        gl_FragColor = vec4(uColor * finalAlpha, finalAlpha);
+      }
+    `;
+
+    function compileShader(type, src) {
+      const s = gl.createShader(type);
+      gl.shaderSource(s, src);
+      gl.compileShader(s);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+        console.error(gl.getShaderInfoLog(s));
+        return null;
+      }
+      return s;
+    }
+
+    const vs = compileShader(gl.VERTEX_SHADER, vsSource);
+    const fs = compileShader(gl.FRAGMENT_SHADER, fsSource);
+    if (!vs || !fs) return;
+
+    const program = gl.createProgram();
+    gl.attachShader(program, vs);
+    gl.attachShader(program, fs);
+    gl.linkProgram(program);
+    gl.useProgram(program);
+
+    // Build two seamless open half-cylinders (Front half & Back half)
+    // so both front charcoal and back white text read upright & seamlessly roll!
+    function buildHalfCylinder(isBack) {
+      const segX = 40;
+      const segT = 48;
+      const radius = 0.86;
+      const halfLen = 1.08;
+      const positions = [];
+      const uvs = [];
+      const indices = [];
+
+      for (let iy = 0; iy <= segT; iy++) {
+        const tFrac = iy / segT; // 0 (top) to 1 (bottom)
+        const theta = isBack
+          ? (Math.PI * 0.5) + tFrac * Math.PI        // +pi/2 -> +3pi/2 (back side top->bottom)
+          : (Math.PI * 0.5) - tFrac * Math.PI;       // +pi/2 -> -pi/2  (front side top->bottom)
+
+        const y = radius * Math.sin(theta);
+        const z = radius * Math.cos(theta);
+        const v = tFrac; // 0 at top -> 1 at bottom on BOTH halves!
+
+        for (let ix = 0; ix <= segX; ix++) {
+          const u = ix / segX;
+          const x = (u - 0.5) * 2.0 * halfLen;
+          positions.push(x, y, z);
+          uvs.push(u, v);
+        }
+      }
+
+      const stride = segX + 1;
+      for (let iy = 0; iy < segT; iy++) {
+        for (let ix = 0; ix < segX; ix++) {
+          const a = iy * stride + ix;
+          const b = a + stride;
+          const c = a + 1;
+          const d = b + 1;
+          indices.push(a, b, c, c, b, d);
+        }
+      }
+
+      return {
+        positions: new Float32Array(positions),
+        uvs: new Float32Array(uvs),
+        indices: new Uint16Array(indices),
+      };
+    }
+
+    function createMeshBuffers(mesh) {
+      const posBuf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);
+      gl.bufferData(gl.ARRAY_BUFFER, mesh.positions, gl.STATIC_DRAW);
+
+      const uvBuf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, uvBuf);
+      gl.bufferData(gl.ARRAY_BUFFER, mesh.uvs, gl.STATIC_DRAW);
+
+      const idxBuf = gl.createBuffer();
+      gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, idxBuf);
+      gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, mesh.indices, gl.STATIC_DRAW);
+
+      return { posBuf, uvBuf, idxBuf, count: mesh.indices.length };
+    }
+
+    const frontMesh = createMeshBuffers(buildHalfCylinder(false));
+    const backMesh = createMeshBuffers(buildHalfCylinder(true));
+
+    const aPos = gl.getAttribLocation(program, 'aPos');
+    const aUv = gl.getAttribLocation(program, 'aUv');
+    const uMvp = gl.getUniformLocation(program, 'uMvp');
+    const uTex = gl.getUniformLocation(program, 'uTex');
+    const uColor = gl.getUniformLocation(program, 'uColor');
+    const uOpacity = gl.getUniformLocation(program, 'uOpacity');
+    const uScroll = gl.getUniformLocation(program, 'uScroll');
+    const uIsBack = gl.getUniformLocation(program, 'uIsBack');
+
+    const texture = gl.createTexture();
+    function uploadTexture() {
+      const texCanvas = createKineticTextCanvas();
+      gl.bindTexture(gl.TEXTURE_2D, texture);
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, texCanvas);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.generateMipmap(gl.TEXTURE_2D);
+    }
+
+    uploadTexture();
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(uploadTexture);
+    }
+
+    // Minimal 4x4 matrix helpers (column-major)
+    function multiplyMat4(a, b) {
+      const out = new Float32Array(16);
+      for (let col = 0; col < 4; col++) {
+        for (let row = 0; row < 4; row++) {
+          out[col * 4 + row] =
+            a[0 * 4 + row] * b[col * 4 + 0] +
+            a[1 * 4 + row] * b[col * 4 + 1] +
+            a[2 * 4 + row] * b[col * 4 + 2] +
+            a[3 * 4 + row] * b[col * 4 + 3];
+        }
+      }
+      return out;
+    }
+
+    function perspective(fovRad, aspect, near, far) {
+      const f = 1.0 / Math.tan(fovRad / 2);
+      const nf = 1 / (near - far);
+      return new Float32Array([
+        f / aspect, 0, 0, 0,
+        0, f, 0, 0,
+        0, 0, (far + near) * nf, -1,
+        0, 0, 2 * far * near * nf, 0,
+      ]);
+    }
+
+    function translateZ(z) {
+      return new Float32Array([
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        0, 0, z, 1,
+      ]);
+    }
+
+    function rotateX(a) {
+      const c = Math.cos(a), s = Math.sin(a);
+      return new Float32Array([
+        1, 0, 0, 0,
+        0, c, s, 0,
+        0, -s, c, 0,
+        0, 0, 0, 1,
+      ]);
+    }
+
+    function rotateY(a) {
+      const c = Math.cos(a), s = Math.sin(a);
+      return new Float32Array([
+        c, 0, -s, 0,
+        0, 1, 0, 0,
+        s, 0, c, 0,
+        0, 0, 0, 1,
+      ]);
+    }
+
+    function rotateZ(a) {
+      const c = Math.cos(a), s = Math.sin(a);
+      return new Float32Array([
+        c, s, 0, 0,
+        -s, c, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, 1,
+      ]);
+    }
+
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const rect = canvas.getBoundingClientRect();
+      const w = Math.max(1, Math.round(rect.width * dpr));
+      const h = Math.max(1, Math.round(rect.height * dpr));
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width = w;
+        canvas.height = h;
+      }
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+
+    let scrollOffset = 0.80;
+    let targetRotY = 0.50;
+    let currentRotY = 0.50;
+    let targetRotX = 0.06;
+    let currentRotX = 0.06;
+    let isDragging = false;
+    let lastX = 0;
+    let lastY = 0;
+    let dragVelocity = 0;
+
+    if (stage) {
+      stage.addEventListener('pointerdown', (e) => {
+        isDragging = true;
+        lastX = e.clientX;
+        lastY = e.clientY;
+        stage.setPointerCapture(e.pointerId);
+      });
+      stage.addEventListener('pointermove', (e) => {
+        if (isDragging) {
+          const dx = e.clientX - lastX;
+          const dy = e.clientY - lastY;
+          targetRotY = Math.max(0.10, Math.min(0.95, targetRotY + dx * 0.004));
+          dragVelocity = dy * 0.0016;
+          scrollOffset += dragVelocity;
+          lastX = e.clientX;
+          lastY = e.clientY;
+        } else {
+          const rect = stage.getBoundingClientRect();
+          const nx = (e.clientX - rect.left) / rect.width - 0.5;
+          const ny = (e.clientY - rect.top) / rect.height - 0.5;
+          targetRotY = 0.50 + nx * 0.18;
+          targetRotX = 0.06 + ny * 0.14;
+        }
+      });
+      stage.addEventListener('pointerup', () => {
+        isDragging = false;
+      });
+      stage.addEventListener('mouseleave', () => {
+        isDragging = false;
+        targetRotY = 0.50;
+        targetRotX = 0.06;
+      });
+    }
+
+    function drawMesh(mesh, color, opacity, isBackFlag) {
+      gl.bindBuffer(gl.ARRAY_BUFFER, mesh.posBuf);
+      gl.enableVertexAttribArray(aPos);
+      gl.vertexAttribPointer(aPos, 3, gl.FLOAT, false, 0, 0);
+
+      gl.bindBuffer(gl.ARRAY_BUFFER, mesh.uvBuf);
+      gl.enableVertexAttribArray(aUv);
+      gl.vertexAttribPointer(aUv, 2, gl.FLOAT, false, 0, 0);
+
+      gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, mesh.idxBuf);
+
+      gl.uniform3fv(uColor, color);
+      gl.uniform1f(uOpacity, opacity);
+      gl.uniform1f(uIsBack, isBackFlag);
+
+      gl.drawElements(gl.TRIANGLES, mesh.count, gl.UNSIGNED_SHORT, 0);
+    }
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let lastTime = performance.now();
+
+    function render(now) {
+      const dt = Math.min(0.05, (now - lastTime) / 1000);
+      lastTime = now;
+
+      if (!prefersReduced && !isDragging) {
+        scrollOffset += dt * 0.045;
+      }
+
+      currentRotY += (targetRotY - currentRotY) * 0.08;
+      currentRotX += (targetRotX - currentRotX) * 0.08;
+
+      gl.clearColor(0, 0, 0, 0);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.enable(gl.BLEND);
+      gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+      gl.disable(gl.CULL_FACE);
+
+      const aspect = canvas.width / Math.max(1, canvas.height);
+      const proj = perspective((34 * Math.PI) / 180, aspect, 0.1, 20.0);
+      const view = translateZ(-3.95);
+      const model = multiplyMat4(
+        rotateZ(0.11),
+        multiplyMat4(rotateX(currentRotX), rotateY(currentRotY))
+      );
+      const mvp = multiplyMat4(proj, multiplyMat4(view, model));
+
+      gl.uniformMatrix4fv(uMvp, false, mvp);
+      gl.uniform1i(uTex, 0);
+      gl.uniform1f(uScroll, scrollOffset);
+
+      // Pass 1: Back translucent white wall
+      drawMesh(backMesh, [1.0, 1.0, 1.0], 0.96, 1.0);
+      // Pass 2: Front crisp deep charcoal wall
+      drawMesh(frontMesh, [0.137, 0.145, 0.173], 1.0, 0.0);
+
+      requestAnimationFrame(render);
+    }
+
+    requestAnimationFrame(render);
+  }
+
+  // ---------------------------------------------------------------------------
+  // 4. Project Category Filtering (projects.html)
   // ---------------------------------------------------------------------------
   function initProjectFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
@@ -104,7 +487,6 @@
           const cardCategories = (card.getAttribute('data-category') || '').split(' ');
           if (selectedCategory === 'all' || cardCategories.includes(selectedCategory)) {
             card.style.display = 'flex';
-            card.style.opacity = '1';
           } else {
             card.style.display = 'none';
           }
@@ -114,7 +496,7 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 4. Interactive Case Study Modals (projects.html)
+  // 5. Interactive Case Study Modals (projects.html)
   // ---------------------------------------------------------------------------
   const caseStudiesData = {
     'booking-portal': {
@@ -159,7 +541,7 @@
       desc: 'Establishes commanding search authority and provides interactive proposal estimators that turn passive web visits into high-value qualified sales leads.',
       challenge: 'Client had an outdated static website that failed to rank on search engines, lacked credibility with enterprise buyers, and yielded zero qualified sales inquiries.',
       solution: 'Crafted a fast, authoritative digital flagship with technical SEO architecture, interactive service calculators, and an automated lead scoring pipeline that routes directly to sales.',
-      tech: 'Semantic Modern HTML, CSS Neumorphic Architecture, Node Gateway, Web Vitals Optimization',
+      tech: 'Semantic Modern HTML, Tailwind CSS Architecture, Node Gateway, Web Vitals Optimization',
       metrics: '+210% In Qualified Inquiries &bull; 0.9s Page Load &bull; 1st-Page Google Search Ranking'
     },
     'telecom-monitor': {
@@ -212,27 +594,48 @@
     document.querySelectorAll('[data-case-id]').forEach((btn) => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        const id = btn.getAttribute('data-case-id');
-        openModal(id);
+        openModal(btn.getAttribute('data-case-id'));
       });
     });
 
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
-
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeModal();
     });
-
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('active')) {
-        closeModal();
-      }
+      if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
     });
   }
 
   // ---------------------------------------------------------------------------
-  // 5. Interactive Priority Brief Builder (contact.html)
+  // 6. Interactive Priority Brief Builder & Copy Email (contact.html)
   // ---------------------------------------------------------------------------
+  async function copyTextToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (_) {
+        // Fallback below for non-HTTPS or restricted contexts
+      }
+    }
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    let ok = false;
+    try {
+      ok = document.execCommand('copy');
+    } catch (_) {
+      ok = false;
+    }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
   const priorityLabels = {
     'problem': 'Solve a Business Bottleneck',
     'promo': '24/7 Internet Presence & Brand Flagship',
@@ -266,18 +669,16 @@
       } else if (selected.length === 4) {
         summaryText.textContent = 'All 4 Pillars Selected (Complete Business Engine)';
       } else {
-        const names = selected.map((p) => priorityLabels[p]);
-        summaryText.textContent = names.join(', ');
+        summaryText.textContent = selected.map((p) => priorityLabels[p]).join(', ');
       }
 
-      // Generate dynamic mailto link
       if (mailtoBtn) {
         const subject = encodeURIComponent('Project Consultation Brief — Harmony IT Consultancy');
-        const priorityList = selected.length > 0 
+        const priorityList = selected.length > 0
           ? selected.map((p, idx) => `  ${idx + 1}. ${priorityLabels[p]}`).join('\n')
           : '  - General Consultation';
         const body = encodeURIComponent(
-          `Hello HarmonyITC Team,\n\nI would like to schedule a consultation. Here are the core priorities for our business website:\n\n${priorityList}\n\nCompany Name:\nContact Person:\nPreferred Consultation Time:\n\nThank you!`
+          `Hello HarmonyITC Team,\n\nI would like to schedule a consultation. Here are the core priorities for our project:\n\n${priorityList}\n\nCompany Name:\nContact Person:\nPreferred Consultation Time:\n\nThank you!`
         );
         mailtoBtn.href = `mailto:inquiries@harmonyitc.com?subject=${subject}&body=${body}`;
       }
@@ -297,45 +698,30 @@
     if (copyBriefBtn) {
       copyBriefBtn.addEventListener('click', async () => {
         const selected = getSelectedPriorities();
-        const priorityList = selected.length > 0 
+        const priorityList = selected.length > 0
           ? selected.map((p, idx) => `  ${idx + 1}. ${priorityLabels[p]}`).join('\n')
           : '  - General Consultation';
 
-        const briefText = 
+        const briefText =
 `[Harmony IT Consultancy — Project Brief]
 Target Email: inquiries@harmonyitc.com
 
 Our Core Business Priorities:
-${priorityList}
+${priorityList}`;
 
-Note: Client-centered website product engineered to solve bottlenecks, amplify internet presence, automate daily operations, and generate revenue.`;
-
-        try {
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            await navigator.clipboard.writeText(briefText);
-          } else {
-            const ta = document.createElement('textarea');
-            ta.value = briefText;
-            document.body.appendChild(ta);
-            ta.select();
-            document.execCommand('copy');
-            document.body.removeChild(ta);
-          }
-
-          const badge = copyBriefBtn.querySelector('.copied-badge');
-          if (badge) {
-            badge.classList.add('show');
-            setTimeout(() => badge.classList.remove('show'), 2500);
-          }
-
-          const toast = document.getElementById('copied-toast');
-          if (toast) {
-            toast.querySelector('.toast-text').textContent = 'Project brief copied to clipboard!';
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
-          }
-        } catch (err) {
-          console.error('Copy brief error:', err);
+        const copied = await copyTextToClipboard(briefText);
+        const badge = copyBriefBtn.querySelector('.copied-badge');
+        if (badge) {
+          badge.classList.add('show');
+          setTimeout(() => badge.classList.remove('show'), 2500);
+        }
+        const toast = document.getElementById('copied-toast');
+        if (toast) {
+          toast.querySelector('.toast-text').textContent = copied
+            ? 'Project brief copied to clipboard!'
+            : 'Brief prepared — email inquiries@harmonyitc.com';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 3000);
         }
       });
     }
@@ -343,70 +729,42 @@ Note: Client-centered website product engineered to solve bottlenecks, amplify i
     updateBrief();
   }
 
-  // ---------------------------------------------------------------------------
-  // 6. One-Click Copy Email & Feedback Toast (global)
-  // ---------------------------------------------------------------------------
   function initCopyEmail() {
     const copyBtns = document.querySelectorAll('.copy-email-trigger');
     const toast = document.getElementById('copied-toast');
-
     if (!copyBtns.length) return;
 
     let toastTimer = null;
-
     function showToast(message) {
       if (!toast) return;
-      if (message) {
-        const textSpan = toast.querySelector('.toast-text');
-        if (textSpan) textSpan.textContent = message;
-      }
+      const textSpan = toast.querySelector('.toast-text');
+      if (textSpan && message) textSpan.textContent = message;
       toast.classList.add('show');
       clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => {
-        toast.classList.remove('show');
-      }, 3000);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
     }
 
     copyBtns.forEach((btn) => {
       btn.addEventListener('click', async () => {
         const email = btn.getAttribute('data-email') || 'inquiries@harmonyitc.com';
-
-        try {
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            await navigator.clipboard.writeText(email);
-          } else {
-            const textArea = document.createElement('textarea');
-            textArea.value = email;
-            textArea.style.position = 'fixed';
-            textArea.style.opacity = '0';
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
-          }
-
-          const badge = btn.querySelector('.copied-badge');
-          if (badge) {
-            badge.classList.add('show');
-            setTimeout(() => badge.classList.remove('show'), 2500);
-          }
-
-          showToast(`Copied ${email} to clipboard!`);
-        } catch (err) {
-          console.error('Copy failed: ', err);
-          showToast(`Direct email: ${email}`);
+        const copied = await copyTextToClipboard(email);
+        const badge = btn.querySelector('.copied-badge');
+        if (badge) {
+          badge.classList.add('show');
+          setTimeout(() => badge.classList.remove('show'), 2500);
         }
+        showToast(copied ? `Copied ${email} to clipboard!` : `Direct email: ${email}`);
       });
     });
   }
 
   // ---------------------------------------------------------------------------
-  // DOM Ready Initialization
+  // Initialize Everything
   // ---------------------------------------------------------------------------
   document.addEventListener('DOMContentLoaded', () => {
     initMobileNav();
-    initPitchNavigator();
+    initHeroParallax();
+    initKineticCylinder();
     initProjectFilters();
     initCaseStudyModals();
     initBriefBuilder();

@@ -4,55 +4,76 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  
-  <title>HarmonyITC &mdash; Client-Centered Web &amp; Business Systems</title>
-  <meta name="description" content="Harmony IT Consultancy engineers client-centered website products that solve real business problems, promote your brand 24/7, streamline daily operations, and generate revenue.">
-  <meta name="theme-color" content="#fab818">
+
+  <title>Harmony IT Consultancy &mdash; Scale Your Business Smarter</title>
+  <meta name="description" content="Harmony IT Consultancy engineers enterprise-grade backends, intuitive digital products, and scalable web platforms to scale your business smarter.">
+  <meta name="theme-color" content="#f3f2f8">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23fab818'/><path d='M50 20 L50 80 M20 50 L80 50 M29 29 L71 71 M29 71 L71 29' stroke='%23172a3a' stroke-width='10' stroke-linecap='round'/></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 40'><circle cx='16' cy='20' r='11' fill='none' stroke='%231c2336' stroke-width='4'/><circle cx='28' cy='20' r='11' fill='none' stroke='%23096c7b' stroke-width='4'/></svg>">
 
-  <!-- Google Fonts: Plus Jakarta Sans & Fraunces -->
+  <!-- Google Fonts: Plus Jakarta Sans & Anton -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Neumorphism Soft UI Stylesheet -->
+  <!-- Design System Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Floating Capsule Header -->
+  <!-- Ambient Frosted 3D Studio Backdrop -->
+  <div class="ambient-canvas" aria-hidden="true">
+    <div class="ambient-glass-pillar"></div>
+    <div class="ambient-glass-ridge"></div>
+    <svg class="ambient-corner-coil" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="porcelainGrad" cx="45%" cy="45%" r="55%">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+          <stop offset="55%" stop-color="#d5d8e2" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#b4bac8" stop-opacity="0.25"/>
+        </radialGradient>
+      </defs>
+      <circle cx="95" cy="145" r="96" stroke="url(#porcelainGrad)" stroke-width="10"/>
+      <circle cx="95" cy="145" r="80" stroke="url(#porcelainGrad)" stroke-width="8"/>
+      <circle cx="95" cy="145" r="64" stroke="url(#porcelainGrad)" stroke-width="7"/>
+      <circle cx="95" cy="145" r="48" stroke="url(#porcelainGrad)" stroke-width="6"/>
+      <circle cx="95" cy="145" r="32" stroke="url(#porcelainGrad)" stroke-width="5"/>
+    </svg>
+  </div>
+
+  <!-- Crisp White Sticky Header -->
   <header class="site-header">
     <div class="header-inner">
-      <a href="index.html" class="brand-logo" aria-label="HarmonyITC Home">
-        <span class="logo-mark" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-            <line x1="12" y1="3" x2="12" y2="21"></line>
-            <line x1="3" y1="12" x2="21" y2="21"></line>
-            <line x1="5.64" y1="5.64" x2="18.36" y2="18.36"></line>
-            <line x1="5.64" y1="18.36" x2="18.36" y2="5.64"></line>
+      <a href="index.html" class="brand-logo" aria-label="Harmony IT Consultancy Home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="38" height="38" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24.5 7.4A13.4 13.4 0 1 0 24.5 32.6C28.8 30.8 30 25.2 25.5 21.8C22 19.2 16 20.5 16 15.8C16 12.6 18.6 10.6 21.6 11.2" stroke="#1c2336" stroke-width="3.4" stroke-linecap="round"/>
+            <path d="M15.5 32.6A13.4 13.4 0 1 0 15.5 7.4C11.2 9.2 10 14.8 14.5 18.2C18 20.8 24 19.5 24 24.2C24 27.4 21.4 29.4 18.4 28.8" stroke="#096c7b" stroke-width="3.4" stroke-linecap="round"/>
           </svg>
         </span>
-        <span class="brand-name">harmony<span class="brand-slash">/</span>itc</span>
+        <span class="brand-wordmark">
+          <span class="brand-title">HARMONY</span>
+          <span class="brand-subtitle">IT CONSULTANCY</span>
+        </span>
       </a>
 
-      <!-- Desktop Capsule Nav Links -->
-      <nav class="nav-links" aria-label="Main Navigation">
-        <a href="index.html" class="nav-link active">Home</a>
-        <a href="about.html" class="nav-link">About Us</a>
-        <a href="projects.html" class="nav-link">Our Projects</a>
-        <a href="contact.html" class="nav-link">Contact Us</a>
-      </nav>
+      <!-- Desktop Navigation & Primary CTA -->
+      <div class="header-right">
+        <nav class="nav-links" aria-label="Main Navigation">
+          <a href="about.html" class="nav-link">About Us</a>
+          <a href="projects.html" class="nav-link">Projects</a>
+          <a href="contact.html" class="nav-link">Contact Us</a>
+        </nav>
 
-      <!-- Desktop Header Action -->
-      <div class="header-cta">
-        <a href="contact.html" class="pill-btn-mint">
-          <span>Start Consultation</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
+        <a href="contact.html" class="cta-pill-btn">
+          <span>Let's Start</span>
+          <span class="cta-arrow-pocket" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </span>
         </a>
       </div>
 
@@ -65,484 +86,145 @@
     </div>
   </header>
 
-  <!-- Mobile Drawer -->
+  <!-- Mobile Navigation Drawer -->
   <div id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation">
     <a href="index.html" class="nav-link active">Home</a>
     <a href="about.html" class="nav-link">About Us</a>
-    <a href="projects.html" class="nav-link">Our Projects</a>
+    <a href="projects.html" class="nav-link">Projects</a>
     <a href="contact.html" class="nav-link">Contact Us</a>
-    <div style="margin-top: 1rem;">
-      <a href="contact.html" class="pill-btn-mint large-btn" style="width: 100%; justify-content: center;">
-        <span>Start Consultation</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="7" y1="17" x2="17" y2="7"></line>
-          <polyline points="7 7 17 7 17 17"></polyline>
-        </svg>
+    <div style="margin-top: 0.75rem;">
+      <a href="contact.html" class="cta-pill-btn cta-lg" style="width: 100%; justify-content: space-between;">
+        <span>Let's Start</span>
+        <span class="cta-arrow-pocket" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </span>
       </a>
     </div>
   </div>
 
   <main>
-    <!-- Neumorphic Hero Section -->
-    <section class="hero-wrapper-section">
-      <div class="teal-island-container hero-island">
-        
-        <!-- Neumorphic Inset Search Bar (ClassiAds Rounded Search Input Style) -->
-        <div class="island-search-bar">
-          <div class="inset-search-pill">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <span>CLIENT-CENTERED WEB &amp; BUSINESS SOLUTIONS &bull; STRATEGIC PITCH</span>
-          </div>
-          <div style="display: flex; align-items: center; gap: 0.85rem;">
-            <a href="contact.html" class="search-icon-btn-gold" aria-label="Pitch Your Project">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
-          </div>
+    <!-- Section 1: Hero ("Scale your Business Smarter.") -->
+    <section class="hero-section" aria-label="Introduction">
+      <div class="hero-container">
+        <div class="hero-copy">
+          <h1 class="hero-headline">
+            <span class="hero-line-light">Scale your</span>
+            <span class="hero-line-teal">Business</span>
+            <span class="hero-line-dark">Smarter.</span>
+          </h1>
         </div>
 
-        <!-- Main Hero Content Grid -->
-        <div class="hero-grid">
-          
-          <!-- Left Column: The Strategic Value Pitch -->
-          <div class="hero-left-content">
-            <div class="eyebrow-pill">
-              CLIENT-CENTERED WEB &amp; BUSINESS SOLUTIONS
-            </div>
-
-            <h1 class="hero-brand-display">
-              Your business is the <em>priority.</em>
-            </h1>
-
-            <p class="hero-lead-text">
-              We engineer custom website products that do far more than look impressive. At Harmony IT Consultancy, our solutions are built to solve your operational bottlenecks, amplify your brand 24/7, automate daily workflows, and generate measurable revenue.
-            </p>
-
-            <!-- Interactive Pitch Navigator Bar (ClassiAds Category Selector Style) -->
-            <div class="pitch-nav-wrapper">
-              <div class="pitch-nav-label">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                </svg>
-                <span>Interactive Pitch Focus &mdash; Select your primary business goal:</span>
-              </div>
-              <div class="pitch-nav-pills" role="tablist" aria-label="Business Priorities">
-                <button class="pitch-nav-btn active" data-pillar="problem" role="tab" aria-selected="true">
-                  <span class="pitch-nav-badge">01</span>
-                  <span>Solve a Problem</span>
-                </button>
-                <button class="pitch-nav-btn" data-pillar="promo" role="tab" aria-selected="false">
-                  <span class="pitch-nav-badge">02</span>
-                  <span>Internet Presence</span>
-                </button>
-                <button class="pitch-nav-btn" data-pillar="operations" role="tab" aria-selected="false">
-                  <span class="pitch-nav-badge">03</span>
-                  <span>Daily Operations</span>
-                </button>
-                <button class="pitch-nav-btn" data-pillar="income" role="tab" aria-selected="false">
-                  <span class="pitch-nav-badge">04</span>
-                  <span>Generate Income</span>
-                </button>
-              </div>
-
-              <!-- Dynamic Pitch Insight Box (Neumorphic Inset Panel) -->
-              <div id="pitch-nav-panel" class="pitch-nav-panel">
-                <p id="pitch-nav-text" class="pitch-nav-text">
-                  <strong>Pillar 01 / Problem-Solving Engine:</strong> We diagnose where your current workflow leaks customers, time, or revenue—then build custom digital solutions that eliminate those friction points permanently.
-                </p>
-                <a href="#capabilities" class="squircle-arrow-btn" aria-label="Explore Pillar Details">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <polyline points="19 12 12 19 5 12"></polyline>
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <!-- Bottom Action Tray -->
-            <div class="hero-action-tray">
-              <a href="contact.html" class="pill-btn-mint large-btn">
-                <span>Book a Strategy Call</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="7" y1="17" x2="17" y2="7"></line>
-                  <polyline points="7 7 17 7 17 17"></polyline>
-                </svg>
-              </a>
-
-              <a href="projects.html" class="pill-btn-inset large-btn">
-                <span>View Real-World Solutions</span>
-              </a>
-            </div>
+        <div class="hero-visual">
+          <div id="hero-artwork-stage" class="hero-artwork-stage" aria-hidden="true">
+            <div class="hero-dark-square"></div>
+            <span class="hero-letter-d">D</span>
+            <img
+              src="assets/hero-coil.png"
+              alt=""
+              class="hero-coil-img"
+              loading="eager"
+            >
+            <span class="hero-letter-s">S</span>
           </div>
-
-          <!-- Right Column: Neumorphic Floating Commitment Card -->
-          <div class="hero-right-column">
-            <div class="floating-mint-card">
-              <div class="card-eyebrow-mint">THE HARMONYITC COMMITMENT</div>
-              <h2 class="card-title-mint">Client-Centered by Design.</h2>
-              <p class="card-desc-mint">
-                Most web agencies deliver static brochures that look nice but do no actual work for your business. We engineer full-cycle digital assets where customer acquisition, daily back-office operations, and measurable revenue generation operate under one cohesive system.
-              </p>
-
-              <div class="mint-card-footer">
-                <span class="mint-tag">4-in-1 Business Asset</span>
-                <a href="about.html" class="squircle-arrow-btn" aria-label="Learn about our philosophy">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <!-- Inset Image Frame -->
-            <div class="hero-visual-recess">
-              <img 
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85" 
-                alt="Modern business analytics, operations dashboard, and web systems"
-                loading="eager"
-              >
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Signature Neumorphic Notch & Sub-Banner (ClassiAds Rail & Yellow Badge Style) -->
-        <div class="hero-notch-bridge">
-          <div class="notch-center-tab">
-            <a href="#capabilities" class="notch-pill-badge" aria-label="Scroll to the 4 pillars">
-              <span>SOLVE &bull; OPERATE &bull; EARN</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
-            </a>
-          </div>
-
-          <div class="notch-banner-row">
-            <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
-              <div>
-                <div style="font-size: 1.45rem; font-weight: 900; color: var(--accent-gold); line-height: 1;">4-in-1</div>
-                <div style="font-size: 0.775rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase;">Integrated Asset</div>
-              </div>
-              <div>
-                <div style="font-size: 1.45rem; font-weight: 900; color: var(--accent-gold); line-height: 1;">24/7</div>
-                <div style="font-size: 0.775rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase;">Digital Presence</div>
-              </div>
-            </div>
-
-            <div class="notch-headline-box">
-              <div class="notch-headline-title">Fast Build, Measurable Value</div>
-              <div class="notch-headline-sub">Your Business Is The Priority</div>
-            </div>
-
-            <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
-              <div>
-                <div style="font-size: 1.45rem; font-weight: 900; color: var(--accent-gold); line-height: 1;">3x</div>
-                <div style="font-size: 0.775rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase;">Daily Efficiency</div>
-              </div>
-              <div>
-                <div style="font-size: 1.45rem; font-weight: 900; color: var(--accent-gold); line-height: 1;">100%</div>
-                <div style="font-size: 0.775rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase;">Tailored to You</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Scroll Connector Pill -->
-      <a href="#capabilities" class="scroll-anchor-pill" aria-label="Scroll to core pillars">
-        <span class="scroll-arrow-icon">▼</span>
-        <span>EXPLORE THE 4 PILLARS</span>
-      </a>
-    </section>
-
-    <!-- Business Outcomes Metrics Bar (Neumorphic Raised Cards) -->
-    <section class="section-wrapper-canvas" style="padding-top: 0; padding-bottom: 2rem;">
-      <div class="teal-island-container metrics-island-bar">
-        <div class="metric-well-item">
-          <span class="metric-number-cyan">4-in-1</span>
-          <span class="metric-label-white">Integrated Asset</span>
-          <span class="metric-sub-muted">Problem-solver, 24/7 promotion, operational engine &amp; income generator.</span>
-        </div>
-        <div class="metric-well-item">
-          <span class="metric-number-cyan">24/7</span>
-          <span class="metric-label-white">Digital Presence</span>
-          <span class="metric-sub-muted">Always discoverable, showcasing your credibility and capturing customer interest.</span>
-        </div>
-        <div class="metric-well-item">
-          <span class="metric-number-cyan">3x</span>
-          <span class="metric-label-white">Daily Efficiency</span>
-          <span class="metric-sub-muted">Automating repetitive bookings, inquiries, and dispatch workflows.</span>
-        </div>
-        <div class="metric-well-item">
-          <span class="metric-number-cyan">100%</span>
-          <span class="metric-label-white">Tailored to You</span>
-          <span class="metric-sub-muted">Engineered directly around your business workflows and revenue goals.</span>
         </div>
       </div>
     </section>
 
-    <!-- The 4 Core Website Product Pillars (2x2 Neumorphic Grid) -->
-    <section id="capabilities" class="section-wrapper-canvas">
-      <div class="teal-island-container services-island">
-        
-        <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem;">
-          <div>
-            <div class="eyebrow-pill">OUR CORE VALUES &amp; THRUSTS</div>
-            <h2 class="section-title-dark">The 4 pillars of every <em>HarmonyITC product.</em></h2>
-          </div>
-          <p class="section-subtext-dark">
-            Every website we engineer is strictly built around the client's business priorities. We transform your web presence from an overhead expense into a high-yield business asset.
-          </p>
-        </div>
-
-        <div class="services-grid-2x2">
-          <!-- Pillar 1 -->
-          <div class="service-mint-card">
-            <div class="service-card-header">
-              <div class="service-icon-well" aria-hidden="true">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="12" y1="8" x2="12" y2="12"></line>
-                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                </svg>
-              </div>
-              <span class="service-pill-tag">PILLAR 01</span>
-            </div>
-            <h3 class="service-card-title">A Solution to a Problem</h3>
-            <p class="service-card-desc">
-              We never build technology for the sake of code. We identify your operational bottlenecks—such as lost customer inquiries, manual scheduling headaches, or scattered records—and engineer targeted digital systems that eliminate friction and save valuable time.
-            </p>
-            <div class="service-tags-row">
-              <span class="service-pill-tag">Bottleneck Diagnosis</span>
-              <span class="service-pill-tag">Workflow Automation</span>
-              <span class="service-pill-tag">Frictionless Experience</span>
-            </div>
-          </div>
-
-          <!-- Pillar 2 -->
-          <div class="service-mint-card">
-            <div class="service-card-header">
-              <div class="service-icon-well" aria-hidden="true">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                </svg>
-              </div>
-              <span class="service-pill-tag">PILLAR 02</span>
-            </div>
-            <h3 class="service-card-title">Promotional Material &amp; Internet Presence</h3>
-            <p class="service-card-desc">
-              Your website is your company's 24/7 digital flagship. We create an authoritative, unforgettable internet presence with high-converting storytelling, search engine visibility (SEO), lightning-fast mobile performance, and persuasive design that builds immediate trust.
-            </p>
-            <div class="service-tags-row">
-              <span class="service-pill-tag">24/7 Digital Flagship</span>
-              <span class="service-pill-tag">SEO Authority</span>
-              <span class="service-pill-tag">High-Trust Branding</span>
-            </div>
-          </div>
-
-          <!-- Pillar 3 -->
-          <div class="service-mint-card">
-            <div class="service-card-header">
-              <div class="service-icon-well" aria-hidden="true">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                  <line x1="8" y1="21" x2="16" y2="21"></line>
-                  <line x1="12" y1="17" x2="12" y2="21"></line>
-                </svg>
-              </div>
-              <span class="service-pill-tag">PILLAR 03</span>
-            </div>
-            <h3 class="service-card-title">System for Efficient Daily Operations</h3>
-            <p class="service-card-desc">
-              Far beyond a surface presentation, our products integrate directly into your daily routine. We build intuitive portals, automated booking and reservation systems, client self-service tools, job order dispatchers, and central dashboards that streamline day-to-day operations.
-            </p>
-            <div class="service-tags-row">
-              <span class="service-pill-tag">Daily Workflows</span>
-              <span class="service-pill-tag">Booking &amp; Dispatch</span>
-              <span class="service-pill-tag">Client Portals</span>
-            </div>
-          </div>
-
-          <!-- Pillar 4 -->
-          <div class="service-mint-card">
-            <div class="service-card-header">
-              <div class="service-icon-well" aria-hidden="true">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="12" y1="1" x2="12" y2="23"></line>
-                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                </svg>
-              </div>
-              <span class="service-pill-tag">PILLAR 04</span>
-            </div>
-            <h3 class="service-card-title">Income-Generating Business Engine</h3>
-            <p class="service-card-desc">
-              Your website should pay for itself many times over. We design conversion funnels, automated lead capture pipelines, seamless digital checkout flows, and customer retention systems that actively drive sales and create sustainable revenue streams.
-            </p>
-            <div class="service-tags-row">
-              <span class="service-pill-tag">Lead Funnels</span>
-              <span class="service-pill-tag">Automated Sales</span>
-              <span class="service-pill-tag">Measurable ROI</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Pitch Comparison Matrix: Traditional Brochure vs HarmonyITC Engine -->
-    <section class="section-wrapper-canvas">
-      <div class="teal-island-container comparison-island">
-        
-        <div>
-          <div class="eyebrow-pill">STRATEGIC PITCH COMPARISON</div>
-          <h2 class="section-title-dark">Why standard websites fail &mdash; <em>and how we differ.</em></h2>
-          <p class="section-subtext-dark">
-            Compare a conventional brochure website with a HarmonyITC client-centered business platform.
-          </p>
-        </div>
-
-        <div class="comparison-grid">
-          <!-- Column 1: Traditional Website (Debossed Inset) -->
-          <div class="comparison-card-passive">
-            <div class="comparison-eyebrow-passive">TRADITIONAL BROCHURE SITE</div>
-            <h3 class="comparison-title-passive">Passive Expense</h3>
-            <ul class="comparison-list">
-              <li class="comparison-item comparison-item-passive">
-                <span class="item-icon-cross">&times;</span>
-                <span>Static digital brochure that offers zero daily operational utility.</span>
-              </li>
-              <li class="comparison-item comparison-item-passive">
-                <span class="item-icon-cross">&times;</span>
-                <span>Requires staff to manually answer repetitive questions and track leads on spreadsheets.</span>
-              </li>
-              <li class="comparison-item comparison-item-passive">
-                <span class="item-icon-cross">&times;</span>
-                <span>Disconnected from bookings, invoicing, inventory, and back-office systems.</span>
-              </li>
-              <li class="comparison-item comparison-item-passive">
-                <span class="item-icon-cross">&times;</span>
-                <span>Acts as an ongoing overhead cost with unproven or negative financial return.</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Column 2: HarmonyITC Business Engine (Embossed Raised + Gold Accent) -->
-          <div class="comparison-card-engine">
-            <div class="comparison-eyebrow-engine">THE HARMONYITC APPROACH</div>
-            <h3 class="comparison-title-engine">Active Business Engine</h3>
-            <ul class="comparison-list">
-              <li class="comparison-item comparison-item-engine">
-                <span class="item-icon-check">&#10003;</span>
-                <span><strong>Problem Solver:</strong> Tailored specifically to solve your company's friction and eliminate lost opportunities.</span>
-              </li>
-              <li class="comparison-item comparison-item-engine">
-                <span class="item-icon-check">&#10003;</span>
-                <span><strong>24/7 Promotion:</strong> Establishes dominant internet presence, search visibility, and professional credibility.</span>
-              </li>
-              <li class="comparison-item comparison-item-engine">
-                <span class="item-icon-check">&#10003;</span>
-                <span><strong>Daily Operations Hub:</strong> Seamlessly manages reservations, job orders, inquiries, and staff tasks automatically.</span>
-              </li>
-              <li class="comparison-item comparison-item-engine">
-                <span class="item-icon-check">&#10003;</span>
-                <span><strong>Income Generator:</strong> Converts visitors into paying clients through structured funnels, generating clear ROI.</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Bottom Collaboration Island Banner -->
-    <section class="section-wrapper-canvas">
-      <div class="cta-island">
-        <!-- 3D Earth Globe Emerging from the Notch -->
-        <div class="cta-earth-notch" aria-hidden="true">
-          <img src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&w=400&q=80" alt="3D Globe illustration">
-        </div>
-
-        <div style="max-width: 650px;">
-          <div class="eyebrow-pill">LET'S BUILD FOR YOUR BUSINESS</div>
-          <h2 class="section-title-dark" style="margin-bottom: 0.75rem;">
-            Ready to make your website <em>work for you?</em>
+    <!-- Section 2: Leadership Team ("The team driving YOUR SUCCESS.") -->
+    <section id="team" class="team-section" aria-labelledby="team-heading">
+      <div class="section-inner">
+        <div class="team-header-row">
+          <h2 id="team-heading" class="team-heading">
+            <span class="team-heading-sub">The team driving</span>
+            <span class="team-heading-main">YOUR SUCCESS.</span>
           </h2>
-          <p class="section-subtext-dark">
-            Schedule a direct consultation with our founding leads. We'll analyze your current operations, identify bottlenecks, and design a custom digital engine that drives measurable revenue.
+          <p class="team-intro">
+            Direct, senior-level access. You collaborate directly with our founders from initial strategy through daily operations rollout.
           </p>
         </div>
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-          <a href="contact.html" class="pill-btn-mint large-btn">
-            <span>Start Consultation</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"></line>
-              <polyline points="7 7 17 7 17 17"></polyline>
-            </svg>
-          </a>
-          <a href="projects.html" class="pill-btn-inset large-btn">
-            <span>Explore Solutions</span>
-          </a>
+
+        <div class="team-grid">
+          <!-- Paulo -->
+          <article class="team-member">
+            <div class="team-member-top">
+              <div class="team-portrait-card" aria-hidden="true"></div>
+              <div class="team-identity">
+                <h3 class="team-name">Paulo</h3>
+                <div class="team-role">Founder &amp; Backend Lead</div>
+              </div>
+            </div>
+            <p class="team-bio">
+              Steers company vision while architecting the enterprise-grade backends, APIs, and secure cloud infrastructure that power our clients' mission-critical platforms. Focused on high-availability systems, rigorous data governance, and scalable technical foundations.
+            </p>
+          </article>
+
+          <!-- Gene -->
+          <article class="team-member">
+            <div class="team-member-top">
+              <div class="team-portrait-card" aria-hidden="true"></div>
+              <div class="team-identity">
+                <h3 class="team-name">Gene</h3>
+                <div class="team-role">Co-Founder, Frontend Lead &amp; Systems Architect</div>
+              </div>
+            </div>
+            <p class="team-bio">
+              Ensures your web applications run with fluid performance and flawless cross-device responsiveness. Engineers clean client-side architectures, modular UI components, and custom Tailwind CSS systems that turn intricate user interfaces into fast, intuitive, and reliable digital products.
+            </p>
+          </article>
+
+          <!-- Bry -->
+          <article class="team-member">
+            <div class="team-member-top">
+              <div class="team-portrait-card" aria-hidden="true"></div>
+              <div class="team-identity">
+                <h3 class="team-name">Bry</h3>
+                <div class="team-role">Operations Officer, UX/UI Design, QA &amp; Documentation Lead, HR</div>
+              </div>
+            </div>
+            <p class="team-bio">
+              Ensures your platforms achieve effortless usability, strict accessibility compliance, and structured operational governance. Designs end-to-end user journeys, cohesive design systems, and standardized operational SOPs&mdash;bridging human-centered design with rigorous UI testing to turn complex software into clear, reliable user experiences.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Kinetic 3D Typography Cylinder -->
+    <section class="kinetic-section" aria-label="Upcoming Platform Promise">
+      <div class="kinetic-container">
+        <h2 class="sr-only">The wait: we promise it will be worth the wait.</h2>
+        <div id="kinetic-stage" class="kinetic-stage">
+          <canvas id="kinetic-cylinder-canvas" aria-hidden="true"></canvas>
+          <div id="kinetic-fallback" class="kinetic-fallback" aria-hidden="true">
+            THE WAIT<br>
+            WE PROMISE<br>
+            IT WILL BE<br>
+            WORTH
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Global Footer Island -->
+  <!-- Section 4: Minimalist Pure-White Giant Wordmark Footer -->
   <footer class="site-footer">
-    <div class="footer-inner-island">
-      <div class="footer-top">
-        <div>
-          <a href="index.html" class="brand-logo" aria-label="HarmonyITC Home">
-            <span class="logo-mark" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <line x1="12" y1="3" x2="12" y2="21"></line>
-                <line x1="3" y1="12" x2="21" y2="21"></line>
-                <line x1="5.64" y1="5.64" x2="18.36" y2="18.36"></line>
-                <line x1="5.64" y1="18.36" x2="18.36" y2="5.64"></line>
-              </svg>
-            </span>
-            <span class="brand-name">harmony<span class="brand-slash">/</span>itc</span>
-          </a>
-          <p class="footer-brand-desc">
-            Client-Centered Web &amp; Business Systems. We engineer websites that solve problems, promote your brand, run daily operations, and generate income.
-          </p>
-          <div style="margin-top: 1rem;">
-            <span class="eyebrow-pill" style="font-size: 0.75rem; padding: 0.35rem 1rem;">
-              Client's Business First &bull; Technology Second
-            </span>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="footer-col-title">Navigation</h4>
-          <ul class="footer-nav-list">
-            <li><a href="index.html" class="footer-nav-link">Home (Strategic Pitch)</a></li>
-            <li><a href="about.html" class="footer-nav-link">About Us &amp; Team</a></li>
-            <li><a href="projects.html" class="footer-nav-link">Our Projects &amp; Case Studies</a></li>
-            <li><a href="contact.html" class="footer-nav-link">Contact Us &amp; Brief Builder</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="footer-col-title">Direct Inquiries</h4>
-          <a href="mailto:inquiries@harmonyitc.com" class="footer-email-link">inquiries@harmonyitc.com</a>
-          <p class="footer-sub-text">
-            Direct access to our founding engineering desk. Responses within 24 hours.
-          </p>
-        </div>
+    <div class="footer-inner">
+      <div class="footer-micro-row">
+        <span>&copy; 2026 Harmony IT Consultancy. All rights reserved.</span>
+        <nav class="footer-micro-links" aria-label="Footer Navigation">
+          <a href="about.html">About Us</a>
+          <a href="projects.html">Projects</a>
+          <a href="contact.html">Contact Us</a>
+          <a href="mailto:inquiries@harmonyitc.com">inquiries@harmonyitc.com</a>
+        </nav>
       </div>
+    </div>
 
-      <div class="footer-bottom">
-        <span>&copy; 2026 HarmonyITC. All rights reserved.</span>
-        <span>Engineered with precision &amp; care for business growth.</span>
-      </div>
+    <div class="footer-wordmark-wrap" aria-hidden="true">
+      <span class="footer-giant-wordmark">harmony</span>
     </div>
   </footer>
 

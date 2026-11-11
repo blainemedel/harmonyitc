@@ -4,59 +4,78 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  
-  <title>Contact Us &mdash; HarmonyITC</title>
-  <meta name="description" content="Start a consultation with Harmony IT Consultancy. Build your project brief around your business priorities—problem-solving, digital presence, daily operations, or revenue generation—and reach our founders directly.">
-  <meta name="theme-color" content="#fab818">
+
+  <title>Contact Us &mdash; Harmony IT Consultancy</title>
+  <meta name="description" content="Start a consultation with Harmony IT Consultancy. Assemble a custom project brief and connect directly with Paulo, Gene, and Bry.">
+  <meta name="theme-color" content="#f3f2f8">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23fab818'/><path d='M50 20 L50 80 M20 50 L80 50 M29 29 L71 71 M29 71 L71 29' stroke='%23172a3a' stroke-width='10' stroke-linecap='round'/></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 40'><circle cx='16' cy='20' r='11' fill='none' stroke='%231c2336' stroke-width='4'/><circle cx='28' cy='20' r='11' fill='none' stroke='%23096c7b' stroke-width='4'/></svg>">
 
-  <!-- Google Fonts: Plus Jakarta Sans & Fraunces -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Neumorphism Soft UI Stylesheet -->
+  <!-- Design System Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Floating Capsule Header -->
+  <!-- Ambient Frosted 3D Studio Backdrop -->
+  <div class="ambient-canvas" aria-hidden="true">
+    <div class="ambient-glass-pillar"></div>
+    <div class="ambient-glass-ridge"></div>
+    <svg class="ambient-corner-coil" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="porcelainGrad" cx="45%" cy="45%" r="55%">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+          <stop offset="55%" stop-color="#d5d8e2" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#b4bac8" stop-opacity="0.25"/>
+        </radialGradient>
+      </defs>
+      <circle cx="95" cy="145" r="96" stroke="url(#porcelainGrad)" stroke-width="10"/>
+      <circle cx="95" cy="145" r="80" stroke="url(#porcelainGrad)" stroke-width="8"/>
+      <circle cx="95" cy="145" r="64" stroke="url(#porcelainGrad)" stroke-width="7"/>
+      <circle cx="95" cy="145" r="48" stroke="url(#porcelainGrad)" stroke-width="6"/>
+      <circle cx="95" cy="145" r="32" stroke="url(#porcelainGrad)" stroke-width="5"/>
+    </svg>
+  </div>
+
+  <!-- Crisp White Sticky Header -->
   <header class="site-header">
     <div class="header-inner">
-      <a href="index.html" class="brand-logo" aria-label="HarmonyITC Home">
-        <span class="logo-mark" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-            <line x1="12" y1="3" x2="12" y2="21"></line>
-            <line x1="3" y1="12" x2="21" y2="21"></line>
-            <line x1="5.64" y1="5.64" x2="18.36" y2="18.36"></line>
-            <line x1="5.64" y1="18.36" x2="18.36" y2="5.64"></line>
+      <a href="index.html" class="brand-logo" aria-label="Harmony IT Consultancy Home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="38" height="38" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24.5 7.4A13.4 13.4 0 1 0 24.5 32.6C28.8 30.8 30 25.2 25.5 21.8C22 19.2 16 20.5 16 15.8C16 12.6 18.6 10.6 21.6 11.2" stroke="#1c2336" stroke-width="3.4" stroke-linecap="round"/>
+            <path d="M15.5 32.6A13.4 13.4 0 1 0 15.5 7.4C11.2 9.2 10 14.8 14.5 18.2C18 20.8 24 19.5 24 24.2C24 27.4 21.4 29.4 18.4 28.8" stroke="#096c7b" stroke-width="3.4" stroke-linecap="round"/>
           </svg>
         </span>
-        <span class="brand-name">harmony<span class="brand-slash">/</span>itc</span>
+        <span class="brand-wordmark">
+          <span class="brand-title">HARMONY</span>
+          <span class="brand-subtitle">IT CONSULTANCY</span>
+        </span>
       </a>
 
-      <!-- Desktop Capsule Nav Links -->
-      <nav class="nav-links" aria-label="Main Navigation">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="about.html" class="nav-link">About Us</a>
-        <a href="projects.html" class="nav-link">Our Projects</a>
-        <a href="contact.html" class="nav-link active">Contact Us</a>
-      </nav>
+      <div class="header-right">
+        <nav class="nav-links" aria-label="Main Navigation">
+          <a href="about.html" class="nav-link">About Us</a>
+          <a href="projects.html" class="nav-link">Projects</a>
+          <a href="contact.html" class="nav-link active">Contact Us</a>
+        </nav>
 
-      <!-- Desktop Header Action -->
-      <div class="header-cta">
-        <a href="contact.html" class="pill-btn-mint">
-          <span>Start Consultation</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
+        <a href="contact.html" class="cta-pill-btn">
+          <span>Let's Start</span>
+          <span class="cta-arrow-pocket" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </span>
         </a>
       </div>
 
-      <!-- Mobile Hamburger Toggle -->
       <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
@@ -65,61 +84,49 @@
     </div>
   </header>
 
-  <!-- Mobile Drawer -->
   <div id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation">
     <a href="index.html" class="nav-link">Home</a>
     <a href="about.html" class="nav-link">About Us</a>
-    <a href="projects.html" class="nav-link">Our Projects</a>
+    <a href="projects.html" class="nav-link">Projects</a>
     <a href="contact.html" class="nav-link active">Contact Us</a>
-    <div style="margin-top: 1rem;">
-      <a href="contact.html" class="pill-btn-mint large-btn" style="width: 100%; justify-content: center;">
-        <span>Start Consultation</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="7" y1="17" x2="17" y2="7"></line>
-          <polyline points="7 7 17 7 17 17"></polyline>
-        </svg>
+    <div style="margin-top: 0.75rem;">
+      <a href="contact.html" class="cta-pill-btn cta-lg" style="width: 100%; justify-content: space-between;">
+        <span>Let's Start</span>
+        <span class="cta-arrow-pocket" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </span>
       </a>
     </div>
   </div>
 
   <main>
-    <!-- Contact Page Header Island with Ghost Watermark -->
-    <section class="hero-wrapper-section">
-      <div class="teal-island-container hero-island" style="padding-bottom: 4rem;">
-        
-        <!-- Ghost Watermark Background -->
-        <div class="hero-watermark-bg" aria-hidden="true">CONTACT</div>
-
-        <div style="max-width: 860px; position: relative; z-index: 2;">
-          <div class="eyebrow-pill">DIRECT STRATEGIC CONSULTATION</div>
-          <h1 class="hero-brand-display" style="font-size: clamp(2.8rem, 4.8vw, 4.2rem);">
-            Let's put your business <em>first.</em>
-          </h1>
-          <p class="hero-lead-text">
-            Skip bureaucratic ticket queues. Connect directly with the Harmony IT Consultancy founding team. Select your business priorities below to automatically assemble a tailored project brief.
-          </p>
-        </div>
+    <section class="page-hero">
+      <div class="section-inner">
+        <div class="page-eyebrow">Direct Strategic Consultation</div>
+        <h1 class="page-title">
+          Let's scale your <strong>business</strong> <span class="ink-dark">together.</span>
+        </h1>
+        <p class="page-lead">
+          Skip bureaucratic ticket queues and collaborate directly with our founding leads. Select your priorities below to automatically prepare a focused project brief.
+        </p>
       </div>
     </section>
 
-    <!-- Interactive Priority Brief Builder & Contact Hub -->
-    <section class="section-wrapper-canvas" style="padding-top: 0; padding-bottom: 5rem;">
-      <div class="teal-island-container contact-hero-island">
-        
-        <div style="margin-bottom: 2.5rem;">
-          <div class="eyebrow-pill">INTERACTIVE PROJECT BRIEF BUILDER</div>
-          <h2 class="section-title-dark" style="font-size: clamp(2.2rem, 3.8vw, 3rem);">
-            What is your business <em>priority today?</em>
+    <section class="content-section" style="padding-top: 0;">
+      <div class="section-inner">
+        <div class="frosted-panel">
+          <div class="page-eyebrow">Interactive Project Brief Builder</div>
+          <h2 style="font-size: clamp(1.6rem, 2.8vw, 2.2rem); font-weight: 700; color: var(--ink-navy); letter-spacing: -0.02em; margin-bottom: 0.5rem;">
+            What is your business priority today?
           </h2>
-          <p class="section-subtext-dark">
-            Click all areas your business needs help with. We'll automatically customize your consultation request so our founding leads can prepare specific solutions before our first call.
+          <p style="font-size: 0.94rem; color: var(--ink-body); max-width: 680px;">
+            Select the capabilities your business needs so Paulo, Gene, and Bry can prepare targeted architectural recommendations before our first call.
           </p>
-        </div>
 
-        <!-- Priority Checklist Grid -->
-        <div class="brief-builder-container">
           <div class="priority-checklist-grid">
-            <!-- Option 1: Problem Solving -->
             <div class="priority-choice-card selected" data-priority="problem">
               <div class="priority-check-box">&#10003;</div>
               <div>
@@ -130,59 +137,55 @@
               </div>
             </div>
 
-            <!-- Option 2: Promotional Presence -->
             <div class="priority-choice-card selected" data-priority="promo">
               <div class="priority-check-box">&#10003;</div>
               <div>
                 <div class="priority-choice-title">02 / 24/7 Internet Presence</div>
                 <div class="priority-choice-desc">
-                  Establish dominant search visibility (SEO), mobile-fast responsiveness, and professional brand credibility.
+                  Establish authoritative search visibility (SEO), fast cross-device responsiveness, and brand credibility.
                 </div>
               </div>
             </div>
 
-            <!-- Option 3: Daily Operations -->
             <div class="priority-choice-card selected" data-priority="operations">
               <div class="priority-check-box">&#10003;</div>
               <div>
                 <div class="priority-choice-title">03 / Automate Daily Operations</div>
                 <div class="priority-choice-desc">
-                  Streamline online appointment booking, client self-service portals, job dispatch, or automated invoicing.
+                  Streamline appointment booking, client self-service portals, job dispatch, or automated invoicing.
                 </div>
               </div>
             </div>
 
-            <!-- Option 4: Income Generation -->
             <div class="priority-choice-card selected" data-priority="income">
               <div class="priority-check-box">&#10003;</div>
               <div>
                 <div class="priority-choice-title">04 / Generate Measurable Revenue</div>
                 <div class="priority-choice-desc">
-                  Turn website visitors into paying customers via automated sales funnels, digital payments, and lead engines.
+                  Turn website visitors into paying customers via conversion funnels, digital payments, and lead engines.
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Brief Action Bar -->
           <div class="brief-action-bar">
             <div class="brief-status-text">
               Project Focus: <strong id="selected-priorities-summary">All 4 Pillars Selected (Complete Business Engine)</strong>
             </div>
 
-            <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
-              <!-- Copy Brief Button -->
-              <button id="copy-brief-btn" class="pill-btn-mint" aria-label="Copy assembled brief to clipboard">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                </svg>
+            <div style="display: flex; gap: 0.85rem; align-items: center; flex-wrap: wrap;">
+              <button id="copy-brief-btn" class="cta-pill-btn" aria-label="Copy assembled brief to clipboard">
                 <span>Copy Project Brief</span>
                 <span class="copied-badge">Copied!</span>
+                <span class="cta-arrow-pocket" aria-hidden="true">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                </span>
               </button>
 
-              <!-- Dynamic Mailto Trigger -->
-              <a id="email-brief-btn" href="mailto:inquiries@harmonyitc.com?subject=Consultation%20Brief%20for%20HarmonyITC" class="pill-btn-inset">
+              <a id="email-brief-btn" href="mailto:inquiries@harmonyitc.com?subject=Consultation%20Brief%20for%20HarmonyITC" class="btn-outline-teal">
                 <span>Send Tailored Email</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -193,36 +196,31 @@
           </div>
         </div>
 
-        <!-- Recessed Primary Email Box in Deep Midnight Navy -->
-        <div class="contact-email-recess-box">
+        <!-- Direct Email Box -->
+        <div class="contact-email-box">
           <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-            <span style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-gold);">
+            <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: #c4b5df;">
               Official Inquiries Email
             </span>
-            <span class="email-address-cyan">inquiries@harmonyitc.com</span>
+            <span class="email-display">inquiries@harmonyitc.com</span>
           </div>
 
-          <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
-            <!-- One-Click Copy Button -->
-            <button 
-              class="pill-btn-mint copy-email-trigger" 
-              data-email="inquiries@harmonyitc.com"
-              aria-label="Copy official email to clipboard"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-              </svg>
+          <div style="display: flex; align-items: center; gap: 0.85rem; flex-wrap: wrap;">
+            <button class="cta-pill-btn copy-email-trigger" data-email="inquiries@harmonyitc.com" aria-label="Copy official email to clipboard">
               <span>Copy Email</span>
               <span class="copied-badge">Copied!</span>
+              <span class="cta-arrow-pocket" aria-hidden="true">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </span>
             </button>
 
-            <!-- Mailto Direct Link -->
-            <a 
-              href="mailto:inquiries@harmonyitc.com?subject=Inquiry%20regarding%20HarmonyITC%20Web%20Consultancy" 
-              class="pill-btn-inset"
-              style="background: rgba(255, 255, 255, 0.12); color: #ffffff; border-color: rgba(255, 255, 255, 0.2);"
-              aria-label="Send email via mail client"
+            <a
+              href="mailto:inquiries@harmonyitc.com?subject=Inquiry%20regarding%20HarmonyITC%20Web%20Consultancy"
+              class="btn-outline-teal"
+              style="background: rgba(255,255,255,0.12); color: #ffffff; border-color: rgba(255,255,255,0.25);"
             >
               <span>Open Mail Client</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -233,69 +231,30 @@
           </div>
         </div>
 
-        <!-- Channels & Availability Details Grid -->
+        <!-- Availability Cards -->
         <div class="contact-channels-grid">
-          <!-- Item 1: SLA -->
           <div class="contact-channel-card">
-            <div style="font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-gold); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
-              Response Guarantee
-            </div>
-            <div style="font-size: 1.2rem; font-weight: 800; color: var(--text-dark); margin-bottom: 0.35rem;">
-              &lt; 24 Hours
-            </div>
-            <div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5;">
-              Direct technical response from Paulo, Gene, or Bry.
-            </div>
+            <div class="project-cat">Response Guarantee</div>
+            <div style="font-size: 1.2rem; font-weight: 700; color: var(--ink-navy); margin-bottom: 0.3rem;">&lt; 24 Hours</div>
+            <p style="font-size: 0.86rem; color: var(--ink-body);">Direct technical response from Paulo, Gene, or Bry.</p>
           </div>
 
-          <!-- Item 2: Desk Availability -->
           <div class="contact-channel-card">
-            <div style="font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-gold); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="16" y1="2" x2="16" y2="6"></line>
-                <line x1="8" y1="2" x2="8" y2="6"></line>
-                <line x1="3" y1="10" x2="21" y2="10"></line>
-              </svg>
-              Consulting Desk Hours
-            </div>
-            <div style="font-size: 1.2rem; font-weight: 800; color: var(--text-dark); margin-bottom: 0.35rem;">
-              Mon &ndash; Fri &bull; 9 AM &ndash; 6 PM
-            </div>
-            <div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5;">
-              Flexible strategy call slots available for urgent business rollouts.
-            </div>
+            <div class="project-cat">Consulting Desk Hours</div>
+            <div style="font-size: 1.2rem; font-weight: 700; color: var(--ink-navy); margin-bottom: 0.3rem;">Mon &ndash; Fri &bull; 9 AM &ndash; 6 PM</div>
+            <p style="font-size: 0.86rem; color: var(--ink-body);">Flexible strategy call slots for urgent business rollouts.</p>
           </div>
 
-          <!-- Item 3: Direct Routing -->
           <div class="contact-channel-card">
-            <div style="font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-gold); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-              </svg>
-              Direct Team Access
-            </div>
-            <div style="font-size: 1.2rem; font-weight: 800; color: var(--text-dark); margin-bottom: 0.35rem;">
-              Paulo &bull; Gene &bull; Bry
-            </div>
-            <div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5;">
-              Founding leads personally handle architectural scoping and discovery.
-            </div>
+            <div class="project-cat">Direct Team Access</div>
+            <div style="font-size: 1.2rem; font-weight: 700; color: var(--ink-navy); margin-bottom: 0.3rem;">Paulo &bull; Gene &bull; Bry</div>
+            <p style="font-size: 0.86rem; color: var(--ink-body);">Founding leads personally handle architectural scoping and rollout.</p>
           </div>
         </div>
-
       </div>
     </section>
   </main>
 
-  <!-- Floating Toast Notification on Copy -->
   <div id="copied-toast" class="copied-toast" role="status" aria-live="polite">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="20 6 9 17 4 12"></polyline>
@@ -303,55 +262,21 @@
     <span class="toast-text">Copied to clipboard!</span>
   </div>
 
-  <!-- Global Footer Island -->
   <footer class="site-footer">
-    <div class="footer-inner-island">
-      <div class="footer-top">
-        <div>
-          <a href="index.html" class="brand-logo" aria-label="HarmonyITC Home">
-            <span class="logo-mark" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <line x1="12" y1="3" x2="12" y2="21"></line>
-                <line x1="3" y1="12" x2="21" y2="21"></line>
-                <line x1="5.64" y1="5.64" x2="18.36" y2="18.36"></line>
-                <line x1="5.64" y1="18.36" x2="18.36" y2="5.64"></line>
-              </svg>
-            </span>
-            <span class="brand-name">harmony<span class="brand-slash">/</span>itc</span>
-          </a>
-          <p class="footer-brand-desc">
-            Client-Centered Web &amp; Business Systems. We engineer websites that solve problems, promote your brand, run daily operations, and generate income.
-          </p>
-          <div style="margin-top: 1rem;">
-            <span class="eyebrow-pill" style="font-size: 0.75rem; padding: 0.35rem 1rem;">
-              Client's Business First &bull; Technology Second
-            </span>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="footer-col-title">Navigation</h4>
-          <ul class="footer-nav-list">
-            <li><a href="index.html" class="footer-nav-link">Home (Strategic Pitch)</a></li>
-            <li><a href="about.html" class="footer-nav-link">About Us &amp; Team</a></li>
-            <li><a href="projects.html" class="footer-nav-link">Our Projects &amp; Case Studies</a></li>
-            <li><a href="contact.html" class="footer-nav-link">Contact Us &amp; Brief Builder</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="footer-col-title">Direct Inquiries</h4>
-          <a href="mailto:inquiries@harmonyitc.com" class="footer-email-link">inquiries@harmonyitc.com</a>
-          <p class="footer-sub-text">
-            Direct access to our founding engineering desk. Responses within 24 hours.
-          </p>
-        </div>
+    <div class="footer-inner">
+      <div class="footer-micro-row">
+        <span>&copy; 2026 Harmony IT Consultancy. All rights reserved.</span>
+        <nav class="footer-micro-links" aria-label="Footer Navigation">
+          <a href="about.html">About Us</a>
+          <a href="projects.html">Projects</a>
+          <a href="contact.html">Contact Us</a>
+          <a href="mailto:inquiries@harmonyitc.com">inquiries@harmonyitc.com</a>
+        </nav>
       </div>
+    </div>
 
-      <div class="footer-bottom">
-        <span>&copy; 2026 HarmonyITC. All rights reserved.</span>
-        <span>Engineered with precision &amp; care for business growth.</span>
-      </div>
+    <div class="footer-wordmark-wrap" aria-hidden="true">
+      <span class="footer-giant-wordmark">harmony</span>
     </div>
   </footer>
 
