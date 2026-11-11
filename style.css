@@ -50,7 +50,7 @@
   --font-condensed: 'Anton', 'Oswald', Impact, sans-serif;
 
   /* Layout */
-  --container-max: 100%;
+  --container-max: 1200px;
   --header-height: 76px;
   --transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -191,7 +191,6 @@ button {
 }
 
 .header-inner {
-  width: 100%;
   max-width: var(--container-max);
   height: 100%;
   margin: 0 auto;
@@ -788,7 +787,6 @@ button {
 }
 
 .footer-inner {
-  width: 100%;
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 2rem;
@@ -822,7 +820,7 @@ button {
 
 .footer-wordmark-wrap {
   width: 100%;
-  max-width: var(--container-max);
+  max-width: 1120px;
   margin: 0 auto;
   padding: 0 1.5rem;
   text-align: center;
