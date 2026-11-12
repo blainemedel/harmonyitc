@@ -597,10 +597,10 @@
           About Us (4 Slides)
         </button>
         <button class="deck-filter-pill" data-deck-filter="all" role="tab" aria-selected="false">
-          Full Website (17 Slides)
+          Full Website (19 Slides)
         </button>
         <button class="deck-filter-pill" data-deck-filter="home" role="tab" aria-selected="false">
-          Home (3)
+          Home (5)
         </button>
         <button class="deck-filter-pill" data-deck-filter="projects" role="tab" aria-selected="false">
           Projects &amp; Case Studies (7)
@@ -815,28 +815,61 @@
     </section>
 
     <!-- =======================================================================
-         HOME PAGE (index.html) — SLIDES 5 TO 7
+         HOME PAGE (index.html) — SLIDES 5 TO 9 (STANDALONE STRATEGIC PITCH)
          ======================================================================= -->
 
-    <!-- SLIDE 5: Home Hero ("Scale your Business Smarter.") -->
+    <!-- SLIDE 5: Home Hero & Interactive Pitch Focus Switcher -->
     <section class="deck-slide" data-deck-group="home" data-slide-title="Home Hero: Scale Your Business Smarter">
       <div class="deck-slide-inner">
         <div class="slide-meta-bar">
-          <span class="slide-seq-pill"><span class="seq-dot"></span><span class="slide-seq-label">SLIDE 05 / 17</span> &bull; HOME</span>
-          <span class="slide-source-tag">harmonyitc.dev/index.html &mdash; Section 1 of 3</span>
+          <span class="slide-seq-pill"><span class="seq-dot"></span><span class="slide-seq-label">SLIDE 05 / 19</span> &bull; HOME</span>
+          <span class="slide-source-tag">harmonyitc.dev/index.html &mdash; Section 1 of 5</span>
         </div>
 
         <div class="hero-container">
           <div class="hero-copy">
+            <div class="hero-eyebrow">Client-Centered Web &amp; Business Systems</div>
             <h2 class="hero-headline">
               <span class="hero-line-light">Scale your</span>
               <span class="hero-line-teal">Business</span>
               <span class="hero-line-dark">Smarter.</span>
             </h2>
+            <p class="hero-sublead" style="margin-top: 1rem; margin-bottom: 1.15rem;">
+              We engineer custom website products that do far more than look impressive&mdash;built to solve operational bottlenecks, amplify your brand 24/7, automate daily workflows, and generate measurable revenue.
+            </p>
+
+            <div class="pitch-focus-box" style="margin-bottom: 0;">
+              <div class="pitch-focus-label">
+                <span>Interactive Pitch Focus &mdash; Select your primary business goal:</span>
+              </div>
+              <div class="pitch-focus-pills" role="tablist" aria-label="Business Priorities">
+                <button class="pitch-focus-btn active" data-pillar="problem" role="tab" aria-selected="true" type="button">
+                  <span class="pitch-focus-num">01</span>
+                  <span>Solve a Problem</span>
+                </button>
+                <button class="pitch-focus-btn" data-pillar="promo" role="tab" aria-selected="false" type="button">
+                  <span class="pitch-focus-num">02</span>
+                  <span>Internet Presence</span>
+                </button>
+                <button class="pitch-focus-btn" data-pillar="operations" role="tab" aria-selected="false" type="button">
+                  <span class="pitch-focus-num">03</span>
+                  <span>Daily Operations</span>
+                </button>
+                <button class="pitch-focus-btn" data-pillar="income" role="tab" aria-selected="false" type="button">
+                  <span class="pitch-focus-num">04</span>
+                  <span>Generate Income</span>
+                </button>
+              </div>
+              <div class="pitch-focus-panel">
+                <p id="pitch-focus-text">
+                  <strong>Pillar 01 / Problem-Solving Engine:</strong> We diagnose where your current workflow leaks customers, time, or revenue&mdash;then build custom digital solutions that eliminate those friction points permanently.
+                </p>
+              </div>
+            </div>
           </div>
 
           <div class="hero-visual">
-            <div id="hero-artwork-stage" class="hero-artwork-stage" style="max-width: 410px;" aria-hidden="true">
+            <div id="hero-artwork-stage" class="hero-artwork-stage" style="max-width: 390px;" aria-hidden="true">
               <div class="hero-dark-square"></div>
               <span class="hero-letter-d">D</span>
               <img src="assets/hero-coil.png" alt="" class="hero-coil-img" loading="eager">
@@ -847,87 +880,232 @@
       </div>
     </section>
 
-    <!-- SLIDE 6: Home Leadership Team ("The team driving YOUR SUCCESS.") -->
-    <section class="deck-slide" data-deck-group="home" data-slide-title="Home Leadership: The Team Driving Your Success">
+    <!-- SLIDE 6: Business Impact Outcome Metrics -->
+    <section class="deck-slide" data-deck-group="home" data-slide-title="Business Outcomes: 4-in-1 Integrated Asset">
       <div class="deck-slide-inner">
         <div class="slide-meta-bar">
-          <span class="slide-seq-pill"><span class="seq-dot"></span><span class="slide-seq-label">SLIDE 06 / 17</span> &bull; HOME</span>
-          <span class="slide-source-tag">harmonyitc.dev/index.html &mdash; Section 2 of 3</span>
+          <span class="slide-seq-pill"><span class="seq-dot"></span><span class="slide-seq-label">SLIDE 06 / 19</span> &bull; HOME</span>
+          <span class="slide-source-tag">harmonyitc.dev/index.html &mdash; Section 2 of 5</span>
         </div>
 
-        <div class="team-header-row">
-          <h2 class="team-heading">
-            <span class="team-heading-sub">The team driving</span>
-            <span class="team-heading-main">YOUR SUCCESS.</span>
+        <div style="margin-bottom: 1.75rem;">
+          <div class="page-eyebrow">Measurable Business Impact</div>
+          <h2 style="font-size: clamp(1.85rem, 3.2vw, 2.65rem); font-weight: 400; color: var(--ink-slate); letter-spacing: -0.025em;">
+            Built for <strong style="font-weight: 700; color: var(--accent-teal);">daily utility &amp; ROI.</strong>
           </h2>
-          <p class="team-intro">
-            Direct, senior-level access. You collaborate directly with our founders from initial strategy through daily operations rollout.
+        </div>
+
+        <div class="home-metrics-grid">
+          <div class="home-metric-card">
+            <div class="home-metric-val">4-in-1</div>
+            <div class="home-metric-title">Integrated Asset</div>
+            <p class="home-metric-desc">
+              Problem-solver, 24/7 promotion, operational engine &amp; income generator in one cohesive system.
+            </p>
+          </div>
+          <div class="home-metric-card">
+            <div class="home-metric-val">24/7</div>
+            <div class="home-metric-title">Digital Presence</div>
+            <p class="home-metric-desc">
+              Always discoverable, showcasing your brand credibility and capturing customer interest around the clock.
+            </p>
+          </div>
+          <div class="home-metric-card">
+            <div class="home-metric-val">3x</div>
+            <div class="home-metric-title">Daily Efficiency</div>
+            <p class="home-metric-desc">
+              Automating repetitive bookings, customer inquiries, invoicing, and daily dispatch workflows.
+            </p>
+          </div>
+          <div class="home-metric-card">
+            <div class="home-metric-val">100%</div>
+            <div class="home-metric-title">Tailored to You</div>
+            <p class="home-metric-desc">
+              Engineered directly around your operational realities and measurable business revenue goals.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: The 4 Core Website Product Pillars -->
+    <section class="deck-slide" data-deck-group="home" data-slide-title="The 4 Pillars of Every HarmonyITC Product">
+      <div class="deck-slide-inner">
+        <div class="slide-meta-bar">
+          <span class="slide-seq-pill"><span class="seq-dot"></span><span class="slide-seq-label">SLIDE 07 / 19</span> &bull; HOME</span>
+          <span class="slide-source-tag">harmonyitc.dev/index.html &mdash; Section 3 of 5</span>
+        </div>
+
+        <div class="pillars-header-row" style="margin-bottom: 1.5rem;">
+          <div>
+            <div class="page-eyebrow" style="margin-bottom: 0.5rem;">Our Core Values &amp; Thrusts</div>
+            <h2 style="font-size: clamp(1.65rem, 2.8vw, 2.3rem); font-weight: 400; color: var(--ink-slate); letter-spacing: -0.025em;">
+              The 4 pillars of every <strong style="font-weight: 700; color: var(--accent-teal);">HarmonyITC product.</strong>
+            </h2>
+          </div>
+          <p class="team-intro" style="max-width: 400px;">
+            Every digital platform we engineer is strictly built around your business priorities&mdash;transforming your web presence from an overhead expense into a high-yield asset.
           </p>
         </div>
 
-        <div class="team-grid">
-          <article class="team-member">
-            <div class="team-member-top">
-              <div class="team-portrait-card" aria-hidden="true"></div>
-              <div class="team-identity">
-                <h3 class="team-name">Paulo</h3>
-                <div class="team-role">Founder &amp; Backend Lead</div>
-              </div>
+        <div class="pillars-grid-2x2" style="gap: 1.15rem;">
+          <article class="pillar-card" style="padding: 1.35rem 1.5rem;">
+            <div class="pillar-card-top" style="margin-bottom: 0.6rem;">
+              <h3 class="pillar-title" style="font-size: 1.1rem; margin-bottom: 0;">01 / A Solution to a Problem</h3>
+              <span class="pillar-num-tag">Pillar 01</span>
             </div>
-            <p class="team-bio">
-              Steers company vision while architecting the enterprise-grade backends, APIs, and secure cloud infrastructure that power our clients' mission-critical platforms. Focused on high-availability systems, rigorous data governance, and scalable technical foundations.
+            <p class="pillar-desc" style="font-size: 0.84rem; margin-bottom: 0.75rem;">
+              We identify your operational bottlenecks&mdash;such as lost customer inquiries, manual scheduling headaches, or scattered records&mdash;and engineer targeted digital systems that eliminate friction and save valuable time.
             </p>
+            <div class="pillar-tags" style="padding-top: 0.65rem;">
+              <span class="pillar-tag">Bottleneck Diagnosis</span>
+              <span class="pillar-tag">Workflow Automation</span>
+              <span class="pillar-tag">Frictionless Experience</span>
+            </div>
           </article>
 
-          <article class="team-member">
-            <div class="team-member-top">
-              <div class="team-portrait-card" aria-hidden="true"></div>
-              <div class="team-identity">
-                <h3 class="team-name">Gene</h3>
-                <div class="team-role">Co-Founder, Frontend Lead &amp; Systems Architect</div>
-              </div>
+          <article class="pillar-card" style="padding: 1.35rem 1.5rem;">
+            <div class="pillar-card-top" style="margin-bottom: 0.6rem;">
+              <h3 class="pillar-title" style="font-size: 1.1rem; margin-bottom: 0;">02 / Promotional Material &amp; Internet Presence</h3>
+              <span class="pillar-num-tag">Pillar 02</span>
             </div>
-            <p class="team-bio">
-              Ensures your web applications run with fluid performance and flawless cross-device responsiveness. Engineers clean client-side architectures, modular UI components, and custom Tailwind CSS systems that turn intricate user interfaces into fast, intuitive, and reliable digital products.
+            <p class="pillar-desc" style="font-size: 0.84rem; margin-bottom: 0.75rem;">
+              Your website is your company's 24/7 digital flagship. We create an authoritative internet presence with high-converting storytelling, search engine visibility (SEO), and lightning-fast mobile performance.
             </p>
+            <div class="pillar-tags" style="padding-top: 0.65rem;">
+              <span class="pillar-tag">24/7 Digital Flagship</span>
+              <span class="pillar-tag">SEO Authority</span>
+              <span class="pillar-tag">High-Trust Branding</span>
+            </div>
           </article>
 
-          <article class="team-member">
-            <div class="team-member-top">
-              <div class="team-portrait-card" aria-hidden="true"></div>
-              <div class="team-identity">
-                <h3 class="team-name">Bry</h3>
-                <div class="team-role">Operations Officer, UX/UI Design, QA &amp; Documentation Lead, HR</div>
-              </div>
+          <article class="pillar-card" style="padding: 1.35rem 1.5rem;">
+            <div class="pillar-card-top" style="margin-bottom: 0.6rem;">
+              <h3 class="pillar-title" style="font-size: 1.1rem; margin-bottom: 0;">03 / System for Efficient Daily Operations</h3>
+              <span class="pillar-num-tag">Pillar 03</span>
             </div>
-            <p class="team-bio">
-              Ensures your platforms achieve effortless usability, strict accessibility compliance, and structured operational governance. Designs end-to-end user journeys, cohesive design systems, and standardized operational SOPs&mdash;bridging human-centered design with rigorous UI testing to turn complex software into clear, reliable user experiences.
+            <p class="pillar-desc" style="font-size: 0.84rem; margin-bottom: 0.75rem;">
+              Far beyond a surface presentation, our products integrate directly into your daily routine with automated booking and reservation systems, client self-service portals, and job order dispatchers.
             </p>
+            <div class="pillar-tags" style="padding-top: 0.65rem;">
+              <span class="pillar-tag">Daily Workflows</span>
+              <span class="pillar-tag">Booking &amp; Dispatch</span>
+              <span class="pillar-tag">Client Portals</span>
+            </div>
+          </article>
+
+          <article class="pillar-card" style="padding: 1.35rem 1.5rem;">
+            <div class="pillar-card-top" style="margin-bottom: 0.6rem;">
+              <h3 class="pillar-title" style="font-size: 1.1rem; margin-bottom: 0;">04 / Income-Generating Business Engine</h3>
+              <span class="pillar-num-tag">Pillar 04</span>
+            </div>
+            <p class="pillar-desc" style="font-size: 0.84rem; margin-bottom: 0.75rem;">
+              Your website should pay for itself many times over. We design conversion funnels, automated lead capture pipelines, seamless digital checkout flows, and customer retention systems that drive sales.
+            </p>
+            <div class="pillar-tags" style="padding-top: 0.65rem;">
+              <span class="pillar-tag">Lead Funnels</span>
+              <span class="pillar-tag">Automated Sales</span>
+              <span class="pillar-tag">Measurable ROI</span>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- SLIDE 7: Home Kinetic 3D Typography Cylinder -->
-    <section class="deck-slide" data-deck-group="home" data-slide-title="Kinetic 3D Promise: The Wait Will Be Worth">
+    <!-- SLIDE 8: Strategic Pitch Comparison Matrix -->
+    <section class="deck-slide" data-deck-group="home" data-slide-title="Strategic Pitch Comparison: Brochure vs. Business Engine">
       <div class="deck-slide-inner">
         <div class="slide-meta-bar">
-          <span class="slide-seq-pill"><span class="seq-dot"></span><span class="slide-seq-label">SLIDE 07 / 17</span> &bull; HOME</span>
-          <span class="slide-source-tag">harmonyitc.dev/index.html &mdash; Section 3 of 3</span>
+          <span class="slide-seq-pill"><span class="seq-dot"></span><span class="slide-seq-label">SLIDE 08 / 19</span> &bull; HOME</span>
+          <span class="slide-source-tag">harmonyitc.dev/index.html &mdash; Section 4 of 5</span>
+        </div>
+
+        <div class="page-eyebrow" style="margin-bottom: 0.6rem;">Strategic Pitch Comparison</div>
+        <h2 style="font-size: clamp(1.65rem, 2.8vw, 2.3rem); font-weight: 400; color: var(--ink-slate); letter-spacing: -0.025em;">
+          Why standard websites fail &mdash; <strong style="font-weight: 700; color: var(--ink-navy);">and how we differ.</strong>
+        </h2>
+
+        <div class="comparison-grid-2" style="margin-top: 1.35rem;">
+          <div class="comparison-card-passive" style="padding: 1.85rem;">
+            <div class="process-tag" style="margin-bottom: 0.3rem;">Traditional Brochure Site</div>
+            <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--ink-navy);">Passive Expense</h3>
+            <ul class="comparison-list" style="margin-top: 1.1rem; gap: 0.85rem;">
+              <li class="comparison-item" style="color: var(--ink-body);">
+                <span class="comparison-badge-cross" aria-hidden="true">&times;</span>
+                <span>Static digital brochure that offers zero daily operational utility.</span>
+              </li>
+              <li class="comparison-item" style="color: var(--ink-body);">
+                <span class="comparison-badge-cross" aria-hidden="true">&times;</span>
+                <span>Requires staff to manually answer repetitive questions and track leads on spreadsheets.</span>
+              </li>
+              <li class="comparison-item" style="color: var(--ink-body);">
+                <span class="comparison-badge-cross" aria-hidden="true">&times;</span>
+                <span>Disconnected from bookings, invoicing, inventory, and back-office systems.</span>
+              </li>
+              <li class="comparison-item" style="color: var(--ink-body);">
+                <span class="comparison-badge-cross" aria-hidden="true">&times;</span>
+                <span>Acts as an ongoing overhead cost with unproven or negative financial return.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="comparison-card-engine" style="padding: 1.85rem;">
+            <div class="cosmic-eyebrow" style="margin-bottom: 0.3rem;">The HarmonyITC Approach</div>
+            <h3 style="font-size: 1.35rem; font-weight: 700; color: #ffffff;">Active Business Engine</h3>
+            <ul class="comparison-list" style="margin-top: 1.1rem; gap: 0.85rem;">
+              <li class="comparison-item" style="color: #e9e2f6;">
+                <span class="comparison-badge-check" aria-hidden="true">&#10003;</span>
+                <span><strong style="color: #ffffff;">Problem Solver:</strong> Tailored specifically to solve your company's friction and eliminate lost opportunities.</span>
+              </li>
+              <li class="comparison-item" style="color: #e9e2f6;">
+                <span class="comparison-badge-check" aria-hidden="true">&#10003;</span>
+                <span><strong style="color: #ffffff;">24/7 Promotion:</strong> Establishes dominant internet presence, search visibility, and professional credibility.</span>
+              </li>
+              <li class="comparison-item" style="color: #e9e2f6;">
+                <span class="comparison-badge-check" aria-hidden="true">&#10003;</span>
+                <span><strong style="color: #ffffff;">Daily Operations Hub:</strong> Seamlessly manages reservations, job orders, inquiries, and staff tasks automatically.</span>
+              </li>
+              <li class="comparison-item" style="color: #e9e2f6;">
+                <span class="comparison-badge-check" aria-hidden="true">&#10003;</span>
+                <span><strong style="color: #ffffff;">Income Generator:</strong> Converts visitors into paying clients through structured funnels, generating clear ROI.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: Home Kinetic 3D Typography Cylinder & Strategic Callout -->
+    <section class="deck-slide" data-deck-group="home" data-slide-title="Kinetic 3D Promise &amp; Consultation Callout">
+      <div class="deck-slide-inner">
+        <div class="slide-meta-bar">
+          <span class="slide-seq-pill"><span class="seq-dot"></span><span class="slide-seq-label">SLIDE 09 / 19</span> &bull; HOME</span>
+          <span class="slide-source-tag">harmonyitc.dev/index.html &mdash; Section 5 of 5</span>
         </div>
 
         <div class="frosted-panel split-grid-2" style="padding: 2.25rem 3rem;">
           <div>
-            <div class="page-eyebrow">Upcoming Platform Promise</div>
-            <h2 style="font-family: var(--font-condensed); font-size: clamp(2.8rem, 5vw, 4.4rem); line-height: 0.96; color: var(--ink-navy); text-transform: uppercase; letter-spacing: 0.01em; margin-bottom: 1rem;">
-              THE WAIT<br>
-              <span style="color: var(--accent-teal);">WE PROMISE</span><br>
-              IT WILL BE<br>
-              WORTH
+            <div class="page-eyebrow">Let's Build For Your Business</div>
+            <h2 style="font-size: clamp(1.75rem, 3vw, 2.35rem); font-weight: 700; color: var(--ink-navy); line-height: 1.18; letter-spacing: -0.02em; margin-bottom: 1rem;">
+              Ready to make your website <span style="color: var(--accent-teal);">work for you?</span>
             </h2>
-            <p style="font-size: 0.95rem; color: var(--ink-body);">
-              Interactive 3D WebGL kinetic typography cylinder &mdash; drag or hover the sculpture on the right to rotate the cylinder in real time.
+            <p style="font-size: 0.95rem; color: var(--ink-body); line-height: 1.7; margin-bottom: 1.5rem;">
+              Assemble a custom project brief or explore how our client-first methodology and engineering architecture turn operational bottlenecks into scalable growth.
             </p>
+            <div style="display: flex; align-items: center; gap: 0.9rem; flex-wrap: wrap;">
+              <a href="contact.html" class="cta-pill-btn">
+                <span>Start Consultation</span>
+                <span class="cta-arrow-pocket" aria-hidden="true">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </span>
+              </a>
+              <a href="about.html" class="btn-outline-teal">
+                <span>Our Philosophy &amp; Team</span>
+              </a>
+            </div>
           </div>
 
           <div style="display: flex; justify-content: center;">

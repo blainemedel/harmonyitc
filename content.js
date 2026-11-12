@@ -10,6 +10,7 @@ window.SITE_CONTENT = {
     brandTitle: "HARMONY",
     brandSubtitle: "IT CONSULTANCY",
     links: [
+      { label: "Home", href: "index.html" },
       { label: "About Us", href: "about.html" },
       { label: "Projects", href: "projects.html" },
       { label: "Contact Us", href: "contact.html" }

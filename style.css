@@ -1404,19 +1404,376 @@ button {
 }
 
 /* --------------------------------------------------
+   Standalone Homepage Components (index.html)
+   -------------------------------------------------- */
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-teal);
+  background: var(--accent-teal-soft);
+  padding: 0.38rem 0.95rem;
+  border-radius: 9999px;
+  margin-bottom: 1.25rem;
+}
+
+.hero-sublead {
+  font-size: 1.02rem;
+  line-height: 1.68;
+  color: var(--ink-body);
+  max-width: 540px;
+  margin-top: 1.35rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Interactive Pitch Focus Switcher inside Hero */
+.pitch-focus-box {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-glass);
+  border-radius: 18px;
+  padding: 1.15rem 1.25rem;
+  box-shadow: 0 14px 34px -12px rgba(24, 20, 48, 0.1);
+  margin-bottom: 1.65rem;
+  max-width: 560px;
+}
+
+.pitch-focus-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  color: var(--ink-muted);
+  margin-bottom: 0.65rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.pitch-focus-pills {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.4rem;
+  margin-bottom: 0.85rem;
+}
+
+.pitch-focus-btn {
+  border: 1px solid rgba(36, 41, 58, 0.08);
+  background: rgba(243, 242, 248, 0.75);
+  color: var(--ink-slate);
+  border-radius: 10px;
+  padding: 0.48rem 0.5rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.12rem;
+  text-align: left;
+}
+
+.pitch-focus-btn:hover {
+  background: #ffffff;
+  border-color: rgba(9, 108, 123, 0.35);
+}
+
+.pitch-focus-btn.active {
+  background: var(--accent-teal);
+  color: #ffffff;
+  border-color: var(--accent-teal);
+  box-shadow: 0 8px 18px -6px rgba(9, 108, 123, 0.38);
+}
+
+.pitch-focus-num {
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  opacity: 0.75;
+}
+
+.pitch-focus-panel {
+  background: rgba(243, 242, 248, 0.65);
+  border-radius: 12px;
+  padding: 0.75rem 0.95rem;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--ink-slate);
+}
+
+.pitch-focus-panel strong {
+  color: var(--ink-navy);
+}
+
+.hero-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+  flex-wrap: wrap;
+}
+
+/* Home Outcome Metrics Strip */
+.home-metrics-section {
+  padding: 1rem 2rem 4rem;
+  position: relative;
+}
+
+.home-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.home-metric-card {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-glass);
+  border-radius: 18px;
+  padding: 1.75rem 1.5rem;
+  box-shadow: 0 14px 32px -12px rgba(24, 22, 48, 0.08);
+  transition: var(--transition);
+}
+
+.home-metric-card:hover {
+  transform: translateY(-4px);
+  background: #ffffff;
+}
+
+.home-metric-val {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--accent-teal);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.45rem;
+}
+
+.home-metric-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink-navy);
+  margin-bottom: 0.35rem;
+}
+
+.home-metric-desc {
+  font-size: 0.84rem;
+  color: var(--ink-body);
+  line-height: 1.55;
+}
+
+/* Home 4 Core Website Product Pillars */
+.home-pillars-section {
+  padding: 3rem 2rem 5rem;
+  position: relative;
+}
+
+.pillars-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2.5rem;
+  margin-bottom: 2.75rem;
+  flex-wrap: wrap;
+}
+
+.pillars-grid-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem;
+}
+
+.pillar-card {
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  padding: 2.25rem;
+  box-shadow: 0 18px 40px -14px rgba(24, 20, 48, 0.09);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+}
+
+.pillar-card:hover {
+  transform: translateY(-4px);
+  background: #ffffff;
+  box-shadow: 0 24px 48px -14px rgba(24, 20, 48, 0.14);
+}
+
+.pillar-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.pillar-icon-badge {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  background: var(--accent-teal-soft);
+  color: var(--accent-teal);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pillar-num-tag {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-magenta);
+  background: rgba(214, 0, 92, 0.08);
+  padding: 0.32rem 0.75rem;
+  border-radius: 9999px;
+}
+
+.pillar-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ink-navy);
+  margin-bottom: 0.65rem;
+  letter-spacing: -0.015em;
+}
+
+.pillar-desc {
+  font-size: 0.92rem;
+  color: var(--ink-body);
+  line-height: 1.68;
+  margin-bottom: 1.35rem;
+  flex-grow: 1;
+}
+
+.pillar-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-hairline);
+}
+
+.pillar-tag {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--ink-slate);
+  background: var(--bg-page);
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+}
+
+/* Home Strategic Pitch Comparison Matrix */
+.home-comparison-section {
+  padding: 2rem 2rem 5rem;
+  position: relative;
+}
+
+.comparison-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2.25rem;
+}
+
+.comparison-card-passive {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(36, 41, 58, 0.1);
+  border-radius: 22px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.comparison-card-engine {
+  background:
+    radial-gradient(circle at 72% 28%, var(--cosmic-glow) 0%, var(--cosmic-mid) 48%, var(--cosmic-base) 100%);
+  color: #ffffff;
+  border-radius: 22px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+
+.comparison-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.05rem;
+  margin-top: 1.5rem;
+}
+
+.comparison-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  font-size: 0.92rem;
+  line-height: 1.58;
+}
+
+.comparison-badge-cross {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(214, 0, 92, 0.12);
+  color: var(--accent-magenta);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.comparison-badge-check {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(56, 226, 208, 0.2);
+  color: #5ef2e2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.kinetic-split-grid {
+  max-width: var(--container-max);
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 3rem;
+}
+
+/* --------------------------------------------------
    Responsive Media Queries
    -------------------------------------------------- */
 @media (max-width: 1024px) {
   .team-grid {
     gap: 2.25rem;
   }
-  .process-grid-4 {
+  .process-grid-4,
+  .home-metrics-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   .gallery-grid-3 {
     grid-template-columns: repeat(2, 1fr);
   }
-  .split-grid-2 {
+  .split-grid-2,
+  .pillars-grid-2x2,
+  .comparison-grid-2,
+  .kinetic-split-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -1442,6 +1799,9 @@ button {
   }
   .hero-dark-square {
     right: 6%;
+  }
+  .pitch-focus-pills {
+    grid-template-columns: repeat(2, 1fr);
   }
   .team-grid {
     grid-template-columns: 1fr;
@@ -1470,7 +1830,10 @@ button {
   .team-section,
   .kinetic-section,
   .page-hero,
-  .content-section {
+  .content-section,
+  .home-metrics-section,
+  .home-pillars-section,
+  .home-comparison-section {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
   }
@@ -1478,7 +1841,8 @@ button {
     padding: 1.75rem 1.35rem;
   }
   .gallery-grid-3,
-  .process-grid-4 {
+  .process-grid-4,
+  .home-metrics-grid {
     grid-template-columns: 1fr;
   }
   .footer-inner {

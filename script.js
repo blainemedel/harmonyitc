@@ -70,6 +70,42 @@
   }
 
   // ---------------------------------------------------------------------------
+  // 2.5 Interactive Pitch Focus Navigator (index.html)
+  // ---------------------------------------------------------------------------
+  const pitchPillarsCopy = {
+    problem:
+      '<strong>Pillar 01 / Problem-Solving Engine:</strong> We diagnose where your current workflow leaks customers, time, or revenue&mdash;then build custom digital solutions that eliminate those friction points permanently.',
+    promo:
+      '<strong>Pillar 02 / 24/7 Digital Flagship:</strong> We establish commanding search authority, instant mobile performance, and high-trust storytelling so your brand captures qualified buyers around the clock.',
+    operations:
+      '<strong>Pillar 03 / Daily Operations Hub:</strong> We replace manual spreadsheets and chat bookings with automated scheduling, client self-service portals, live dispatch queues, and recurring billing.',
+    income:
+      '<strong>Pillar 04 / Revenue-Generating Engine:</strong> We engineer conversion funnels, interactive service estimators, and digital payment flows designed to turn website traffic into measurable ROI.'
+  };
+
+  function initPitchNavigator() {
+    const buttons = document.querySelectorAll('.pitch-focus-btn[data-pillar]');
+    const textEl = document.getElementById('pitch-focus-text');
+    if (!buttons.length || !textEl) return;
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        buttons.forEach((b) => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+
+        const key = btn.getAttribute('data-pillar');
+        if (pitchPillarsCopy[key]) {
+          textEl.innerHTML = pitchPillarsCopy[key];
+        }
+      });
+    });
+  }
+
+  // ---------------------------------------------------------------------------
   // 3. WebGL 3D Kinetic Typography Cylinder (index.html)
   // ---------------------------------------------------------------------------
   function createKineticTextCanvas() {
@@ -764,6 +800,7 @@ ${priorityList}`;
   document.addEventListener('DOMContentLoaded', () => {
     initMobileNav();
     initHeroParallax();
+    initPitchNavigator();
     initKineticCylinder();
     initProjectFilters();
     initCaseStudyModals();
