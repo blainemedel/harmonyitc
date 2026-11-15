@@ -36,36 +36,274 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 2. Hero 3D Sculpture Subtle Mouse Parallax (index.html)
+  // 2. Hero Interactive 3D Interlocking Business Core (index.html & slides.html)
   // ---------------------------------------------------------------------------
-  function initHeroParallax() {
-    const stage = document.getElementById('hero-artwork-stage');
-    if (!stage) return;
+  const heroPillarAccents = {
+    problem: [9, 108, 123],
+    promo: [118, 72, 204],
+    operations: [14, 159, 153],
+    income: [214, 0, 92]
+  };
+  let activeHeroPillar = 'problem';
+
+  function initHero3DEngine() {
+    const stages = Array.from(document.querySelectorAll('.hero-3d-stage'));
+    if (!stages.length) return;
 
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) return;
 
-    const square = stage.querySelector('.hero-dark-square');
-    const letterD = stage.querySelector('.hero-letter-d');
-    const coil = stage.querySelector('.hero-coil-img');
-    const letterS = stage.querySelector('.hero-letter-s');
+    stages.forEach((stage) => {
+      const canvas = stage.querySelector('.hero-3d-canvas');
+      const backdrop = stage.querySelector('.hero-3d-backdrop');
+      const nodesWrap = stage.querySelector('.hero-3d-nodes');
+      if (!canvas) return;
 
-    stage.addEventListener('mousemove', (e) => {
-      const rect = stage.getBoundingClientRect();
-      const nx = (e.clientX - rect.left) / rect.width - 0.5;
-      const ny = (e.clientY - rect.top) / rect.height - 0.5;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
 
-      if (square) square.style.transform = `translate3d(${nx * -10}px, ${ny * -10}px, 0)`;
-      if (letterD) letterD.style.transform = `translate3d(${nx * 14}px, ${ny * 12}px, 0)`;
-      if (coil) coil.style.transform = `translate(-4%, 2%) rotate(${-10 + nx * 5}deg) translate3d(${nx * 20}px, ${ny * 18}px, 0)`;
-      if (letterS) letterS.style.transform = `translate3d(${nx * 28}px, ${ny * 24}px, 0)`;
-    });
+      let width = 0;
+      let height = 0;
+      let dpr = 1;
 
-    stage.addEventListener('mouseleave', () => {
-      if (square) square.style.transform = '';
-      if (letterD) letterD.style.transform = '';
-      if (coil) coil.style.transform = '';
-      if (letterS) letterS.style.transform = '';
+      function resizeCanvas() {
+        const rect = stage.getBoundingClientRect();
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = Math.max(240, rect.width || 420);
+        height = Math.max(240, rect.height || 420);
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+
+      let targetTiltX = 0;
+      let targetTiltY = 0;
+      let currentTiltX = 0;
+      let currentTiltY = 0;
+
+      if (!prefersReduced) {
+        stage.addEventListener('mousemove', (e) => {
+          const rect = stage.getBoundingClientRect();
+          const nx = (e.clientX - rect.left) / Math.max(1, rect.width) - 0.5;
+          const ny = (e.clientY - rect.top) / Math.max(1, rect.height) - 0.5;
+          targetTiltY = nx * 0.52;
+          targetTiltX = ny * -0.45;
+
+          if (backdrop) {
+            backdrop.style.transform = `translate3d(${(nx * -14).toFixed(1)}px, ${(ny * -14).toFixed(1)}px, -40px)`;
+          }
+          if (nodesWrap) {
+            nodesWrap.style.transform = `rotateX(${(ny * -7).toFixed(2)}deg) rotateY(${(nx * 8).toFixed(2)}deg)`;
+          }
+        });
+
+        stage.addEventListener('mouseleave', () => {
+          targetTiltX = 0;
+          targetTiltY = 0;
+          if (backdrop) backdrop.style.transform = '';
+          if (nodesWrap) nodesWrap.style.transform = '';
+        });
+      }
+
+      function rotatePoint(x, y, z, rx, ry, rz) {
+        // Rotate around X
+        const cosX = Math.cos(rx), sinX = Math.sin(rx);
+        const y1 = y * cosX - z * sinX;
+        const z1 = y * sinX + z * cosX;
+        // Rotate around Y
+        const cosY = Math.cos(ry), sinY = Math.sin(ry);
+        const x2 = x * cosY + z1 * sinY;
+        const z2 = -x * sinY + z1 * cosY;
+        // Rotate around Z
+        const cosZ = Math.cos(rz), sinZ = Math.sin(rz);
+        const x3 = x2 * cosZ - y1 * sinZ;
+        const y3 = x2 * sinZ + y1 * cosZ;
+        return [x3, y3, z2];
+      }
+
+      const ringSteps = 128;
+      const ringRadius = 0.66;
+      const orbitalParticles = Array.from({ length: 28 }, (_, idx) => ({
+        angle: (idx / 28) * Math.PI * 2,
+        tilt: (idx % 3 - 1) * 0.42,
+        radius: 1.06 + (idx % 4) * 0.08,
+        speed: (idx % 2 === 0 ? 1 : -1) * (0.22 + (idx % 5) * 0.04),
+        size: 1.6 + (idx % 3) * 0.9
+      }));
+
+      let startTime = null;
+
+      function renderFrame(timestamp) {
+        if (startTime === null) startTime = timestamp;
+        const elapsed = prefersReduced ? 0 : (timestamp - startTime) * 0.001;
+
+        currentTiltX += (targetTiltX - currentTiltX) * 0.08;
+        currentTiltY += (targetTiltY - currentTiltY) * 0.08;
+
+        ctx.clearRect(0, 0, width, height);
+
+        const cx = width * 0.5;
+        const cy = height * 0.49;
+        const unitScale = Math.min(width, height) * 0.255;
+        const fov = 4.2;
+
+        const worldRx = 0.34 + Math.sin(elapsed * 0.55) * 0.14 + currentTiltX;
+        const worldRy = elapsed * 0.42 + currentTiltY;
+        const worldRz = Math.sin(elapsed * 0.32) * 0.1;
+
+        const accent = heroPillarAccents[activeHeroPillar] || heroPillarAccents.problem;
+        const queue = [];
+
+        // Ring 1 (Deep Navy/Indigo) and Ring 2 (Oceanic Teal), mutually interlocking
+        const rings = [
+          {
+            offsetX: -0.34,
+            tiltX: 0.48,
+            tiltY: 0.56,
+            baseColor: [24, 34, 62],
+            midColor: [56, 78, 128],
+            specColor: [215, 228, 255]
+          },
+          {
+            offsetX: 0.34,
+            tiltX: -0.48,
+            tiltY: -0.56,
+            baseColor: [7, 94, 108],
+            midColor: [22, 168, 178],
+            specColor: [185, 252, 246]
+          }
+        ];
+
+        rings.forEach((ring, rIdx) => {
+          for (let i = 0; i < ringSteps; i++) {
+            const t = (i / ringSteps) * Math.PI * 2;
+            const lx = Math.cos(t) * ringRadius;
+            const ly = Math.sin(t) * ringRadius;
+            const [rx, ry, rz] = rotatePoint(lx, ly, 0, ring.tiltX, ring.tiltY, 0);
+            const [wx, wy, wz] = rotatePoint(rx + ring.offsetX, ry, rz, worldRx, worldRy, worldRz);
+
+            // Tangent for directional sheen
+            const tx = -Math.sin(t);
+            const ty = Math.cos(t);
+            const [rtx, rty, rtz] = rotatePoint(tx, ty, 0, ring.tiltX, ring.tiltY, 0);
+            const [wtx, wty, wtz] = rotatePoint(rtx, rty, rtz, worldRx, worldRy, worldRz);
+
+            const depthScale = fov / (fov - wz);
+            const sx = cx + wx * unitScale * depthScale;
+            const sy = cy + wy * unitScale * depthScale;
+            const tubeR = 0.128 * unitScale * depthScale;
+
+            // Normalized depth & lighting
+            const lightFactor = Math.max(0, Math.min(1, (wz + 1.2) / 2.4));
+            const sheen = Math.max(0, -wtx * 0.45 - wty * 0.65 + wtz * 0.6);
+
+            const cr = Math.round(ring.baseColor[0] + (ring.midColor[0] - ring.baseColor[0]) * lightFactor + (ring.specColor[0] - ring.midColor[0]) * sheen * 0.38);
+            const cg = Math.round(ring.baseColor[1] + (ring.midColor[1] - ring.baseColor[1]) * lightFactor + (ring.specColor[1] - ring.midColor[1]) * sheen * 0.38);
+            const cb = Math.round(ring.baseColor[2] + (ring.midColor[2] - ring.baseColor[2]) * lightFactor + (ring.specColor[2] - ring.midColor[2]) * sheen * 0.38);
+
+            queue.push({
+              type: 'tube',
+              z: wz,
+              x: sx,
+              y: sy,
+              r: tubeR,
+              cr,
+              cg,
+              cb,
+              spec: ring.specColor,
+              alpha: 0.72 + lightFactor * 0.28,
+              rIdx
+            });
+          }
+
+          // Glowing data pulse nodes flowing along each interlocking ring
+          for (let p = 0; p < 2; p++) {
+            const pt = elapsed * (1.25 + rIdx * 0.15) + p * Math.PI + rIdx * 1.1;
+            const lx = Math.cos(pt) * ringRadius;
+            const ly = Math.sin(pt) * ringRadius;
+            const [rx, ry, rz] = rotatePoint(lx, ly, 0, ring.tiltX, ring.tiltY, 0);
+            const [wx, wy, wz] = rotatePoint(rx + ring.offsetX, ry, rz, worldRx, worldRy, worldRz);
+            const depthScale = fov / (fov - wz);
+
+            queue.push({
+              type: 'pulse',
+              z: wz + 0.14,
+              x: cx + wx * unitScale * depthScale,
+              y: cy + wy * unitScale * depthScale,
+              r: 0.14 * unitScale * depthScale,
+              color: p === 0 ? accent : [94, 242, 226]
+            });
+          }
+        });
+
+        // Subtle orbiting telemetry dots in 3D space
+        orbitalParticles.forEach((p) => {
+          const a = p.angle + elapsed * p.speed;
+          const px = Math.cos(a) * p.radius;
+          const py = Math.sin(a) * p.radius * 0.42;
+          const pz = Math.sin(a + p.tilt) * p.radius * 0.65;
+          const [wx, wy, wz] = rotatePoint(px, py, pz, worldRx * 0.55 + p.tilt, worldRy * 0.7, 0.25);
+          const depthScale = fov / (fov - wz);
+          const alpha = Math.max(0.18, Math.min(0.85, (wz + 1.4) / 2.6));
+
+          queue.push({
+            type: 'dot',
+            z: wz,
+            x: cx + wx * unitScale * depthScale,
+            y: cy + wy * unitScale * depthScale,
+            r: p.size * depthScale,
+            alpha,
+            accent
+          });
+        });
+
+        // Painter's algorithm Z-sort so interlocking rings and pulses weave cleanly in 3D
+        queue.sort((a, b) => a.z - b.z);
+
+        for (let i = 0; i < queue.length; i++) {
+          const item = queue[i];
+          if (item.type === 'tube') {
+            const grad = ctx.createRadialGradient(
+              item.x - item.r * 0.32,
+              item.y - item.r * 0.34,
+              item.r * 0.08,
+              item.x,
+              item.y,
+              item.r
+            );
+            grad.addColorStop(0, `rgba(${item.spec[0]}, ${item.spec[1]}, ${item.spec[2]}, ${Math.min(1, item.alpha)})`);
+            grad.addColorStop(0.38, `rgba(${item.cr}, ${item.cg}, ${item.cb}, ${item.alpha})`);
+            grad.addColorStop(1, `rgba(${Math.max(10, item.cr - 28)}, ${Math.max(12, item.cg - 28)}, ${Math.max(24, item.cb - 24)}, ${item.alpha})`);
+
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.arc(item.x, item.y, item.r, 0, Math.PI * 2);
+            ctx.fill();
+          } else if (item.type === 'pulse') {
+            const glow = ctx.createRadialGradient(item.x, item.y, 0, item.x, item.y, item.r * 2.1);
+            glow.addColorStop(0, `rgba(255, 255, 255, 0.95)`);
+            glow.addColorStop(0.28, `rgba(${item.color[0]}, ${item.color[1]}, ${item.color[2]}, 0.72)`);
+            glow.addColorStop(1, `rgba(${item.color[0]}, ${item.color[1]}, ${item.color[2]}, 0)`);
+            ctx.fillStyle = glow;
+            ctx.beginPath();
+            ctx.arc(item.x, item.y, item.r * 2.1, 0, Math.PI * 2);
+            ctx.fill();
+          } else {
+            ctx.fillStyle = `rgba(${item.accent[0]}, ${item.accent[1]}, ${item.accent[2]}, ${item.alpha * 0.55})`;
+            ctx.beginPath();
+            ctx.arc(item.x, item.y, item.r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        if (!prefersReduced) {
+          requestAnimationFrame(renderFrame);
+        }
+      }
+
+      requestAnimationFrame(renderFrame);
     });
   }
 
@@ -100,6 +338,12 @@
         const key = btn.getAttribute('data-pillar');
         if (pitchPillarsCopy[key]) {
           textEl.innerHTML = pitchPillarsCopy[key];
+        }
+        if (key) {
+          activeHeroPillar = key;
+          document.querySelectorAll('.hero-3d-node[data-pillar]').forEach((node) => {
+            node.classList.toggle('is-active', node.getAttribute('data-pillar') === key);
+          });
         }
       });
     });
@@ -518,11 +762,20 @@
         btn.classList.add('active');
 
         const selectedCategory = btn.getAttribute('data-filter');
+        let visibleIdx = 0;
 
         projectCards.forEach((card) => {
           const cardCategories = (card.getAttribute('data-category') || '').split(' ');
           if (selectedCategory === 'all' || cardCategories.includes(selectedCategory)) {
             card.style.display = 'flex';
+            card.style.setProperty('--reveal-delay', `${visibleIdx * 75}ms`);
+            visibleIdx++;
+            card.classList.remove('is-revealed');
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                card.classList.add('is-revealed');
+              });
+            });
           } else {
             card.style.display = 'none';
           }
@@ -795,16 +1048,313 @@ ${priorityList}`;
   }
 
   // ---------------------------------------------------------------------------
+  // 7. Top Scroll Progress Indicator Bar (All Scrollable Pages)
+  // ---------------------------------------------------------------------------
+  function initScrollProgressBar() {
+    if (document.body.classList.contains('deck-mode')) return;
+
+    let bar = document.querySelector('.scroll-progress-bar');
+    if (!bar) {
+      bar = document.createElement('div');
+      bar.className = 'scroll-progress-bar';
+      bar.setAttribute('aria-hidden', 'true');
+      document.body.prepend(bar);
+    }
+
+    function updateProgress() {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = Math.max(
+        1,
+        document.documentElement.scrollHeight - window.innerHeight
+      );
+      const pct = Math.min(100, Math.max(0, (scrollTop / docHeight) * 100));
+      bar.style.width = `${pct}%`;
+    }
+
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+  }
+
+  // ---------------------------------------------------------------------------
+  // 8. 3D Parallax Scroll-Reveal Engine (All Pages)
+  // ---------------------------------------------------------------------------
+  function initParallaxReveal() {
+    if (document.body.classList.contains('deck-mode')) return;
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    document.documentElement.classList.add('js-parallax-ready');
+
+    // Auto-bind reveal classes & directional variants across all pages
+    const revealConfigs = [
+      { selector: '.hero-eyebrow, .page-eyebrow', variant: 'reveal-up', delay: 0 },
+      { selector: '.hero-headline, .page-title, .team-heading, .home-pillars-section h2, .home-comparison-section h2, .content-section > .section-inner > h2', variant: 'reveal-up', delay: 70 },
+      { selector: '.hero-sublead, .page-lead, .team-intro, .home-comparison-section > .section-inner > p', variant: 'reveal-up', delay: 140 },
+      { selector: '.pitch-focus-box', variant: 'reveal-up', delay: 200 },
+      { selector: '.hero-cta-row, .filter-rail', variant: 'reveal-up', delay: 250 },
+      { selector: '.hero-artwork-stage', variant: 'reveal-scale', delay: 120 },
+      { selector: '.frosted-panel', variant: 'reveal-up', delay: 80 },
+      { selector: '.cosmic-quote-card', variant: 'reveal-right', delay: 180 },
+      { selector: '.comparison-card-passive', variant: 'reveal-left', delay: 80 },
+      { selector: '.comparison-card-engine', variant: 'reveal-right', delay: 180 },
+      { selector: '.kinetic-stage', variant: 'reveal-scale', delay: 90 },
+      { selector: '.contact-email-box', variant: 'reveal-scale', delay: 100 }
+    ];
+
+    revealConfigs.forEach(({ selector, variant, delay }) => {
+      document.querySelectorAll(selector).forEach((el) => {
+        if (el.closest('.case-modal-backdrop')) return;
+        el.classList.add('parallax-reveal', variant);
+        if (delay && !el.style.getPropertyValue('--reveal-delay')) {
+          el.style.setProperty('--reveal-delay', `${delay}ms`);
+        }
+      });
+    });
+
+    // Staggered grid items across all pages
+    const gridContainers = [
+      { parent: '.home-metrics-grid', child: '.home-metric-card', step: 85, variant: 'reveal-up' },
+      { parent: '.pillars-grid-2x2', child: '.pillar-card', step: 95, variant: 'reveal-up' },
+      { parent: '.process-grid-4', child: '.process-card', step: 90, variant: 'reveal-up' },
+      { parent: '.team-grid', child: '.team-member', step: 110, variant: 'reveal-up' },
+      { parent: '.gallery-grid-3', child: '.project-card', step: 85, variant: 'reveal-up' },
+      { parent: '.priority-checklist-grid', child: '.priority-choice-card', step: 80, variant: 'reveal-up' },
+      { parent: '.contact-channels-grid', child: '.contact-channel-card', step: 95, variant: 'reveal-up' }
+    ];
+
+    gridContainers.forEach(({ parent, child, step, variant }) => {
+      document.querySelectorAll(parent).forEach((grid) => {
+        grid.querySelectorAll(child).forEach((item, idx) => {
+          item.classList.add('parallax-reveal', variant);
+          item.style.setProperty('--reveal-delay', `${idx * step}ms`);
+        });
+      });
+    });
+
+    // Also include any custom [data-reveal] elements
+    document.querySelectorAll('[data-reveal]').forEach((el) => {
+      const dir = el.getAttribute('data-reveal') || 'up';
+      el.classList.add('parallax-reveal', `reveal-${dir}`);
+      const customDelay = el.getAttribute('data-reveal-delay');
+      if (customDelay) {
+        el.style.setProperty('--reveal-delay', `${customDelay}ms`);
+      }
+    });
+
+    const allRevealEls = document.querySelectorAll('.parallax-reveal');
+    if (!allRevealEls.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+      allRevealEls.forEach((el) => el.classList.add('is-revealed'));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+          } else {
+            // Re-arm reveal when element leaves far below viewport so scrolling down again replays the parallax reveal
+            const rect = entry.boundingClientRect;
+            if (rect.top > window.innerHeight * 0.92) {
+              entry.target.classList.remove('is-revealed');
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -45px 0px'
+      }
+    );
+
+    allRevealEls.forEach((el) => observer.observe(el));
+  }
+
+  // ---------------------------------------------------------------------------
+  // 9. Multi-Layer Scroll & Pointer Parallax Motion (All Pages)
+  // ---------------------------------------------------------------------------
+  function initMultiLayerParallaxMotion() {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    const pillar = document.querySelector('.ambient-glass-pillar');
+    const ridge = document.querySelector('.ambient-glass-ridge');
+    const cornerCoil = document.querySelector('.ambient-corner-coil');
+    const footerWordmark = document.querySelector('.footer-giant-wordmark');
+    const footerEl = document.querySelector('.site-footer');
+    const projectThumbImgs = Array.from(document.querySelectorAll('.project-thumb img'));
+
+    // Assign default parallax depth speeds to signature visual layers if not explicitly set
+    const autoDepthTargets = [
+      { selector: '.hero-artwork-stage', speed: -0.075 },
+      { selector: '.cosmic-quote-card', speed: 0.055 },
+      { selector: '.comparison-card-engine', speed: 0.045 },
+      { selector: '.team-portrait-card', speed: -0.04 },
+      { selector: '.contact-email-box', speed: 0.04 }
+    ];
+
+    autoDepthTargets.forEach(({ selector, speed }) => {
+      document.querySelectorAll(selector).forEach((el) => {
+        if (!el.hasAttribute('data-parallax-speed')) {
+          el.setAttribute('data-parallax-speed', String(speed));
+        }
+      });
+    });
+
+    const parallaxNodes = Array.from(document.querySelectorAll('[data-parallax-speed]'));
+
+    let targetMouseX = 0;
+    let targetMouseY = 0;
+    let currentMouseX = 0;
+    let currentMouseY = 0;
+
+    window.addEventListener(
+      'mousemove',
+      (e) => {
+        targetMouseX = e.clientX / Math.max(1, window.innerWidth) - 0.5;
+        targetMouseY = e.clientY / Math.max(1, window.innerHeight) - 0.5;
+      },
+      { passive: true }
+    );
+
+    function updateParallaxFrame() {
+      currentMouseX += (targetMouseX - currentMouseX) * 0.08;
+      currentMouseY += (targetMouseY - currentMouseY) * 0.08;
+
+      const scrollY = window.scrollY || window.pageYOffset || 0;
+      const vh = Math.max(1, window.innerHeight);
+
+      // 1. Ambient 3D Studio Backdrop Multi-Layer Parallax
+      if (pillar) {
+        const py = scrollY * -0.14 + currentMouseY * -26;
+        const px = currentMouseX * -28;
+        const rot = -4 + scrollY * 0.008 + currentMouseX * 3;
+        pillar.style.transform = `translate3d(${px.toFixed(1)}px, ${py.toFixed(1)}px, 0) rotate(${rot.toFixed(2)}deg)`;
+      }
+
+      if (ridge) {
+        const ry = scrollY * -0.24 + currentMouseY * 32;
+        const rx = currentMouseX * 36;
+        ridge.style.transform = `translate3d(${rx.toFixed(1)}px, ${ry.toFixed(1)}px, 0)`;
+      }
+
+      if (cornerCoil) {
+        const cy = scrollY * 0.07 + currentMouseY * 18;
+        const cx = currentMouseX * 20;
+        const crot = scrollY * 0.045 + currentMouseX * 12;
+        cornerCoil.style.transform = `translate3d(${cx.toFixed(1)}px, ${cy.toFixed(1)}px, 0) rotate(${crot.toFixed(2)}deg)`;
+      }
+
+      // 2. Scroll-Driven Depth Parallax on Page Elements
+      if (!document.body.classList.contains('deck-mode')) {
+        parallaxNodes.forEach((node) => {
+          const speed = parseFloat(node.getAttribute('data-parallax-speed')) || 0;
+          if (!speed) return;
+          const rect = node.getBoundingClientRect();
+          if (rect.bottom < -120 || rect.top > vh + 120) return;
+
+          const centerOffset = rect.top + rect.height * 0.5 - vh * 0.5;
+          const offsetY = Math.max(-36, Math.min(36, centerOffset * speed));
+
+          if (node.classList.contains('parallax-reveal')) {
+            node.style.setProperty('--parallax-y', `${offsetY.toFixed(1)}px`);
+          } else {
+            node.style.transform = `translate3d(0, ${offsetY.toFixed(1)}px, 0)`;
+          }
+        });
+
+        // 3. Project Card Thumbnail Window-Curtain Parallax
+        projectThumbImgs.forEach((img) => {
+          const rect = img.getBoundingClientRect();
+          if (rect.bottom < -60 || rect.top > vh + 60) return;
+          const norm = (rect.top + rect.height * 0.5 - vh * 0.5) / (vh * 0.6);
+          const shiftY = Math.max(-18, Math.min(18, norm * -16));
+          img.style.setProperty('--thumb-parallax-y', `${shiftY.toFixed(1)}px`);
+        });
+
+        // 4. Footer Giant Wordmark Curtain-Rise Parallax
+        if (footerWordmark && footerEl) {
+          const fRect = footerEl.getBoundingClientRect();
+          if (fRect.top < vh) {
+            const progress = Math.min(1, Math.max(0, (vh - fRect.top) / Math.max(1, fRect.height)));
+            const yPct = 26 - progress * 20; // Rises smoothly from 26% to 6%
+            footerWordmark.style.transform = `translate3d(${(currentMouseX * -14).toFixed(1)}px, ${yPct.toFixed(2)}%, 0)`;
+          }
+        }
+      }
+
+      requestAnimationFrame(updateParallaxFrame);
+    }
+
+    requestAnimationFrame(updateParallaxFrame);
+  }
+
+  // ---------------------------------------------------------------------------
+  // 10. Interactive 3D Magnetic Card Tilt & Specular Spotlight (All Pages)
+  // ---------------------------------------------------------------------------
+  function initCardTiltParallax() {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    const cardSelectors = [
+      '.pillar-card',
+      '.process-card',
+      '.home-metric-card',
+      '.project-card',
+      '.cosmic-quote-card',
+      '.comparison-card-passive',
+      '.comparison-card-engine',
+      '.contact-channel-card',
+      '.priority-choice-card',
+      '.founder-profile-card'
+    ];
+
+    const cards = document.querySelectorAll(cardSelectors.join(', '));
+    cards.forEach((card) => {
+      card.classList.add('parallax-tilt-card');
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const nx = x / Math.max(1, rect.width) - 0.5;
+        const ny = y / Math.max(1, rect.height) - 0.5;
+
+        const tiltX = (ny * -5.5).toFixed(2);
+        const tiltY = (nx * 5.5).toFixed(2);
+
+        card.style.setProperty('--mouse-x', `${x.toFixed(0)}px`);
+        card.style.setProperty('--mouse-y', `${y.toFixed(0)}px`);
+        card.style.setProperty('--tilt-x', `${tiltX}deg`);
+        card.style.setProperty('--tilt-y', `${tiltY}deg`);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.setProperty('--tilt-x', '0deg');
+        card.style.setProperty('--tilt-y', '0deg');
+      });
+    });
+  }
+
+  // ---------------------------------------------------------------------------
   // Initialize Everything
   // ---------------------------------------------------------------------------
   document.addEventListener('DOMContentLoaded', () => {
     initMobileNav();
-    initHeroParallax();
+    initHero3DEngine();
     initPitchNavigator();
     initKineticCylinder();
     initProjectFilters();
     initCaseStudyModals();
     initBriefBuilder();
     initCopyEmail();
+    initScrollProgressBar();
+    initParallaxReveal();
+    initMultiLayerParallaxMotion();
+    initCardTiltParallax();
   });
 })();
