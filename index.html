@@ -10,99 +10,26 @@
   <meta name="theme-color" content="#17395c">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/harmony-icon.png?v=20261119">
-  <link rel="shortcut icon" type="image/png" href="assets/harmony-icon.png?v=20261119">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png?v=20261119">
+  <link rel="icon" type="image/png" sizes="256x256" href="assets/harmony-icon.png?v=20261126">
+  <link rel="shortcut icon" type="image/png" href="assets/harmony-icon.png?v=20261126">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png?v=20261126">
 
   <!-- Google Fonts: Plus Jakarta Sans & Anton -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Design System Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=20261125">
+  <link rel="stylesheet" href="style.css?v=20261126">
 </head>
 <body class="home-page">
 
-  <!-- Ambient Studio Backdrop -->
-  <div class="ambient-canvas" aria-hidden="true">
-    <svg class="ambient-corner-coil" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <radialGradient id="porcelainGrad" cx="45%" cy="45%" r="55%">
-          <stop offset="0%" stop-color="#3a5874" stop-opacity="0.75"/>
-          <stop offset="55%" stop-color="#274667" stop-opacity="0.5"/>
-          <stop offset="100%" stop-color="#0c2d4f" stop-opacity="0.18"/>
-        </radialGradient>
-      </defs>
-      <circle cx="95" cy="145" r="96" stroke="url(#porcelainGrad)" stroke-width="10"/>
-      <circle cx="95" cy="145" r="80" stroke="url(#porcelainGrad)" stroke-width="8"/>
-      <circle cx="95" cy="145" r="64" stroke="url(#porcelainGrad)" stroke-width="7"/>
-      <circle cx="95" cy="145" r="48" stroke="url(#porcelainGrad)" stroke-width="6"/>
-      <circle cx="95" cy="145" r="32" stroke="url(#porcelainGrad)" stroke-width="5"/>
-    </svg>
-  </div>
+  <!-- Ambient Studio Backdrop (hydrated via script.js) -->
+  <div class="ambient-canvas" aria-hidden="true"></div>
 
-  <!-- Crisp White Sticky Header -->
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="index.html" class="brand-logo" aria-label="Harmony IT Consultancy Home">
-        <img
-          src="assets/harmony-logo.png?v=20261119"
-          alt="Harmony IT Consultancy"
-          class="brand-logo-img"
-          width="1878"
-          height="554"
-          decoding="async"
-        >
-      </a>
-
-      <!-- Desktop Navigation & Primary CTA -->
-      <div class="header-right">
-        <nav class="nav-links" aria-label="Main Navigation">
-          <a href="index.html" class="nav-link active">Home</a>
-          <a href="about.html" class="nav-link">About Us</a>
-          <a href="projects.html" class="nav-link">Projects</a>
-          <a href="contact.html" class="nav-link">Contact Us</a>
-        </nav>
-
-        <a href="contact.html" class="cta-pill-btn">
-          <span>Let's Start</span>
-          <span class="cta-arrow-pocket" aria-hidden="true">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </span>
-        </a>
-      </div>
-
-      <!-- Mobile Hamburger Toggle -->
-      <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </button>
-    </div>
-  </header>
-
-  <!-- Mobile Navigation Drawer -->
-  <div id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation">
-    <a href="index.html" class="nav-link active">Home</a>
-    <a href="about.html" class="nav-link">About Us</a>
-    <a href="projects.html" class="nav-link">Projects</a>
-    <a href="contact.html" class="nav-link">Contact Us</a>
-    <div style="margin-top: 0.75rem;">
-      <a href="contact.html" class="cta-pill-btn cta-lg" style="width: 100%; justify-content: space-between;">
-        <span>Let's Start</span>
-        <span class="cta-arrow-pocket" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </span>
-      </a>
-    </div>
-  </div>
+  <!-- Shared Navigation & Mobile Drawer (hydrated via script.js) -->
+  <header class="site-header" data-active-nav="home"></header>
+  <div id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation"></div>
 
   <main>
     <!-- Section 1: Hero & Interactive Strategic Value Pitch -->
@@ -274,36 +201,7 @@
               </div>
               <span class="pillar-num-tag">Area 01</span>
             </div>
-            <div class="pillar-3d-showcase" aria-hidden="true">
-              <svg viewBox="0 0 320 156" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <radialGradient id="p1SphereGrad" cx="64%" cy="32%" r="65%">
-                    <stop offset="0%" stop-color="#9eb0bf"/>
-                    <stop offset="28%" stop-color="#8198ae"/>
-                    <stop offset="58%" stop-color="#193c5e"/>
-                    <stop offset="84%" stop-color="#0b2c49"/>
-                    <stop offset="100%" stop-color="#010a27"/>
-                  </radialGradient>
-                  <linearGradient id="p1TorusGrad" x1="25%" y1="15%" x2="78%" y2="88%">
-                    <stop offset="0%" stop-color="#9eb9d6"/>
-                    <stop offset="35%" stop-color="#284a6d"/>
-                    <stop offset="72%" stop-color="#193c5e"/>
-                    <stop offset="100%" stop-color="#021d3c"/>
-                  </linearGradient>
-                  <linearGradient id="p1LineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#345f87" stop-opacity="0"/>
-                    <stop offset="50%" stop-color="#91b5d6" stop-opacity="0.45"/>
-                    <stop offset="100%" stop-color="#345f87" stop-opacity="0"/>
-                  </linearGradient>
-                </defs>
-                <ellipse cx="160" cy="124" rx="54" ry="9" fill="#010a27" opacity="0.52"/>
-                <line x1="36" y1="126" x2="284" y2="126" stroke="url(#p1LineGrad)" stroke-width="1.2"/>
-                <line x1="56" y1="133" x2="264" y2="133" stroke="url(#p1LineGrad)" stroke-width="1"/>
-                <path d="M96 86 C96 60 125 42 160 42 C195 42 224 60 224 86 C224 108 195 122 160 122 C125 122 96 108 96 86 Z" stroke="url(#p1TorusGrad)" stroke-width="16" fill="none" transform="rotate(-14 160 82)"/>
-                <circle cx="160" cy="74" r="31" fill="url(#p1SphereGrad)"/>
-                <path d="M110 100 C134 118 186 118 212 96" stroke="#7e99b5" stroke-width="6" stroke-linecap="round" opacity="0.32" transform="rotate(-14 160 82)"/>
-              </svg>
-            </div>
+            <div class="pillar-3d-showcase" data-shape="core" aria-hidden="true"></div>
             <h3 class="pillar-title">Solving Everyday Bottlenecks</h3>
             <p class="pillar-desc">
               Good software should never add extra steps. We sit down with you to spot where inquiries slip through, schedules clash, or records get messy, then build clean tools that take that weight off your team.
@@ -325,29 +223,7 @@
               </div>
               <span class="pillar-num-tag">Area 02</span>
             </div>
-            <div class="pillar-3d-showcase" aria-hidden="true">
-              <svg viewBox="0 0 320 156" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <radialGradient id="p2SphereGrad" cx="66%" cy="32%" r="66%">
-                    <stop offset="0%" stop-color="#9eb0bf"/>
-                    <stop offset="22%" stop-color="#8198ae"/>
-                    <stop offset="52%" stop-color="#284a6d"/>
-                    <stop offset="78%" stop-color="#0b2c49"/>
-                    <stop offset="100%" stop-color="#010a27"/>
-                  </radialGradient>
-                  <linearGradient id="p2BarGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#345f87" stop-opacity="0"/>
-                    <stop offset="50%" stop-color="#91b5d6" stop-opacity="0.72"/>
-                    <stop offset="100%" stop-color="#345f87" stop-opacity="0"/>
-                  </linearGradient>
-                </defs>
-                <ellipse cx="160" cy="116" rx="46" ry="9" fill="#010a27" opacity="0.68"/>
-                <line x1="28" y1="120" x2="292" y2="120" stroke="url(#p2BarGrad)" stroke-width="1.5"/>
-                <line x1="36" y1="127" x2="284" y2="127" stroke="url(#p2BarGrad)" stroke-width="1.3"/>
-                <line x1="48" y1="134" x2="272" y2="134" stroke="url(#p2BarGrad)" stroke-width="1.1"/>
-                <circle cx="160" cy="70" r="46" fill="url(#p2SphereGrad)"/>
-              </svg>
-            </div>
+            <div class="pillar-3d-showcase" data-shape="sphere" aria-hidden="true"></div>
             <h3 class="pillar-title">A Trustworthy Presence Online</h3>
             <p class="pillar-desc">
               Your website is often the first place people meet your company. We make sure it reads clearly, loads quickly on any phone, shows up well in search, and reflects the care you put into your work.
@@ -371,37 +247,7 @@
               </div>
               <span class="pillar-num-tag">Area 03</span>
             </div>
-            <div class="pillar-3d-showcase" aria-hidden="true">
-              <svg viewBox="0 0 320 156" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <radialGradient id="p3TorusBody" cx="68%" cy="32%" r="68%">
-                    <stop offset="0%" stop-color="#9eb9d6"/>
-                    <stop offset="28%" stop-color="#7e99b5"/>
-                    <stop offset="56%" stop-color="#284a6d"/>
-                    <stop offset="80%" stop-color="#193c5e"/>
-                    <stop offset="100%" stop-color="#021d3c"/>
-                  </radialGradient>
-                  <linearGradient id="p3InnerShadow" x1="15%" y1="15%" x2="85%" y2="85%">
-                    <stop offset="0%" stop-color="#021d3c"/>
-                    <stop offset="55%" stop-color="#284a6d"/>
-                    <stop offset="100%" stop-color="#9eb9d6" stop-opacity="0.75"/>
-                  </linearGradient>
-                  <linearGradient id="p3Floor" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#345f87" stop-opacity="0"/>
-                    <stop offset="50%" stop-color="#345f87" stop-opacity="0.55"/>
-                    <stop offset="100%" stop-color="#345f87" stop-opacity="0"/>
-                  </linearGradient>
-                </defs>
-                <ellipse cx="160" cy="122" rx="54" ry="8" fill="#010a27" opacity="0.52"/>
-                <line x1="36" y1="125" x2="284" y2="125" stroke="url(#p3Floor)" stroke-width="1.2"/>
-                <g transform="rotate(-18 160 74)">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M160 27 C204 27 232 48 232 74 C232 100 204 121 160 121 C116 121 88 100 88 74 C88 48 116 27 160 27 Z M160 52 C136 52 120 61 120 74 C120 87 136 96 160 96 C184 96 200 87 200 74 C200 61 184 52 160 52 Z" fill="url(#p3TorusBody)"/>
-                  <path d="M116 74 C116 58 135 48 160 48 C185 48 204 58 204 74" stroke="url(#p3InnerShadow)" stroke-width="5.5" stroke-linecap="round" fill="none" opacity="0.68"/>
-                  <path d="M102 91 C118 109 144 116 174 114" stroke="#021d3c" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.55"/>
-                  <path d="M188 41 C208 48 220 60 221 75" stroke="#9eb9d6" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.48"/>
-                </g>
-              </svg>
-            </div>
+            <div class="pillar-3d-showcase" data-shape="torus" aria-hidden="true"></div>
             <h3 class="pillar-title">Support for Daily Operations</h3>
             <p class="pillar-desc">
               Instead of stopping at static pages, we connect your website to the tasks your staff handles every morning, from booking requests and job orders to client portals and team dashboards.
@@ -424,36 +270,7 @@
               </div>
               <span class="pillar-num-tag">Area 04</span>
             </div>
-            <div class="pillar-3d-showcase" aria-hidden="true">
-              <svg viewBox="0 0 320 156" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="p4ArrowFace" x1="15%" y1="80%" x2="88%" y2="18%">
-                    <stop offset="0%" stop-color="#0f3254"/>
-                    <stop offset="35%" stop-color="#204467"/>
-                    <stop offset="72%" stop-color="#31547a"/>
-                    <stop offset="100%" stop-color="#7e99b5"/>
-                  </linearGradient>
-                  <linearGradient id="p4ArrowEdge" x1="0%" y1="100%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#021d3c"/>
-                    <stop offset="100%" stop-color="#113153"/>
-                  </linearGradient>
-                </defs>
-                <!-- Subtle flowing contour wave lines from image -->
-                <g stroke="#21486c" stroke-width="1.25" opacity="0.82" fill="none">
-                  <path d="M16 118 Q88 106 160 118 T304 118"/>
-                  <path d="M16 125 Q88 113 160 125 T304 125"/>
-                  <path d="M16 132 Q88 120 160 132 T304 132"/>
-                  <path d="M16 139 Q88 127 160 139 T304 139"/>
-                </g>
-                <ellipse cx="152" cy="112" rx="52" ry="8" fill="#010a27" opacity="0.56"/>
-                <!-- Extruded 3D depth back/flank -->
-                <path d="M98 99 C136 96 164 78 182 54 L167 45 C163 42 165 36 170 36 L214 33 C219 33 223 37 222 42 L216 84 C215 89 209 90 205 86 L195 75 C172 103 136 112 96 105 C92 104 93 99 98 99 Z" fill="url(#p4ArrowEdge)" transform="translate(-5, 6)"/>
-                <!-- Main sculpted front face -->
-                <path d="M98 99 C136 96 164 78 182 54 L167 45 C163 42 165 36 170 36 L214 33 C219 33 223 37 222 42 L216 84 C215 89 209 90 205 86 L195 75 C172 103 136 112 96 105 C92 104 93 99 98 99 Z" fill="url(#p4ArrowFace)"/>
-                <!-- Soft studio bevel highlight on upper-right edge -->
-                <path d="M170 37 L214 34 C218 34 221 37 220 42 L215 80" stroke="#b4d0e9" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
-              </svg>
-            </div>
+            <div class="pillar-3d-showcase" data-shape="arrow" aria-hidden="true"></div>
             <h3 class="pillar-title">A Reliable Path to Revenue</h3>
             <p class="pillar-desc">
               A well-built site helps pay its own way. We shape clear inquiry flows, service estimators, and online payment options that make it easy for customers to say yes and follow through.
@@ -574,26 +391,9 @@
     </section>
   </main>
 
-  <!-- Section 6: Minimalist Pure-White Giant Wordmark Footer -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-micro-row">
-        <span>&copy; 2026 Harmony IT Consultancy. All rights reserved.</span>
-        <nav class="footer-micro-links" aria-label="Footer Navigation">
-          <a href="index.html">Home</a>
-          <a href="about.html">About Us</a>
-          <a href="projects.html">Projects</a>
-          <a href="contact.html">Contact Us</a>
-          <a href="mailto:inquiries@harmonyitc.com">inquiries@harmonyitc.com</a>
-        </nav>
-      </div>
-    </div>
+  <!-- Shared Footer (hydrated via script.js) -->
+  <footer class="site-footer"></footer>
 
-    <div class="footer-wordmark-wrap" aria-hidden="true">
-      <span class="footer-giant-wordmark">harmony</span>
-    </div>
-  </footer>
-
-  <script src="script.js?v=20261124"></script>
+  <script src="script.js?v=20261126" defer></script>
 </body>
 </html>

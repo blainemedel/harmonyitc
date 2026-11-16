@@ -10,96 +10,26 @@
   <meta name="theme-color" content="#17395c">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/harmony-icon.png?v=20261119">
-  <link rel="shortcut icon" type="image/png" href="assets/harmony-icon.png?v=20261119">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png?v=20261119">
+  <link rel="icon" type="image/png" sizes="256x256" href="assets/harmony-icon.png?v=20261126">
+  <link rel="shortcut icon" type="image/png" href="assets/harmony-icon.png?v=20261126">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png?v=20261126">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Design System Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=20261125">
+  <link rel="stylesheet" href="style.css?v=20261126">
 </head>
 <body>
 
-  <!-- Ambient Studio Backdrop -->
-  <div class="ambient-canvas" aria-hidden="true">
-    <svg class="ambient-corner-coil" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <radialGradient id="porcelainGrad" cx="45%" cy="45%" r="55%">
-          <stop offset="0%" stop-color="#3a5874" stop-opacity="0.75"/>
-          <stop offset="55%" stop-color="#274667" stop-opacity="0.5"/>
-          <stop offset="100%" stop-color="#0c2d4f" stop-opacity="0.18"/>
-        </radialGradient>
-      </defs>
-      <circle cx="95" cy="145" r="96" stroke="url(#porcelainGrad)" stroke-width="10"/>
-      <circle cx="95" cy="145" r="80" stroke="url(#porcelainGrad)" stroke-width="8"/>
-      <circle cx="95" cy="145" r="64" stroke="url(#porcelainGrad)" stroke-width="7"/>
-      <circle cx="95" cy="145" r="48" stroke="url(#porcelainGrad)" stroke-width="6"/>
-      <circle cx="95" cy="145" r="32" stroke="url(#porcelainGrad)" stroke-width="5"/>
-    </svg>
-  </div>
+  <!-- Ambient Studio Backdrop (hydrated via script.js) -->
+  <div class="ambient-canvas" aria-hidden="true"></div>
 
-  <!-- Crisp White Sticky Header -->
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="index.html" class="brand-logo" aria-label="Harmony IT Consultancy Home">
-        <img
-          src="assets/harmony-logo.png?v=20261119"
-          alt="Harmony IT Consultancy"
-          class="brand-logo-img"
-          width="1878"
-          height="554"
-          decoding="async"
-        >
-      </a>
-
-      <div class="header-right">
-        <nav class="nav-links" aria-label="Main Navigation">
-          <a href="index.html" class="nav-link">Home</a>
-          <a href="about.html" class="nav-link">About Us</a>
-          <a href="projects.html" class="nav-link">Projects</a>
-          <a href="contact.html" class="nav-link active">Contact Us</a>
-        </nav>
-
-        <a href="contact.html" class="cta-pill-btn">
-          <span>Let's Start</span>
-          <span class="cta-arrow-pocket" aria-hidden="true">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </span>
-        </a>
-      </div>
-
-      <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </button>
-    </div>
-  </header>
-
-  <div id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation">
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="about.html" class="nav-link">About Us</a>
-    <a href="projects.html" class="nav-link">Projects</a>
-    <a href="contact.html" class="nav-link active">Contact Us</a>
-    <div style="margin-top: 0.75rem;">
-      <a href="contact.html" class="cta-pill-btn cta-lg" style="width: 100%; justify-content: space-between;">
-        <span>Let's Start</span>
-        <span class="cta-arrow-pocket" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </span>
-      </a>
-    </div>
-  </div>
+  <!-- Shared Navigation & Mobile Drawer (hydrated via script.js) -->
+  <header class="site-header" data-active-nav="contact"></header>
+  <div id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation"></div>
 
   <main>
     <section class="page-hero">
@@ -261,25 +191,8 @@
     <span class="toast-text">Copied to clipboard!</span>
   </div>
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-micro-row">
-        <span>&copy; 2026 Harmony IT Consultancy. All rights reserved.</span>
-        <nav class="footer-micro-links" aria-label="Footer Navigation">
-          <a href="index.html">Home</a>
-          <a href="about.html">About Us</a>
-          <a href="projects.html">Projects</a>
-          <a href="contact.html">Contact Us</a>
-          <a href="mailto:inquiries@harmonyitc.com">inquiries@harmonyitc.com</a>
-        </nav>
-      </div>
-    </div>
+  <footer class="site-footer"></footer>
 
-    <div class="footer-wordmark-wrap" aria-hidden="true">
-      <span class="footer-giant-wordmark">harmony</span>
-    </div>
-  </footer>
-
-  <script src="script.js?v=20261120"></script>
+  <script src="script.js?v=20261126" defer></script>
 </body>
 </html>

@@ -6,6 +6,256 @@
   'use strict';
 
   // ---------------------------------------------------------------------------
+  // 0. Shared Lifecycle, Chrome & 3D Artwork Templates (Single Source of Truth)
+  // ---------------------------------------------------------------------------
+  const NAV_ITEMS = [
+    { key: 'home', label: 'Home', href: 'index.html' },
+    { key: 'about', label: 'About Us', href: 'about.html' },
+    { key: 'projects', label: 'Projects', href: 'projects.html' },
+    { key: 'contact', label: 'Contact Us', href: 'contact.html' }
+  ];
+
+  const CTA_ARROW_SVG = `
+    <span class="cta-arrow-pocket" aria-hidden="true">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </span>`;
+
+  const AMBIENT_COIL_SVG = `
+    <svg class="ambient-corner-coil" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="porcelainGrad" cx="45%" cy="45%" r="55%">
+          <stop offset="0%" stop-color="#3a5874" stop-opacity="0.75"/>
+          <stop offset="55%" stop-color="#274667" stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="#0c2d4f" stop-opacity="0.18"/>
+        </radialGradient>
+      </defs>
+      <circle cx="95" cy="145" r="96" stroke="url(#porcelainGrad)" stroke-width="10"/>
+      <circle cx="95" cy="145" r="80" stroke="url(#porcelainGrad)" stroke-width="8"/>
+      <circle cx="95" cy="145" r="64" stroke="url(#porcelainGrad)" stroke-width="7"/>
+      <circle cx="95" cy="145" r="48" stroke="url(#porcelainGrad)" stroke-width="6"/>
+      <circle cx="95" cy="145" r="32" stroke="url(#porcelainGrad)" stroke-width="5"/>
+    </svg>`;
+
+  function observeElementVisibility(el, onStateChange) {
+    if (!el || typeof onStateChange !== 'function') return () => {};
+
+    let inView = true;
+    const notify = () => onStateChange(inView && !document.hidden);
+
+    let io = null;
+    if ('IntersectionObserver' in window) {
+      io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.target === el) {
+              inView = entry.isIntersecting;
+              notify();
+            }
+          });
+        },
+        { rootMargin: '80px 0px', threshold: 0.01 }
+      );
+      io.observe(el);
+    }
+
+    const onVisibility = () => notify();
+    document.addEventListener('visibilitychange', onVisibility);
+
+    return () => {
+      if (io) io.disconnect();
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
+  }
+
+  function initSharedChrome() {
+    const ambientCanvas = document.querySelector('.ambient-canvas');
+    if (ambientCanvas && !ambientCanvas.querySelector('.ambient-corner-coil')) {
+      ambientCanvas.innerHTML = AMBIENT_COIL_SVG;
+    }
+
+    const header = document.querySelector('header.site-header');
+    const drawer = document.getElementById('mobile-drawer');
+    const activeKey =
+      (header && header.getAttribute('data-active-nav')) ||
+      document.body.getAttribute('data-active-nav') ||
+      'home';
+
+    const buildLinksHtml = () =>
+      NAV_ITEMS.map(
+        (item) =>
+          `<a href="${item.href}" class="nav-link${item.key === activeKey ? ' active' : ''}">${item.label}</a>`
+      ).join('');
+
+    if (header && !header.querySelector('.header-inner')) {
+      header.innerHTML = `
+        <div class="header-inner">
+          <a href="index.html" class="brand-logo" aria-label="Harmony IT Consultancy Home">
+            <img
+              src="assets/harmony-logo.png?v=20261126"
+              alt="Harmony IT Consultancy"
+              class="brand-logo-img"
+              width="760"
+              height="224"
+              fetchpriority="high"
+              decoding="async"
+            >
+          </a>
+          <div class="header-right">
+            <nav class="nav-links" aria-label="Main Navigation">${buildLinksHtml()}</nav>
+            <a href="contact.html" class="cta-pill-btn"><span>Let's Start</span>${CTA_ARROW_SVG}</a>
+          </div>
+          <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>`;
+    }
+
+    if (drawer && !drawer.querySelector('.nav-link')) {
+      drawer.innerHTML = `
+        ${buildLinksHtml()}
+        <div style="margin-top: 0.75rem;">
+          <a href="contact.html" class="cta-pill-btn cta-lg" style="width: 100%; justify-content: space-between;">
+            <span>Let's Start</span>${CTA_ARROW_SVG}
+          </a>
+        </div>`;
+    }
+
+    const footer = document.querySelector('footer.site-footer');
+    if (footer && !footer.querySelector('.footer-inner')) {
+      const footerLinksHtml = NAV_ITEMS.map(
+        (item) => `<a href="${item.href}">${item.label}</a>`
+      ).join('');
+
+      footer.innerHTML = `
+        <div class="footer-inner">
+          <div class="footer-micro-row">
+            <span>&copy; 2026 Harmony IT Consultancy. All rights reserved.</span>
+            <nav class="footer-micro-links" aria-label="Footer Navigation">
+              ${footerLinksHtml}
+              <a href="mailto:inquiries@harmonyitc.com">inquiries@harmonyitc.com</a>
+            </nav>
+          </div>
+        </div>
+        <div class="footer-wordmark-wrap" aria-hidden="true">
+          <span class="footer-giant-wordmark">harmony</span>
+        </div>`;
+    }
+  }
+
+  const PILLAR_3D_TEMPLATES = {
+    core: (p) => `
+      <svg viewBox="0 0 320 156" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="${p}Sphere" cx="64%" cy="32%" r="65%">
+            <stop offset="0%" stop-color="#9eb0bf"/><stop offset="28%" stop-color="#8198ae"/>
+            <stop offset="58%" stop-color="#193c5e"/><stop offset="84%" stop-color="#0b2c49"/>
+            <stop offset="100%" stop-color="#010a27"/>
+          </radialGradient>
+          <linearGradient id="${p}Torus" x1="25%" y1="15%" x2="78%" y2="88%">
+            <stop offset="0%" stop-color="#9eb9d6"/><stop offset="35%" stop-color="#284a6d"/>
+            <stop offset="72%" stop-color="#193c5e"/><stop offset="100%" stop-color="#021d3c"/>
+          </linearGradient>
+          <linearGradient id="${p}Line" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#345f87" stop-opacity="0"/>
+            <stop offset="50%" stop-color="#91b5d6" stop-opacity="0.45"/>
+            <stop offset="100%" stop-color="#345f87" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <ellipse cx="160" cy="124" rx="54" ry="9" fill="#010a27" opacity="0.52"/>
+        <line x1="36" y1="126" x2="284" y2="126" stroke="url(#${p}Line)" stroke-width="1.2"/>
+        <line x1="56" y1="133" x2="264" y2="133" stroke="url(#${p}Line)" stroke-width="1"/>
+        <path d="M96 86 C96 60 125 42 160 42 C195 42 224 60 224 86 C224 108 195 122 160 122 C125 122 96 108 96 86 Z" stroke="url(#${p}Torus)" stroke-width="16" fill="none" transform="rotate(-14 160 82)"/>
+        <circle cx="160" cy="74" r="31" fill="url(#${p}Sphere)"/>
+        <path d="M110 100 C134 118 186 118 212 96" stroke="#7e99b5" stroke-width="6" stroke-linecap="round" opacity="0.32" transform="rotate(-14 160 82)"/>
+      </svg>`,
+    sphere: (p) => `
+      <svg viewBox="0 0 320 156" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="${p}Sphere" cx="66%" cy="32%" r="66%">
+            <stop offset="0%" stop-color="#9eb0bf"/><stop offset="22%" stop-color="#8198ae"/>
+            <stop offset="52%" stop-color="#284a6d"/><stop offset="78%" stop-color="#0b2c49"/>
+            <stop offset="100%" stop-color="#010a27"/>
+          </radialGradient>
+          <linearGradient id="${p}Bar" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#345f87" stop-opacity="0"/>
+            <stop offset="50%" stop-color="#91b5d6" stop-opacity="0.72"/>
+            <stop offset="100%" stop-color="#345f87" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <ellipse cx="160" cy="116" rx="46" ry="9" fill="#010a27" opacity="0.68"/>
+        <line x1="28" y1="120" x2="292" y2="120" stroke="url(#${p}Bar)" stroke-width="1.5"/>
+        <line x1="36" y1="127" x2="284" y2="127" stroke="url(#${p}Bar)" stroke-width="1.3"/>
+        <line x1="48" y1="134" x2="272" y2="134" stroke="url(#${p}Bar)" stroke-width="1.1"/>
+        <circle cx="160" cy="70" r="46" fill="url(#${p}Sphere)"/>
+      </svg>`,
+    torus: (p) => `
+      <svg viewBox="0 0 320 156" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="${p}Body" cx="68%" cy="32%" r="68%">
+            <stop offset="0%" stop-color="#9eb9d6"/><stop offset="28%" stop-color="#7e99b5"/>
+            <stop offset="56%" stop-color="#284a6d"/><stop offset="80%" stop-color="#193c5e"/>
+            <stop offset="100%" stop-color="#021d3c"/>
+          </radialGradient>
+          <linearGradient id="${p}Inner" x1="15%" y1="15%" x2="85%" y2="85%">
+            <stop offset="0%" stop-color="#021d3c"/><stop offset="55%" stop-color="#284a6d"/>
+            <stop offset="100%" stop-color="#9eb9d6" stop-opacity="0.75"/>
+          </linearGradient>
+          <linearGradient id="${p}Floor" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#345f87" stop-opacity="0"/>
+            <stop offset="50%" stop-color="#345f87" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#345f87" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <ellipse cx="160" cy="122" rx="54" ry="8" fill="#010a27" opacity="0.52"/>
+        <line x1="36" y1="125" x2="284" y2="125" stroke="url(#${p}Floor)" stroke-width="1.2"/>
+        <g transform="rotate(-18 160 74)">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M160 27 C204 27 232 48 232 74 C232 100 204 121 160 121 C116 121 88 100 88 74 C88 48 116 27 160 27 Z M160 52 C136 52 120 61 120 74 C120 87 136 96 160 96 C184 96 200 87 200 74 C200 61 184 52 160 52 Z" fill="url(#${p}Body)"/>
+          <path d="M116 74 C116 58 135 48 160 48 C185 48 204 58 204 74" stroke="url(#${p}Inner)" stroke-width="5.5" stroke-linecap="round" fill="none" opacity="0.68"/>
+          <path d="M102 91 C118 109 144 116 174 114" stroke="#021d3c" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.55"/>
+          <path d="M188 41 C208 48 220 60 221 75" stroke="#9eb9d6" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.48"/>
+        </g>
+      </svg>`,
+    arrow: (p) => `
+      <svg viewBox="0 0 320 156" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="${p}Face" x1="15%" y1="80%" x2="88%" y2="18%">
+            <stop offset="0%" stop-color="#0f3254"/><stop offset="35%" stop-color="#204467"/>
+            <stop offset="72%" stop-color="#31547a"/><stop offset="100%" stop-color="#7e99b5"/>
+          </linearGradient>
+          <linearGradient id="${p}Edge" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#021d3c"/><stop offset="100%" stop-color="#113153"/>
+          </linearGradient>
+        </defs>
+        <g stroke="#21486c" stroke-width="1.25" opacity="0.82" fill="none">
+          <path d="M16 118 Q88 106 160 118 T304 118"/>
+          <path d="M16 125 Q88 113 160 125 T304 125"/>
+          <path d="M16 132 Q88 120 160 132 T304 132"/>
+          <path d="M16 139 Q88 127 160 139 T304 139"/>
+        </g>
+        <ellipse cx="152" cy="112" rx="52" ry="8" fill="#010a27" opacity="0.56"/>
+        <path d="M98 99 C136 96 164 78 182 54 L167 45 C163 42 165 36 170 36 L214 33 C219 33 223 37 222 42 L216 84 C215 89 209 90 205 86 L195 75 C172 103 136 112 96 105 C92 104 93 99 98 99 Z" fill="url(#${p}Edge)" transform="translate(-5, 6)"/>
+        <path d="M98 99 C136 96 164 78 182 54 L167 45 C163 42 165 36 170 36 L214 33 C219 33 223 37 222 42 L216 84 C215 89 209 90 205 86 L195 75 C172 103 136 112 96 105 C92 104 93 99 98 99 Z" fill="url(#${p}Face)"/>
+        <path d="M170 37 L214 34 C218 34 221 37 220 42 L215 80" stroke="#b4d0e9" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
+      </svg>`
+  };
+
+  function initPillar3DArtworks() {
+    document.querySelectorAll('.pillar-3d-showcase[data-shape]').forEach((el, idx) => {
+      if (el.querySelector('svg')) return;
+      const shape = el.getAttribute('data-shape');
+      const renderFn = PILLAR_3D_TEMPLATES[shape];
+      if (renderFn) {
+        el.innerHTML = renderFn(`p3d-${idx}-`);
+      }
+    });
+  }
+
+  // ---------------------------------------------------------------------------
   // 1. Mobile Navigation Drawer
   // ---------------------------------------------------------------------------
   function initMobileNav() {
@@ -167,24 +417,37 @@
       let curCamRy = -0.18;
 
       if (!prefersReduced) {
+        let stageMouseRaf = 0;
+        let lastNx = 0;
+        let lastNy = 0;
+
         stage.addEventListener('mousemove', (e) => {
           const rect = stage.getBoundingClientRect();
-          const nx = (e.clientX - rect.left) / Math.max(1, rect.width) - 0.5;
-          const ny = (e.clientY - rect.top) / Math.max(1, rect.height) - 0.5;
-          targetTiltY = nx * 0.54;
-          targetTiltX = ny * -0.44;
+          lastNx = (e.clientX - rect.left) / Math.max(1, rect.width) - 0.5;
+          lastNy = (e.clientY - rect.top) / Math.max(1, rect.height) - 0.5;
+          targetTiltY = lastNx * 0.54;
+          targetTiltX = lastNy * -0.44;
 
-          if (backdrop) {
-            backdrop.style.transform = `translate3d(${(nx * -12).toFixed(1)}px, ${(ny * -12).toFixed(1)}px, -40px)`;
-          }
-          if (nodesWrap) {
-            nodesWrap.style.transform = `rotateX(${(ny * -6).toFixed(2)}deg) rotateY(${(nx * 7).toFixed(2)}deg)`;
+          if (!stageMouseRaf) {
+            stageMouseRaf = requestAnimationFrame(() => {
+              stageMouseRaf = 0;
+              if (backdrop) {
+                backdrop.style.transform = `translate3d(${(lastNx * -12).toFixed(1)}px, ${(lastNy * -12).toFixed(1)}px, -40px)`;
+              }
+              if (nodesWrap) {
+                nodesWrap.style.transform = `rotateX(${(lastNy * -6).toFixed(2)}deg) rotateY(${(lastNx * 7).toFixed(2)}deg)`;
+              }
+            });
           }
         });
 
         stage.addEventListener('mouseleave', () => {
           targetTiltX = 0;
           targetTiltY = 0;
+          if (stageMouseRaf) {
+            cancelAnimationFrame(stageMouseRaf);
+            stageMouseRaf = 0;
+          }
           if (backdrop) backdrop.style.transform = '';
           if (nodesWrap) nodesWrap.style.transform = '';
         });
@@ -277,11 +540,17 @@
 
       const arrowFaces = buildCurvedArrowData();
 
-      let startTime = null;
+      let elapsed = 0;
+      let lastFrameTs = null;
+      let isStageActive = true;
+      let stageRafId = 0;
 
       function renderFrame(timestamp) {
-        if (startTime === null) startTime = timestamp;
-        const elapsed = prefersReduced ? 0 : (timestamp - startTime) * 0.001;
+        stageRafId = 0;
+        if (lastFrameTs !== null && !prefersReduced) {
+          elapsed += Math.min(0.05, Math.max(0, (timestamp - lastFrameTs) * 0.001));
+        }
+        lastFrameTs = timestamp;
 
         const targetCfg = heroPillarTargets[activeHeroPillar] || heroPillarTargets.problem;
         curSphereScale += (targetCfg.sphere - curSphereScale) * 0.06;
@@ -537,12 +806,24 @@
           }
         }
 
-        if (!prefersReduced) {
-          requestAnimationFrame(renderFrame);
+        if (!prefersReduced && isStageActive && !document.hidden) {
+          stageRafId = requestAnimationFrame(renderFrame);
         }
       }
 
-      requestAnimationFrame(renderFrame);
+      observeElementVisibility(stage, (active) => {
+        isStageActive = active;
+        if (active && !prefersReduced && !stageRafId) {
+          lastFrameTs = null;
+          stageRafId = requestAnimationFrame(renderFrame);
+        } else if (!active && stageRafId) {
+          cancelAnimationFrame(stageRafId);
+          stageRafId = 0;
+          lastFrameTs = null;
+        }
+      });
+
+      stageRafId = requestAnimationFrame(renderFrame);
     });
   }
 
@@ -944,8 +1225,11 @@
 
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let lastTime = performance.now();
+    let isCylinderActive = true;
+    let cylinderRafId = 0;
 
     function render(now) {
+      cylinderRafId = 0;
       const dt = Math.min(0.05, (now - lastTime) / 1000);
       lastTime = now;
 
@@ -980,10 +1264,23 @@
       // Pass 2: Front crisp studio white wall (#fdffff)
       drawMesh(frontMesh, [0.992, 1.0, 1.0], 1.0, 0.0);
 
-      requestAnimationFrame(render);
+      if (isCylinderActive && !document.hidden) {
+        cylinderRafId = requestAnimationFrame(render);
+      }
     }
 
-    requestAnimationFrame(render);
+    observeElementVisibility(stage, (active) => {
+      isCylinderActive = active;
+      if (active && !cylinderRafId) {
+        lastTime = performance.now();
+        cylinderRafId = requestAnimationFrame(render);
+      } else if (!active && cylinderRafId) {
+        cancelAnimationFrame(cylinderRafId);
+        cylinderRafId = 0;
+      }
+    });
+
+    cylinderRafId = requestAnimationFrame(render);
   }
 
   // ---------------------------------------------------------------------------
@@ -1211,50 +1508,48 @@ Our Core Business Priorities:
 ${priorityList}`;
 
         const copied = await copyTextToClipboard(briefText);
-        const badge = copyBriefBtn.querySelector('.copied-badge');
-        if (badge) {
-          badge.classList.add('show');
-          setTimeout(() => badge.classList.remove('show'), 2500);
-        }
-        const toast = document.getElementById('copied-toast');
-        if (toast) {
-          toast.querySelector('.toast-text').textContent = copied
+        showCopiedFeedback(
+          copyBriefBtn,
+          copied
             ? 'Project brief copied to clipboard!'
-            : 'Brief prepared — email inquiries@harmonyitc.com';
-          toast.classList.add('show');
-          setTimeout(() => toast.classList.remove('show'), 3000);
-        }
+            : 'Brief prepared — email inquiries@harmonyitc.com'
+        );
       });
     }
 
     updateBrief();
   }
 
-  function initCopyEmail() {
-    const copyBtns = document.querySelectorAll('.copy-email-trigger');
+  let sharedToastTimer = null;
+  function showCopiedFeedback(triggerBtn, message) {
+    const badge = triggerBtn && triggerBtn.querySelector('.copied-badge');
+    if (badge) {
+      badge.classList.add('show');
+      clearTimeout(badge._hideTimer);
+      badge._hideTimer = setTimeout(() => badge.classList.remove('show'), 2500);
+    }
     const toast = document.getElementById('copied-toast');
-    if (!copyBtns.length) return;
-
-    let toastTimer = null;
-    function showToast(message) {
-      if (!toast) return;
+    if (toast) {
       const textSpan = toast.querySelector('.toast-text');
       if (textSpan && message) textSpan.textContent = message;
       toast.classList.add('show');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+      clearTimeout(sharedToastTimer);
+      sharedToastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
     }
+  }
+
+  function initCopyEmail() {
+    const copyBtns = document.querySelectorAll('.copy-email-trigger');
+    if (!copyBtns.length) return;
 
     copyBtns.forEach((btn) => {
       btn.addEventListener('click', async () => {
         const email = btn.getAttribute('data-email') || 'inquiries@harmonyitc.com';
         const copied = await copyTextToClipboard(email);
-        const badge = btn.querySelector('.copied-badge');
-        if (badge) {
-          badge.classList.add('show');
-          setTimeout(() => badge.classList.remove('show'), 2500);
-        }
-        showToast(copied ? `Copied ${email} to clipboard!` : `Direct email: ${email}`);
+        showCopiedFeedback(
+          btn,
+          copied ? `Copied ${email} to clipboard!` : `Direct email: ${email}`
+        );
       });
     });
   }
@@ -1273,7 +1568,9 @@ ${priorityList}`;
       document.body.prepend(bar);
     }
 
+    let progressRaf = 0;
     function updateProgress() {
+      progressRaf = 0;
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
       const docHeight = Math.max(
         1,
@@ -1283,8 +1580,14 @@ ${priorityList}`;
       bar.style.width = `${pct}%`;
     }
 
-    window.addEventListener('scroll', updateProgress, { passive: true });
-    window.addEventListener('resize', updateProgress);
+    function scheduleProgress() {
+      if (!progressRaf) {
+        progressRaf = requestAnimationFrame(updateProgress);
+      }
+    }
+
+    window.addEventListener('scroll', scheduleProgress, { passive: true });
+    window.addEventListener('resize', scheduleProgress, { passive: true });
     updateProgress();
   }
 
@@ -1421,22 +1724,75 @@ ${priorityList}`;
     let targetMouseY = 0;
     let currentMouseX = 0;
     let currentMouseY = 0;
+    let rafId = 0;
+    let scrollDirty = true;
+
+    function scheduleParallax() {
+      if (!rafId && !document.hidden) {
+        rafId = requestAnimationFrame(updateParallaxFrame);
+      }
+    }
 
     window.addEventListener(
       'mousemove',
       (e) => {
         targetMouseX = e.clientX / Math.max(1, window.innerWidth) - 0.5;
         targetMouseY = e.clientY / Math.max(1, window.innerHeight) - 0.5;
+        scheduleParallax();
       },
       { passive: true }
     );
 
+    const onScrollOrResize = () => {
+      scrollDirty = true;
+      scheduleParallax();
+    };
+    window.addEventListener('scroll', onScrollOrResize, { passive: true });
+    window.addEventListener('resize', onScrollOrResize, { passive: true });
+
+    const parallaxItems = parallaxNodes
+      .map((node) => ({
+        node,
+        speed: parseFloat(node.getAttribute('data-parallax-speed')) || 0,
+        isReveal: node.classList.contains('parallax-reveal')
+      }))
+      .filter((item) => item.speed !== 0);
+
     function updateParallaxFrame() {
+      rafId = 0;
       currentMouseX += (targetMouseX - currentMouseX) * 0.08;
       currentMouseY += (targetMouseY - currentMouseY) * 0.08;
 
       const scrollY = window.scrollY || window.pageYOffset || 0;
       const vh = Math.max(1, window.innerHeight);
+      const isDeck = document.body.classList.contains('deck-mode');
+
+      // Batch all geometry reads before style writes to avoid layout thrashing
+      let nodeOffsets = null;
+      let thumbOffsets = null;
+      let footerRect = null;
+
+      if (!isDeck && scrollDirty) {
+        nodeOffsets = parallaxItems.map((item) => {
+          const rect = item.node.getBoundingClientRect();
+          if (rect.bottom < -120 || rect.top > vh + 120) return null;
+          const centerOffset = rect.top + rect.height * 0.5 - vh * 0.5;
+          return Math.max(-36, Math.min(36, centerOffset * item.speed));
+        });
+
+        thumbOffsets = projectThumbImgs.map((img) => {
+          const rect = img.getBoundingClientRect();
+          if (rect.bottom < -60 || rect.top > vh + 60) return null;
+          const norm = (rect.top + rect.height * 0.5 - vh * 0.5) / (vh * 0.6);
+          return Math.max(-18, Math.min(18, norm * -16));
+        });
+
+        if (footerWordmark && footerEl) {
+          footerRect = footerEl.getBoundingClientRect();
+        }
+      } else if (!isDeck && footerWordmark && footerEl) {
+        footerRect = footerEl.getBoundingClientRect();
+      }
 
       // 1. Ambient Backdrop Subtle Parallax
       if (cornerCoil) {
@@ -1447,47 +1803,44 @@ ${priorityList}`;
       }
 
       // 2. Scroll-Driven Depth Parallax on Page Elements
-      if (!document.body.classList.contains('deck-mode')) {
-        parallaxNodes.forEach((node) => {
-          const speed = parseFloat(node.getAttribute('data-parallax-speed')) || 0;
-          if (!speed) return;
-          const rect = node.getBoundingClientRect();
-          if (rect.bottom < -120 || rect.top > vh + 120) return;
-
-          const centerOffset = rect.top + rect.height * 0.5 - vh * 0.5;
-          const offsetY = Math.max(-36, Math.min(36, centerOffset * speed));
-
-          if (node.classList.contains('parallax-reveal')) {
-            node.style.setProperty('--parallax-y', `${offsetY.toFixed(1)}px`);
+      if (!isDeck && scrollDirty && nodeOffsets) {
+        for (let i = 0; i < parallaxItems.length; i++) {
+          const offsetY = nodeOffsets[i];
+          if (offsetY === null) continue;
+          const item = parallaxItems[i];
+          if (item.isReveal) {
+            item.node.style.setProperty('--parallax-y', `${offsetY.toFixed(1)}px`);
           } else {
-            node.style.transform = `translate3d(0, ${offsetY.toFixed(1)}px, 0)`;
+            item.node.style.transform = `translate3d(0, ${offsetY.toFixed(1)}px, 0)`;
           }
-        });
+        }
 
         // 3. Project Card Thumbnail Window-Curtain Parallax
-        projectThumbImgs.forEach((img) => {
-          const rect = img.getBoundingClientRect();
-          if (rect.bottom < -60 || rect.top > vh + 60) return;
-          const norm = (rect.top + rect.height * 0.5 - vh * 0.5) / (vh * 0.6);
-          const shiftY = Math.max(-18, Math.min(18, norm * -16));
-          img.style.setProperty('--thumb-parallax-y', `${shiftY.toFixed(1)}px`);
-        });
-
-        // 4. Footer Giant Wordmark Curtain-Rise Parallax
-        if (footerWordmark && footerEl) {
-          const fRect = footerEl.getBoundingClientRect();
-          if (fRect.top < vh) {
-            const progress = Math.min(1, Math.max(0, (vh - fRect.top) / Math.max(1, fRect.height)));
-            const yPct = 26 - progress * 20; // Rises smoothly from 26% to 6%
-            footerWordmark.style.transform = `translate3d(${(currentMouseX * -14).toFixed(1)}px, ${yPct.toFixed(2)}%, 0)`;
-          }
+        for (let i = 0; i < projectThumbImgs.length; i++) {
+          const shiftY = thumbOffsets[i];
+          if (shiftY === null) continue;
+          projectThumbImgs[i].style.setProperty('--thumb-parallax-y', `${shiftY.toFixed(1)}px`);
         }
       }
 
-      requestAnimationFrame(updateParallaxFrame);
+      // 4. Footer Giant Wordmark Curtain-Rise Parallax
+      if (!isDeck && footerWordmark && footerRect && footerRect.top < vh) {
+        const progress = Math.min(1, Math.max(0, (vh - footerRect.top) / Math.max(1, footerRect.height)));
+        const yPct = 26 - progress * 20; // Rises smoothly from 26% to 6%
+        footerWordmark.style.transform = `translate3d(${(currentMouseX * -14).toFixed(1)}px, ${yPct.toFixed(2)}%, 0)`;
+      }
+
+      scrollDirty = false;
+      const mouseSettled =
+        Math.abs(targetMouseX - currentMouseX) < 0.0008 &&
+        Math.abs(targetMouseY - currentMouseY) < 0.0008;
+
+      if (!mouseSettled) {
+        scheduleParallax();
+      }
     }
 
-    requestAnimationFrame(updateParallaxFrame);
+    scheduleParallax();
   }
 
   // ---------------------------------------------------------------------------
@@ -1513,24 +1866,37 @@ ${priorityList}`;
     const cards = document.querySelectorAll(cardSelectors.join(', '));
     cards.forEach((card) => {
       card.classList.add('parallax-tilt-card');
+      let tiltRaf = 0;
+      let latestX = 0;
+      let latestY = 0;
 
       card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const nx = x / Math.max(1, rect.width) - 0.5;
-        const ny = y / Math.max(1, rect.height) - 0.5;
+        latestX = e.clientX;
+        latestY = e.clientY;
+        if (tiltRaf) return;
+        tiltRaf = requestAnimationFrame(() => {
+          tiltRaf = 0;
+          const rect = card.getBoundingClientRect();
+          const x = latestX - rect.left;
+          const y = latestY - rect.top;
+          const nx = x / Math.max(1, rect.width) - 0.5;
+          const ny = y / Math.max(1, rect.height) - 0.5;
 
-        const tiltX = (ny * -5.5).toFixed(2);
-        const tiltY = (nx * 5.5).toFixed(2);
+          const tiltX = (ny * -5.5).toFixed(2);
+          const tiltY = (nx * 5.5).toFixed(2);
 
-        card.style.setProperty('--mouse-x', `${x.toFixed(0)}px`);
-        card.style.setProperty('--mouse-y', `${y.toFixed(0)}px`);
-        card.style.setProperty('--tilt-x', `${tiltX}deg`);
-        card.style.setProperty('--tilt-y', `${tiltY}deg`);
+          card.style.setProperty('--mouse-x', `${x.toFixed(0)}px`);
+          card.style.setProperty('--mouse-y', `${y.toFixed(0)}px`);
+          card.style.setProperty('--tilt-x', `${tiltX}deg`);
+          card.style.setProperty('--tilt-y', `${tiltY}deg`);
+        });
       });
 
       card.addEventListener('mouseleave', () => {
+        if (tiltRaf) {
+          cancelAnimationFrame(tiltRaf);
+          tiltRaf = 0;
+        }
         card.style.setProperty('--tilt-x', '0deg');
         card.style.setProperty('--tilt-y', '0deg');
       });
@@ -1843,6 +2209,8 @@ ${priorityList}`;
   // Initialize Everything
   // ---------------------------------------------------------------------------
   document.addEventListener('DOMContentLoaded', () => {
+    initSharedChrome();
+    initPillar3DArtworks();
     initMobileNav();
     initHero3DEngine();
     initPitchNavigator();

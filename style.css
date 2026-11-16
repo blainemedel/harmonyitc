@@ -954,25 +954,52 @@ button {
   align-items: stretch;
 }
 
+/* Shared Frosted Glass Card Surface & Hover Lift */
+.founder-profile-card,
+.frosted-panel,
+.process-card,
+.project-card,
+.contact-channel-card,
+.pitch-focus-box,
+.home-metric-card,
+.pillar-card,
+.comparison-card-passive {
+  background: var(--bg-frosted);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-glass);
+  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(186, 207, 229, 0.24);
+}
+
+.founder-profile-card:hover,
+.process-card:hover,
+.project-card:hover,
+.home-metric-card:hover,
+.pillar-card:hover {
+  background: var(--bg-frosted-strong);
+  border-color: rgba(186, 207, 229, 0.56);
+  box-shadow: 0 26px 52px -16px rgba(1, 10, 39, 0.65);
+}
+
+/* Shared Dark Matte Cosmic Card Surface */
+.cosmic-quote-card,
+.contact-email-box,
+.comparison-card-engine {
+  background:
+    radial-gradient(circle at 70% 32%, var(--cosmic-glow) 0%, var(--cosmic-mid) 48%, var(--cosmic-base) 100%);
+  color: #fdffff;
+  border: 1px solid rgba(156, 183, 212, 0.36);
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(186, 207, 229, 0.24);
+}
+
 .founder-profile-card {
   position: relative;
-  background: var(--bg-frosted);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid var(--border-glass);
   border-radius: 22px;
   padding: 1.65rem;
-  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(186, 207, 229, 0.24);
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.35s ease,
               background 0.35s ease;
-}
-
-.founder-profile-card:hover {
-  background: var(--bg-frosted-strong);
-  border-color: rgba(186, 207, 229, 0.56);
-  box-shadow: 0 26px 52px -16px rgba(1, 10, 39, 0.65);
 }
 
 .founder-profile-card > * {
@@ -1434,13 +1461,8 @@ body.home-page .footer-giant-wordmark {
 }
 
 .frosted-panel {
-  background: var(--bg-frosted);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid var(--border-glass);
   border-radius: 20px;
   padding: 3rem;
-  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(186, 207, 229, 0.28);
 }
 
 .split-grid-2 {
@@ -1451,13 +1473,8 @@ body.home-page .footer-giant-wordmark {
 }
 
 .cosmic-quote-card {
-  background:
-    radial-gradient(circle at 65% 35%, var(--cosmic-glow) 0%, var(--cosmic-mid) 48%, var(--cosmic-base) 100%);
-  color: #fdffff;
-  border: 1px solid rgba(156, 183, 212, 0.36);
   border-radius: 16px;
   padding: 2.5rem;
-  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(186, 207, 229, 0.24);
   position: relative;
   overflow: hidden;
 }
@@ -1507,20 +1524,13 @@ body.home-page .footer-giant-wordmark {
 }
 
 .process-card {
-  background: var(--bg-frosted);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-glass);
   border-radius: 16px;
   padding: 2rem 1.65rem;
-  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(186, 207, 229, 0.22);
   transition: var(--transition);
 }
 
 .process-card:hover {
   transform: translateY(-4px);
-  background: var(--bg-frosted-strong);
-  border-color: rgba(186, 207, 229, 0.56);
 }
 
 .process-num {
@@ -1649,13 +1659,8 @@ body.home-page .footer-giant-wordmark {
 }
 
 .project-card {
-  background: var(--bg-frosted);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid var(--border-glass);
   border-radius: 18px;
   overflow: hidden;
-  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(186, 207, 229, 0.22);
   display: flex;
   flex-direction: column;
   transition: var(--transition);
@@ -1663,9 +1668,6 @@ body.home-page .footer-giant-wordmark {
 
 .project-card:hover {
   transform: translateY(-5px);
-  background: var(--bg-frosted-strong);
-  border-color: rgba(186, 207, 229, 0.56);
-  box-shadow: 0 26px 52px -16px rgba(1, 10, 39, 0.65);
 }
 
 .project-thumb {
@@ -1932,10 +1934,6 @@ body.home-page .footer-giant-wordmark {
 }
 
 .contact-email-box {
-  background:
-    radial-gradient(circle at 80% 30%, var(--cosmic-glow) 0%, var(--cosmic-mid) 45%, var(--cosmic-base) 100%);
-  color: #fdffff;
-  border: 1px solid rgba(156, 183, 212, 0.36);
   border-radius: 20px;
   padding: 2.5rem;
   display: flex;
@@ -1944,7 +1942,6 @@ body.home-page .footer-giant-wordmark {
   gap: 2rem;
   flex-wrap: wrap;
   margin-top: 2.25rem;
-  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(186, 207, 229, 0.22);
 }
 
 .email-display {
@@ -1962,13 +1959,8 @@ body.home-page .footer-giant-wordmark {
 }
 
 .contact-channel-card {
-  background: var(--bg-frosted);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--border-glass);
   border-radius: 16px;
   padding: 1.65rem;
-  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(186, 207, 229, 0.2);
 }
 
 .copied-toast {
@@ -2043,13 +2035,8 @@ body.home-page .footer-giant-wordmark {
 
 /* Interactive Pitch Focus Switcher inside Hero */
 .pitch-focus-box {
-  background: var(--bg-frosted);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-glass);
   border-radius: 18px;
   padding: 1.15rem 1.25rem;
-  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(186, 207, 229, 0.24);
   margin-bottom: 1.65rem;
   max-width: 560px;
 }
@@ -2145,20 +2132,13 @@ body.home-page .footer-giant-wordmark {
 }
 
 .home-metric-card {
-  background: var(--bg-frosted);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-glass);
   border-radius: 18px;
   padding: 1.75rem 1.5rem;
-  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(186, 207, 229, 0.22);
   transition: var(--transition);
 }
 
 .home-metric-card:hover {
   transform: translateY(-4px);
-  background: var(--bg-frosted-strong);
-  border-color: rgba(186, 207, 229, 0.56);
 }
 
 .home-metric-val {
@@ -2205,13 +2185,8 @@ body.home-page .footer-giant-wordmark {
 }
 
 .pillar-card {
-  background: var(--bg-frosted);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid var(--border-glass);
   border-radius: 20px;
   padding: 2.25rem;
-  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(186, 207, 229, 0.28);
   display: flex;
   flex-direction: column;
   transition: var(--transition);
@@ -2219,9 +2194,6 @@ body.home-page .footer-giant-wordmark {
 
 .pillar-card:hover {
   transform: translateY(-4px);
-  background: var(--bg-frosted-strong);
-  border-color: rgba(186, 207, 229, 0.58);
-  box-shadow: 0 26px 52px -14px rgba(1, 10, 39, 0.65);
 }
 
 .pillar-card-top {
@@ -2333,23 +2305,13 @@ body.home-page .footer-giant-wordmark {
 }
 
 .comparison-card-passive {
-  background: var(--bg-frosted);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-glass);
   border-radius: 22px;
   padding: 2.5rem;
-  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(186, 207, 229, 0.22);
 }
 
 .comparison-card-engine {
-  background:
-    radial-gradient(circle at 72% 28%, var(--cosmic-glow) 0%, var(--cosmic-mid) 48%, var(--cosmic-base) 100%);
-  color: #fdffff;
-  border: 1px solid rgba(156, 183, 212, 0.38);
   border-radius: 22px;
   padding: 2.5rem;
-  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(186, 207, 229, 0.26);
   position: relative;
   overflow: hidden;
 }
