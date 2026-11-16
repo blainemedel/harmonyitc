@@ -1044,6 +1044,15 @@
       solution: 'We built a responsive public website and subscriber portal featuring the Rizal Fiber Grid serviceability checker, clear FTTH plan tiers (SwitchLite 50 Mbps &#8369;699, SwitchConnect 90 Mbps &#8369;799, SwitchNet 120 Mbps &#8369;999; up to 220 Mbps with 0 data cap), online signup (/register), application status tracking, router setup guides, and digital bill pay through pay.switchfiber.ph (GCash / QR Ph, Maya, WeChat Pay, Visa/Mastercard).',
       tech: 'Modern Web SPA, Rizal Fiber Grid Serviceability Checker, Digital Payments (pay.switchfiber.ph)',
       metrics: '9 Rizal Municipalities Covered &bull; Plans from &#8369;699/mo &bull; Live at <a href="https://switchfiberuser.genexis.dev/" target="_blank" rel="noopener noreferrer">switchfiberuser.genexis.dev</a>'
+    },
+    'switchfiber-mobile': {
+      eyebrow: 'MOBILE APP &bull; FIELD OPERATIONS',
+      title: 'Switch Fiber — Field Technician Terminal',
+      desc: 'A dedicated mobile field terminal engineered for Switch Fiber Network Operations technicians working out on installations and line maintenance.',
+      challenge: 'Field crews away from the office needed a focused, reliable mobile interface to sign in with their technician credentials and review assigned work orders without navigating a full desktop admin console on a phone.',
+      solution: 'We built the Switch Fiber Field Technician Terminal mobile app with authenticated technician sign-in, credential persistence ("Remember me"), live backend server connection status (admin.switchfiber.ph), and direct access to assigned field work orders.',
+      tech: 'Cross-Platform Mobile App, Authenticated Field Terminal, SwitchFiber Operations REST API',
+      metrics: 'Technician Sign-In &amp; Work Order Access &bull; Connected to Switch Fiber Network Operations'
     }
   };
 
@@ -1529,6 +1538,265 @@ ${priorityList}`;
   }
 
   // ---------------------------------------------------------------------------
+  // 11. Interactive Matte Ambient Particle Field (All Pages)
+  // ---------------------------------------------------------------------------
+  function initInteractiveParticleField() {
+    const ambientCanvasWrap = document.querySelector('.ambient-canvas');
+    if (!ambientCanvasWrap) return;
+
+    let canvas = ambientCanvasWrap.querySelector('.ambient-particle-canvas');
+    if (!canvas) {
+      canvas = document.createElement('canvas');
+      canvas.className = 'ambient-particle-canvas';
+      canvas.setAttribute('aria-hidden', 'true');
+      ambientCanvasWrap.prepend(canvas);
+    }
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+    let particles = [];
+
+    // Sampled matte ice-steel hues matching the studio palette
+    const palette = [
+      [180, 208, 233], // #b4d0e9
+      [156, 183, 212], // #9cb7d4
+      [216, 238, 255], // #d8eeff
+      [126, 153, 181]  // #7e99b5
+    ];
+
+    const pointer = {
+      x: -9999,
+      y: -9999,
+      active: false
+    };
+
+    const ripples = [];
+
+    function createParticle(randomPos) {
+      const col = palette[Math.floor(Math.random() * palette.length)];
+      const depth = 0.45 + Math.random() * 0.85;
+      return {
+        x: randomPos ? Math.random() * width : (Math.random() < 0.5 ? -10 : width + 10),
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.34 * depth,
+        vy: (-0.08 - Math.random() * 0.24) * depth,
+        baseR: 1.05 + Math.random() * 1.55 * depth,
+        depth,
+        alpha: 0.22 + Math.random() * 0.4,
+        phase: Math.random() * Math.PI * 2,
+        color: col
+      };
+    }
+
+    function syncParticleCount() {
+      const targetCount = Math.min(92, Math.max(34, Math.round((width * height) / 18500)));
+      while (particles.length < targetCount) {
+        particles.push(createParticle(true));
+      }
+      if (particles.length > targetCount) {
+        particles.length = targetCount;
+      }
+    }
+
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = Math.max(320, window.innerWidth);
+      height = Math.max(320, window.innerHeight);
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      syncParticleCount();
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+
+    window.addEventListener(
+      'pointermove',
+      (e) => {
+        pointer.x = e.clientX;
+        pointer.y = e.clientY;
+        pointer.active = true;
+      },
+      { passive: true }
+    );
+
+    window.addEventListener('pointerleave', () => {
+      pointer.active = false;
+    });
+
+    window.addEventListener(
+      'pointerdown',
+      (e) => {
+        if (prefersReduced) return;
+        ripples.push({
+          x: e.clientX,
+          y: e.clientY,
+          radius: 10,
+          maxRadius: 210,
+          alpha: 0.38
+        });
+      },
+      { passive: true }
+    );
+
+    let lastScrollY = window.scrollY || window.pageYOffset || 0;
+    let scrollImpulse = 0;
+    window.addEventListener(
+      'scroll',
+      () => {
+        const curY = window.scrollY || window.pageYOffset || 0;
+        scrollImpulse = Math.max(-18, Math.min(18, (curY - lastScrollY) * 0.14));
+        lastScrollY = curY;
+      },
+      { passive: true }
+    );
+
+    let rafId = null;
+    let lastTime = performance.now();
+
+    function render(now) {
+      if (document.hidden) {
+        rafId = null;
+        return;
+      }
+
+      const dt = Math.min(0.05, Math.max(0.004, (now - lastTime) / 1000));
+      const dtNorm = dt * 60;
+      lastTime = now;
+
+      ctx.clearRect(0, 0, width, height);
+
+      const linkDist = width < 640 ? 96 : 128;
+      const pointerDist = width < 640 ? 130 : 175;
+      const tSec = now * 0.001;
+
+      // Update active click ripples
+      for (let r = ripples.length - 1; r >= 0; r--) {
+        const rip = ripples[r];
+        rip.radius += 5.4 * dtNorm;
+        rip.alpha *= Math.pow(0.94, dtNorm);
+        if (rip.radius > rip.maxRadius || rip.alpha < 0.015) {
+          ripples.splice(r, 1);
+          continue;
+        }
+        ctx.strokeStyle = `rgba(180, 208, 233, ${rip.alpha.toFixed(3)})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(rip.x, rip.y, rip.radius, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      scrollImpulse *= Math.pow(0.88, dtNorm);
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+
+        if (!prefersReduced) {
+          p.x += p.vx * dtNorm;
+          p.y += (p.vy - scrollImpulse * 0.08 * p.depth) * dtNorm;
+
+          // Gentle pointer repulsion + tangential drift
+          if (pointer.active) {
+            const dx = p.x - pointer.x;
+            const dy = p.y - pointer.y;
+            const distSq = dx * dx + dy * dy;
+            if (distSq > 1 && distSq < pointerDist * pointerDist) {
+              const dist = Math.sqrt(distSq);
+              const force = (1 - dist / pointerDist) * 0.42 * p.depth * dtNorm;
+              p.x += (dx / dist) * force * 2.1 - (dy / dist) * force * 0.55;
+              p.y += (dy / dist) * force * 2.1 + (dx / dist) * force * 0.55;
+            }
+          }
+
+          // Gentle ripple push on click/tap
+          for (let r = 0; r < ripples.length; r++) {
+            const rip = ripples[r];
+            const dx = p.x - rip.x;
+            const dy = p.y - rip.y;
+            const dist = Math.hypot(dx, dy);
+            if (Math.abs(dist - rip.radius) < 26 && dist > 1) {
+              const push = (1 - Math.abs(dist - rip.radius) / 26) * 1.45 * p.depth * dtNorm;
+              p.x += (dx / dist) * push;
+              p.y += (dy / dist) * push;
+            }
+          }
+
+          // Wrap smoothly across viewport bounds
+          if (p.x < -16) p.x = width + 16;
+          else if (p.x > width + 16) p.x = -16;
+          if (p.y < -16) p.y = height + 16;
+          else if (p.y > height + 16) p.y = -16;
+        }
+
+        // Constellation links between nearby particles
+        for (let j = i + 1; j < particles.length; j++) {
+          const q = particles[j];
+          const dx = p.x - q.x;
+          const dy = p.y - q.y;
+          const distSq = dx * dx + dy * dy;
+          if (distSq < linkDist * linkDist) {
+            const dist = Math.sqrt(distSq);
+            const lineAlpha = (1 - dist / linkDist) * 0.17;
+            ctx.strokeStyle = `rgba(156, 183, 212, ${lineAlpha.toFixed(3)})`;
+            ctx.lineWidth = 0.8;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(q.x, q.y);
+            ctx.stroke();
+          }
+        }
+
+        // Interactive pointer-to-particle filament
+        let boost = 0;
+        if (pointer.active) {
+          const dx = p.x - pointer.x;
+          const dy = p.y - pointer.y;
+          const distSq = dx * dx + dy * dy;
+          if (distSq < pointerDist * pointerDist) {
+            const dist = Math.sqrt(distSq);
+            const strength = 1 - dist / pointerDist;
+            boost = strength * 0.38;
+            ctx.strokeStyle = `rgba(216, 238, 255, ${(strength * 0.24).toFixed(3)})`;
+            ctx.lineWidth = 0.9;
+            ctx.beginPath();
+            ctx.moveTo(pointer.x, pointer.y);
+            ctx.lineTo(p.x, p.y);
+            ctx.stroke();
+          }
+        }
+
+        const twinkle = prefersReduced ? 1 : 0.82 + Math.sin(tSec * 1.4 + p.phase) * 0.18;
+        const finalAlpha = Math.min(0.85, (p.alpha + boost) * twinkle);
+        const radius = p.baseR * (1 + boost * 0.55);
+
+        ctx.fillStyle = `rgba(${p.color[0]}, ${p.color[1]}, ${p.color[2]}, ${finalAlpha.toFixed(3)})`;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      if (!prefersReduced) {
+        rafId = requestAnimationFrame(render);
+      }
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden && !prefersReduced && rafId === null) {
+        lastTime = performance.now();
+        rafId = requestAnimationFrame(render);
+      }
+    });
+
+    rafId = requestAnimationFrame(render);
+  }
+
+  // ---------------------------------------------------------------------------
   // Initialize Everything
   // ---------------------------------------------------------------------------
   document.addEventListener('DOMContentLoaded', () => {
@@ -1544,5 +1812,6 @@ ${priorityList}`;
     initParallaxReveal();
     initMultiLayerParallaxMotion();
     initCardTiltParallax();
+    initInteractiveParticleField();
   });
 })();
