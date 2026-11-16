@@ -1522,6 +1522,52 @@ button {
   gap: 2rem;
 }
 
+.gallery-grid-3.gallery-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.gallery-grid-2 .project-thumb {
+  height: 280px;
+}
+
+@media (max-width: 860px) {
+  .gallery-grid-3.gallery-grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .gallery-grid-2 .project-thumb {
+    height: 230px;
+  }
+}
+
+.project-footer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.project-live-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink-navy);
+  text-decoration: none;
+  padding: 0.44rem 0.95rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(11, 23, 42, 0.16);
+  white-space: nowrap;
+  transition: transform 0.2s var(--ease-out-expo), border-color 0.2s ease, background 0.2s ease;
+}
+
+.project-live-link:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-teal, #096c7b);
+  background: #ffffff;
+}
+
 .project-card {
   background: rgba(255, 255, 255, 0.84);
   border: 1px solid rgba(255, 255, 255, 0.95);
@@ -1614,6 +1660,7 @@ button {
 
 .project-footer {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
@@ -1627,6 +1674,7 @@ button {
   background: rgba(9, 108, 123, 0.08);
   padding: 0.35rem 0.8rem;
   border-radius: 9999px;
+  white-space: nowrap;
 }
 
 /* Case Study Modal */
@@ -2470,6 +2518,26 @@ html.js-parallax-ready .parallax-reveal.is-revealed {
 
 .project-card:hover .project-thumb img {
   transform: scale(1.17) translate3d(0, var(--thumb-parallax-y, 0px), 0);
+}
+
+.project-card .project-thumb.project-thumb--frame img {
+  object-position: center top;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.project-card:hover .project-thumb.project-thumb--frame img {
+  transform: scale(1.03);
+}
+
+.project-card .project-thumb.project-thumb--admin img {
+  object-position: center 45%;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.project-card:hover .project-thumb.project-thumb--admin img {
+  transform: scale(1.03);
 }
 
 /* Footer Giant Wordmark Parallax Rise */

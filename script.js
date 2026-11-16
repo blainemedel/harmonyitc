@@ -788,59 +788,23 @@
   // 5. Interactive Case Study Modals (projects.html)
   // ---------------------------------------------------------------------------
   const caseStudiesData = {
-    'booking-portal': {
-      eyebrow: 'PROBLEM SOLVER &bull; OPERATIONS &bull; REVENUE',
-      title: 'Automated Booking & Client Services Hub',
-      desc: 'Replaces chaotic phone bookings and manual calendar management with an automated, round-the-clock appointment and deposit-processing engine.',
-      challenge: 'Staff spent 3+ hours every day answering repetitive booking inquiries over chat and phone, resulting in double-bookings, missed inquiries after business hours, and lost deposits.',
-      solution: 'Engineered a branded customer portal with live calendar availability, automated reminder notifications, upfront deposit collection via digital gateways, and staff schedule sync.',
-      tech: 'TypeScript, React / Next.js, Node.js, Stripe / GCash API, PostgreSQL, Redis',
-      metrics: '85% Reduction in Admin Time &bull; +42% In After-Hours Bookings &bull; Zero Double-Bookings'
+    'switchfiber-admin': {
+      eyebrow: 'PROBLEM SOLVER &bull; OPERATIONS',
+      title: 'SwitchFiber Admin — Network Management',
+      desc: 'Distributed Fiber Network Management console engineered for Switch Fiber Network Operations to centralize daily ISP administration.',
+      challenge: 'Regional FTTH operations require tight coordination across subscriber onboarding, service plan provisioning, technician job order dispatch, and physical fiber infrastructure tracking without fragmented spreadsheets.',
+      solution: 'Delivered the dedicated SwitchFiber Admin operations SPA consolidating subscriber records, service plan configurations, job orders, and fiber network management behind authenticated operator access.',
+      tech: 'Vue 3, Vite, PrimeVue, Bootstrap, REST API',
+      metrics: 'Subscriber, Plan, Job Order &amp; Fiber Management &bull; Live at <a href="https://admin.switchfiber.ph/switchfiberadmin/login" target="_blank" rel="noopener noreferrer">admin.switchfiber.ph/switchfiberadmin/login</a>'
     },
-    'ecommerce-engine': {
+    'switchfiber-subscriber': {
       eyebrow: 'PROMOTION &bull; OPERATIONS &bull; REVENUE',
-      title: 'E-Commerce & Live Inventory Platform',
-      desc: 'A 24/7 internet storefront that syncs in-store and online stock in real time, automates digital payments, and captures repeat customer orders.',
-      challenge: 'Client operated a successful physical store but had zero digital presence. Manual spreadsheets caused frequent stock miscounts when attempting social media sales.',
-      solution: 'Designed a high-converting web storefront with automated real-time inventory synchronization, instant checkout, courier dispatch integrations, and customer re-engagement emails.',
-      tech: 'Modern Web Component System, Tailwind CSS, Node.js API, PostgreSQL, Webhooks',
-      metrics: '3.2x Revenue Growth in 6 Months &bull; Zero Inventory Over-Sells &bull; 99.9% Checkout Uptime'
-    },
-    'billing-engine': {
-      eyebrow: 'OPERATIONS &bull; PROBLEM SOLVER &bull; REVENUE',
-      title: 'Subscriber Billing & Operations ERP',
-      desc: 'Unified business operations platform handling end-to-end subscriber provisioning, recurring billing cycles, technician work orders, and RBAC.',
-      challenge: 'Manual billing reconciliation and disparate technician dispatch spreadsheets caused customer provisioning bottlenecks and delayed payment collections.',
-      solution: 'Architected an automated multi-tenant ERP platform with role-based access control (RBAC), automated recurring PDF invoice generation, payment reconciliations, and live dispatch queues.',
-      tech: 'TypeScript, Express.js, Prisma ORM, PostgreSQL, Docker, BullMQ Queue',
-      metrics: '50,000+ Monthly Invoices &bull; < 150ms Query Times &bull; 99.8% Automated Reconciliation'
-    },
-    'geo-mapping': {
-      eyebrow: 'PROBLEM SOLVER &bull; OPERATIONS',
-      title: 'Field Operations & Asset Dispatch Map',
-      desc: 'High-density interactive map tracking field network access points (NAPs), optical splitter hierarchies, and field splice locations with offline caching.',
-      challenge: 'Field technicians lacked real-time visibility into port availability on localized distribution boxes, relying on paper notes that caused installation delays.',
-      solution: 'Developed a responsive geospatial portal capable of rendering thousands of vector features with offline sync, GPS pinning, and live port occupancy telemetry.',
-      tech: 'GeoJSON, Mapbox GL JS / Leaflet, PostgreSQL / PostGIS, Service Workers (Offline PWA)',
-      metrics: '12,000+ Km Mapped &bull; Instant Field GPS Sync &bull; 100% Offline Resiliency'
-    },
-    'b2b-leadgen': {
-      eyebrow: 'PROMOTIONAL FLAGSHIP &bull; REVENUE',
-      title: 'B2B Brand Flagship & Lead Engine',
-      desc: 'Establishes commanding search authority and provides interactive proposal estimators that turn passive web visits into high-value qualified sales leads.',
-      challenge: 'Client had an outdated static website that failed to rank on search engines, lacked credibility with enterprise buyers, and yielded zero qualified sales inquiries.',
-      solution: 'Crafted a fast, authoritative digital flagship with technical SEO architecture, interactive service calculators, and an automated lead scoring pipeline that routes directly to sales.',
-      tech: 'Semantic Modern HTML, Tailwind CSS Architecture, Node Gateway, Web Vitals Optimization',
-      metrics: '+210% In Qualified Inquiries &bull; 0.9s Page Load &bull; 1st-Page Google Search Ranking'
-    },
-    'telecom-monitor': {
-      eyebrow: 'PROBLEM SOLVER &bull; OPERATIONS',
-      title: 'Enterprise Infrastructure Telemetry',
-      desc: 'Real-time telemetry and optical loss monitoring across distributed regional fiber optic paths, preventing extended subscriber outages.',
-      challenge: 'Carrier backbones suffered from delayed fiber cut detection and fragmented telemetry across third-party line termination units, leading to costly customer SLA penalties.',
-      solution: 'Constructed an event-driven telemetry ingest pipeline utilizing WebSockets and high-frequency polling. Automatically flags attenuation anomalies on geospatial maps in sub-second intervals.',
-      tech: 'Go, Node.js, Redis Pub/Sub, WebSockets, PostgreSQL, Prometheus & Grafana',
-      metrics: '99.99% Network Uptime &bull; Sub-10ms Incident Alerting &bull; Zero False Outage Alarms'
+      title: 'SwitchFiber Public & Subscriber Portal',
+      desc: 'Customer-facing flagship and subscriber self-service portal for SwitchFiber serving households and businesses across Binangonan and neighboring Rizal municipalities.',
+      challenge: 'Prospective fiber subscribers needed a fast, self-serve way to verify barangay and street coverage, compare transparent FTTH plans, apply online, track installation progress, and settle bills digitally.',
+      solution: 'Engineered a responsive public and subscriber web portal featuring the interactive Rizal Fiber Grid serviceability checker, transparent FTTH plans (SwitchLite 50 Mbps &#8369;699, SwitchConnect 90 Mbps &#8369;799, SwitchNet 120 Mbps &#8369;999; up to 220 Mbps with 0 data cap), online registration (/register), application status tracking, router guides, and digital bill pay integration (GCash / QR Ph, Maya, WeChat Pay, Visa/Mastercard via pay.switchfiber.ph).',
+      tech: 'Modern Web SPA, Rizal Fiber Grid Serviceability Checker, Digital Payments (pay.switchfiber.ph)',
+      metrics: '9 Rizal Municipalities Covered &bull; Plans from &#8369;699/mo &bull; Live at <a href="https://switchfiberuser.genexis.dev/" target="_blank" rel="noopener noreferrer">switchfiberuser.genexis.dev</a>'
     }
   };
 
