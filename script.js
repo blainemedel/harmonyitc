@@ -312,13 +312,13 @@
   // ---------------------------------------------------------------------------
   const pitchPillarsCopy = {
     problem:
-      '<strong>Pillar 01 / Problem-Solving Engine:</strong> We diagnose where your current workflow leaks customers, time, or revenue&mdash;then build custom digital solutions that eliminate those friction points permanently.',
+      '<strong>01 / Solving Real Problems:</strong> We look at where your team loses time, misses inquiries, or gets stuck in manual steps, then build straightforward tools that fix the root issue.',
     promo:
-      '<strong>Pillar 02 / 24/7 Digital Flagship:</strong> We establish commanding search authority, instant mobile performance, and high-trust storytelling so your brand captures qualified buyers around the clock.',
+      '<strong>02 / Clear Online Presence:</strong> A fast, trustworthy website that explains what you do clearly, shows up well in search, and gives potential clients confidence to reach out.',
     operations:
-      '<strong>Pillar 03 / Daily Operations Hub:</strong> We replace manual spreadsheets and chat bookings with automated scheduling, client self-service portals, live dispatch queues, and recurring billing.',
+      '<strong>03 / Smoother Daily Work:</strong> Replace scattered spreadsheets and long message threads with practical booking tools, client portals, job tracking, and organized dashboards.',
     income:
-      '<strong>Pillar 04 / Revenue-Generating Engine:</strong> We engineer conversion funnels, interactive service estimators, and digital payment flows designed to turn website traffic into measurable ROI.'
+      '<strong>04 / Sustainable Growth:</strong> Clear customer paths, inquiry forms, service estimators, and online payment options that turn visitors into paying clients.'
   };
 
   function initPitchNavigator() {
@@ -791,18 +791,18 @@
     'switchfiber-admin': {
       eyebrow: 'PROBLEM SOLVER &bull; OPERATIONS',
       title: 'SwitchFiber Admin — Network Management',
-      desc: 'Distributed Fiber Network Management console engineered for Switch Fiber Network Operations to centralize daily ISP administration.',
-      challenge: 'Regional FTTH operations require tight coordination across subscriber onboarding, service plan provisioning, technician job order dispatch, and physical fiber infrastructure tracking without fragmented spreadsheets.',
-      solution: 'Delivered the dedicated SwitchFiber Admin operations SPA consolidating subscriber records, service plan configurations, job orders, and fiber network management behind authenticated operator access.',
+      desc: 'An internal operations console built for Switch Fiber Network Operations to bring day-to-day ISP management into one clear workspace.',
+      challenge: 'Running a regional fiber network means keeping subscriber records, service plans, field technician job orders, and fiber infrastructure synced cleanly without bouncing between disconnected spreadsheets.',
+      solution: 'We built the authenticated SwitchFiber Admin console to bring subscriber accounts, service plan configurations, technician job orders, and fiber network management together inside one responsive web application.',
       tech: 'Vue 3, Vite, PrimeVue, Bootstrap, REST API',
       metrics: 'Subscriber, Plan, Job Order &amp; Fiber Management &bull; Live at <a href="https://admin.switchfiber.ph/switchfiberadmin/login" target="_blank" rel="noopener noreferrer">admin.switchfiber.ph/switchfiberadmin/login</a>'
     },
     'switchfiber-subscriber': {
-      eyebrow: 'PROMOTION &bull; OPERATIONS &bull; REVENUE',
+      eyebrow: 'ONLINE PRESENCE &bull; OPERATIONS &bull; BILLING',
       title: 'SwitchFiber Public & Subscriber Portal',
-      desc: 'Customer-facing flagship and subscriber self-service portal for SwitchFiber serving households and businesses across Binangonan and neighboring Rizal municipalities.',
-      challenge: 'Prospective fiber subscribers needed a fast, self-serve way to verify barangay and street coverage, compare transparent FTTH plans, apply online, track installation progress, and settle bills digitally.',
-      solution: 'Engineered a responsive public and subscriber web portal featuring the interactive Rizal Fiber Grid serviceability checker, transparent FTTH plans (SwitchLite 50 Mbps &#8369;699, SwitchConnect 90 Mbps &#8369;799, SwitchNet 120 Mbps &#8369;999; up to 220 Mbps with 0 data cap), online registration (/register), application status tracking, router guides, and digital bill pay integration (GCash / QR Ph, Maya, WeChat Pay, Visa/Mastercard via pay.switchfiber.ph).',
+      desc: 'The public website and subscriber portal serving homes and businesses across Binangonan and neighboring towns in Rizal.',
+      challenge: 'Future subscribers needed a quick way to check barangay fiber availability, see honest plan pricing up front, apply online without visiting a branch, track installation status, and pay bills from their phone.',
+      solution: 'We built a responsive public website and subscriber portal featuring the Rizal Fiber Grid serviceability checker, clear FTTH plan tiers (SwitchLite 50 Mbps &#8369;699, SwitchConnect 90 Mbps &#8369;799, SwitchNet 120 Mbps &#8369;999; up to 220 Mbps with 0 data cap), online signup (/register), application status tracking, router setup guides, and digital bill pay through pay.switchfiber.ph (GCash / QR Ph, Maya, WeChat Pay, Visa/Mastercard).',
       tech: 'Modern Web SPA, Rizal Fiber Grid Serviceability Checker, Digital Payments (pay.switchfiber.ph)',
       metrics: '9 Rizal Municipalities Covered &bull; Plans from &#8369;699/mo &bull; Live at <a href="https://switchfiberuser.genexis.dev/" target="_blank" rel="noopener noreferrer">switchfiberuser.genexis.dev</a>'
     }
@@ -890,10 +890,10 @@
   }
 
   const priorityLabels = {
-    'problem': 'Solve a Business Bottleneck',
-    'promo': '24/7 Internet Presence & Brand Flagship',
-    'operations': 'Automate Daily Operations & Workflows',
-    'income': 'Generate Measurable Revenue & Sales'
+    'problem': 'Fix a Workflow Bottleneck',
+    'promo': 'Improve Online Presence',
+    'operations': 'Organize Daily Operations',
+    'income': 'Support Revenue Growth'
   };
 
   function initBriefBuilder() {
@@ -918,9 +918,9 @@
       const selected = getSelectedPriorities();
 
       if (selected.length === 0) {
-        summaryText.textContent = 'None selected (Please select at least 1 priority)';
+        summaryText.textContent = 'None selected yet (choose at least 1 area)';
       } else if (selected.length === 4) {
-        summaryText.textContent = 'All 4 Pillars Selected (Complete Business Engine)';
+        summaryText.textContent = 'All 4 Areas Selected (Full Website & System Setup)';
       } else {
         summaryText.textContent = selected.map((p) => priorityLabels[p]).join(', ');
       }
@@ -929,9 +929,9 @@
         const subject = encodeURIComponent('Project Consultation Brief — Harmony IT Consultancy');
         const priorityList = selected.length > 0
           ? selected.map((p, idx) => `  ${idx + 1}. ${priorityLabels[p]}`).join('\n')
-          : '  - General Consultation';
+          : '  - General Inquiry';
         const body = encodeURIComponent(
-          `Hello HarmonyITC Team,\n\nI would like to schedule a consultation. Here are the core priorities for our project:\n\n${priorityList}\n\nCompany Name:\nContact Person:\nPreferred Consultation Time:\n\nThank you!`
+          `Hi Paulo, Gene, and Bry,\n\nI'd like to talk about a website or system project for our business. Here is what matters most to us right now:\n\n${priorityList}\n\nCompany Name:\nContact Person:\nBest Time for a Call:\n\nThanks!`
         );
         mailtoBtn.href = `mailto:inquiries@harmonyitc.com?subject=${subject}&body=${body}`;
       }
@@ -1145,8 +1145,6 @@ ${priorityList}`;
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) return;
 
-    const pillar = document.querySelector('.ambient-glass-pillar');
-    const ridge = document.querySelector('.ambient-glass-ridge');
     const cornerCoil = document.querySelector('.ambient-corner-coil');
     const footerWordmark = document.querySelector('.footer-giant-wordmark');
     const footerEl = document.querySelector('.site-footer');
@@ -1192,20 +1190,7 @@ ${priorityList}`;
       const scrollY = window.scrollY || window.pageYOffset || 0;
       const vh = Math.max(1, window.innerHeight);
 
-      // 1. Ambient 3D Studio Backdrop Multi-Layer Parallax
-      if (pillar) {
-        const py = scrollY * -0.14 + currentMouseY * -26;
-        const px = currentMouseX * -28;
-        const rot = -4 + scrollY * 0.008 + currentMouseX * 3;
-        pillar.style.transform = `translate3d(${px.toFixed(1)}px, ${py.toFixed(1)}px, 0) rotate(${rot.toFixed(2)}deg)`;
-      }
-
-      if (ridge) {
-        const ry = scrollY * -0.24 + currentMouseY * 32;
-        const rx = currentMouseX * 36;
-        ridge.style.transform = `translate3d(${rx.toFixed(1)}px, ${ry.toFixed(1)}px, 0)`;
-      }
-
+      // 1. Ambient Backdrop Subtle Parallax
       if (cornerCoil) {
         const cy = scrollY * 0.07 + currentMouseY * 18;
         const cx = currentMouseX * 20;

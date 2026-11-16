@@ -137,33 +137,6 @@ button {
     linear-gradient(110deg, #f3f4f8 0%, #f5f3f9 55%, #ede3f2 100%);
 }
 
-/* Subtle right-side frosted translucent 3D sculptural silhouette */
-.ambient-glass-pillar {
-  position: absolute;
-  right: 8%;
-  top: 12%;
-  width: min(38vw, 480px);
-  height: 82vh;
-  border-radius: 180px 140px 220px 160px;
-  background: radial-gradient(circle at 38% 35%, rgba(255, 255, 255, 0.65) 0%, rgba(233, 224, 241, 0.28) 55%, rgba(210, 198, 224, 0.06) 100%);
-  filter: blur(28px);
-  opacity: 0.85;
-  transform: rotate(-4deg);
-}
-
-.ambient-glass-ridge {
-  position: absolute;
-  right: 26%;
-  top: 24%;
-  width: 72px;
-  height: 220px;
-  border-radius: 36px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(210, 206, 222, 0.16) 65%, transparent 100%);
-  box-shadow: -14px 10px 28px rgba(155, 145, 175, 0.12);
-  filter: blur(3px);
-  opacity: 0.45;
-}
-
 /* Subtle bottom-left porcelain ribbed spiral detail */
 .ambient-corner-coil {
   position: absolute;
@@ -316,7 +289,7 @@ button {
   transform: scaleX(1);
 }
 
-/* Vibrant Magenta-Crimson Pill CTA ("Let's Start →") */
+/* Vibrant Magenta-Crimson Action CTA */
 .cta-pill-btn {
   display: inline-flex;
   align-items: center;
@@ -324,8 +297,8 @@ button {
   background: linear-gradient(135deg, #de0461 0%, #cc0055 100%);
   color: #ffffff;
   border: none;
-  border-radius: 9999px;
-  padding: 0.42rem 0.45rem 0.42rem 1.35rem;
+  border-radius: 10px;
+  padding: 0.44rem 0.48rem 0.44rem 1.25rem;
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -348,7 +321,7 @@ button {
 .cta-arrow-pocket {
   width: 30px;
   height: 30px;
-  border-radius: 50%;
+  border-radius: 7px;
   background: var(--accent-magenta-pocket);
   display: inline-flex;
   align-items: center;
@@ -361,7 +334,7 @@ button {
 }
 
 .cta-pill-btn.cta-lg {
-  padding: 0.55rem 0.55rem 0.55rem 1.65rem;
+  padding: 0.55rem 0.58rem 0.55rem 1.45rem;
   font-size: 0.95rem;
 }
 
@@ -375,11 +348,11 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  background: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.84);
   color: var(--ink-navy);
   border: 1px solid rgba(36, 41, 58, 0.14);
-  border-radius: 9999px;
-  padding: 0.72rem 1.55rem;
+  border-radius: 10px;
+  padding: 0.72rem 1.45rem;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
@@ -630,7 +603,7 @@ button {
   align-items: center;
   gap: 0.45rem;
   padding: 0.48rem 0.85rem;
-  border-radius: 9999px;
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.86);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -732,7 +705,7 @@ button {
   align-items: center;
   gap: 0.48rem;
   padding: 0.44rem 0.9rem;
-  border-radius: 9999px;
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -940,7 +913,7 @@ button {
   color: var(--accent-teal);
   background: var(--accent-teal-soft);
   padding: 0.28rem 0.72rem;
-  border-radius: 9999px;
+  border-radius: 6px;
 }
 
 .founders-showcase .founder-hero-row {
@@ -1046,7 +1019,7 @@ button {
   display: block;
   width: 32px;
   height: 3px;
-  border-radius: 9999px;
+  border-radius: 2px;
   margin-top: 0.7rem;
   background: linear-gradient(90deg, var(--accent-teal) 0%, var(--accent-magenta) 100%);
   transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1105,7 +1078,7 @@ button {
   color: var(--accent-teal);
   background: var(--accent-teal-soft);
   padding: 0.42rem 0.85rem;
-  border-radius: 9999px;
+  border-radius: 8px;
   border: 1px solid rgba(9, 108, 123, 0.14);
   transition: var(--transition);
 }
@@ -1136,7 +1109,7 @@ button {
 .founder-icon-link {
   width: 32px;
   height: 32px;
-  border-radius: 50%;
+  border-radius: 8px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1329,7 +1302,7 @@ button {
   color: var(--accent-teal);
   background: var(--accent-teal-soft);
   padding: 0.4rem 0.95rem;
-  border-radius: 9999px;
+  border-radius: 6px;
   margin-bottom: 1.35rem;
 }
 
@@ -1488,7 +1461,7 @@ button {
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid var(--border-glass);
   padding: 0.4rem;
-  border-radius: 9999px;
+  border-radius: 12px;
   box-shadow: 0 10px 25px -10px rgba(22, 18, 44, 0.08);
   margin-top: 2rem;
   flex-wrap: wrap;
@@ -1499,7 +1472,7 @@ button {
   border: none;
   color: var(--ink-body);
   padding: 0.55rem 1.25rem;
-  border-radius: 9999px;
+  border-radius: 8px;
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
@@ -1555,7 +1528,7 @@ button {
   color: var(--ink-navy);
   text-decoration: none;
   padding: 0.44rem 0.95rem;
-  border-radius: 999px;
+  border-radius: 8px;
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(11, 23, 42, 0.16);
   white-space: nowrap;
@@ -1673,7 +1646,7 @@ button {
   color: var(--ink-slate);
   background: rgba(9, 108, 123, 0.08);
   padding: 0.35rem 0.8rem;
-  border-radius: 9999px;
+  border-radius: 6px;
   white-space: nowrap;
 }
 
@@ -1888,7 +1861,7 @@ button {
   font-weight: 600;
   font-size: 0.9rem;
   padding: 0.85rem 1.5rem;
-  border-radius: 9999px;
+  border-radius: 10px;
   box-shadow: 0 18px 36px rgba(18, 22, 38, 0.25);
   display: flex;
   align-items: center;
@@ -1911,7 +1884,7 @@ button {
   color: #ffffff;
   font-size: 0.72rem;
   padding: 0.15rem 0.5rem;
-  border-radius: 9999px;
+  border-radius: 6px;
   font-weight: 700;
   opacity: 0;
   transition: opacity 0.2s ease;
@@ -1935,7 +1908,7 @@ button {
   color: var(--accent-teal);
   background: var(--accent-teal-soft);
   padding: 0.38rem 0.95rem;
-  border-radius: 9999px;
+  border-radius: 6px;
   margin-bottom: 1.25rem;
 }
 
@@ -2152,7 +2125,7 @@ button {
   color: var(--accent-magenta);
   background: rgba(214, 0, 92, 0.08);
   padding: 0.32rem 0.75rem;
-  border-radius: 9999px;
+  border-radius: 6px;
 }
 
 .pillar-title {
@@ -2185,7 +2158,7 @@ button {
   color: var(--ink-slate);
   background: var(--bg-page);
   padding: 0.3rem 0.75rem;
-  border-radius: 9999px;
+  border-radius: 6px;
 }
 
 /* Home Strategic Pitch Comparison Matrix */
@@ -2417,8 +2390,6 @@ button {
 }
 
 /* Ambient Backdrop Hardware Acceleration */
-.ambient-glass-pillar,
-.ambient-glass-ridge,
 .ambient-corner-coil {
   will-change: transform;
   transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1);

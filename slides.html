@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Design System Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=20261116">
+  <link rel="stylesheet" href="style.css?v=20261117">
 
   <style>
     /* ==========================================================================
@@ -64,7 +64,7 @@
       background: rgba(243, 242, 248, 0.9);
       border: 1px solid rgba(36, 41, 58, 0.08);
       padding: 0.28rem;
-      border-radius: 9999px;
+      border-radius: 10px;
     }
 
     .deck-filter-pill {
@@ -74,7 +74,7 @@
       font-size: 0.78rem;
       font-weight: 700;
       padding: 0.42rem 0.95rem;
-      border-radius: 9999px;
+      border-radius: 7px;
       cursor: pointer;
       transition: var(--transition);
       white-space: nowrap;
@@ -106,7 +106,7 @@
       font-size: 0.78rem;
       font-weight: 600;
       padding: 0.45rem 0.9rem;
-      border-radius: 9999px;
+      border-radius: 8px;
       cursor: pointer;
       transition: var(--transition);
       white-space: nowrap;
@@ -222,7 +222,7 @@
       background: rgba(255, 255, 255, 0.85);
       border: 1px solid rgba(36, 41, 58, 0.1);
       padding: 0.34rem 0.85rem;
-      border-radius: 9999px;
+      border-radius: 6px;
       box-shadow: 0 6px 16px -6px rgba(22, 18, 44, 0.08);
     }
 
@@ -347,7 +347,7 @@
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       border: 1px solid rgba(36, 41, 58, 0.1);
-      border-radius: 9999px;
+      border-radius: 12px;
       padding: 0.45rem 0.65rem;
       display: flex;
       align-items: center;
@@ -358,7 +358,7 @@
     .deck-nav-btn {
       width: 38px;
       height: 38px;
-      border-radius: 50%;
+      border-radius: 8px;
       border: 1px solid rgba(36, 41, 58, 0.1);
       background: var(--bg-white);
       color: var(--ink-navy);
@@ -391,7 +391,7 @@
     .deck-dot {
       width: 9px;
       height: 9px;
-      border-radius: 9999px;
+      border-radius: 3px;
       border: none;
       background: rgba(36, 41, 58, 0.18);
       cursor: pointer;
@@ -558,10 +558,8 @@
 </head>
 <body class="deck-mode">
 
-  <!-- Ambient Frosted 3D Studio Backdrop -->
+  <!-- Ambient Studio Backdrop -->
   <div class="ambient-canvas" aria-hidden="true">
-    <div class="ambient-glass-pillar"></div>
-    <div class="ambient-glass-ridge"></div>
     <svg class="ambient-corner-coil" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <radialGradient id="porcelainGrad" cx="45%" cy="45%" r="55%">
@@ -596,13 +594,13 @@
           About Us (4 Slides)
         </button>
         <button class="deck-filter-pill" data-deck-filter="all" role="tab" aria-selected="false">
-          Full Website (19 Slides)
+          Full Website (15 Slides)
         </button>
         <button class="deck-filter-pill" data-deck-filter="home" role="tab" aria-selected="false">
           Home (5)
         </button>
         <button class="deck-filter-pill" data-deck-filter="projects" role="tab" aria-selected="false">
-          Projects &amp; Case Studies (7)
+          Projects &amp; Case Studies (3)
         </button>
         <button class="deck-filter-pill" data-deck-filter="contact" role="tab" aria-selected="false">
           Contact Us (3)
@@ -646,8 +644,8 @@
          ABOUT US (about.html) — SLIDES 1 TO 4 (EXACT SEQUENCE & VERBATIM COPY)
          ======================================================================= -->
 
-    <!-- SLIDE 1: About Page Intro (Hero & Client-Centered Philosophy) -->
-    <section class="deck-slide active" data-deck-group="about" data-slide-title="Our Client-Centered Philosophy">
+    <!-- SLIDE 1: About Page Intro -->
+    <section class="deck-slide active" data-deck-group="about" data-slide-title="How We Think">
       <div class="deck-slide-inner">
         <div class="slide-meta-bar">
           <span class="slide-seq-pill"><span class="seq-dot"></span><span class="slide-seq-label">SLIDE 01 / 04</span> &bull; ABOUT US</span>
@@ -655,19 +653,19 @@
         </div>
 
         <div class="frosted-panel" style="padding: 4rem 3.5rem;">
-          <div class="page-eyebrow">Our Client-Centered Philosophy</div>
+          <div class="page-eyebrow">How We Think</div>
           <h1 class="page-title" style="max-width: 900px; margin-bottom: 1.65rem;">
             Your business first. <strong>Technology</strong> <span class="ink-dark">second.</span>
           </h1>
           <p class="page-lead" style="max-width: 780px; font-size: 1.15rem; line-height: 1.75;">
-            Harmony IT Consultancy was founded on a simple conviction: software should conform to your operational realities&mdash;never the other way around. We partner directly with founders and business owners to engineer systems that solve bottlenecks, streamline daily operations, and scale revenue.
+            We started Harmony IT Consultancy with a straightforward belief: software should fit the way your team works, not force everyone into rigid habits. You work directly with us to build dependable tools that solve everyday bottlenecks and support steady growth.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- SLIDE 2: Mission & Client-Centered Guarantee -->
-    <section class="deck-slide" data-deck-group="about" data-slide-title="Our Mission &amp; Client-Centered Guarantee">
+    <!-- SLIDE 2: Mission & Guarantee -->
+    <section class="deck-slide" data-deck-group="about" data-slide-title="Why We Do This">
       <div class="deck-slide-inner">
         <div class="slide-meta-bar">
           <span class="slide-seq-pill"><span class="seq-dot"></span><span class="slide-seq-label">SLIDE 02 / 04</span> &bull; ABOUT US</span>
@@ -676,22 +674,22 @@
 
         <div class="frosted-panel split-grid-2">
           <div>
-            <div class="page-eyebrow">Our Mission</div>
+            <div class="page-eyebrow">Why We Do This</div>
             <h2 style="font-size: clamp(1.65rem, 2.8vw, 2.25rem); font-weight: 700; color: var(--ink-navy); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1rem;">
-              Bridging daily operations and revenue-generating software.
+              Building software that actually helps people do their jobs.
             </h2>
             <p style="font-size: 0.95rem; color: var(--ink-body); line-height: 1.7; margin-bottom: 1rem;">
-              Too many businesses invest in static websites that do nothing to assist day-to-day workflows. Staff are left manually handling inquiries, scheduling bookings in fragmented chat threads, and reconciling disconnected spreadsheets.
+              Too many companies pay for websites that look fine on launch day but sit untouched while staff go back to chasing chat threads, juggling bookings, and fixing spreadsheets by hand.
             </p>
             <p style="font-size: 0.95rem; color: var(--ink-body); line-height: 1.7;">
-              At Harmony IT Consultancy, we build full-cycle digital systems: reliable backend architecture, fast cross-device frontend engineering, and intuitive UX/UI governance designed to turn complex business tasks into effortless user experiences.
+              At Harmony IT Consultancy, we handle the full picture: reliable backend systems, clean cross-device interfaces, and thoughtful UX design backed by plain-language documentation so your team feels confident from day one.
             </p>
           </div>
 
           <div class="cosmic-quote-card">
-            <div class="cosmic-eyebrow">Client-Centered Guarantee</div>
+            <div class="cosmic-eyebrow">In Our Own Words</div>
             <blockquote class="cosmic-quote-text">
-              &ldquo;If a digital platform doesn't solve a tangible operational problem and scale your business smarter, it's just decoration. We build systems that drive clarity, speed, and measurable ROI.&rdquo;
+              &ldquo;If a website or system doesn't make everyday work easier and help the business grow, it's just window dressing. We build tools people genuinely use, with clarity, speed, and lasting value.&rdquo;
             </blockquote>
             <div class="cosmic-quote-author">&mdash; Paulo, Gene &amp; Bry (Founding Team)</div>
           </div>
@@ -699,53 +697,53 @@
       </div>
     </section>
 
-    <!-- SLIDE 3: 4-Step Consultative Workflow -->
-    <section class="deck-slide" data-deck-group="about" data-slide-title="How We Partner: 4-Step Consultative Workflow">
+    <!-- SLIDE 3: 4-Step Working Process -->
+    <section class="deck-slide" data-deck-group="about" data-slide-title="How We Work Together: 4-Step Process">
       <div class="deck-slide-inner">
         <div class="slide-meta-bar">
           <span class="slide-seq-pill"><span class="seq-dot"></span><span class="slide-seq-label">SLIDE 03 / 04</span> &bull; ABOUT US</span>
           <span class="slide-source-tag">harmonyitc.dev/about.html &mdash; Section 3 of 4</span>
         </div>
 
-        <div class="page-eyebrow">How We Partner</div>
+        <div class="page-eyebrow">How We Work Together</div>
         <h2 style="font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 400; color: var(--ink-slate); letter-spacing: -0.025em;">
-          Our 4-step consultative <strong style="font-weight: 700; color: var(--accent-teal);">workflow.</strong>
+          Our 4-step <strong style="font-weight: 700; color: var(--accent-teal);">working process.</strong>
         </h2>
 
         <div class="process-grid-4">
           <div class="process-card">
             <div class="process-num">01</div>
-            <div class="process-tag">Discovery</div>
-            <h3 class="process-title">Business &amp; Problem Audit</h3>
+            <div class="process-tag">Listening</div>
+            <h3 class="process-title">Understand the Real Problem</h3>
             <p class="process-desc">
-              We interview your team to uncover operational bottlenecks, lost inquiries, and manual friction, defining clear measurable outcomes before writing code.
+              We speak with the people doing the daily work to see where time is lost, where inquiries drop off, and what needs to change before writing any code.
             </p>
           </div>
 
           <div class="process-card">
             <div class="process-num">02</div>
-            <div class="process-tag">Strategy</div>
-            <h3 class="process-title">UX &amp; Architecture Blueprint</h3>
+            <div class="process-tag">Planning</div>
+            <h3 class="process-title">Design &amp; System Plan</h3>
             <p class="process-desc">
-              We craft cohesive design systems, intuitive end-to-end user journeys, responsive layouts, and scalable technical infrastructure tailored to your brand.
+              We map out clear user flows, readable layouts, and a reliable backend setup shaped around your goals and timeline.
             </p>
           </div>
 
           <div class="process-card">
             <div class="process-num">03</div>
-            <div class="process-tag">Engineering</div>
-            <h3 class="process-title">Full-Stack Execution</h3>
+            <div class="process-tag">Building</div>
+            <h3 class="process-title">Focused Development</h3>
             <p class="process-desc">
-              Enterprise-grade APIs, secure cloud foundations, modular UI components, and automated booking or operations tools engineered with rigorous QA testing.
+              We build dependable APIs, responsive interfaces, and practical workflow tools, testing every flow carefully before anything goes live.
             </p>
           </div>
 
           <div class="process-card">
             <div class="process-num">04</div>
-            <div class="process-tag">Growth</div>
-            <h3 class="process-title">Launch, SOPs &amp; Scale</h3>
+            <div class="process-tag">Support</div>
+            <h3 class="process-title">Launch, Guides &amp; Growth</h3>
             <p class="process-desc">
-              We deploy cleanly, deliver standardized operational documentation, onboard your team, and continuously optimize conversion and system uptime.
+              We launch cleanly, hand over clear operating guides for your staff, and stay close to support updates as your business grows.
             </p>
           </div>
         </div>
@@ -753,7 +751,7 @@
     </section>
 
     <!-- SLIDE 4: Founding Team Section -->
-    <section class="deck-slide" data-deck-group="about" data-slide-title="Founding Team: The Team Driving Your Success">
+    <section class="deck-slide" data-deck-group="about" data-slide-title="Founding Team: The People Behind Your Project">
       <div class="deck-slide-inner">
         <div class="slide-meta-bar">
           <span class="slide-seq-pill"><span class="seq-dot"></span><span class="slide-seq-label">SLIDE 04 / 04</span> &bull; ABOUT US</span>
@@ -762,11 +760,11 @@
 
         <div class="team-header-row">
           <h2 class="team-heading">
-            <span class="team-heading-sub">The team driving</span>
-            <span class="team-heading-main">YOUR SUCCESS.</span>
+            <span class="team-heading-sub">The people behind</span>
+            <span class="team-heading-main">YOUR PROJECT.</span>
           </h2>
           <p class="team-intro">
-            Direct, senior-level access. You collaborate directly with our founders from initial strategy through daily operations rollout.
+            No account managers in the middle. You speak and work directly with Paulo, Gene, and Bry from first call to rollout.
           </p>
         </div>
 
@@ -780,7 +778,7 @@
               </div>
             </div>
             <p class="team-bio">
-              Steers company vision while architecting the enterprise-grade backends, APIs, and secure cloud infrastructure that power our clients' mission-critical platforms. Focused on high-availability systems, rigorous data governance, and scalable technical foundations.
+              Guides company direction while designing the backend systems, APIs, and cloud setups our clients rely on every day. Focused on dependable uptime, clean data organization, and foundations built to grow smoothly.
             </p>
           </article>
 
@@ -793,7 +791,7 @@
               </div>
             </div>
             <p class="team-bio">
-              Ensures your web applications run with fluid performance and flawless cross-device responsiveness. Engineers clean client-side architectures, modular UI components, and custom Tailwind CSS systems that turn intricate user interfaces into fast, intuitive, and reliable digital products.
+              Software and application developer building reliable web platforms, APIs, and offline-first cross-platform Flutter apps since 2011. Writes clean Vue.js and Tailwind CSS interfaces, Python automation, and modular systems that turn complex daily workflows into straightforward tools.
             </p>
           </article>
 
@@ -806,7 +804,7 @@
               </div>
             </div>
             <p class="team-bio">
-              Ensures your platforms achieve effortless usability, strict accessibility compliance, and structured operational governance. Designs end-to-end user journeys, cohesive design systems, and standardized operational SOPs&mdash;bridging human-centered design with rigorous UI testing to turn complex software into clear, reliable user experiences.
+              Licensed Psychometrician and Guidance Associate (B.S. Psychology, Xavier University &ndash; Ateneo de Cagayan) bringing human insight into software delivery. Shapes clear UX/UI flows, straightforward operational SOPs, and thorough QA testing so every platform feels natural and easy for teams to adopt.
             </p>
           </article>
         </div>
@@ -827,19 +825,19 @@
 
         <div class="hero-container">
           <div class="hero-copy">
-            <div class="hero-eyebrow">Client-Centered Web &amp; Business Systems</div>
+            <div class="hero-eyebrow">Practical Web &amp; Business Systems</div>
             <h2 class="hero-headline">
               <span class="hero-line-light">Scale your</span>
               <span class="hero-line-teal">Business</span>
               <span class="hero-line-dark">Smarter.</span>
             </h2>
             <p class="hero-sublead" style="margin-top: 1rem; margin-bottom: 1.15rem;">
-              We engineer custom website products that do far more than look impressive&mdash;built to solve operational bottlenecks, amplify your brand 24/7, automate daily workflows, and generate measurable revenue.
+              We design and build custom websites that work as hard as your team does, helping you clear everyday bottlenecks, present your work clearly online, organize daily operations, and grow steady revenue.
             </p>
 
             <div class="pitch-focus-box" style="margin-bottom: 0;">
               <div class="pitch-focus-label">
-                <span>Interactive Pitch Focus &mdash; Select your primary business goal:</span>
+                <span>Choose what matters most to your business right now:</span>
               </div>
               <div class="pitch-focus-pills" role="tablist" aria-label="Business Priorities">
                 <button class="pitch-focus-btn active" data-pillar="problem" role="tab" aria-selected="true" type="button">
@@ -848,7 +846,7 @@
                 </button>
                 <button class="pitch-focus-btn" data-pillar="promo" role="tab" aria-selected="false" type="button">
                   <span class="pitch-focus-num">02</span>
-                  <span>Internet Presence</span>
+                  <span>Online Presence</span>
                 </button>
                 <button class="pitch-focus-btn" data-pillar="operations" role="tab" aria-selected="false" type="button">
                   <span class="pitch-focus-num">03</span>
@@ -856,12 +854,12 @@
                 </button>
                 <button class="pitch-focus-btn" data-pillar="income" role="tab" aria-selected="false" type="button">
                   <span class="pitch-focus-num">04</span>
-                  <span>Generate Income</span>
+                  <span>Grow Revenue</span>
                 </button>
               </div>
               <div class="pitch-focus-panel">
                 <p id="pitch-focus-text">
-                  <strong>Pillar 01 / Problem-Solving Engine:</strong> We diagnose where your current workflow leaks customers, time, or revenue&mdash;then build custom digital solutions that eliminate those friction points permanently.
+                  <strong>01 / Solving Real Problems:</strong> We look at where your team loses time, misses inquiries, or gets stuck in manual steps, then build straightforward tools that fix the root issue.
                 </p>
               </div>
             </div>
@@ -877,12 +875,12 @@
                 <div class="hero-3d-node node-problem is-active" data-pillar="problem">
                   <span class="node-dot"></span>
                   <span class="node-meta">01</span>
-                  <span class="node-label">Problem Solver</span>
+                  <span class="node-label">Problem Solving</span>
                 </div>
                 <div class="hero-3d-node node-promo" data-pillar="promo">
                   <span class="node-dot"></span>
                   <span class="node-meta">02</span>
-                  <span class="node-label">24/7 Presence</span>
+                  <span class="node-label">Online Presence</span>
                 </div>
                 <div class="hero-3d-node node-operations" data-pillar="operations">
                   <span class="node-dot"></span>
@@ -892,12 +890,12 @@
                 <div class="hero-3d-node node-income" data-pillar="income">
                   <span class="node-dot"></span>
                   <span class="node-meta">04</span>
-                  <span class="node-label">Revenue Engine</span>
+                  <span class="node-label">Steady Growth</span>
                 </div>
               </div>
               <div class="hero-3d-badge">
                 <img src="assets/harmony-icon.png" alt="" width="22" height="22">
-                <span>Connected Business Core</span>
+                <span>Built Around Your Business</span>
               </div>
             </div>
           </div>
@@ -906,7 +904,7 @@
     </section>
 
     <!-- SLIDE 6: Business Impact Outcome Metrics -->
-    <section class="deck-slide" data-deck-group="home" data-slide-title="Business Outcomes: 4-in-1 Integrated Asset">
+    <section class="deck-slide" data-deck-group="home" data-slide-title="Business Outcomes: One Connected Setup">
       <div class="deck-slide-inner">
         <div class="slide-meta-bar">
           <span class="slide-seq-pill"><span class="seq-dot"></span><span class="slide-seq-label">SLIDE 06 / 19</span> &bull; HOME</span>
@@ -914,47 +912,47 @@
         </div>
 
         <div style="margin-bottom: 1.75rem;">
-          <div class="page-eyebrow">Measurable Business Impact</div>
+          <div class="page-eyebrow">What You Gain</div>
           <h2 style="font-size: clamp(1.85rem, 3.2vw, 2.65rem); font-weight: 400; color: var(--ink-slate); letter-spacing: -0.025em;">
-            Built for <strong style="font-weight: 700; color: var(--accent-teal);">daily utility &amp; ROI.</strong>
+            Built for <strong style="font-weight: 700; color: var(--accent-teal);">daily utility &amp; steady growth.</strong>
           </h2>
         </div>
 
         <div class="home-metrics-grid">
           <div class="home-metric-card">
-            <div class="home-metric-val">4-in-1</div>
-            <div class="home-metric-title">Integrated Asset</div>
+            <div class="home-metric-val">4 Core Areas</div>
+            <div class="home-metric-title">One Connected Setup</div>
             <p class="home-metric-desc">
-              Problem-solver, 24/7 promotion, operational engine &amp; income generator in one cohesive system.
+              Problem-solving, online visibility, day-to-day workflows, and revenue support working together.
             </p>
           </div>
           <div class="home-metric-card">
             <div class="home-metric-val">24/7</div>
-            <div class="home-metric-title">Digital Presence</div>
+            <div class="home-metric-title">Always Accessible</div>
             <p class="home-metric-desc">
-              Always discoverable, showcasing your brand credibility and capturing customer interest around the clock.
+              Your business stays easy to find, read, and contact at any hour on desktop or phone.
             </p>
           </div>
           <div class="home-metric-card">
-            <div class="home-metric-val">3x</div>
-            <div class="home-metric-title">Daily Efficiency</div>
+            <div class="home-metric-val">Clearer</div>
+            <div class="home-metric-title">Daily Workflows</div>
             <p class="home-metric-desc">
-              Automating repetitive bookings, customer inquiries, invoicing, and daily dispatch workflows.
+              Cut down repetitive back-and-forth across scheduling, customer updates, invoicing, and job tracking.
             </p>
           </div>
           <div class="home-metric-card">
             <div class="home-metric-val">100%</div>
-            <div class="home-metric-title">Tailored to You</div>
+            <div class="home-metric-title">Custom-Built</div>
             <p class="home-metric-desc">
-              Engineered directly around your operational realities and measurable business revenue goals.
+              Designed around how your team actually works rather than forcing you into generic templates.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SLIDE 7: The 4 Core Website Product Pillars -->
-    <section class="deck-slide" data-deck-group="home" data-slide-title="The 4 Pillars of Every HarmonyITC Product">
+    <!-- SLIDE 7: Four Ways We Build -->
+    <section class="deck-slide" data-deck-group="home" data-slide-title="Four Ways We Build For Your Business">
       <div class="deck-slide-inner">
         <div class="slide-meta-bar">
           <span class="slide-seq-pill"><span class="seq-dot"></span><span class="slide-seq-label">SLIDE 07 / 19</span> &bull; HOME</span>
@@ -963,136 +961,136 @@
 
         <div class="pillars-header-row" style="margin-bottom: 1.5rem;">
           <div>
-            <div class="page-eyebrow" style="margin-bottom: 0.5rem;">Our Core Values &amp; Thrusts</div>
+            <div class="page-eyebrow" style="margin-bottom: 0.5rem;">How Our Work Helps</div>
             <h2 style="font-size: clamp(1.65rem, 2.8vw, 2.3rem); font-weight: 400; color: var(--ink-slate); letter-spacing: -0.025em;">
-              The 4 pillars of every <strong style="font-weight: 700; color: var(--accent-teal);">HarmonyITC product.</strong>
+              Four ways we build for <strong style="font-weight: 700; color: var(--accent-teal);">your business.</strong>
             </h2>
           </div>
           <p class="team-intro" style="max-width: 400px;">
-            Every digital platform we engineer is strictly built around your business priorities&mdash;transforming your web presence from an overhead expense into a high-yield asset.
+            Every project starts with what your company actually needs, turning your website into a practical tool your team and customers rely on every day.
           </p>
         </div>
 
         <div class="pillars-grid-2x2" style="gap: 1.15rem;">
           <article class="pillar-card" style="padding: 1.35rem 1.5rem;">
             <div class="pillar-card-top" style="margin-bottom: 0.6rem;">
-              <h3 class="pillar-title" style="font-size: 1.1rem; margin-bottom: 0;">01 / A Solution to a Problem</h3>
-              <span class="pillar-num-tag">Pillar 01</span>
+              <h3 class="pillar-title" style="font-size: 1.1rem; margin-bottom: 0;">01 / Solving Everyday Bottlenecks</h3>
+              <span class="pillar-num-tag">Area 01</span>
             </div>
             <p class="pillar-desc" style="font-size: 0.84rem; margin-bottom: 0.75rem;">
-              We identify your operational bottlenecks&mdash;such as lost customer inquiries, manual scheduling headaches, or scattered records&mdash;and engineer targeted digital systems that eliminate friction and save valuable time.
+              Good software should never add extra steps. We spot where inquiries slip through, schedules clash, or records get messy, then build clean tools that lighten your team's load.
             </p>
             <div class="pillar-tags" style="padding-top: 0.65rem;">
-              <span class="pillar-tag">Bottleneck Diagnosis</span>
-              <span class="pillar-tag">Workflow Automation</span>
-              <span class="pillar-tag">Frictionless Experience</span>
+              <span class="pillar-tag">Process Review</span>
+              <span class="pillar-tag">Workflow Tools</span>
+              <span class="pillar-tag">Less Manual Work</span>
             </div>
           </article>
 
           <article class="pillar-card" style="padding: 1.35rem 1.5rem;">
             <div class="pillar-card-top" style="margin-bottom: 0.6rem;">
-              <h3 class="pillar-title" style="font-size: 1.1rem; margin-bottom: 0;">02 / Promotional Material &amp; Internet Presence</h3>
-              <span class="pillar-num-tag">Pillar 02</span>
+              <h3 class="pillar-title" style="font-size: 1.1rem; margin-bottom: 0;">02 / A Trustworthy Presence Online</h3>
+              <span class="pillar-num-tag">Area 02</span>
             </div>
             <p class="pillar-desc" style="font-size: 0.84rem; margin-bottom: 0.75rem;">
-              Your website is your company's 24/7 digital flagship. We create an authoritative internet presence with high-converting storytelling, search engine visibility (SEO), and lightning-fast mobile performance.
+              Your website is often where people meet your company first. We make sure it reads clearly, loads fast on any phone, shows up well in search, and reflects your standards.
             </p>
             <div class="pillar-tags" style="padding-top: 0.65rem;">
-              <span class="pillar-tag">24/7 Digital Flagship</span>
-              <span class="pillar-tag">SEO Authority</span>
-              <span class="pillar-tag">High-Trust Branding</span>
+              <span class="pillar-tag">Clear Messaging</span>
+              <span class="pillar-tag">Search Friendly</span>
+              <span class="pillar-tag">Mobile Ready</span>
             </div>
           </article>
 
           <article class="pillar-card" style="padding: 1.35rem 1.5rem;">
             <div class="pillar-card-top" style="margin-bottom: 0.6rem;">
-              <h3 class="pillar-title" style="font-size: 1.1rem; margin-bottom: 0;">03 / System for Efficient Daily Operations</h3>
-              <span class="pillar-num-tag">Pillar 03</span>
+              <h3 class="pillar-title" style="font-size: 1.1rem; margin-bottom: 0;">03 / Support for Daily Operations</h3>
+              <span class="pillar-num-tag">Area 03</span>
             </div>
             <p class="pillar-desc" style="font-size: 0.84rem; margin-bottom: 0.75rem;">
-              Far beyond a surface presentation, our products integrate directly into your daily routine with automated booking and reservation systems, client self-service portals, and job order dispatchers.
+              Instead of stopping at static pages, we connect your website to booking requests, job orders, client portals, and team dashboards your staff uses every morning.
             </p>
             <div class="pillar-tags" style="padding-top: 0.65rem;">
-              <span class="pillar-tag">Daily Workflows</span>
-              <span class="pillar-tag">Booking &amp; Dispatch</span>
               <span class="pillar-tag">Client Portals</span>
+              <span class="pillar-tag">Scheduling &amp; Dispatch</span>
+              <span class="pillar-tag">Team Dashboards</span>
             </div>
           </article>
 
           <article class="pillar-card" style="padding: 1.35rem 1.5rem;">
             <div class="pillar-card-top" style="margin-bottom: 0.6rem;">
-              <h3 class="pillar-title" style="font-size: 1.1rem; margin-bottom: 0;">04 / Income-Generating Business Engine</h3>
-              <span class="pillar-num-tag">Pillar 04</span>
+              <h3 class="pillar-title" style="font-size: 1.1rem; margin-bottom: 0;">04 / A Reliable Path to Revenue</h3>
+              <span class="pillar-num-tag">Area 04</span>
             </div>
             <p class="pillar-desc" style="font-size: 0.84rem; margin-bottom: 0.75rem;">
-              Your website should pay for itself many times over. We design conversion funnels, automated lead capture pipelines, seamless digital checkout flows, and customer retention systems that drive sales.
+              A well-built site helps pay its own way through clear inquiry paths, service estimators, and online payments that make following through simple for customers.
             </p>
             <div class="pillar-tags" style="padding-top: 0.65rem;">
-              <span class="pillar-tag">Lead Funnels</span>
-              <span class="pillar-tag">Automated Sales</span>
-              <span class="pillar-tag">Measurable ROI</span>
+              <span class="pillar-tag">Clear Inquiry Paths</span>
+              <span class="pillar-tag">Online Payments</span>
+              <span class="pillar-tag">Repeat Business</span>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- SLIDE 8: Strategic Pitch Comparison Matrix -->
-    <section class="deck-slide" data-deck-group="home" data-slide-title="Strategic Pitch Comparison: Brochure vs. Business Engine">
+    <!-- SLIDE 8: Practical Comparison Matrix -->
+    <section class="deck-slide" data-deck-group="home" data-slide-title="Comparison: Brochure Site vs. Custom Web System">
       <div class="deck-slide-inner">
         <div class="slide-meta-bar">
           <span class="slide-seq-pill"><span class="seq-dot"></span><span class="slide-seq-label">SLIDE 08 / 19</span> &bull; HOME</span>
           <span class="slide-source-tag">harmonyitc.dev/index.html &mdash; Section 4 of 5</span>
         </div>
 
-        <div class="page-eyebrow" style="margin-bottom: 0.6rem;">Strategic Pitch Comparison</div>
+        <div class="page-eyebrow" style="margin-bottom: 0.6rem;">A Practical Comparison</div>
         <h2 style="font-size: clamp(1.65rem, 2.8vw, 2.3rem); font-weight: 400; color: var(--ink-slate); letter-spacing: -0.025em;">
-          Why standard websites fail &mdash; <strong style="font-weight: 700; color: var(--ink-navy);">and how we differ.</strong>
+          Why basic template sites fall short, <strong style="font-weight: 700; color: var(--ink-navy);">and what we build instead.</strong>
         </h2>
 
         <div class="comparison-grid-2" style="margin-top: 1.35rem;">
           <div class="comparison-card-passive" style="padding: 1.85rem;">
-            <div class="process-tag" style="margin-bottom: 0.3rem;">Traditional Brochure Site</div>
-            <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--ink-navy);">Passive Expense</h3>
+            <div class="process-tag" style="margin-bottom: 0.3rem;">Standard Brochure Site</div>
+            <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--ink-navy);">Sits on the Sidelines</h3>
             <ul class="comparison-list" style="margin-top: 1.1rem; gap: 0.85rem;">
               <li class="comparison-item" style="color: var(--ink-body);">
                 <span class="comparison-badge-cross" aria-hidden="true">&times;</span>
-                <span>Static digital brochure that offers zero daily operational utility.</span>
+                <span>Gives visitors general info, but doesn't help your team get real work done.</span>
               </li>
               <li class="comparison-item" style="color: var(--ink-body);">
                 <span class="comparison-badge-cross" aria-hidden="true">&times;</span>
-                <span>Requires staff to manually answer repetitive questions and track leads on spreadsheets.</span>
+                <span>Leaves staff copying messages, tracking requests, and updating spreadsheets by hand.</span>
               </li>
               <li class="comparison-item" style="color: var(--ink-body);">
                 <span class="comparison-badge-cross" aria-hidden="true">&times;</span>
-                <span>Disconnected from bookings, invoicing, inventory, and back-office systems.</span>
+                <span>Stays disconnected from your bookings, billing, inventory, or field operations.</span>
               </li>
               <li class="comparison-item" style="color: var(--ink-body);">
                 <span class="comparison-badge-cross" aria-hidden="true">&times;</span>
-                <span>Acts as an ongoing overhead cost with unproven or negative financial return.</span>
+                <span>Ends up as a recurring cost that rarely pulls its own weight.</span>
               </li>
             </ul>
           </div>
 
           <div class="comparison-card-engine" style="padding: 1.85rem;">
             <div class="cosmic-eyebrow" style="margin-bottom: 0.3rem;">The HarmonyITC Approach</div>
-            <h3 style="font-size: 1.35rem; font-weight: 700; color: #ffffff;">Active Business Engine</h3>
+            <h3 style="font-size: 1.35rem; font-weight: 700; color: #ffffff;">Works Alongside Your Team</h3>
             <ul class="comparison-list" style="margin-top: 1.1rem; gap: 0.85rem;">
               <li class="comparison-item" style="color: #e9e2f6;">
                 <span class="comparison-badge-check" aria-hidden="true">&#10003;</span>
-                <span><strong style="color: #ffffff;">Problem Solver:</strong> Tailored specifically to solve your company's friction and eliminate lost opportunities.</span>
+                <span><strong style="color: #ffffff;">Problem Solving:</strong> Shaped around the exact workflow gaps slowing your team down.</span>
               </li>
               <li class="comparison-item" style="color: #e9e2f6;">
                 <span class="comparison-badge-check" aria-hidden="true">&#10003;</span>
-                <span><strong style="color: #ffffff;">24/7 Promotion:</strong> Establishes dominant internet presence, search visibility, and professional credibility.</span>
+                <span><strong style="color: #ffffff;">Always Visible:</strong> Presents your services clearly, builds trust, and makes reaching you simple.</span>
               </li>
               <li class="comparison-item" style="color: #e9e2f6;">
                 <span class="comparison-badge-check" aria-hidden="true">&#10003;</span>
-                <span><strong style="color: #ffffff;">Daily Operations Hub:</strong> Seamlessly manages reservations, job orders, inquiries, and staff tasks automatically.</span>
+                <span><strong style="color: #ffffff;">Daily Operations:</strong> Handles inquiries, reservations, job orders, and updates in one organized place.</span>
               </li>
               <li class="comparison-item" style="color: #e9e2f6;">
                 <span class="comparison-badge-check" aria-hidden="true">&#10003;</span>
-                <span><strong style="color: #ffffff;">Income Generator:</strong> Converts visitors into paying clients through structured funnels, generating clear ROI.</span>
+                <span><strong style="color: #ffffff;">Built for Growth:</strong> Guides interested visitors smoothly from first question to completed sale.</span>
               </li>
             </ul>
           </div>
@@ -1101,7 +1099,7 @@
     </section>
 
     <!-- SLIDE 9: Home Kinetic 3D Typography Cylinder & Strategic Callout -->
-    <section class="deck-slide" data-deck-group="home" data-slide-title="Kinetic 3D Promise &amp; Consultation Callout">
+    <section class="deck-slide" data-deck-group="home" data-slide-title="Kinetic 3D Promise &amp; Conversation Callout">
       <div class="deck-slide-inner">
         <div class="slide-meta-bar">
           <span class="slide-seq-pill"><span class="seq-dot"></span><span class="slide-seq-label">SLIDE 09 / 19</span> &bull; HOME</span>
@@ -1110,16 +1108,16 @@
 
         <div class="frosted-panel split-grid-2" style="padding: 2.25rem 3rem;">
           <div>
-            <div class="page-eyebrow">Let's Build For Your Business</div>
+            <div class="page-eyebrow">Start a Conversation</div>
             <h2 style="font-size: clamp(1.75rem, 3vw, 2.35rem); font-weight: 700; color: var(--ink-navy); line-height: 1.18; letter-spacing: -0.02em; margin-bottom: 1rem;">
-              Ready to make your website <span style="color: var(--accent-teal);">work for you?</span>
+              Ready for a website that <span style="color: var(--accent-teal);">helps run the work?</span>
             </h2>
             <p style="font-size: 0.95rem; color: var(--ink-body); line-height: 1.7; margin-bottom: 1.5rem;">
-              Assemble a custom project brief or explore how our client-first methodology and engineering architecture turn operational bottlenecks into scalable growth.
+              Put together a quick project brief or talk through your current bottlenecks directly with our founders. No sales pressure, just a practical chat about what fits your team.
             </p>
             <div style="display: flex; align-items: center; gap: 0.9rem; flex-wrap: wrap;">
               <a href="contact.html" class="cta-pill-btn">
-                <span>Start Consultation</span>
+                <span>Talk With Us</span>
                 <span class="cta-arrow-pocket" aria-hidden="true">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -1128,7 +1126,7 @@
                 </span>
               </a>
               <a href="about.html" class="btn-outline-teal">
-                <span>Our Philosophy &amp; Team</span>
+                <span>Meet the Team</span>
               </a>
             </div>
           </div>
@@ -1161,12 +1159,12 @@
         </div>
 
         <div style="margin-bottom: 1.5rem;">
-          <div class="page-eyebrow" style="margin-bottom: 0.65rem;">Client-Centered Portfolio &amp; Live Deployments</div>
+          <div class="page-eyebrow" style="margin-bottom: 0.65rem;">Selected Work &amp; Live Systems</div>
           <h2 class="page-title" style="font-size: clamp(1.9rem, 3.4vw, 2.75rem); margin-bottom: 0.5rem;">
-            Built to solve, operate, <strong>and scale</strong> <span class="ink-dark">smarter.</span>
+            Practical systems built for <strong>real</strong> <span class="ink-dark">operations.</span>
           </h2>
           <p class="page-lead" style="font-size: 0.94rem; max-width: 780px;">
-            Explore Harmony IT Consultancy&rsquo;s live SwitchFiber platforms powering internal fiber network operations and subscriber self-service across Binangonan and Rizal.
+            Explore the live SwitchFiber platforms we built, helping internal teams manage daily fiber operations and giving subscribers across Binangonan and Rizal an easier self-service experience.
           </p>
         </div>
 
@@ -1324,19 +1322,19 @@
         </div>
 
         <div class="frosted-panel" style="padding: 4rem 3.5rem;">
-          <div class="page-eyebrow">Direct Strategic Consultation</div>
+          <div class="page-eyebrow">Get in Touch</div>
           <h2 class="page-title" style="max-width: 860px; margin-bottom: 1.5rem;">
-            Let's scale your <strong>business</strong> <span class="ink-dark">together.</span>
+            Let's build something <strong>useful</strong> <span class="ink-dark">together.</span>
           </h2>
           <p class="page-lead" style="max-width: 760px; font-size: 1.12rem;">
-            Skip bureaucratic ticket queues and collaborate directly with our founding leads. Select your priorities below to automatically prepare a focused project brief.
+            Skip long ticket queues and speak directly with our founders. Pick what matters most to your team below to put together a quick project brief in seconds.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- SLIDE 16: Interactive Project Brief Builder -->
-    <section class="deck-slide" data-deck-group="contact" data-slide-title="Interactive Project Brief Builder">
+    <!-- SLIDE 16: Quick Project Brief -->
+    <section class="deck-slide" data-deck-group="contact" data-slide-title="Quick Project Brief">
       <div class="deck-slide-inner">
         <div class="slide-meta-bar">
           <span class="slide-seq-pill"><span class="seq-dot"></span><span class="slide-seq-label">SLIDE 16 / 17</span> &bull; CONTACT US</span>
@@ -1344,21 +1342,21 @@
         </div>
 
         <div class="frosted-panel" style="padding: 2.25rem 2.5rem;">
-          <div class="page-eyebrow" style="margin-bottom: 0.75rem;">Interactive Project Brief Builder</div>
+          <div class="page-eyebrow" style="margin-bottom: 0.75rem;">Quick Project Brief</div>
           <h2 style="font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; color: var(--ink-navy); letter-spacing: -0.02em; margin-bottom: 0.35rem;">
-            What is your business priority today?
+            What would help your business most right now?
           </h2>
           <p style="font-size: 0.9rem; color: var(--ink-body); max-width: 680px;">
-            Select the capabilities your business needs so Paulo, Gene, and Bry can prepare targeted architectural recommendations before our first call.
+            Choose the areas you want to focus on so Paulo, Gene, and Bry can come prepared with practical ideas for our first conversation.
           </p>
 
           <div class="priority-checklist-grid" style="margin: 1.25rem 0 1.4rem;">
             <div class="priority-choice-card selected" data-priority="problem">
               <div class="priority-check-box">&#10003;</div>
               <div>
-                <div class="priority-choice-title">01 / Solve a Business Bottleneck</div>
+                <div class="priority-choice-title">01 / Fix a Workflow Bottleneck</div>
                 <div class="priority-choice-desc">
-                  Eliminate manual record-keeping, lost inquiries, customer friction, or disorganized spreadsheets.
+                  Replace manual record-keeping, missed inquiries, customer delays, or disorganized spreadsheets.
                 </div>
               </div>
             </div>
@@ -1366,9 +1364,9 @@
             <div class="priority-choice-card selected" data-priority="promo">
               <div class="priority-check-box">&#10003;</div>
               <div>
-                <div class="priority-choice-title">02 / 24/7 Internet Presence</div>
+                <div class="priority-choice-title">02 / Improve Online Presence</div>
                 <div class="priority-choice-desc">
-                  Establish authoritative search visibility (SEO), fast cross-device responsiveness, and brand credibility.
+                  Build a fast, mobile-ready site that clearly explains your services and ranks well in search.
                 </div>
               </div>
             </div>
@@ -1376,9 +1374,9 @@
             <div class="priority-choice-card selected" data-priority="operations">
               <div class="priority-check-box">&#10003;</div>
               <div>
-                <div class="priority-choice-title">03 / Automate Daily Operations</div>
+                <div class="priority-choice-title">03 / Organize Daily Operations</div>
                 <div class="priority-choice-desc">
-                  Streamline appointment booking, client self-service portals, job dispatch, or automated invoicing.
+                  Simplify bookings, client portals, job dispatch, and invoicing so day-to-day work flows smoothly.
                 </div>
               </div>
             </div>
@@ -1386,9 +1384,9 @@
             <div class="priority-choice-card selected" data-priority="income">
               <div class="priority-check-box">&#10003;</div>
               <div>
-                <div class="priority-choice-title">04 / Generate Measurable Revenue</div>
+                <div class="priority-choice-title">04 / Support Revenue Growth</div>
                 <div class="priority-choice-desc">
-                  Turn website visitors into paying customers via conversion funnels, digital payments, and lead engines.
+                  Guide interested visitors smoothly toward inquiries, quotes, bookings, or online payments.
                 </div>
               </div>
             </div>
@@ -1396,7 +1394,7 @@
 
           <div class="brief-action-bar" style="padding-top: 1.15rem;">
             <div class="brief-status-text">
-              Project Focus: <strong id="selected-priorities-summary">All 4 Pillars Selected (Complete Business Engine)</strong>
+              Selected Focus: <strong id="selected-priorities-summary">All 4 Areas Selected (Full Website &amp; System Setup)</strong>
             </div>
 
             <div style="display: flex; gap: 0.85rem; align-items: center; flex-wrap: wrap;">
@@ -1411,8 +1409,8 @@
                 </span>
               </button>
 
-              <a id="email-brief-btn" href="mailto:inquiries@harmonyitc.com?subject=Consultation%20Brief%20for%20HarmonyITC" class="btn-outline-teal">
-                <span>Send Tailored Email</span>
+              <a id="email-brief-btn" href="mailto:inquiries@harmonyitc.com?subject=Project%20Consultation%20Brief%20for%20HarmonyITC" class="btn-outline-teal">
+                <span>Send by Email</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="7" y1="17" x2="17" y2="7"></line>
                   <polyline points="7 7 17 7 17 17"></polyline>
@@ -1424,8 +1422,8 @@
       </div>
     </section>
 
-    <!-- SLIDE 17: Direct Email, Availability Guarantees & Harmony Wordmark -->
-    <section class="deck-slide" data-deck-group="contact" data-slide-title="Official Inquiries Email &amp; Service Guarantees">
+    <!-- SLIDE 17: Direct Email & Availability -->
+    <section class="deck-slide" data-deck-group="contact" data-slide-title="Direct Email &amp; Availability">
       <div class="deck-slide-inner">
         <div class="slide-meta-bar">
           <span class="slide-seq-pill"><span class="seq-dot"></span><span class="slide-seq-label">SLIDE 17 / 17</span> &bull; CONTACT US</span>
@@ -1435,7 +1433,7 @@
         <div class="contact-email-box" style="margin-top: 0;">
           <div style="display: flex; flex-direction: column; gap: 0.35rem;">
             <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: #c4b5df;">
-              Official Inquiries Email
+              Direct Inquiries Email
             </span>
             <span class="email-display">inquiries@harmonyitc.com</span>
           </div>
@@ -1457,7 +1455,7 @@
               class="btn-outline-teal"
               style="background: rgba(255,255,255,0.12); color: #ffffff; border-color: rgba(255,255,255,0.25);"
             >
-              <span>Open Mail Client</span>
+              <span>Open Mail App</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="7" y1="17" x2="17" y2="7"></line>
                 <polyline points="7 7 17 7 17 17"></polyline>
@@ -1468,21 +1466,21 @@
 
         <div class="contact-channels-grid" style="margin-top: 1.5rem;">
           <div class="contact-channel-card">
-            <div class="project-cat">Response Guarantee</div>
-            <div style="font-size: 1.2rem; font-weight: 700; color: var(--ink-navy); margin-bottom: 0.3rem;">&lt; 24 Hours</div>
-            <p style="font-size: 0.86rem; color: var(--ink-body);">Direct technical response from Paulo, Gene, or Bry.</p>
+            <div class="project-cat">Reply Time</div>
+            <div style="font-size: 1.2rem; font-weight: 700; color: var(--ink-navy); margin-bottom: 0.3rem;">Within 24 Hours</div>
+            <p style="font-size: 0.86rem; color: var(--ink-body);">A personal reply from Paulo, Gene, or Bry.</p>
           </div>
 
           <div class="contact-channel-card">
-            <div class="project-cat">Consulting Desk Hours</div>
+            <div class="project-cat">Office Hours</div>
             <div style="font-size: 1.2rem; font-weight: 700; color: var(--ink-navy); margin-bottom: 0.3rem;">Mon &ndash; Fri &bull; 9 AM &ndash; 6 PM</div>
-            <p style="font-size: 0.86rem; color: var(--ink-body);">Flexible strategy call slots for urgent business rollouts.</p>
+            <p style="font-size: 0.86rem; color: var(--ink-body);">Flexible call slots when you need to move quickly.</p>
           </div>
 
           <div class="contact-channel-card">
-            <div class="project-cat">Direct Team Access</div>
+            <div class="project-cat">Who You Reach</div>
             <div style="font-size: 1.2rem; font-weight: 700; color: var(--ink-navy); margin-bottom: 0.3rem;">Paulo &bull; Gene &bull; Bry</div>
-            <p style="font-size: 0.86rem; color: var(--ink-body);">Founding leads personally handle architectural scoping and rollout.</p>
+            <p style="font-size: 0.86rem; color: var(--ink-body);">You talk directly with the people designing and building your site.</p>
           </div>
         </div>
 
@@ -1540,7 +1538,7 @@
   </div>
 
   <!-- Site Script (Hero Parallax, WebGL Kinetic Cylinder, Brief Builder) -->
-  <script src="script.js?v=20261116"></script>
+  <script src="script.js?v=20261117"></script>
 
   <!-- Interactive Presentation Controller -->
   <script>
