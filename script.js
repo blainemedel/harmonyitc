@@ -1675,6 +1675,49 @@ ${priorityList}`;
       const linkDist = width < 640 ? 96 : 128;
       const pointerDist = width < 640 ? 130 : 175;
       const tSec = now * 0.001;
+      const wavePhase = prefersReduced ? 0 : tSec * 0.65;
+      const pNormX = pointer.active ? pointer.x / Math.max(1, width) : 0.5;
+      const pNormY = pointer.active ? pointer.y / Math.max(1, height) : 0.5;
+
+      // Flowing atmospheric studio glows & silk wave ribbons integrated into the background
+      const gx1 = width * (0.24 + Math.sin(wavePhase * 0.72) * 0.12 + (pNormX - 0.5) * 0.09);
+      const gy1 = height * (0.34 + Math.cos(wavePhase * 0.58) * 0.14 + (pNormY - 0.5) * 0.08);
+      const glow1 = ctx.createRadialGradient(gx1, gy1, 0, gx1, gy1, Math.max(width, height) * 0.45);
+      glow1.addColorStop(0, 'rgba(180, 208, 233, 0.14)');
+      glow1.addColorStop(0.55, 'rgba(58, 106, 147, 0.07)');
+      glow1.addColorStop(1, 'rgba(12, 45, 79, 0)');
+      ctx.fillStyle = glow1;
+      ctx.fillRect(0, 0, width, height);
+
+      const gx2 = width * (0.78 + Math.cos(wavePhase * 0.64) * 0.11 - (pNormX - 0.5) * 0.08);
+      const gy2 = height * (0.68 + Math.sin(wavePhase * 0.82) * 0.12 - (pNormY - 0.5) * 0.08);
+      const glow2 = ctx.createRadialGradient(gx2, gy2, 0, gx2, gy2, Math.max(width, height) * 0.42);
+      glow2.addColorStop(0, 'rgba(255, 112, 42, 0.08)');
+      glow2.addColorStop(0.5, 'rgba(77, 110, 143, 0.08)');
+      glow2.addColorStop(1, 'rgba(2, 11, 40, 0)');
+      ctx.fillStyle = glow2;
+      ctx.fillRect(0, 0, width, height);
+
+      const scrollShift = (window.scrollY || window.pageYOffset || 0) * 0.04;
+      for (let w = 0; w < 5; w++) {
+        ctx.beginPath();
+        const baseY = height * (0.26 + w * 0.13) - (scrollShift % 60);
+        const amp = 18 + w * 5;
+        const freq = 0.0042 + w * 0.0008;
+        for (let x = 0; x <= width; x += 18) {
+          const y =
+            baseY +
+            Math.sin(x * freq + wavePhase * (0.95 + w * 0.14) + w * 1.1) * amp +
+            Math.cos(x * freq * 0.52 - wavePhase * 0.65) * (amp * 0.42);
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = w === 2
+          ? 'rgba(216, 238, 255, 0.11)'
+          : 'rgba(156, 183, 212, 0.065)';
+        ctx.lineWidth = w === 2 ? 1.4 : 1;
+        ctx.stroke();
+      }
 
       // Update active click ripples
       for (let r = ripples.length - 1; r >= 0; r--) {
@@ -1797,203 +1840,6 @@ ${priorityList}`;
   }
 
   // ---------------------------------------------------------------------------
-  // 12. Harmony Motion Showcase Card (index.html)
-  // ---------------------------------------------------------------------------
-  function initHarmonyMotionShowcase() {
-    const stage = document.getElementById('harmony-motion-stage');
-    const canvas = document.getElementById('harmony-motion-canvas');
-    const subtitleEl = document.getElementById('harmony-motion-subtitle');
-    const captionEl = document.getElementById('harmony-motion-caption');
-    const toggleBtn = document.getElementById('harmony-motion-toggle');
-    const chapterBtns = Array.from(document.querySelectorAll('.harmony-chapter-btn[data-chapter]'));
-
-    if (!stage || !canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    const chapterConfig = {
-      web: {
-        subtitle: 'Public & Client Web \u2022 Built for clarity',
-        caption: 'Fast websites, serviceability checks & online inquiries',
-        speed: 0.72,
-        warmTint: [255, 112, 42],
-        coolTint: [180, 208, 233]
-      },
-      ops: {
-        subtitle: 'Operations Consoles \u2022 Unified daily work',
-        caption: 'Subscribers, plans, technician dispatch & records in one view',
-        speed: 0.92,
-        warmTint: [126, 153, 181],
-        coolTint: [216, 238, 255]
-      },
-      mobile: {
-        subtitle: 'Field Mobile Apps \u2022 Synced on site',
-        caption: 'Dedicated technician terminals built for real field workflows',
-        speed: 1.05,
-        warmTint: [255, 112, 42],
-        coolTint: [156, 183, 212]
-      },
-      growth: {
-        subtitle: 'Digital Billing & Growth \u2022 Steady revenue',
-        caption: 'Clear onboarding flows, status tracking & digital payments',
-        speed: 0.84,
-        warmTint: [180, 208, 233],
-        coolTint: [95, 124, 152]
-      }
-    };
-
-    let activeKey = 'web';
-    let paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let width = 0;
-    let height = 0;
-    let dpr = 1;
-    let pointerX = 0.5;
-    let pointerY = 0.5;
-
-    function updateToggleUI() {
-      if (!toggleBtn) return;
-      const icon = toggleBtn.querySelector('.motion-toggle-icon');
-      const label = toggleBtn.querySelector('.motion-toggle-label');
-      toggleBtn.setAttribute('aria-pressed', String(paused));
-      toggleBtn.setAttribute('aria-label', paused ? 'Play ambient wave motion' : 'Pause ambient wave motion');
-      if (icon) icon.innerHTML = paused ? '&#9654;' : '&#10074;&#10074;';
-      if (label) label.textContent = paused ? 'Paused' : 'Live Motion';
-    }
-
-    function resize() {
-      const rect = stage.getBoundingClientRect();
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = Math.max(240, rect.width || 480);
-      height = Math.max(180, rect.height || 280);
-      canvas.width = Math.round(width * dpr);
-      canvas.height = Math.round(height * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-
-    resize();
-    window.addEventListener('resize', resize);
-
-    chapterBtns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const key = btn.getAttribute('data-chapter');
-        if (!key || !chapterConfig[key]) return;
-        activeKey = key;
-        chapterBtns.forEach((b) => {
-          const match = b === btn;
-          b.classList.toggle('active', match);
-          b.setAttribute('aria-selected', String(match));
-        });
-        if (subtitleEl) subtitleEl.textContent = chapterConfig[key].subtitle;
-        if (captionEl) captionEl.textContent = chapterConfig[key].caption;
-      });
-    });
-
-    stage.addEventListener('pointermove', (e) => {
-      const rect = stage.getBoundingClientRect();
-      pointerX = Math.max(0, Math.min(1, (e.clientX - rect.left) / Math.max(1, rect.width)));
-      pointerY = Math.max(0, Math.min(1, (e.clientY - rect.top) / Math.max(1, rect.height)));
-    });
-
-    stage.addEventListener('pointerleave', () => {
-      pointerX = 0.5;
-      pointerY = 0.5;
-    });
-
-    let phase = 0;
-    let lastTime = performance.now();
-    let rafId = null;
-
-    function drawFrame(now) {
-      const dt = Math.min(0.05, Math.max(0.004, (now - lastTime) / 1000));
-      lastTime = now;
-
-      const cfg = chapterConfig[activeKey] || chapterConfig.web;
-      if (!paused) {
-        phase += dt * cfg.speed;
-      }
-
-      ctx.clearRect(0, 0, width, height);
-
-      // Matte studio gradient base
-      const baseGrad = ctx.createLinearGradient(0, 0, width, height);
-      baseGrad.addColorStop(0, '#0c2d4f');
-      baseGrad.addColorStop(0.52, '#17395c');
-      baseGrad.addColorStop(1, '#295e87');
-      ctx.fillStyle = baseGrad;
-      ctx.fillRect(0, 0, width, height);
-
-      // Soft flowing atmospheric ribbon glows (inspired by reference gradient motion)
-      const cx1 = width * (0.28 + Math.sin(phase * 0.9) * 0.14 + (pointerX - 0.5) * 0.12);
-      const cy1 = height * (0.38 + Math.cos(phase * 0.7) * 0.15 + (pointerY - 0.5) * 0.1);
-      const g1 = ctx.createRadialGradient(cx1, cy1, 0, cx1, cy1, width * 0.58);
-      g1.addColorStop(0, `rgba(${cfg.coolTint[0]}, ${cfg.coolTint[1]}, ${cfg.coolTint[2]}, 0.34)`);
-      g1.addColorStop(0.55, 'rgba(58, 106, 147, 0.16)');
-      g1.addColorStop(1, 'rgba(12, 45, 79, 0)');
-      ctx.fillStyle = g1;
-      ctx.fillRect(0, 0, width, height);
-
-      const cx2 = width * (0.76 + Math.cos(phase * 0.8) * 0.14 - (pointerX - 0.5) * 0.1);
-      const cy2 = height * (0.68 + Math.sin(phase * 1.1) * 0.14 - (pointerY - 0.5) * 0.1);
-      const g2 = ctx.createRadialGradient(cx2, cy2, 0, cx2, cy2, width * 0.52);
-      g2.addColorStop(0, `rgba(${cfg.warmTint[0]}, ${cfg.warmTint[1]}, ${cfg.warmTint[2]}, 0.22)`);
-      g2.addColorStop(0.52, 'rgba(77, 110, 143, 0.16)');
-      g2.addColorStop(1, 'rgba(2, 11, 40, 0)');
-      ctx.fillStyle = g2;
-      ctx.fillRect(0, 0, width, height);
-
-      // Smooth flowing silk wave bands across the frame
-      for (let w = 0; w < 5; w++) {
-        ctx.beginPath();
-        const baseY = height * (0.34 + w * 0.1);
-        const amp = 14 + w * 4;
-        const freq = 0.0085 + w * 0.0014;
-        for (let x = 0; x <= width; x += 10) {
-          const y =
-            baseY +
-            Math.sin(x * freq + phase * (1.1 + w * 0.16) + w) * amp +
-            Math.cos(x * freq * 0.5 - phase * 0.8) * (amp * 0.45);
-          if (x === 0) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
-        }
-        ctx.strokeStyle = w === 2
-          ? 'rgba(216, 238, 255, 0.24)'
-          : 'rgba(156, 183, 212, 0.13)';
-        ctx.lineWidth = w === 2 ? 1.5 : 1;
-        ctx.stroke();
-      }
-
-      if (!paused && !document.hidden) {
-        rafId = requestAnimationFrame(drawFrame);
-      } else {
-        rafId = null;
-      }
-    }
-
-    if (toggleBtn) {
-      toggleBtn.addEventListener('click', () => {
-        paused = !paused;
-        updateToggleUI();
-        if (!paused && rafId === null) {
-          lastTime = performance.now();
-          rafId = requestAnimationFrame(drawFrame);
-        } else if (paused) {
-          drawFrame(performance.now());
-        }
-      });
-    }
-
-    document.addEventListener('visibilitychange', () => {
-      if (!document.hidden && !paused && rafId === null) {
-        lastTime = performance.now();
-        rafId = requestAnimationFrame(drawFrame);
-      }
-    });
-
-    updateToggleUI();
-    rafId = requestAnimationFrame(drawFrame);
-  }
-
-  // ---------------------------------------------------------------------------
   // Initialize Everything
   // ---------------------------------------------------------------------------
   document.addEventListener('DOMContentLoaded', () => {
@@ -2010,6 +1856,5 @@ ${priorityList}`;
     initMultiLayerParallaxMotion();
     initCardTiltParallax();
     initInteractiveParticleField();
-    initHarmonyMotionShowcase();
   });
 })();
