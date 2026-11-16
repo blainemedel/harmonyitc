@@ -1353,6 +1353,10 @@ button {
   user-select: none;
 }
 
+body.home-page .footer-giant-wordmark {
+  color: #ffffff;
+}
+
 /* --------------------------------------------------
    Inner Pages Shared Components (About, Projects, Contact)
    -------------------------------------------------- */
