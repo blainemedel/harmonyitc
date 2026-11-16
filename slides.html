@@ -10,9 +10,9 @@
   <meta name="theme-color" content="#17395c">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/harmony-icon.png">
-  <link rel="shortcut icon" type="image/png" href="assets/harmony-icon.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/harmony-icon.png?v=20261119">
+  <link rel="shortcut icon" type="image/png" href="assets/harmony-icon.png?v=20261119">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png?v=20261119">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Design System Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=20261118">
+  <link rel="stylesheet" href="style.css?v=20261119">
 
   <style>
     /* ==========================================================================
@@ -51,9 +51,15 @@
       gap: 1rem;
     }
 
+    .deck-topbar .brand-logo {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+    }
+
     .deck-topbar .brand-mark-img {
-      filter: brightness(0) invert(1);
-      opacity: 0.95;
+      border-radius: 8px;
     }
 
     .deck-topbar-left {
@@ -589,7 +595,7 @@
     <div class="deck-topbar-left">
       <a href="about.html" class="brand-logo" aria-label="Harmony IT Consultancy About Page">
         <span class="brand-mark" aria-hidden="true">
-          <img src="assets/harmony-icon.png" alt="" class="brand-mark-img" width="512" height="512">
+          <img src="assets/harmony-icon.png?v=20261119" alt="" class="brand-mark-img" width="512" height="512">
         </span>
         <span class="brand-wordmark">
           <span class="brand-title">HARMONY</span>
@@ -902,7 +908,7 @@
                 </div>
               </div>
               <div class="hero-3d-badge">
-                <img src="assets/harmony-icon.png" alt="" width="22" height="22">
+                <img src="assets/harmony-icon.png?v=20261119" alt="" width="22" height="22">
                 <span>Built Around Your Business</span>
               </div>
             </div>

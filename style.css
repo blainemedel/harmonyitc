@@ -239,23 +239,33 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;
-  flex-shrink: 0;
-  max-width: 100%;
+  flex-shrink: 1;
+  min-width: 0;
+  max-width: calc(100% - 58px);
+  background: rgba(255, 255, 255, 0.96);
+  padding: clamp(0.28rem, 0.7vw, 0.42rem) clamp(0.62rem, 1.4vw, 0.92rem);
+  border-radius: 11px;
+  border: 1px solid rgba(186, 207, 229, 0.45);
+  box-shadow: 0 8px 20px -8px rgba(1, 10, 39, 0.52);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.brand-logo:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px -8px rgba(1, 10, 39, 0.62);
 }
 
 .brand-logo-img {
   display: block;
-  height: clamp(32px, 4.2vw, 44px);
+  height: clamp(24px, 3.6vw, 38px);
   width: auto;
-  max-width: min(210px, 56vw);
+  max-width: 100%;
   object-fit: contain;
-  filter: brightness(0) invert(1);
-  opacity: 0.96;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
 }
 
 .brand-logo:hover .brand-logo-img {
-  transform: translateY(-1px) scale(1.02);
+  transform: scale(1.015);
 }
 
 .brand-mark-img {
@@ -789,10 +799,10 @@ button {
 }
 
 .hero-3d-badge img {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
-  filter: brightness(0) invert(1);
+  border-radius: 4px;
 }
 
 /* --------------------------------------------------
@@ -2467,8 +2477,8 @@ body.home-page .footer-giant-wordmark {
     padding: 0 1.25rem;
   }
   .brand-logo-img {
-    height: clamp(28px, 7.5vw, 35px);
-    max-width: min(176px, 58vw);
+    height: clamp(22px, 6.2vw, 30px);
+    max-width: 100%;
   }
   .hero-section,
   .team-section,
