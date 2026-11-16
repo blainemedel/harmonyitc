@@ -2820,3 +2820,74 @@ html.js-parallax-ready .parallax-reveal.is-revealed {
     transition: none !important;
   }
 }
+
+/* ==========================================================================
+   Simplified Minimal View — Hide Redundant Descriptions Across All Pages
+   ========================================================================== */
+.hero-sublead,
+.page-lead,
+.team-intro,
+.pillar-desc,
+.home-comparison-section > .section-inner > p,
+.kinetic-section .frosted-panel > p,
+.content-section .frosted-panel.split-grid-2 > div > p,
+.process-desc,
+.founders-cta-desc,
+.project-desc,
+.content-section .frosted-panel > p,
+.priority-choice-desc,
+.contact-channel-card p {
+  display: none;
+}
+
+.pitch-focus-box {
+  margin-top: 1.75rem;
+}
+
+.pillar-title {
+  margin-bottom: 1rem;
+}
+
+.pillar-tags {
+  margin-top: auto;
+}
+
+.kinetic-section .frosted-panel > h2 {
+  margin-bottom: 1.65rem !important;
+}
+
+.page-hero {
+  padding-bottom: 1.75rem;
+}
+
+.page-title {
+  margin-bottom: 0.75rem;
+}
+
+.filter-rail {
+  margin-top: 1.25rem;
+}
+
+.project-title {
+  margin-bottom: 1rem;
+}
+
+.project-metrics {
+  margin-top: auto;
+}
+
+.founders-cta-title {
+  margin-bottom: 0;
+}
+
+.priority-choice-card {
+  align-items: center;
+}
+
+.priority-choice-title {
+  margin-bottom: 0;
+}
+
+.process-title {
+  margin-bottom: 0;
+}
