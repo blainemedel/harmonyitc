@@ -667,16 +667,135 @@ button {
   }
 }
 
-/* Real-Time 3D Interlocking Harmony Rings Canvas */
-.hero-3d-canvas {
+/* Connected Harmony Centerpiece SVG Filaments, Pulse Rings & Medallion */
+.harmony-pulse-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(158, 185, 214, 0.24);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.harmony-pulse-a {
+  width: 44%;
+  height: 44%;
+  animation: harmonyPulse 4.6s ease-out infinite;
+}
+
+.harmony-pulse-b {
+  width: 44%;
+  height: 44%;
+  border-color: rgba(255, 118, 56, 0.26);
+  animation: harmonyPulse 4.6s ease-out 2.3s infinite;
+}
+
+@keyframes harmonyPulse {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.65;
+  }
+  100% {
+    transform: scale(1.75);
+    opacity: 0;
+  }
+}
+
+.harmony-hub-wires {
   position: relative;
   z-index: 3;
   width: 100%;
   height: 100%;
   display: block;
   pointer-events: none;
-  transform: translateZ(18px);
+  transform: translateZ(8px);
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.harmony-wave-path {
+  fill: none;
+  stroke-linecap: round;
+  opacity: 0.85;
+}
+
+.harmony-wire {
+  fill: none;
+  stroke: rgba(156, 183, 212, 0.26);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 5;
+  stroke-linecap: round;
+  transition: stroke 0.35s ease, stroke-width 0.35s ease, opacity 0.35s ease;
+}
+
+.harmony-wire.is-active {
+  stroke: #d8eeff;
+  stroke-width: 2.3;
+  stroke-dasharray: none;
+  filter: drop-shadow(0 0 6px rgba(158, 185, 214, 0.55));
+}
+
+.harmony-core-medallion {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1.35rem 1.55rem 1.15rem;
+  border-radius: 26px;
+  background: radial-gradient(circle at 50% 25%, rgba(49, 84, 122, 0.66) 0%, rgba(14, 42, 72, 0.86) 65%, rgba(5, 22, 46, 0.94) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(186, 207, 229, 0.42);
+  box-shadow:
+    0 26px 56px -14px rgba(1, 10, 39, 0.75),
+    0 0 36px -6px rgba(255, 107, 44, 0.22),
+    inset 0 1px 0 rgba(216, 238, 255, 0.34);
+  pointer-events: none;
+  transform: translate3d(0, 0, 28px);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+
+.harmony-emblem-ring {
+  width: 82px;
+  height: 82px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 12px 28px -8px rgba(1, 10, 39, 0.55),
+    0 0 0 4px rgba(158, 185, 214, 0.2);
+}
+
+.harmony-emblem-ring img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  display: block;
+}
+
+.harmony-core-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.14rem;
+}
+
+.harmony-core-title {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #fdffff;
+}
+
+.harmony-core-status {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #ffb085;
+  letter-spacing: 0.02em;
 }
 
 /* 4 Floating 3D Business Pillar Satellite Nodes */
@@ -2429,6 +2548,21 @@ body.home-page .footer-giant-wordmark {
     padding: 0.34rem 0.72rem;
     font-size: 0.66rem;
   }
+  .harmony-core-medallion {
+    padding: 1rem 1.2rem 0.9rem;
+    border-radius: 20px;
+    gap: 0.5rem;
+  }
+  .harmony-emblem-ring {
+    width: 64px;
+    height: 64px;
+    border-radius: 17px;
+    padding: 7px;
+  }
+  .harmony-emblem-ring img {
+    width: 50px;
+    height: 50px;
+  }
   .pitch-focus-pills {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -2772,7 +2906,8 @@ html.js-parallax-ready .parallax-reveal.is-revealed {
 
 @media (prefers-reduced-motion: reduce) {
   .hero-3d-orbit-ring,
-  .hero-3d-node {
+  .hero-3d-node,
+  .harmony-pulse-ring {
     animation: none;
   }
   html.js-parallax-ready .parallax-reveal {

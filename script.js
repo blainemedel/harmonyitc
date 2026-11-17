@@ -286,545 +286,161 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 2. Hero Interactive 3D Matte Triad (Sphere, Torus & Curved Arrow)
-  //    Exact hexes sampled from reference matte studio render
+  // 2. Hero Interactive Harmony Ecosystem Hub (Connected to Pitch Switcher)
   // ---------------------------------------------------------------------------
-  const heroPillarTargets = {
-    problem:    { sphere: 1.0,  torus: 1.0,  arrow: 1.0,  camRx: 0.24, camRy: -0.18 },
-    promo:      { sphere: 1.18, torus: 0.92, arrow: 0.92, camRx: 0.14, camRy: 0.35 },
-    operations: { sphere: 0.92, torus: 1.16, arrow: 0.94, camRx: 0.34, camRy: -0.45 },
-    income:     { sphere: 0.92, torus: 0.94, arrow: 1.18, camRx: 0.18, camRy: 0.12 }
+  const HARMONY_PILLAR_META = {
+    problem:    { title: 'Solving Real Problems', status: 'Root-Cause Systems' },
+    promo:      { title: 'Clear Online Presence', status: 'Brand & Visibility' },
+    operations: { title: 'Support Daily Ops',     status: 'Unified Workflows' },
+    income:     { title: 'Sustainable Growth',    status: 'Revenue Pathways' }
   };
-  let activeHeroPillar = 'problem';
 
-  function initHero3DEngine() {
-    const stages = Array.from(document.querySelectorAll('.hero-3d-stage'));
+  function syncHarmonyHubState(key) {
+    const meta = HARMONY_PILLAR_META[key] || HARMONY_PILLAR_META.problem;
+    document.querySelectorAll('.harmony-hub-stage').forEach((stage) => {
+      stage.setAttribute('data-active-pillar', key);
+      stage.querySelectorAll('[data-pillar]').forEach((el) => {
+        el.classList.toggle('is-active', el.getAttribute('data-pillar') === key);
+      });
+      const labelEl = stage.querySelector('[data-harmony-sync-label]');
+      if (labelEl) {
+        labelEl.textContent = meta.status;
+      }
+    });
+  }
+
+  function initHarmonyHub() {
+    const stages = Array.from(document.querySelectorAll('.harmony-hub-stage[data-harmony-hub]'));
     if (!stages.length) return;
 
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    function norm3(v) {
-      const len = Math.hypot(v[0], v[1], v[2]) || 1;
-      return [v[0] / len, v[1] / len, v[2] / len];
-    }
+    stages.forEach((stage, idx) => {
+      if (!stage.querySelector('.harmony-core-medallion')) {
+        const uid = `hh-${idx}-`;
+        stage.innerHTML = `
+          <div class="hero-3d-backdrop"></div>
+          <div class="hero-3d-orbit-ring hero-orbit-outer"></div>
+          <div class="hero-3d-orbit-ring hero-orbit-inner"></div>
+          <div class="harmony-pulse-ring harmony-pulse-a"></div>
+          <div class="harmony-pulse-ring harmony-pulse-b"></div>
 
-    function dot3(a, b) {
-      return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
-    }
+          <svg class="harmony-hub-wires" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="${uid}waveCool" x1="0%" y1="50%" x2="100%" y2="50%">
+                <stop offset="0%" stop-color="#3a6a93" stop-opacity="0"/>
+                <stop offset="50%" stop-color="#9eb9d6" stop-opacity="0.58"/>
+                <stop offset="100%" stop-color="#3a6a93" stop-opacity="0"/>
+              </linearGradient>
+              <linearGradient id="${uid}waveWarm" x1="0%" y1="50%" x2="100%" y2="50%">
+                <stop offset="0%" stop-color="#ff6b2c" stop-opacity="0"/>
+                <stop offset="50%" stop-color="#ff8a4c" stop-opacity="0.52"/>
+                <stop offset="100%" stop-color="#ff6b2c" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
 
-    function cross3(a, b) {
-      return [
-        a[1] * b[2] - a[2] * b[1],
-        a[2] * b[0] - a[0] * b[2],
-        a[0] * b[1] - a[1] * b[0]
-      ];
-    }
+            <!-- Harmonic Resonance Waves passing through center -->
+            <path class="harmony-wave-path wave-cool" d="M44 200 Q122 152 200 200 T356 200" stroke="url(#${uid}waveCool)" stroke-width="1.6"/>
+            <path class="harmony-wave-path wave-warm" d="M44 200 Q122 248 200 200 T356 200" stroke="url(#${uid}waveWarm)" stroke-width="1.4"/>
 
-    function rotatePoint(x, y, z, rx, ry, rz) {
-      const cosX = Math.cos(rx), sinX = Math.sin(rx);
-      const y1 = y * cosX - z * sinX;
-      const z1 = y * sinX + z * cosX;
-      const cosY = Math.cos(ry), sinY = Math.sin(ry);
-      const x2 = x * cosY + z1 * sinY;
-      const z2 = -x * sinY + z1 * cosY;
-      const cosZ = Math.cos(rz), sinZ = Math.sin(rz);
-      const x3 = x2 * cosZ - y1 * sinZ;
-      const y3 = x2 * sinZ + y1 * cosZ;
-      return [x3, y3, z2];
-    }
+            <!-- Concentric precision rings -->
+            <circle cx="200" cy="200" r="102" stroke="rgba(156, 183, 212, 0.2)" stroke-width="1" stroke-dasharray="4 6"/>
+            <circle cx="200" cy="200" r="144" stroke="rgba(156, 183, 212, 0.14)" stroke-width="1"/>
 
-    function lerpColorStops(stops, t) {
-      const clamped = Math.max(0, Math.min(1, t));
-      const scaled = clamped * (stops.length - 1);
-      const i0 = Math.floor(scaled);
-      const i1 = Math.min(stops.length - 1, i0 + 1);
-      const frac = scaled - i0;
-      const c0 = stops[i0], c1 = stops[i1];
-      const r = Math.round(c0[0] + (c1[0] - c0[0]) * frac);
-      const g = Math.round(c0[1] + (c1[1] - c0[1]) * frac);
-      const b = Math.round(c0[2] + (c1[2] - c0[2]) * frac);
-      return `rgb(${r},${g},${b})`;
-    }
+            <!-- Signal Conduits linking Core to 4 Pillars -->
+            <path class="harmony-wire" data-pillar="problem" d="M168 172 Q122 126 78 60"/>
+            <path class="harmony-wire" data-pillar="promo" d="M232 172 Q280 124 326 74"/>
+            <path class="harmony-wire" data-pillar="operations" d="M168 228 Q120 264 74 294"/>
+            <path class="harmony-wire" data-pillar="income" d="M232 228 Q278 268 322 316"/>
+          </svg>
 
-    // Exact matte palettes sampled from reference image
-    const torusRamp = [
-      [2, 29, 60],     // #021d3c core shadow
-      [25, 60, 94],    // #193c5e deep navy
-      [40, 74, 109],   // #284a6d midtone
-      [126, 153, 181], // #7e99b5 soft studio fill
-      [158, 185, 214]  // #9eb9d6 matte rim highlight
-    ];
+          <div class="harmony-core-medallion">
+            <div class="harmony-emblem-ring">
+              <img src="assets/harmony-icon.png?v=20261126" alt="" width="64" height="64" decoding="async">
+            </div>
+            <div class="harmony-core-meta">
+              <span class="harmony-core-title">HARMONY</span>
+              <span class="harmony-core-status" data-harmony-sync-label>Root-Cause Systems</span>
+            </div>
+          </div>
 
-    const arrowRamp = [
-      [15, 50, 84],    // #0f3254 deep tail shadow
-      [32, 68, 103],   // #204467 body shadow
-      [36, 70, 106],   // #24466a midtone
-      [49, 84, 122],   // #31547a lit plane
-      [180, 208, 233]  // #b4d0e9 beveled rim highlight
-    ];
+          <div class="hero-3d-nodes">
+            <div class="hero-3d-node node-problem is-active" data-pillar="problem">
+              <span class="node-dot"></span>
+              <span class="node-meta">01</span>
+              <span class="node-label">Problem Solving</span>
+            </div>
+            <div class="hero-3d-node node-promo" data-pillar="promo">
+              <span class="node-dot"></span>
+              <span class="node-meta">02</span>
+              <span class="node-label">Online Presence</span>
+            </div>
+            <div class="hero-3d-node node-operations" data-pillar="operations">
+              <span class="node-dot"></span>
+              <span class="node-meta">03</span>
+              <span class="node-label">Daily Ops</span>
+            </div>
+            <div class="hero-3d-node node-income" data-pillar="income">
+              <span class="node-dot"></span>
+              <span class="node-meta">04</span>
+              <span class="node-label">Steady Growth</span>
+            </div>
+          </div>
 
-    // Studio key light from upper-right-front + subtle cool bounce from lower-left
-    const keyLight = norm3([0.64, -0.58, 0.50]);
-    const rimLight = norm3([-0.55, 0.38, 0.74]);
+          <div class="hero-3d-badge">
+            <img src="assets/harmony-icon.png?v=20261126" alt="" width="20" height="20">
+            <span>Built Around Your Business</span>
+          </div>`;
+      }
 
-    function shadeMatte(normal, ramp, highlightBias) {
-      const n = norm3(normal);
-      const ndotl = dot3(n, keyLight);
-      // Soft matte wrap diffuse (Oren-Nayar inspired falloff, zero harsh plastic specular)
-      const wrap = Math.max(0, (ndotl + 0.42) / 1.42);
-      const softDiff = Math.pow(wrap, 1.32);
-      const bounce = Math.max(0, dot3(n, rimLight)) * 0.16;
-      const fresnelRim = Math.pow(1 - Math.abs(n[2]), 2.2) * 0.14;
-      const shadeT = softDiff * (0.86 + highlightBias) + bounce + fresnelRim;
-      return lerpColorStops(ramp, shadeT);
-    }
+      if (prefersReduced) return;
 
-    stages.forEach((stage) => {
-      const canvas = stage.querySelector('.hero-3d-canvas');
       const backdrop = stage.querySelector('.hero-3d-backdrop');
+      const medallion = stage.querySelector('.harmony-core-medallion');
       const nodesWrap = stage.querySelector('.hero-3d-nodes');
-      if (!canvas) return;
+      const wires = stage.querySelector('.harmony-hub-wires');
 
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
+      let stageMouseRaf = 0;
+      let lastNx = 0;
+      let lastNy = 0;
 
-      let width = 0;
-      let height = 0;
-      let dpr = 1;
-
-      function resizeCanvas() {
+      stage.addEventListener('mousemove', (e) => {
         const rect = stage.getBoundingClientRect();
-        dpr = Math.min(window.devicePixelRatio || 1, 2);
-        width = Math.max(240, rect.width || 420);
-        height = Math.max(240, rect.height || 420);
-        canvas.width = Math.round(width * dpr);
-        canvas.height = Math.round(height * dpr);
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      }
+        lastNx = (e.clientX - rect.left) / Math.max(1, rect.width) - 0.5;
+        lastNy = (e.clientY - rect.top) / Math.max(1, rect.height) - 0.5;
 
-      resizeCanvas();
-      window.addEventListener('resize', resizeCanvas);
-
-      let targetTiltX = 0;
-      let targetTiltY = 0;
-      let currentTiltX = 0;
-      let currentTiltY = 0;
-
-      let curSphereScale = 1.0;
-      let curTorusScale = 1.0;
-      let curArrowScale = 1.0;
-      let curCamRx = 0.24;
-      let curCamRy = -0.18;
-
-      if (!prefersReduced) {
-        let stageMouseRaf = 0;
-        let lastNx = 0;
-        let lastNy = 0;
-
-        stage.addEventListener('mousemove', (e) => {
-          const rect = stage.getBoundingClientRect();
-          lastNx = (e.clientX - rect.left) / Math.max(1, rect.width) - 0.5;
-          lastNy = (e.clientY - rect.top) / Math.max(1, rect.height) - 0.5;
-          targetTiltY = lastNx * 0.54;
-          targetTiltX = lastNy * -0.44;
-
-          if (!stageMouseRaf) {
-            stageMouseRaf = requestAnimationFrame(() => {
-              stageMouseRaf = 0;
-              if (backdrop) {
-                backdrop.style.transform = `translate3d(${(lastNx * -12).toFixed(1)}px, ${(lastNy * -12).toFixed(1)}px, -40px)`;
-              }
-              if (nodesWrap) {
-                nodesWrap.style.transform = `rotateX(${(lastNy * -6).toFixed(2)}deg) rotateY(${(lastNx * 7).toFixed(2)}deg)`;
-              }
-            });
-          }
-        });
-
-        stage.addEventListener('mouseleave', () => {
-          targetTiltX = 0;
-          targetTiltY = 0;
-          if (stageMouseRaf) {
-            cancelAnimationFrame(stageMouseRaf);
+        if (!stageMouseRaf) {
+          stageMouseRaf = requestAnimationFrame(() => {
             stageMouseRaf = 0;
-          }
-          if (backdrop) backdrop.style.transform = '';
-          if (nodesWrap) nodesWrap.style.transform = '';
-        });
-      }
-
-      // Build beveled 3D Curved Arrow local geometry once
-      function buildCurvedArrowData() {
-        const spineSteps = 26;
-        const pts = [];
-        // Sweep from bottom-left (-0.75, 0.55) to top-right (0.48, -0.48)
-        for (let i = 0; i <= spineSteps; i++) {
-          const t = i / spineSteps;
-          const omt = 1 - t;
-          const x = omt * omt * -0.78 + 2 * omt * t * -0.05 + t * t * 0.44;
-          const y = omt * omt * 0.56 + 2 * omt * t * 0.36 + t * t * -0.42;
-          const z = Math.sin(t * Math.PI) * 0.14;
-          const halfW = 0.042 + t * 0.088;
-          const halfD = 0.036 + t * 0.042;
-          pts.push({ x, y, z, halfW, halfD });
-        }
-
-        // Chamfered 8-vertex cross-section per spine point
-        const rings = [];
-        for (let i = 0; i < pts.length; i++) {
-          const p = pts[i];
-          const prev = pts[Math.max(0, i - 1)];
-          const next = pts[Math.min(pts.length - 1, i + 1)];
-          const tang = norm3([next.x - prev.x, next.y - prev.y, next.z - prev.z]);
-          const upZ = [0, 0, 1];
-          const side = norm3(cross3(tang, upZ));
-          const depthDir = norm3(cross3(side, tang));
-
-          const w = p.halfW;
-          const d = p.halfD;
-          const ch = 0.68; // bevel chamfer factor
-          const profile = [
-            [w, d * ch], [w * ch, d], [-w * ch, d], [-w, d * ch],
-            [-w, -d * ch], [-w * ch, -d], [w * ch, -d], [w, -d * ch]
-          ];
-          const ring = profile.map(([sw, sd]) => [
-            p.x + side[0] * sw + depthDir[0] * sd,
-            p.y + side[1] * sw + depthDir[1] * sd,
-            p.z + side[2] * sw + depthDir[2] * sd
-          ]);
-          rings.push(ring);
-        }
-
-        const faces = [];
-        for (let i = 0; i < rings.length - 1; i++) {
-          const r0 = rings[i], r1 = rings[i + 1];
-          for (let j = 0; j < 8; j++) {
-            const jn = (j + 1) % 8;
-            faces.push([r0[j], r0[jn], r1[jn], r1[j]]);
-          }
-        }
-        // Tail cap
-        const tail = rings[0];
-        faces.push([tail[0], tail[2], tail[4], tail[6]]);
-
-        // Sculpted 3D arrowhead aligned to spine end
-        const end = pts[pts.length - 1];
-        const prevEnd = pts[pts.length - 2];
-        const hTang = norm3([end.x - prevEnd.x, end.y - prevEnd.y, end.z - prevEnd.z]);
-        const hSide = norm3(cross3(hTang, [0, 0, 1]));
-        const hDepth = norm3(cross3(hSide, hTang));
-
-        function headPt(f, s, d) {
-          return [
-            end.x + hTang[0] * f + hSide[0] * s + hDepth[0] * d,
-            end.y + hTang[1] * f + hSide[1] * s + hDepth[1] * d,
-            end.z + hTang[2] * f + hSide[2] * s + hDepth[2] * d
-          ];
-        }
-
-        const hd = 0.082;
-        const tipF = 0.36;
-        const backF = -0.04;
-        const wingS = 0.255;
-        const frontTri = [headPt(tipF, 0, hd), headPt(backF, wingS, hd), headPt(backF, -wingS, hd)];
-        const backTri = [headPt(tipF, 0, -hd), headPt(backF, -wingS, -hd), headPt(backF, wingS, -hd)];
-
-        faces.push([frontTri[0], frontTri[1], frontTri[2]]);
-        faces.push([backTri[0], backTri[1], backTri[2]]);
-        faces.push([frontTri[0], backTri[0], backTri[2], frontTri[1]]);
-        faces.push([frontTri[1], backTri[2], backTri[1], frontTri[2]]);
-        faces.push([frontTri[2], backTri[1], backTri[0], frontTri[0]]);
-
-        return faces;
-      }
-
-      const arrowFaces = buildCurvedArrowData();
-
-      let elapsed = 0;
-      let lastFrameTs = null;
-      let isStageActive = true;
-      let stageRafId = 0;
-
-      function renderFrame(timestamp) {
-        stageRafId = 0;
-        if (lastFrameTs !== null && !prefersReduced) {
-          elapsed += Math.min(0.05, Math.max(0, (timestamp - lastFrameTs) * 0.001));
-        }
-        lastFrameTs = timestamp;
-
-        const targetCfg = heroPillarTargets[activeHeroPillar] || heroPillarTargets.problem;
-        curSphereScale += (targetCfg.sphere - curSphereScale) * 0.06;
-        curTorusScale += (targetCfg.torus - curTorusScale) * 0.06;
-        curArrowScale += (targetCfg.arrow - curArrowScale) * 0.06;
-        curCamRx += (targetCfg.camRx - curCamRx) * 0.05;
-        curCamRy += (targetCfg.camRy - curCamRy) * 0.05;
-
-        currentTiltX += (targetTiltX - currentTiltX) * 0.08;
-        currentTiltY += (targetTiltY - currentTiltY) * 0.08;
-
-        ctx.clearRect(0, 0, width, height);
-
-        const cx = width * 0.5;
-        const cy = height * 0.49;
-        const unitScale = Math.min(width, height) * 0.27;
-        const fov = 4.6;
-
-        // Subtle studio floor horizon lines echoing the reference middle card
-        const floorY = height * 0.805;
-        for (let l = 0; l < 3; l++) {
-          const ly = floorY + l * 7.5;
-          const lineGrad = ctx.createLinearGradient(width * 0.14, ly, width * 0.86, ly);
-          lineGrad.addColorStop(0, 'rgba(52, 95, 135, 0)');
-          lineGrad.addColorStop(0.5, l === 0 ? 'rgba(145, 181, 214, 0.34)' : 'rgba(52, 95, 135, 0.28)');
-          lineGrad.addColorStop(1, 'rgba(52, 95, 135, 0)');
-          ctx.strokeStyle = lineGrad;
-          ctx.lineWidth = 1.25;
-          ctx.beginPath();
-          ctx.moveTo(width * 0.14, ly);
-          ctx.lineTo(width * 0.86, ly);
-          ctx.stroke();
-        }
-
-        const worldRx = curCamRx + Math.sin(elapsed * 0.42) * 0.08 + currentTiltX;
-        const worldRy = curCamRy + Math.sin(elapsed * 0.34) * 0.18 + currentTiltY;
-        const worldRz = Math.sin(elapsed * 0.26) * 0.05;
-
-        const drawQueue = [];
-
-        function project(pt) {
-          const scale = fov / Math.max(0.6, fov - pt[2]);
-          return [cx + pt[0] * unitScale * scale, cy + pt[1] * unitScale * scale, pt[2], scale];
-        }
-
-        // 1. Matte 3D Torus (centered-right tilted orbital sculpture)
-        const uSteps = 44;
-        const vSteps = 20;
-        const majorR = 0.64 * curTorusScale;
-        const minorR = 0.195 * curTorusScale;
-        const torusTiltX = 0.72 + Math.sin(elapsed * 0.45) * 0.12;
-        const torusTiltY = -0.38 + elapsed * 0.28;
-        const torusOffset = [0.20, 0.04, -0.05];
-
-        const torusGrid = [];
-        for (let iu = 0; iu <= uSteps; iu++) {
-          const u = (iu / uSteps) * Math.PI * 2;
-          const cu = Math.cos(u), su = Math.sin(u);
-          const ringRow = [];
-          for (let iv = 0; iv <= vSteps; iv++) {
-            const v = (iv / vSteps) * Math.PI * 2;
-            const cv = Math.cos(v), sv = Math.sin(v);
-            const lx = (majorR + minorR * cv) * cu;
-            const ly = (majorR + minorR * cv) * su;
-            const lz = minorR * sv;
-
-            const [tx, ty, tz] = rotatePoint(lx, ly, lz, torusTiltX, torusTiltY, 0.2);
-            const [wx, wy, wz] = rotatePoint(
-              tx + torusOffset[0],
-              ty + torusOffset[1],
-              tz + torusOffset[2],
-              worldRx,
-              worldRy,
-              worldRz
-            );
-
-            // Surface normal in world space
-            const [tnx, tny, tnz] = rotatePoint(cv * cu, cv * su, sv, torusTiltX, torusTiltY, 0.2);
-            const wn = rotatePoint(tnx, tny, tnz, worldRx, worldRy, worldRz);
-            ringRow.push({ p: [wx, wy, wz], n: wn });
-          }
-          torusGrid.push(ringRow);
-        }
-
-        for (let iu = 0; iu < uSteps; iu++) {
-          for (let iv = 0; iv < vSteps; iv++) {
-            const v00 = torusGrid[iu][iv];
-            const v10 = torusGrid[iu + 1][iv];
-            const v11 = torusGrid[iu + 1][iv + 1];
-            const v01 = torusGrid[iu][iv + 1];
-
-            const avgN = [
-              (v00.n[0] + v10.n[0] + v11.n[0] + v01.n[0]) * 0.25,
-              (v00.n[1] + v10.n[1] + v11.n[1] + v01.n[1]) * 0.25,
-              (v00.n[2] + v10.n[2] + v11.n[2] + v01.n[2]) * 0.25
-            ];
-            if (avgN[2] < -0.22) continue;
-
-            const p0 = project(v00.p);
-            const p1 = project(v10.p);
-            const p2 = project(v11.p);
-            const p3 = project(v01.p);
-            const avgZ = (v00.p[2] + v10.p[2] + v11.p[2] + v01.p[2]) * 0.25;
-
-            drawQueue.push({
-              type: 'poly',
-              z: avgZ,
-              pts: [p0, p1, p2, p3],
-              color: shadeMatte(avgN, torusRamp, 0.04)
-            });
-          }
-        }
-
-        // 2. Matte 3D Sphere (orbiting cleanly in foreground/midground)
-        const sOrbit = elapsed * 0.42;
-        const sphereBase = [
-          -0.28 + Math.cos(sOrbit) * 0.14,
-          -0.06 + Math.sin(sOrbit * 1.2) * 0.09,
-          0.24 + Math.sin(sOrbit) * 0.22
-        ];
-        const sw = rotatePoint(sphereBase[0], sphereBase[1], sphereBase[2], worldRx, worldRy, worldRz);
-        const sp = project(sw);
-        const sphereRadiusPx = 0.365 * curSphereScale * unitScale * sp[3];
-
-        drawQueue.push({
-          type: 'sphere',
-          z: sw[2],
-          x: sp[0],
-          y: sp[1],
-          r: sphereRadiusPx
-        });
-
-        // 3. Matte 3D Curved Arrow (sweeping upward-right in 3D space)
-        const arrowAngle = Math.sin(elapsed * 0.5) * 0.12;
-        const arrowScale = 0.96 * curArrowScale;
-        const arrowOffset = [-0.14, 0.08, 0.38];
-
-        for (let f = 0; f < arrowFaces.length; f++) {
-          const face = arrowFaces[f];
-          const wPts = face.map((pt) => {
-            const [rx, ry, rz] = rotatePoint(
-              pt[0] * arrowScale,
-              pt[1] * arrowScale,
-              pt[2] * arrowScale,
-              -0.18 + arrowAngle,
-              0.24,
-              -0.06
-            );
-            return rotatePoint(
-              rx + arrowOffset[0],
-              ry + arrowOffset[1],
-              rz + arrowOffset[2],
-              worldRx,
-              worldRy,
-              worldRz
-            );
-          });
-
-          // Face normal
-          const e1 = [wPts[1][0] - wPts[0][0], wPts[1][1] - wPts[0][1], wPts[1][2] - wPts[0][2]];
-          const e2 = [wPts[2][0] - wPts[0][0], wPts[2][1] - wPts[0][1], wPts[2][2] - wPts[0][2]];
-          const n = norm3(cross3(e1, e2));
-          // Double-sided check facing viewer (+Z)
-          const viewNormal = n[2] >= 0 ? n : [-n[0], -n[1], -n[2]];
-          if (viewNormal[2] < 0.02) continue;
-
-          let avgZ = 0;
-          const projPts = wPts.map((wp) => {
-            avgZ += wp[2];
-            return project(wp);
-          });
-          avgZ /= wPts.length;
-
-          drawQueue.push({
-            type: 'poly',
-            z: avgZ,
-            pts: projPts,
-            color: shadeMatte(viewNormal, arrowRamp, 0.08)
-          });
-        }
-
-        // Depth sort back-to-front
-        drawQueue.sort((a, b) => a.z - b.z);
-
-        for (let i = 0; i < drawQueue.length; i++) {
-          const item = drawQueue[i];
-          if (item.type === 'poly') {
-            ctx.fillStyle = item.color;
-            ctx.strokeStyle = item.color;
-            ctx.lineWidth = 0.75;
-            ctx.lineJoin = 'round';
-            ctx.beginPath();
-            ctx.moveTo(item.pts[0][0], item.pts[0][1]);
-            for (let k = 1; k < item.pts.length; k++) {
-              ctx.lineTo(item.pts[k][0], item.pts[k][1]);
+            if (backdrop) {
+              backdrop.style.transform = `translate3d(${(lastNx * -10).toFixed(1)}px, ${(lastNy * -10).toFixed(1)}px, -40px)`;
             }
-            ctx.closePath();
-            ctx.fill();
-            ctx.stroke();
-          } else if (item.type === 'sphere') {
-            // Soft studio cast drop shadow
-            const shGrad = ctx.createRadialGradient(
-              item.x - item.r * 0.08,
-              item.y + item.r * 0.92,
-              item.r * 0.1,
-              item.x,
-              item.y + item.r * 0.92,
-              item.r * 1.15
-            );
-            shGrad.addColorStop(0, 'rgba(1, 10, 39, 0.56)');
-            shGrad.addColorStop(1, 'rgba(1, 10, 39, 0)');
-            ctx.fillStyle = shGrad;
-            ctx.beginPath();
-            ctx.ellipse(item.x, item.y + item.r * 0.92, item.r * 0.95, item.r * 0.24, 0, 0, Math.PI * 2);
-            ctx.fill();
-
-            // Velvety matte studio sphere using exact sampled hexes (#9eb0bf -> #8198ae -> #0b2c49 -> #010a27)
-            const spGrad = ctx.createRadialGradient(
-              item.x + item.r * 0.34,
-              item.y - item.r * 0.34,
-              item.r * 0.04,
-              item.x - item.r * 0.1,
-              item.y + item.r * 0.1,
-              item.r * 1.12
-            );
-            spGrad.addColorStop(0, '#9eb0bf');
-            spGrad.addColorStop(0.22, '#8198ae');
-            spGrad.addColorStop(0.52, '#284a6d');
-            spGrad.addColorStop(0.78, '#0b2c49');
-            spGrad.addColorStop(1, '#010a27');
-
-            ctx.fillStyle = spGrad;
-            ctx.beginPath();
-            ctx.arc(item.x, item.y, item.r, 0, Math.PI * 2);
-            ctx.fill();
-
-            // Subtle lower-left ambient floor bounce rim
-            const rimGrad = ctx.createRadialGradient(
-              item.x - item.r * 0.42,
-              item.y + item.r * 0.48,
-              item.r * 0.05,
-              item.x,
-              item.y,
-              item.r
-            );
-            rimGrad.addColorStop(0, 'rgba(40, 74, 109, 0.28)');
-            rimGrad.addColorStop(0.65, 'rgba(11, 44, 73, 0)');
-            rimGrad.addColorStop(1, 'rgba(1, 10, 39, 0)');
-            ctx.fillStyle = rimGrad;
-            ctx.beginPath();
-            ctx.arc(item.x, item.y, item.r, 0, Math.PI * 2);
-            ctx.fill();
-          }
-        }
-
-        if (!prefersReduced && isStageActive && !document.hidden) {
-          stageRafId = requestAnimationFrame(renderFrame);
-        }
-      }
-
-      observeElementVisibility(stage, (active) => {
-        isStageActive = active;
-        if (active && !prefersReduced && !stageRafId) {
-          lastFrameTs = null;
-          stageRafId = requestAnimationFrame(renderFrame);
-        } else if (!active && stageRafId) {
-          cancelAnimationFrame(stageRafId);
-          stageRafId = 0;
-          lastFrameTs = null;
+            if (wires) {
+              wires.style.transform = `translate3d(${(lastNx * 6).toFixed(1)}px, ${(lastNy * 6).toFixed(1)}px, 8px)`;
+            }
+            if (medallion) {
+              medallion.style.transform = `translate3d(${(lastNx * 12).toFixed(1)}px, ${(lastNy * 12).toFixed(1)}px, 28px) rotateX(${(lastNy * -10).toFixed(2)}deg) rotateY(${(lastNx * 12).toFixed(2)}deg)`;
+            }
+            if (nodesWrap) {
+              nodesWrap.style.transform = `rotateX(${(lastNy * -6).toFixed(2)}deg) rotateY(${(lastNx * 7).toFixed(2)}deg)`;
+            }
+          });
         }
       });
 
-      stageRafId = requestAnimationFrame(renderFrame);
+      stage.addEventListener('mouseleave', () => {
+        if (stageMouseRaf) {
+          cancelAnimationFrame(stageMouseRaf);
+          stageMouseRaf = 0;
+        }
+        if (backdrop) backdrop.style.transform = '';
+        if (wires) wires.style.transform = '';
+        if (medallion) medallion.style.transform = '';
+        if (nodesWrap) nodesWrap.style.transform = '';
+      });
     });
+
+    syncHarmonyHubState('problem');
   }
 
   // ---------------------------------------------------------------------------
@@ -860,10 +476,7 @@
           textEl.innerHTML = pitchPillarsCopy[key];
         }
         if (key) {
-          activeHeroPillar = key;
-          document.querySelectorAll('.hero-3d-node[data-pillar]').forEach((node) => {
-            node.classList.toggle('is-active', node.getAttribute('data-pillar') === key);
-          });
+          syncHarmonyHubState(key);
         }
       });
     });
@@ -2212,7 +1825,7 @@ ${priorityList}`;
     initSharedChrome();
     initPillar3DArtworks();
     initMobileNav();
-    initHero3DEngine();
+    initHarmonyHub();
     initPitchNavigator();
     initKineticCylinder();
     initProjectFilters();
