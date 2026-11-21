@@ -1217,9 +1217,9 @@ button {
 }
 
 .founder-img-bry {
-  object-position: 50% 24%;
-  --portrait-scale: 1.65;
-  --portrait-origin: 50% 24%;
+  object-position: 60% 12%;
+  --portrait-scale: 1.55;
+  --portrait-origin: 50% 12%;
 }
 
 .founders-showcase .founder-identity {
