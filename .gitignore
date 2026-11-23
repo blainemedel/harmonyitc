@@ -44,15 +44,26 @@ Thumbs.db
 
 # AI Agents & LLM Configurations
 .agents/
+.agent/
 .claude/
 .gemini/
+.superpowers/
 .cursor/
+.windsurf/
+.antigravity/
 .gstack/
 .agy/
+.omg/
+graphify-out/
 scratch/
 GEMINI.md
 AGENTS.md
 CLAUDE.md
+COPILOT.md
 .cursorrules
 .windsurfrules
+
+# Vercel local state
+.vercel
+
 

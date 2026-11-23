@@ -1,137 +1,77 @@
-# HarmonyITC
+# Harmony IT Consultancy (`harmonyitc.dev`)
 
-**Enterprise Information Technology & Communications Solutions Platform**
+Company website and client showcase for **Harmony IT Consultancy**, built with **Vue 3**, **Vite**, and **Vue Router 4** and deployed to **Vercel** via GitHub integration.
 
-[![Project Status: Active](https://img.shields.io/badge/status-active-success.svg)](#)
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](#)
-[![License: Proprietary](https://img.shields.io/badge/license-Proprietary-red.svg)](#)
-[![Team](https://img.shields.io/badge/team-HarmonyITC%20Engineering-orange.svg)](#)
+## Routes
 
----
+| Path | View | Description |
+| :--- | :--- | :--- |
+| `/` | `HomeView` | Hero with interactive Pitch Focus Switcher, Harmony Ecosystem Hub, 4 Core Pillars, Comparison Matrix, and WebGL 3D Kinetic Cylinder |
+| `/about` | `AboutView` | Philosophy & quote split card, Founding Team showcase (Paulo, Gene, Bry), and 4-step working process |
+| `/projects` | `ProjectsView` | Filterable SwitchFiber portfolio (`Admin Console`, `Public & Subscriber Portal`, `Field Technician Terminal`) and accessible Case Study modal |
+| `/contact` | `ContactView` | Interactive Quick Project Brief builder (clipboard copy + `mailto:` brief), direct email copy, and availability cards |
 
-## 📖 Overview
+## Minimal Text Toggle
 
-**HarmonyITC** is an enterprise-grade Information Technology and Communications (ITC) platform and engineering repository. Designed to power resilient digital infrastructure, telecommunications operations, geospatial network assets, and client-facing digital services, HarmonyITC serves as the centralized technology foundation for scalable enterprise systems.
+All copy, links, founder profiles, project case studies, and display flags live in `src/data/siteContent.js`.
 
----
+- Set `DISPLAY_CONFIG.showExtendedCopy` to `false` (default) to keep the minimal layout with verbose descriptions and subleads hidden.
+- Set `DISPLAY_CONFIG.showExtendedCopy` to `true` to display full explanatory paragraphs across all views.
+- `DISPLAY_CONFIG.showHeaderCta` and `DISPLAY_CONFIG.showHomeMetrics` toggle the header CTA button and home impact strip.
 
-## 🚀 Key Capabilities & Modules
-
-- **Core Infrastructure & Telecommunications**  
-  Centralized backbone management, high-throughput network monitoring, and system-wide service orchestration.
-
-- **Geospatial & Field Asset Management**  
-  Integration with geospatial mapping systems (LCPs, NAPs, fiber distribution routes) and telemetry data collection.
-
-- **Subscriber & Operations Ecosystem**  
-  Service provisioning, automated billing cycles, job orders, and real-time operations dashboards.
-
-- **Unified API & Integrations**  
-  Robust RESTful & event-driven APIs connecting web consoles, mobile applications, field tools, and external service providers.
-
-- **Enterprise Security & Auditability**  
-  Role-Based Access Control (RBAC), multi-tenant isolation, comprehensive audit logging, and automated compliance tracking.
-
----
-
-## 📁 Repository Structure
+## Project Structure
 
 ```text
 harmonyitc/
-├── apps/                 # Application packages (web, mobile, consoles)
-│   ├── web/              # Primary web portal / dashboard
-│   └── api/              # Backend services and API gateways
-├── packages/             # Shared libraries and shared modules
-│   ├── config/           # Shared configurations (linting, tsconfig, env)
-│   ├── database/         # Database schemas, migrations, and ORM models
-│   └── ui/               # Shared component design system
-├── docs/                 # Technical documentation, API specs, and diagrams
-├── scripts/              # Build, deployment, and automation scripts
-├── tests/                # End-to-end and cross-service test suites
-├── .gitignore            # Git ignore definitions
-└── README.md             # Project documentation (this file)
+├── index.html                  # Vite SPA entry point (SEO, Open Graph, favicons, fonts)
+├── package.json                # Vue 3 + Vite scripts & dependencies
+├── vite.config.js              # Vite configuration (@ alias -> src/)
+├── vercel.json                 # Legacy .html -> clean route 301 redirects, SPA rewrite, headers
+├── public/                     # Static root files (favicons, OG logo, robots.txt, sitemap.xml)
+├── src/
+│   ├── main.js                 # App mount + modular CSS imports
+│   ├── App.vue                 # Root shell (scroll progress bar, backdrop, header, footer, toast)
+│   ├── router/index.js         # History routes + per-route canonical/meta updates
+│   ├── data/
+│   │   ├── siteContent.js      # Single source of truth for text, team, projects, and toggles
+│   │   └── mediaAssets.js      # Vite-bundled image imports
+│   ├── utils/briefBuilder.js   # Pure brief formatting and project filtering utilities
+│   ├── composables/            # Clipboard toast, scroll lock, scroll-reveal/parallax, 3D tilt
+│   ├── components/             # AmbientBackdrop, SiteHeader, SiteFooter, HarmonyEcosystemHub, PillarArtwork, KineticCylinder, CaseStudyModal
+│   ├── views/                  # HomeView, AboutView, ProjectsView, ContactView, NotFoundView
+│   └── styles/                 # Modular CSS (tokens, base, components, pages, motion)
+└── tests/siteLogic.test.js     # Node built-in unit tests for content config and brief/filter logic
 ```
 
----
+## Development
 
-## 🛠️ Getting Started
+Requires **Node.js 20+** and **npm**.
 
-### Prerequisites
+```bash
+# Install dependencies
+npm install
 
-- **Node.js**: `v20.x` or `v22.x` (LTS recommended)
-- **Package Manager**: `npm` (v10+), `pnpm`, or `yarn`
-- **Docker**: For running containerized services and local databases
-- **Git**: For version control
+# Start local Vite dev server
+npm run dev
 
-### Installation
+# Run unit tests
+npm test
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/harmonyitc/harmonyitc.git
-   cd harmonyitc
-   ```
+# Build production bundle to dist/
+npm run build
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+# Preview production build locally
+npm run preview
+```
 
-3. **Configure Environment:**
-   Create a local environment file based on the template:
-   ```bash
-   cp .env.example .env
-   ```
-   Configure the environment variables according to your local setup (database connection, API keys, service endpoints).
+## Vercel Deployment (`https://harmonyitc.dev`)
 
-4. **Run the Development Environment:**
-   ```bash
-   npm run dev
-   ```
+- **Framework Preset:** `Vite`
+- **Build Command:** `npm run build`
+- **Output Directory:** `dist`
+- `vercel.json` redirects legacy `/about.html`, `/projects.html`, `/contact.html`, and `/index.html` URLs with HTTP `301` to their clean Vue Router paths and handles SPA history rewrites while keeping `/assets/*` and static files intact.
 
----
+## Contact
 
-## ⚙️ Available Scripts
-
-| Script | Description |
-| :--- | :--- |
-| `npm run dev` | Starts all services in development mode with live reload |
-| `npm run build` | Compiles and packages production-ready bundles |
-| `npm test` | Runs unit and integration test suites |
-| `npm run lint` | Runs code quality checks and static analysis |
-| `npm run format` | Enforces automated code formatting |
-| `npm run clean` | Cleans build artifacts and caches |
-
----
-
-## 🔒 Configuration & Security
-
-- **Secrets Management**: Never commit `.env` files containing production secrets or sensitive credentials.
-- **Environment Isolation**: Maintain strict segregation between `development`, `staging`, and `production` environments.
-- **Access Control**: Production deployment credentials and administrative keys are managed via secure vault pipelines.
-
----
-
-## 🤝 Contribution Guidelines
-
-1. **Branching Strategy**: Use branch prefixes:
-   - `feature/` for new functionality
-   - `bugfix/` or `fix/` for resolving issues
-   - `chore/` for maintenance and dependency updates
-2. **Commit Conventions**: Follow [Conventional Commits](https://www.conventionalcommits.org/) (e.g., `feat:`, `fix:`, `docs:`, `refactor:`).
-3. **Pull Requests**: Ensure all automated checks and tests pass before requesting review.
-
----
-
-## 📞 Support & Contact
-
-- **Organization**: HarmonyITC Development Team
-- **Email**: `dev@harmonyitc.ph`
-- **Support**: Tier 3 Platform Engineering
-- **Portal**: [HarmonyITC Support](mailto:dev@harmonyitc.ph)
-
----
-
-## 📄 License
-
-Proprietary and Confidential.  
-Copyright © 2026 HarmonyITC. All rights reserved.
+- **Website:** [https://harmonyitc.dev](https://harmonyitc.dev)
+- **Email:** `inquiries@harmonyitc.com`

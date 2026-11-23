@@ -1,0 +1,82 @@
+/* Gene - Nov, 23, 2026: Clean semantic design tokens for Harmony IT Consultancy's Matte Slate-Navy Studio theme */
+/* ==========================================================================
+   Harmony IT Consultancy — Matte Slate-Navy Studio & 3D Glass Design System
+   Palette Sampled from Studio Render:
+     Studio Wall:  #17395c (base), #0c2d4f / #0c3457 (deep), #274667 / #284768 (mid), #3a5874 / #3e5b77 (lit)
+     Studio Floor: #225880 -> #295e87 -> #325d83 -> #3a6a93
+     Frosted Cards: #5f7c98 / #4d6e8f / #3f6386 -> #2e5278 -> #21537b (rim: #bacfe5 / #9cb7d4 / #436689)
+     Typography:   #fdffff (primary), #d8eeff (secondary), #b2c7e0 (body), #9cb7d4 (muted)
+   ========================================================================== */
+
+:root {
+  /* Sampled Studio Wall & Floor Hexes */
+  --matte-wall-deep: #0c2d4f;
+  --matte-wall-shadow: #0c3457;
+  --matte-wall-base: #17395c;
+  --matte-wall-navy: #193a5e;
+  --matte-wall-mid: #274667;
+  --matte-wall-slate: #284768;
+  --matte-wall-soft: #2b496a;
+  --matte-wall-lit: #3a5874;
+  --matte-wall-glow: #3e5b77;
+
+  --matte-floor-deep: #225880;
+  --matte-floor-base: #27547b;
+  --matte-floor-mid: #295e87;
+  --matte-floor-horizon: #325d83;
+  --matte-floor-lit: #3a6a93;
+
+  /* Core Surfaces */
+  --surface-base: #17395c;
+  --surface-cool: #193a5e;
+  --surface-mid: #274667;
+  --surface-deep: #0c2d4f;
+  --surface-frosted: linear-gradient(
+    162deg,
+    rgba(95, 124, 152, 0.34) 0%,
+    rgba(63, 99, 134, 0.28) 46%,
+    rgba(33, 83, 123, 0.38) 100%
+  );
+  --surface-frosted-strong: linear-gradient(
+    162deg,
+    rgba(77, 110, 143, 0.56) 0%,
+    rgba(46, 82, 120, 0.62) 100%
+  );
+
+  /* Semantic Typography & Accents */
+  --text-primary: #fdffff;
+  --text-secondary: #d8eeff;
+  --text-body: #b2c7e0;
+  --text-muted: #9cb7d4;
+
+  --accent-ice: #b4d0e9;
+  --accent-ice-dark: #295e87;
+  --accent-surface: #2d628c;
+  --accent-ice-soft: rgba(63, 99, 134, 0.36);
+
+  --accent-steel: #9cb7d4;
+  --accent-steel-hover: #bacfe5;
+  --accent-pocket: rgba(11, 44, 73, 0.64);
+  --shadow-cta: 0 12px 26px -6px rgba(1, 10, 39, 0.52);
+
+  /* Deep Matte Cosmic Card Gradient Stops */
+  --cosmic-base: #020b28;
+  --cosmic-mid: #17395c;
+  --cosmic-glow: #284a6d;
+
+  /* Elevation & Borders */
+  --border-hairline: rgba(156, 183, 212, 0.22);
+  --border-glass: rgba(156, 183, 212, 0.38);
+  --shadow-soft: 0 22px 48px -16px rgba(1, 10, 39, 0.52);
+  --shadow-card: 0 24px 50px -14px rgba(1, 10, 39, 0.62);
+
+  /* Typography & Motion */
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-condensed: 'Anton', 'Oswald', Impact, sans-serif;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout */
+  --container-max: 1200px;
+  --header-height: 76px;
+  --transition: all 0.28s var(--ease-out);
+}

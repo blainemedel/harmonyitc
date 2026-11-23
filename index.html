@@ -1,368 +1,41 @@
 <!DOCTYPE html>
+<!-- Gene - Nov, 23, 2026: Vite SPA HTML entry with harmonyitc.dev SEO, Open Graph, Twitter cards, and static favicons -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>Harmony IT Consultancy &mdash; Practical Web &amp; Business Systems</title>
+  <title>Harmony IT Consultancy — Practical Web &amp; Business Systems</title>
   <meta name="description" content="Harmony IT Consultancy builds custom websites and web tools around how your business operates, helping fix workflow bottlenecks, strengthen your online presence, simplify daily tasks, and grow steady revenue.">
   <meta name="theme-color" content="#17395c">
+  <link rel="canonical" href="https://harmonyitc.dev/">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="256x256" href="assets/harmony-icon.png?v=20261126">
-  <link rel="shortcut icon" type="image/png" href="assets/harmony-icon.png?v=20261126">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png?v=20261126">
+  <!-- Open Graph & Social Previews -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Harmony IT Consultancy">
+  <meta property="og:title" content="Harmony IT Consultancy — Practical Web &amp; Business Systems">
+  <meta property="og:description" content="Harmony IT Consultancy builds custom websites and web tools around how your business operates, helping fix workflow bottlenecks, strengthen your online presence, simplify daily tasks, and grow steady revenue.">
+  <meta property="og:url" content="https://harmonyitc.dev/">
+  <meta property="og:image" content="https://harmonyitc.dev/harmony-logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Harmony IT Consultancy — Practical Web &amp; Business Systems">
+  <meta name="twitter:description" content="Harmony IT Consultancy builds custom websites and web tools around how your business operates, helping fix workflow bottlenecks, strengthen your online presence, simplify daily tasks, and grow steady revenue.">
+  <meta name="twitter:image" content="https://harmonyitc.dev/harmony-logo.png">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="256x256" href="/harmony-icon.png">
+  <link rel="shortcut icon" type="image/png" href="/harmony-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
   <!-- Google Fonts: Plus Jakarta Sans & Anton -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Design System Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=20261126">
 </head>
-<body class="home-page">
-
-  <!-- Ambient Studio Backdrop (hydrated via script.js) -->
-  <div class="ambient-canvas" aria-hidden="true"></div>
-
-  <!-- Shared Navigation & Mobile Drawer (hydrated via script.js) -->
-  <header class="site-header" data-active-nav="home"></header>
-  <div id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation"></div>
-
-  <main>
-    <!-- Section 1: Hero & Interactive Strategic Value Pitch -->
-    <section class="hero-section" aria-label="Introduction">
-      <div class="hero-container">
-        <div class="hero-copy" data-parallax-speed="0.03">
-          <div class="hero-eyebrow" data-reveal="up">Practical Web &amp; Business Systems</div>
-          <h1 class="hero-headline" data-reveal="up">
-            <span class="hero-line-light">Scale your</span>
-            <span class="hero-line-teal">Business</span>
-            <span class="hero-line-dark">Smarter.</span>
-          </h1>
-          <p class="hero-sublead" data-reveal="up">
-            We design and build custom websites that work as hard as your team does, helping you clear everyday bottlenecks, present your work clearly online, organize daily operations, and grow steady revenue.
-          </p>
-
-          <!-- Interactive Pitch Focus Switcher -->
-          <div class="pitch-focus-box">
-            <div class="pitch-focus-label">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-              </svg>
-              <span>Choose what matters most to your business right now:</span>
-            </div>
-
-            <div class="pitch-focus-pills" role="tablist" aria-label="Business Priorities">
-              <button class="pitch-focus-btn active" data-pillar="problem" role="tab" aria-selected="true" type="button">
-                <span class="pitch-focus-num">01</span>
-                <span>Solve a Problem</span>
-              </button>
-              <button class="pitch-focus-btn" data-pillar="promo" role="tab" aria-selected="false" type="button">
-                <span class="pitch-focus-num">02</span>
-                <span>Online Presence</span>
-              </button>
-              <button class="pitch-focus-btn" data-pillar="operations" role="tab" aria-selected="false" type="button">
-                <span class="pitch-focus-num">03</span>
-                <span>Daily Operations</span>
-              </button>
-              <button class="pitch-focus-btn" data-pillar="income" role="tab" aria-selected="false" type="button">
-                <span class="pitch-focus-num">04</span>
-                <span>Grow Revenue</span>
-              </button>
-            </div>
-
-            <div class="pitch-focus-panel">
-              <p id="pitch-focus-text">
-                <strong>01 / Solving Real Problems:</strong> We look at where your team loses time, misses inquiries, or gets stuck in manual steps, then build straightforward tools that fix the root issue.
-              </p>
-            </div>
-          </div>
-
-          <div class="hero-cta-row">
-            <a href="#capabilities" class="cta-pill-btn cta-lg">
-              <span>See How We Help</span>
-              <span class="cta-arrow-pocket" aria-hidden="true">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="12" y1="5" x2="12" y2="19"></line>
-                  <polyline points="19 12 12 19 5 12"></polyline>
-                </svg>
-              </span>
-            </a>
-            <a href="projects.html" class="btn-outline-teal">
-              <span>View Our Work</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="hero-visual">
-          <div id="hero-artwork-stage" class="hero-artwork-stage hero-3d-stage harmony-hub-stage" data-harmony-hub data-active-pillar="problem" aria-hidden="true"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 2: Business Outcomes Metrics Strip (temporarily hidden) -->
-    <section class="home-metrics-section" aria-label="Business Impact Outcomes" hidden aria-hidden="true">
-      <div class="section-inner">
-        <div class="home-metrics-grid">
-          <div class="home-metric-card">
-            <div class="home-metric-val">4 Core Areas</div>
-            <div class="home-metric-title">One Connected Setup</div>
-            <p class="home-metric-desc">
-              Problem-solving, online visibility, day-to-day workflows, and revenue support working together.
-            </p>
-          </div>
-
-          <div class="home-metric-card">
-            <div class="home-metric-val">24/7</div>
-            <div class="home-metric-title">Always Accessible</div>
-            <p class="home-metric-desc">
-              Your business stays easy to find, read, and contact at any hour on desktop or phone.
-            </p>
-          </div>
-
-          <div class="home-metric-card">
-            <div class="home-metric-val">Clearer</div>
-            <div class="home-metric-title">Daily Workflows</div>
-            <p class="home-metric-desc">
-              Cut down repetitive back-and-forth across scheduling, customer updates, invoicing, and job tracking.
-            </p>
-          </div>
-
-          <div class="home-metric-card">
-            <div class="home-metric-val">100%</div>
-            <div class="home-metric-title">Custom-Built</div>
-            <p class="home-metric-desc">
-              Designed around how your team actually works rather than forcing you into generic templates.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 3: The 4 Core Website Product Pillars -->
-    <section id="capabilities" class="home-pillars-section" aria-labelledby="pillars-heading">
-      <div class="section-inner">
-        <div class="pillars-header-row">
-          <div>
-            <div class="page-eyebrow">How Our Work Helps</div>
-            <h2 id="pillars-heading" style="font-size: clamp(1.9rem, 3.4vw, 2.85rem); font-weight: 400; color: var(--ink-slate); letter-spacing: -0.025em; line-height: 1.12;">
-              Four ways we build for <strong style="font-weight: 700; color: var(--accent-teal);">your business.</strong>
-            </h2>
-          </div>
-          <p class="team-intro" style="max-width: 420px;">
-            Every project starts with what your company actually needs, turning your website into a practical tool your team and customers rely on every day.
-          </p>
-        </div>
-
-        <div class="pillars-grid-2x2">
-          <!-- Pillar 01: Matte 3D Sphere + Torus Alignment -->
-          <article class="pillar-card">
-            <div class="pillar-card-top">
-              <div class="pillar-icon-badge" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="12" y1="8" x2="12" y2="12"></line>
-                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                </svg>
-              </div>
-              <span class="pillar-num-tag">Area 01</span>
-            </div>
-            <div class="pillar-3d-showcase" data-shape="core" aria-hidden="true"></div>
-            <h3 class="pillar-title">Solving Everyday Bottlenecks</h3>
-            <p class="pillar-desc">
-              Good software should never add extra steps. We sit down with you to spot where inquiries slip through, schedules clash, or records get messy, then build clean tools that take that weight off your team.
-            </p>
-            <div class="pillar-tags">
-              <span class="pillar-tag">Process Review</span>
-              <span class="pillar-tag">Workflow Tools</span>
-              <span class="pillar-tag">Less Manual Work</span>
-            </div>
-          </article>
-
-          <!-- Pillar 02: Matte 3D Sphere -->
-          <article class="pillar-card">
-            <div class="pillar-card-top">
-              <div class="pillar-icon-badge" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                </svg>
-              </div>
-              <span class="pillar-num-tag">Area 02</span>
-            </div>
-            <div class="pillar-3d-showcase" data-shape="sphere" aria-hidden="true"></div>
-            <h3 class="pillar-title">A Trustworthy Presence Online</h3>
-            <p class="pillar-desc">
-              Your website is often the first place people meet your company. We make sure it reads clearly, loads quickly on any phone, shows up well in search, and reflects the care you put into your work.
-            </p>
-            <div class="pillar-tags">
-              <span class="pillar-tag">Clear Messaging</span>
-              <span class="pillar-tag">Search Friendly</span>
-              <span class="pillar-tag">Mobile Ready</span>
-            </div>
-          </article>
-
-          <!-- Pillar 03: Matte 3D Torus -->
-          <article class="pillar-card">
-            <div class="pillar-card-top">
-              <div class="pillar-icon-badge" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                  <line x1="8" y1="21" x2="16" y2="21"></line>
-                  <line x1="12" y1="17" x2="12" y2="21"></line>
-                </svg>
-              </div>
-              <span class="pillar-num-tag">Area 03</span>
-            </div>
-            <div class="pillar-3d-showcase" data-shape="torus" aria-hidden="true"></div>
-            <h3 class="pillar-title">Support for Daily Operations</h3>
-            <p class="pillar-desc">
-              Instead of stopping at static pages, we connect your website to the tasks your staff handles every morning, from booking requests and job orders to client portals and team dashboards.
-            </p>
-            <div class="pillar-tags">
-              <span class="pillar-tag">Client Portals</span>
-              <span class="pillar-tag">Scheduling &amp; Dispatch</span>
-              <span class="pillar-tag">Team Dashboards</span>
-            </div>
-          </article>
-
-          <!-- Pillar 04: Matte 3D Curved Arrow -->
-          <article class="pillar-card">
-            <div class="pillar-card-top">
-              <div class="pillar-icon-badge" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="12" y1="1" x2="12" y2="23"></line>
-                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                </svg>
-              </div>
-              <span class="pillar-num-tag">Area 04</span>
-            </div>
-            <div class="pillar-3d-showcase" data-shape="arrow" aria-hidden="true"></div>
-            <h3 class="pillar-title">A Reliable Path to Revenue</h3>
-            <p class="pillar-desc">
-              A well-built site helps pay its own way. We shape clear inquiry flows, service estimators, and online payment options that make it easy for customers to say yes and follow through.
-            </p>
-            <div class="pillar-tags">
-              <span class="pillar-tag">Clear Inquiry Paths</span>
-              <span class="pillar-tag">Online Payments</span>
-              <span class="pillar-tag">Repeat Business</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 4: Strategic Pitch Comparison Matrix -->
-    <section class="home-comparison-section" aria-labelledby="comparison-heading">
-      <div class="section-inner">
-        <div class="page-eyebrow">A Practical Comparison</div>
-        <h2 id="comparison-heading" style="font-size: clamp(1.85rem, 3.2vw, 2.65rem); font-weight: 400; color: var(--ink-slate); letter-spacing: -0.025em;">
-          Why basic template sites fall short, <strong style="font-weight: 700; color: var(--ink-navy);">and what we build instead.</strong>
-        </h2>
-        <p style="font-size: 0.96rem; color: var(--ink-body); max-width: 620px; margin-top: 0.45rem;">
-          See the difference between a static brochure site and a custom web system built around your team.
-        </p>
-
-        <div class="comparison-grid-2">
-          <!-- Column 1: Traditional Brochure Site -->
-          <div class="comparison-card-passive">
-            <div class="process-tag" style="margin-bottom: 0.35rem;">Standard Brochure Site</div>
-            <h3 style="font-size: 1.5rem; font-weight: 700; color: var(--ink-navy);">Sits on the Sidelines</h3>
-            <ul class="comparison-list">
-              <li class="comparison-item" style="color: var(--ink-body);">
-                <span class="comparison-badge-cross" aria-hidden="true">&times;</span>
-                <span>Gives visitors general info, but doesn't help your team get real work done.</span>
-              </li>
-              <li class="comparison-item" style="color: var(--ink-body);">
-                <span class="comparison-badge-cross" aria-hidden="true">&times;</span>
-                <span>Leaves staff copying messages, tracking requests, and updating spreadsheets by hand.</span>
-              </li>
-              <li class="comparison-item" style="color: var(--ink-body);">
-                <span class="comparison-badge-cross" aria-hidden="true">&times;</span>
-                <span>Stays disconnected from your bookings, billing, inventory, or field operations.</span>
-              </li>
-              <li class="comparison-item" style="color: var(--ink-body);">
-                <span class="comparison-badge-cross" aria-hidden="true">&times;</span>
-                <span>Ends up as a recurring cost that rarely pulls its own weight.</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Column 2: HarmonyITC Business Engine -->
-          <div class="comparison-card-engine">
-            <div class="cosmic-eyebrow" style="margin-bottom: 0.35rem;">The HarmonyITC Approach</div>
-            <h3 style="font-size: 1.5rem; font-weight: 700; color: #fdffff;">Works Alongside Your Team</h3>
-            <ul class="comparison-list">
-              <li class="comparison-item" style="color: #d8eeff;">
-                <span class="comparison-badge-check" aria-hidden="true">&#10003;</span>
-                <span><strong style="color: #fdffff;">Problem Solving:</strong> Shaped around the exact workflow gaps slowing your team down.</span>
-              </li>
-              <li class="comparison-item" style="color: #d8eeff;">
-                <span class="comparison-badge-check" aria-hidden="true">&#10003;</span>
-                <span><strong style="color: #fdffff;">Always Visible:</strong> Presents your services clearly, builds trust, and makes reaching you simple.</span>
-              </li>
-              <li class="comparison-item" style="color: #d8eeff;">
-                <span class="comparison-badge-check" aria-hidden="true">&#10003;</span>
-                <span><strong style="color: #fdffff;">Daily Operations:</strong> Handles inquiries, reservations, job orders, and updates in one organized place.</span>
-              </li>
-              <li class="comparison-item" style="color: #d8eeff;">
-                <span class="comparison-badge-check" aria-hidden="true">&#10003;</span>
-                <span><strong style="color: #fdffff;">Built for Growth:</strong> Guides interested visitors smoothly from first question to completed sale.</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 5: Kinetic 3D Typography Cylinder & Strategic Callout -->
-    <section class="kinetic-section" aria-label="Upcoming Platform Promise">
-      <div class="kinetic-split-grid">
-        <div style="display: flex; justify-content: flex-start;">
-          <h2 class="sr-only">The wait: we promise it will be worth the wait.</h2>
-          <div id="kinetic-stage" class="kinetic-stage">
-            <canvas id="kinetic-cylinder-canvas" aria-hidden="true"></canvas>
-            <div id="kinetic-fallback" class="kinetic-fallback" aria-hidden="true">
-              THE WAIT<br>
-              WE PROMISE<br>
-              IT WILL BE<br>
-              WORTH
-            </div>
-          </div>
-        </div>
-
-        <div class="frosted-panel">
-          <div class="page-eyebrow">Start a Conversation</div>
-          <h2 style="font-size: clamp(1.75rem, 3vw, 2.35rem); font-weight: 700; color: var(--ink-navy); line-height: 1.18; letter-spacing: -0.02em; margin-bottom: 1rem;">
-            Ready for a website that <span style="color: var(--accent-teal);">helps run the work?</span>
-          </h2>
-          <p style="font-size: 0.96rem; color: var(--ink-body); line-height: 1.7; margin-bottom: 1.75rem;">
-            Put together a quick project brief or talk through your current bottlenecks directly with our founders. No sales pressure, just a practical conversation about what makes sense for your team.
-          </p>
-          <div style="display: flex; align-items: center; gap: 0.9rem; flex-wrap: wrap;">
-            <a href="contact.html" class="cta-pill-btn cta-lg">
-              <span>Talk With Us</span>
-              <span class="cta-arrow-pocket" aria-hidden="true">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </span>
-            </a>
-            <a href="about.html" class="btn-outline-teal">
-              <span>Meet the Team</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Shared Footer (hydrated via script.js) -->
-  <footer class="site-footer"></footer>
-
-  <script src="script.js?v=20261126" defer></script>
+<body>
+  <div id="app"></div>
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>

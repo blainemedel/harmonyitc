@@ -1,0 +1,105 @@
+/* Gene - Nov, 23, 2026: Parallax motion, scroll-reveal (below-the-fold), 3D tilt, and reduced-motion safeguards */
+
+[data-parallax-speed] {
+  will-change: transform;
+}
+
+/* Only hide elements explicitly marked for below-the-fold scroll reveal */
+html.js-parallax-ready .parallax-reveal {
+  opacity: 0;
+  will-change: transform, opacity, filter;
+  transition:
+    opacity 0.78s var(--ease-out) var(--reveal-delay, 0ms),
+    transform 0.85s var(--ease-out) var(--reveal-delay, 0ms),
+    filter 0.78s var(--ease-out) var(--reveal-delay, 0ms);
+}
+
+html.js-parallax-ready .parallax-reveal,
+html.js-parallax-ready .parallax-reveal.reveal-up {
+  transform: perspective(1000px) translate3d(0, 44px, -20px) rotateX(5deg) scale(0.97);
+  filter: blur(5px);
+}
+
+html.js-parallax-ready .parallax-reveal.reveal-left {
+  transform: perspective(1000px) translate3d(-48px, 20px, -18px) rotateY(5deg) scale(0.97);
+  filter: blur(5px);
+}
+
+html.js-parallax-ready .parallax-reveal.reveal-right {
+  transform: perspective(1000px) translate3d(48px, 20px, -18px) rotateY(-5deg) scale(0.97);
+  filter: blur(5px);
+}
+
+html.js-parallax-ready .parallax-reveal.reveal-scale {
+  transform: perspective(1000px) translate3d(0, 30px, -32px) scale(0.92);
+  filter: blur(6px);
+}
+
+html.js-parallax-ready .parallax-reveal.is-revealed {
+  opacity: 1;
+  transform: perspective(1000px) translate3d(0, var(--parallax-y, 0px), 0) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) scale(1);
+  filter: blur(0px);
+}
+
+/* Clear reveal delay & long ease once settled so 3D card hover tilt responds immediately */
+html.js-parallax-ready .parallax-reveal.is-settled {
+  transition:
+    transform 0.14s var(--ease-out),
+    box-shadow 0.28s ease,
+    border-color 0.28s ease,
+    background 0.28s ease;
+  transition-delay: 0ms;
+  will-change: transform;
+}
+
+/* Interactive 3D Card Specular Glow Overlay */
+.parallax-tilt-card {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.parallax-tilt-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(180, 208, 233, 0.12) 0%,
+    rgba(95, 124, 152, 0.06) 38%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cosmic-quote-card.parallax-tilt-card::before,
+.comparison-card-engine.parallax-tilt-card::before,
+.contact-email-box.parallax-tilt-card::before {
+  background: radial-gradient(
+    460px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(186, 207, 229, 0.16) 0%,
+    rgba(58, 106, 147, 0.1) 40%,
+    transparent 72%
+  );
+}
+
+.parallax-tilt-card:hover::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-3d-orbit-ring,
+  .hero-3d-node,
+  .harmony-pulse-ring {
+    animation: none;
+  }
+  html.js-parallax-ready .parallax-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+}
