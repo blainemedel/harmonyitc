@@ -6,7 +6,8 @@ import { DISPLAY_CONFIG, HERO_PILLARS, HOME_DATA } from '@/data/siteContent';
 // Gene - Nov, 24, 2026: Replaced HeroWorkPreview import with HarmonyMotionStage
 // import HeroWorkPreview from '@/components/HeroWorkPreview.vue';
 import HarmonyMotionStage from '@/components/HarmonyMotionStage.vue';
-import PillarArtwork from '@/components/PillarArtwork.vue';
+// Gene - Nov, 24, 2026: Commented out PillarArtwork import after removing the Four Ways pillars section from HomeView
+// import PillarArtwork from '@/components/PillarArtwork.vue';
 import UnifiedCtaStrip from '@/components/UnifiedCtaStrip.vue';
 import { useParallaxMotion } from '@/composables/useParallaxMotion';
 import { useCardTilt } from '@/composables/useCardTilt';
@@ -95,12 +96,24 @@ function cyclePillar(step) {
           </div>
 
           <div class="hero-cta-row">
+            <!--
             <RouterLink to="/#capabilities" class="cta-pill-btn cta-lg">
               <span>See How We Help</span>
               <span class="cta-arrow-pocket" aria-hidden="true">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="12" y1="5" x2="12" y2="19" />
                   <polyline points="19 12 12 19 5 12" />
+                </svg>
+              </span>
+            </RouterLink>
+            -->
+            <!-- Gene - Nov, 24, 2026: Routed hero primary CTA to /contact with active pitch focus after removing #capabilities section -->
+            <RouterLink :to="{ path: '/contact', query: { focus: activePillar } }" class="cta-pill-btn cta-lg">
+              <span>Start a Conversation</span>
+              <span class="cta-arrow-pocket" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
                 </svg>
               </span>
             </RouterLink>
@@ -132,6 +145,8 @@ function cyclePillar(step) {
     </section>
 
     <!-- Section 3: The 4 Core Website Product Pillars -->
+    <!-- Gene - Nov, 24, 2026: Removed "Four ways we build for your business" pillars section pending replacement -->
+    <!--
     <section id="capabilities" class="home-pillars-section" aria-labelledby="pillars-heading">
       <div class="section-inner">
         <div class="pillars-header-row">
@@ -183,8 +198,11 @@ function cyclePillar(step) {
         </div>
       </div>
     </section>
+    -->
 
     <!-- Section 4: Strategic Pitch Comparison Matrix -->
+    <!-- Gene - Nov, 24, 2026: Removed "Why basic template sites fall short" comparison section pending replacement -->
+    <!--
     <section class="home-comparison-section" aria-labelledby="comparison-heading">
       <div class="section-inner">
         <div class="page-eyebrow">{{ HOME_DATA.comparisonSection.eyebrow }}</div>
@@ -221,6 +239,7 @@ function cyclePillar(step) {
         </div>
       </div>
     </section>
+    -->
 
     <!-- Section 5: Unified Closing Callout -->
     <UnifiedCtaStrip v-bind="HOME_DATA.closingCta" />

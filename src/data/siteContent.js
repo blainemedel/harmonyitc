@@ -181,6 +181,8 @@ export const HOME_DATA = {
       desc: 'Designed around how your team actually works rather than forcing you into generic templates.'
     }
   ],
+  // Gene - Nov, 24, 2026: Commented out pillarsSection and comparisonSection data after removing both sections from HomeView pending replacement
+  /*
   pillarsSection: {
     eyebrow: 'How Our Work Helps',
     headingLead: 'Four ways we build for',
@@ -265,6 +267,7 @@ export const HOME_DATA = {
       ]
     }
   },
+  */
   // Gene - Nov, 24, 2026: Replaced legacy "THE WAIT" kineticSection with UnifiedCtaStrip closingCta config
   /*
   kineticSection: {
