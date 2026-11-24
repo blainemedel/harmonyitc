@@ -86,7 +86,9 @@ onMounted(() => {
     const glow = ctx.createRadialGradient(gx, gy, 0, gx, gy, Math.max(width, height) * 0.55);
     glow.addColorStop(0, motion.glowRgba);
     glow.addColorStop(0.55, 'rgba(58, 106, 147, 0.1)');
-    glow.addColorStop(1, 'rgba(2, 11, 40, 0)');
+    // glow.addColorStop(1, 'rgba(2, 11, 40, 0)');
+    // Gene - Nov, 24, 2026: Faded radial canvas glow into transparent studio blue instead of dark cosmic navy for seamless background blending
+    glow.addColorStop(1, 'rgba(58, 106, 147, 0)');
     ctx.fillStyle = glow;
     ctx.fillRect(0, 0, width, height);
 

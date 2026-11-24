@@ -17,8 +17,21 @@ const CARD_SELECTORS = [
 ].join(', ');
 */
 // Gene - Nov, 24, 2026: Replaced .hero-preview-card tilt selector with .harmony-motion-stage-card
+/*
 const CARD_SELECTORS = [
   '.harmony-motion-stage-card',
+  '.pillar-card',
+  '.process-card',
+  '.home-metric-card',
+  '.project-card',
+  '.comparison-card-passive',
+  '.comparison-card-engine',
+  '.founder-profile-card',
+  '.contact-info-sidebar'
+].join(', ');
+*/
+// Gene - Nov, 24, 2026: Removed .harmony-motion-stage-card from card tilt/specular overlay so the borderless motion stage blends cleanly with the background
+const CARD_SELECTORS = [
   '.pillar-card',
   '.process-card',
   '.home-metric-card',

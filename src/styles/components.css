@@ -309,7 +309,17 @@
 }
 
 /* Shared Dark Matte Cosmic Card Surface */
+/*
 .harmony-motion-stage-card,
+.contact-info-sidebar,
+.comparison-card-engine {
+  background: radial-gradient(circle at 70% 32%, var(--cosmic-glow) 0%, var(--cosmic-mid) 48%, var(--cosmic-base) 100%);
+  color: var(--text-primary);
+  border: 1px solid rgba(156, 183, 212, 0.36);
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(186, 207, 229, 0.24);
+}
+*/
+/* Gene - Nov, 24, 2026: Removed .harmony-motion-stage-card from cosmic card surface so Harmony text motion blends seamlessly into the studio background */
 .contact-info-sidebar,
 .comparison-card-engine {
   background: radial-gradient(circle at 70% 32%, var(--cosmic-glow) 0%, var(--cosmic-mid) 48%, var(--cosmic-base) 100%);
