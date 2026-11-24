@@ -5,7 +5,9 @@ export const SITE_META = {
   brandShort: 'HARMONY',
   brandSubtitle: 'IT CONSULTANCY',
   domain: 'https://harmonyitc.dev',
-  email: 'inquiries@harmonyitc.com',
+  // Gene - Nov, 24, 2026: Updated official public contact email to harmonyitco@gmail.com
+  // email: 'inquiries@harmonyitc.com',
+  email: 'harmonyitco@gmail.com',
   ogImage: 'https://harmonyitc.dev/harmony-logo.png',
   copyrightYear: 2026
 };

@@ -32,7 +32,9 @@ const validPriorityIds = priorities.map((p) => p.id);
 describe('HarmonyITC site configuration', () => {
   it('standardizes official domain, contact email, and minimal text flags', () => {
     assert.equal(SITE_META.domain, 'https://harmonyitc.dev');
-    assert.equal(SITE_META.email, 'inquiries@harmonyitc.com');
+    // Gene - Nov, 24, 2026: Updated expected contact email to harmonyitco@gmail.com
+    // assert.equal(SITE_META.email, 'inquiries@harmonyitc.com');
+    assert.equal(SITE_META.email, 'harmonyitco@gmail.com');
     assert.equal(DISPLAY_CONFIG.showExtendedCopy, false);
     assert.equal(DISPLAY_CONFIG.showHeaderCta, false);
     assert.equal(DISPLAY_CONFIG.showHomeMetrics, false);
@@ -91,7 +93,9 @@ describe('briefBuilder helpers & platform filtering', () => {
     );
 
     const brief = buildClipboardBrief(['problem', 'income'], priorities, SITE_META.email);
-    assert.match(brief, /Target Email: inquiries@harmonyitc\.com/);
+    // Gene - Nov, 24, 2026: Updated expected contact email to harmonyitco@gmail.com
+    // assert.match(brief, /Target Email: inquiries@harmonyitc\.com/);
+    assert.match(brief, /Target Email: harmonyitco@gmail\.com/);
     assert.match(brief, /1\. Fix a Workflow Bottleneck/);
 
     const href = buildMailtoHref(['operations'], priorities, SITE_META.email);
@@ -111,7 +115,9 @@ describe('briefBuilder helpers & platform filtering', () => {
       priorities,
       SITE_META.email
     );
-    assert.ok(fallbackUrl.startsWith('mailto:inquiries@harmonyitc.com?subject='));
+    // Gene - Nov, 24, 2026: Updated expected contact email to harmonyitco@gmail.com
+    // assert.ok(fallbackUrl.startsWith('mailto:inquiries@harmonyitc.com?subject='));
+    assert.ok(fallbackUrl.startsWith('mailto:harmonyitco@gmail.com?subject='));
     const parsed = new URL(fallbackUrl);
     assert.match(parsed.searchParams.get('subject') || '', /Northwind Fiber/);
     const body = parsed.searchParams.get('body') || '';
@@ -204,7 +210,9 @@ describe('contactInquiry validation, escaping, Resend payload, and query parsing
     });
 
     assert.equal(payload.from, 'HarmonyITC <noreply@harmonyitc.dev>');
-    assert.deepEqual(payload.to, ['inquiries@harmonyitc.com']);
+    // Gene - Nov, 24, 2026: Updated expected contact email to harmonyitco@gmail.com
+    // assert.deepEqual(payload.to, ['inquiries@harmonyitc.com']);
+    assert.deepEqual(payload.to, ['harmonyitco@gmail.com']);
     assert.equal(payload.reply_to, 'alex@example.com');
     assert.equal(payload.subject, 'HarmonyITC Inquiry from Test & Co');
     assert.match(payload.text, /Fix a Workflow Bottleneck/);

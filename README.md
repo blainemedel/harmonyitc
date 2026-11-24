@@ -76,11 +76,15 @@ npm run preview
 - **Environment Variables (for `/api/contact` email delivery via Resend):**
   - `RESEND_API_KEY` — Resend API key
   - `CONTACT_FROM_EMAIL` — Verified sender address on Resend (e.g. `HarmonyITC Website <noreply@harmonyitc.dev>`)
-  - `CONTACT_TO_EMAIL` *(optional)* — Recipient address (defaults to `inquiries@harmonyitc.com`)
+  <!-- Gene - Nov, 24, 2026: Updated default/contact email to harmonyitco@gmail.com -->
+  <!-- - `CONTACT_TO_EMAIL` *(optional)* — Recipient address (defaults to `inquiries@harmonyitc.com`) -->
+  - `CONTACT_TO_EMAIL` *(optional)* — Recipient address (defaults to `harmonyitco@gmail.com`)
 - If `RESEND_API_KEY` or `CONTACT_FROM_EMAIL` are not configured yet, the Contact form falls back cleanly to 1-click **Open Prefilled Email** and **Copy Brief**.
 - `api/contact.js` emits low-cardinality Vercel Custom Metrics: `contact.submissions` and `contact.resend_duration_ms`.
 
 ## Contact
 
 - **Website:** [https://harmonyitc.dev](https://harmonyitc.dev)
-- **Email:** `inquiries@harmonyitc.com`
+<!-- Gene - Nov, 24, 2026: Updated default/contact email to harmonyitco@gmail.com -->
+<!-- - **Email:** `inquiries@harmonyitc.com` -->
+- **Email:** `harmonyitco@gmail.com`

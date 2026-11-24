@@ -36,11 +36,34 @@ export async function POST(request) {
     );
   }
 
+  // Gene - Nov, 24, 2026: Trim Resend env vars and log missing key names (never values) for Vercel diagnostics
+  /*
   const apiKey = process.env.RESEND_API_KEY;
   const fromEmail = process.env.CONTACT_FROM_EMAIL;
   const toEmail = process.env.CONTACT_TO_EMAIL || SITE_META.email;
 
   if (!apiKey || !fromEmail) {
+    metric('contact.submissions', 1, { outcome: 'not_configured' });
+    return Response.json(
+      {
+        ok: false,
+        code: 'NOT_CONFIGURED',
+        error: 'Direct email delivery is not configured yet.'
+      },
+      { status: 503 }
+    );
+  }
+  */
+  const apiKey = (process.env.RESEND_API_KEY || '').trim();
+  const fromEmail = (process.env.CONTACT_FROM_EMAIL || '').trim();
+  const toEmail = (process.env.CONTACT_TO_EMAIL || '').trim() || SITE_META.email;
+
+  if (!apiKey || !fromEmail) {
+    const missingKeys = [
+      !apiKey && 'RESEND_API_KEY',
+      !fromEmail && 'CONTACT_FROM_EMAIL'
+    ].filter(Boolean);
+    console.warn('Contact endpoint missing env vars:', missingKeys.join(', '));
     metric('contact.submissions', 1, { outcome: 'not_configured' });
     return Response.json(
       {
