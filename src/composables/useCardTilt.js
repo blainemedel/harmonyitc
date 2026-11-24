@@ -30,7 +30,8 @@ const CARD_SELECTORS = [
   '.contact-info-sidebar'
 ].join(', ');
 */
-// Gene - Nov, 24, 2026: Removed .harmony-motion-stage-card from card tilt/specular overlay so the borderless motion stage blends cleanly with the background
+// Gene - Nov, 24, 2026: Updated tilt targets to subtle showcase surfaces (.bento-card, .project-media-frame) while keeping editorial rows crisp and flat
+/*
 const CARD_SELECTORS = [
   '.pillar-card',
   '.process-card',
@@ -40,6 +41,11 @@ const CARD_SELECTORS = [
   '.comparison-card-engine',
   '.founder-profile-card',
   '.contact-info-sidebar'
+].join(', ');
+*/
+const CARD_SELECTORS = [
+  '.bento-card',
+  '.project-media-frame'
 ].join(', ');
 
 /**

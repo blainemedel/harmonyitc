@@ -5,6 +5,8 @@
 }
 
 /* Only hide elements explicitly marked for below-the-fold scroll reveal */
+/* Gene - Nov, 24, 2026: Sleek editorial scroll reveals, masked typography entrances, hairline draws, kinetic marquee, and reduced-motion safeguards */
+/*
 html.js-parallax-ready .parallax-reveal {
   opacity: 0;
   will-change: transform, opacity, filter;
@@ -39,6 +41,150 @@ html.js-parallax-ready .parallax-reveal.is-revealed {
   opacity: 1;
   transform: perspective(1000px) translate3d(0, var(--parallax-y, 0px), 0) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) scale(1);
   filter: blur(0px);
+}
+*/
+html.js-parallax-ready .parallax-reveal {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition:
+    opacity 0.72s var(--ease-out) var(--reveal-delay, 0ms),
+    transform 0.82s var(--ease-out) var(--reveal-delay, 0ms);
+}
+
+html.js-parallax-ready .parallax-reveal,
+html.js-parallax-ready .parallax-reveal.reveal-up {
+  transform: translate3d(0, 34px, 0);
+}
+
+html.js-parallax-ready .parallax-reveal.reveal-left {
+  transform: translate3d(-36px, 16px, 0);
+}
+
+html.js-parallax-ready .parallax-reveal.reveal-right {
+  transform: translate3d(36px, 16px, 0);
+}
+
+html.js-parallax-ready .parallax-reveal.reveal-scale {
+  transform: translate3d(0, 24px, 0) scale(0.96);
+}
+
+html.js-parallax-ready .parallax-reveal.reveal-line {
+  opacity: 1;
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 0.9s var(--ease-out) var(--reveal-delay, 0ms);
+}
+
+html.js-parallax-ready .parallax-reveal.is-revealed {
+  opacity: 1;
+  transform: perspective(1000px) translate3d(0, var(--parallax-y, 0px), 0) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) scale(1);
+}
+
+html.js-parallax-ready .parallax-reveal.reveal-line.is-revealed {
+  transform: scaleX(1);
+}
+
+/* Masked Display Line Entrance */
+/* Gene - Nov, 24, 2026: Added horizontal padding room and faster 0.56s studio mask timing */
+/*
+.reveal-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.reveal-mask-inner {
+  display: block;
+  animation: edMaskRise 0.85s var(--ease-out) var(--mask-delay, 0ms) both;
+}
+*/
+.reveal-mask {
+  display: block;
+  overflow: hidden;
+  padding: 0.04em 0.08em 0.1em 0;
+  margin: -0.04em -0.08em -0.1em 0;
+}
+
+.reveal-mask-inner {
+  display: block;
+  animation: edMaskRise 0.56s var(--ease-out) var(--mask-delay, 0ms) both;
+}
+
+@keyframes edMaskRise {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 108%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Subtle Hero Live Status Dot & Scroll Cue */
+@keyframes edPulseGlow {
+  0%, 100% {
+    opacity: 0.95;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.82);
+  }
+}
+
+@keyframes edScrollStem {
+  0% {
+    transform: scaleY(0.25);
+    transform-origin: top center;
+    opacity: 0.35;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top center;
+    opacity: 0.95;
+  }
+  100% {
+    transform: scaleY(0.25);
+    transform-origin: bottom center;
+    opacity: 0.35;
+  }
+}
+
+.ed-live-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-ice);
+  box-shadow: 0 0 10px rgba(180, 208, 233, 0.72);
+  animation: edPulseGlow 2.6s ease-in-out infinite;
+}
+
+.hero-scroll-stem {
+  animation: edScrollStem 2.2s ease-in-out infinite;
+}
+
+/* Continuous Kinetic Typographic Marquee */
+@keyframes edMarqueeScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.kinetic-marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: edMarqueeScroll 34s linear infinite;
+}
+
+.kinetic-marquee-band:hover .kinetic-marquee-track {
+  animation-play-state: paused;
 }
 
 /* Clear reveal delay & long ease once settled so 3D card hover tilt responds immediately */
@@ -165,14 +311,23 @@ html.js-parallax-ready .parallax-reveal.is-settled {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* Gene - Nov, 24, 2026: Disabled masked line entrances, pulse dots, and marquee drift under reduced motion */
   .route-fade-enter-active,
   .route-fade-leave-active,
   .preview-swap-enter-active,
   .preview-swap-leave-active,
   .harmony-ribbon-track--left,
-  .harmony-ribbon-track--right {
+  .harmony-ribbon-track--right,
+  .reveal-mask-inner,
+  .ed-live-dot,
+  .hero-scroll-stem,
+  .kinetic-marquee-track {
     animation: none;
     transition: none;
+  }
+  .reveal-mask-inner {
+    opacity: 1;
+    transform: none;
   }
   html.js-parallax-ready .parallax-reveal {
     opacity: 1 !important;

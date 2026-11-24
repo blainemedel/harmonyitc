@@ -1,8 +1,8 @@
-<!-- Gene - Nov, 24, 2026: Unified 2-column Contact Hub with real Vercel Function inquiry submission and direct info sidebar -->
+<!-- Gene - Nov, 24, 2026: Open architectural Contact split with direct copyable email, unselected optional scope pills, hairline inputs, and /api/contact delivery -->
 <script setup>
 import { ref, reactive, computed, watch, onBeforeUnmount } from 'vue';
 import { useRoute } from 'vue-router';
-import { CONTACT_DATA, DISPLAY_CONFIG, PROJECTS_DATA, SITE_META } from '@/data/siteContent';
+import { CONTACT_DATA, PROJECTS_DATA, SITE_META } from '@/data/siteContent';
 import { buildClipboardBrief, buildInquiryFallbackMailto } from '@/utils/briefBuilder';
 import { validateInquiryPayload, parseContactQuery } from '@/utils/contactInquiry';
 import { useClipboard } from '@/composables/useClipboard';
@@ -19,7 +19,9 @@ const { copyTextToClipboard, showToast } = useClipboard();
 const priorityItems = CONTACT_DATA.briefBuilder.priorities;
 const validPriorityIds = priorityItems.map((p) => p.id);
 
-const selectedPriorities = ref([...validPriorityIds]);
+// Gene - Nov, 24, 2026: Initialize scope pills unselected unless ?focus= is explicitly passed
+/* const selectedPriorities = ref([...validPriorityIds]); */
+const selectedPriorities = ref([]);
 const referencedProjectTitle = ref('');
 
 const form = reactive({
@@ -33,9 +35,7 @@ const form = reactive({
 const fieldErrors = ref({});
 const submitState = ref('idle'); // 'idle' | 'submitting' | 'sent' | 'fallback' | 'error'
 const serverMessage = ref('');
-const briefCopiedBadge = ref(false);
 const emailCopiedBadge = ref(false);
-let briefBadgeTimer = null;
 let emailBadgeTimer = null;
 
 watch(
@@ -87,11 +87,6 @@ async function handleCopyBrief() {
     ? `${brief}\n\nProject Details:\n${form.message.trim()}`
     : brief;
   const copied = await copyTextToClipboard(fullBrief);
-  briefCopiedBadge.value = true;
-  clearTimeout(briefBadgeTimer);
-  briefBadgeTimer = setTimeout(() => {
-    briefCopiedBadge.value = false;
-  }, 2500);
   showToast(
     copied ? 'Project brief copied to clipboard!' : `Brief prepared — email ${SITE_META.email}`
   );
@@ -153,7 +148,6 @@ async function handleSubmit() {
       return;
     }
 
-    // 503 NOT_CONFIGURED, 502 UPSTREAM_ERROR, 500, or Vite local dev without Vercel API
     submitState.value = 'fallback';
     serverMessage.value =
       data.error ||
@@ -177,45 +171,63 @@ function resetInquiryForm() {
 }
 
 onBeforeUnmount(() => {
-  clearTimeout(briefBadgeTimer);
   clearTimeout(emailBadgeTimer);
 });
 </script>
 
 <template>
   <div ref="viewRef">
-    <section class="page-hero">
-      <div class="section-inner" data-parallax-speed="0.035">
-        <div class="page-eyebrow">{{ CONTACT_DATA.hero.eyebrow }}</div>
-        <h1 class="page-title">
-          {{ CONTACT_DATA.hero.titleStart }}
-          <strong>{{ CONTACT_DATA.hero.titleAccent }}</strong>
-          <span class="ink-dark"> {{ CONTACT_DATA.hero.titleEnd }}</span>
-        </h1>
-        <p v-if="DISPLAY_CONFIG.showExtendedCopy" class="page-lead">
-          {{ CONTACT_DATA.hero.lead }}
-        </p>
-      </div>
-    </section>
-
-    <section class="content-section content-section-tight">
+    <!-- Gene - Nov, 24, 2026: Replaced boxed Contact Hub & multi-button sidebar with open architectural 2-column Contact split -->
+    <section class="contact-editorial-section">
       <div class="section-inner">
-        <div class="contact-hub-grid">
-          <!-- Left: Unified Priority Chips + Working Inquiry Form -->
-          <div class="frosted-panel contact-form-panel">
-            <div class="page-eyebrow">{{ CONTACT_DATA.briefBuilder.eyebrow }}</div>
-            <h2 class="brief-heading">{{ CONTACT_DATA.briefBuilder.heading }}</h2>
-            <p v-if="DISPLAY_CONFIG.showExtendedCopy" class="brief-subtitle">
-              {{ CONTACT_DATA.briefBuilder.subtitle }}
-            </p>
+        <div class="contact-editorial-grid">
+          <!-- Left: Editorial Prompt & Direct Copyable Email -->
+          <div class="contact-editorial-left">
+            <div class="page-eyebrow">{{ CONTACT_DATA.hero.eyebrow }}</div>
+            <h1 class="editorial-page-title contact-editorial-title">
+              <span class="reveal-mask">
+                <span class="reveal-mask-inner" style="--mask-delay: 0ms;">{{ CONTACT_DATA.hero.titleStart }}</span>
+              </span>
+              <span class="reveal-mask">
+                <span class="reveal-mask-inner" style="--mask-delay: 55ms;">
+                  <strong>{{ CONTACT_DATA.hero.titleAccent }}</strong>{{ ' ' }}<span class="ink-dark">{{ CONTACT_DATA.hero.titleEnd }}</span>
+                </span>
+              </span>
+            </h1>
 
+            <div class="ed-line-draw contact-left-rule" aria-hidden="true" />
+
+            <div class="contact-direct-block">
+              <div class="contact-direct-label">{{ CONTACT_DATA.directBox.label }}</div>
+              <div class="contact-email-row">
+                <a :href="directInquiryHref" class="contact-email-display">
+                  {{ CONTACT_DATA.directBox.email }}
+                </a>
+                <button
+                  type="button"
+                  class="contact-copy-chip"
+                  aria-label="Copy official email to clipboard"
+                  @click="handleCopyEmail"
+                >
+                  <span>{{ emailCopiedBadge ? 'Copied' : 'Copy' }}</span>
+                </button>
+              </div>
+              <p class="contact-direct-status">
+                <span class="ed-live-dot" aria-hidden="true" />
+                <span>{{ CONTACT_DATA.directNote }}</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Right: Frameless Hairline Inquiry Form -->
+          <div class="contact-editorial-right">
             <div v-if="referencedProjectTitle" class="referenced-project-note">
               Inspired by: <strong>{{ referencedProjectTitle }}</strong>
             </div>
 
             <div v-if="submitState === 'sent'" class="form-success-card" role="status" aria-live="polite">
               <div class="page-eyebrow">Inquiry Received</div>
-              <h3 class="form-success-title">Thanks — Paulo, Gene &amp; Bry will follow up shortly.</h3>
+              <h2 class="form-success-title">Thanks — Paulo, Gene &amp; Bry will follow up shortly.</h2>
               <p class="form-success-body">
                 We typically reply within 24 hours on business days ({{ SITE_META.email }}).
               </p>
@@ -226,22 +238,24 @@ onBeforeUnmount(() => {
               </div>
             </div>
 
-            <form v-else class="contact-form" novalidate @submit.prevent="handleSubmit">
-              <div class="priority-chips-grid" role="group" aria-label="Project Focus Areas">
-                <button
-                  v-for="item in priorityItems"
-                  :key="item.id"
-                  type="button"
-                  class="priority-chip"
-                  :class="{ selected: isSelected(item.id) }"
-                  :aria-pressed="String(isSelected(item.id))"
-                  @click="togglePriority(item.id)"
-                >
-                  <span class="priority-check-box" aria-hidden="true">
-                    {{ isSelected(item.id) ? '&#10003;' : '' }}
-                  </span>
-                  <span class="priority-chip-title">{{ item.title }}</span>
-                </button>
+            <form v-else class="contact-hairline-form" novalidate @submit.prevent="handleSubmit">
+              <div class="scope-group-block">
+                <div class="form-label">
+                  Scope <span class="form-optional">(Optional)</span>
+                </div>
+                <div class="scope-pill-group" role="group" aria-label="Project Scope">
+                  <button
+                    v-for="item in priorityItems"
+                    :key="item.id"
+                    type="button"
+                    class="scope-pill"
+                    :class="{ selected: isSelected(item.id) }"
+                    :aria-pressed="String(isSelected(item.id))"
+                    @click="togglePriority(item.id)"
+                  >
+                    {{ item.title }}
+                  </button>
+                </div>
               </div>
 
               <!-- Honeypot field for spam bots -->
@@ -263,9 +277,9 @@ onBeforeUnmount(() => {
                     id="contact-name"
                     v-model="form.name"
                     type="text"
-                    class="form-input"
+                    class="form-input-hairline"
                     :class="{ 'is-invalid': fieldErrors.name }"
-                    placeholder="e.g. Alex Rivera"
+                    placeholder="Alex Rivera"
                     required
                     autocomplete="name"
                     :aria-invalid="Boolean(fieldErrors.name)"
@@ -282,7 +296,7 @@ onBeforeUnmount(() => {
                     id="contact-email"
                     v-model="form.email"
                     type="email"
-                    class="form-input"
+                    class="form-input-hairline"
                     :class="{ 'is-invalid': fieldErrors.email }"
                     placeholder="you@company.com"
                     required
@@ -304,7 +318,7 @@ onBeforeUnmount(() => {
                   id="contact-company"
                   v-model="form.company"
                   type="text"
-                  class="form-input"
+                  class="form-input-hairline"
                   :class="{ 'is-invalid': fieldErrors.company }"
                   placeholder="Your business name"
                   autocomplete="organization"
@@ -322,7 +336,7 @@ onBeforeUnmount(() => {
                   id="contact-message"
                   v-model="form.message"
                   rows="4"
-                  class="form-textarea"
+                  class="form-textarea-hairline"
                   :class="{ 'is-invalid': fieldErrors.message }"
                   placeholder="What are you looking to build or streamline?"
                   required
@@ -356,10 +370,11 @@ onBeforeUnmount(() => {
                 </div>
               </div>
 
-              <div class="brief-action-bar">
+              <div class="contact-submit-row">
                 <button
                   type="submit"
                   class="cta-pill-btn cta-lg"
+                  data-magnetic
                   :disabled="submitState === 'submitting'"
                 >
                   <span>{{ submitState === 'submitting' ? 'Sending...' : 'Send Inquiry' }}</span>
@@ -370,61 +385,9 @@ onBeforeUnmount(() => {
                     </svg>
                   </span>
                 </button>
-
-                <button
-                  type="button"
-                  class="btn-outline-teal"
-                  aria-label="Copy assembled brief to clipboard"
-                  @click="handleCopyBrief"
-                >
-                  <span>Copy Brief</span>
-                  <span class="copied-badge" :class="{ show: briefCopiedBadge }">Copied!</span>
-                </button>
               </div>
             </form>
           </div>
-
-          <!-- Right: Compact Dark-Cosmic Direct Info Sidebar -->
-          <aside class="contact-info-sidebar" aria-label="Direct Contact Details">
-            <div class="cosmic-eyebrow">{{ CONTACT_DATA.directBox.label }}</div>
-            <div class="email-display sidebar-email">{{ CONTACT_DATA.directBox.email }}</div>
-
-            <div class="action-row sidebar-actions">
-              <button
-                type="button"
-                class="cta-pill-btn"
-                aria-label="Copy official email to clipboard"
-                @click="handleCopyEmail"
-              >
-                <span>Copy Email</span>
-                <span class="copied-badge" :class="{ show: emailCopiedBadge }">Copied!</span>
-                <span class="cta-arrow-pocket" aria-hidden="true">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                  </svg>
-                </span>
-              </button>
-
-              <a :href="directInquiryHref" class="btn-outline-teal btn-outline-cosmic">
-                <span>Open Mail App</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <line x1="7" y1="17" x2="17" y2="7" />
-                  <polyline points="7 7 17 7 17 17" />
-                </svg>
-              </a>
-            </div>
-
-            <div class="sidebar-divider" />
-
-            <dl class="sidebar-meta-list">
-              <div v-for="channel in CONTACT_DATA.channels" :key="channel.label" class="sidebar-meta-item">
-                <dt class="project-cat">{{ channel.label }}</dt>
-                <dd class="channel-value">{{ channel.value }}</dd>
-                <dd v-if="DISPLAY_CONFIG.showExtendedCopy" class="channel-desc">{{ channel.desc }}</dd>
-              </div>
-            </dl>
-          </aside>
         </div>
       </div>
     </section>

@@ -149,6 +149,8 @@ export const HERO_PILLARS = [
   }
 ];
 
+// Gene - Nov, 24, 2026: Editorial studio copy, concrete capabilities, streamlined founders, SwitchFiber showcase metadata, and Contact scopes
+/*
 export const HOME_DATA = {
   eyebrow: 'Practical Web & Business Systems',
   headline: {
@@ -181,6 +183,7 @@ export const HOME_DATA = {
       desc: 'Designed around how your team actually works rather than forcing you into generic templates.'
     }
   ],
+*/
   // Gene - Nov, 24, 2026: Commented out pillarsSection and comparisonSection data after removing both sections from HomeView pending replacement
   /*
   pillarsSection: {
@@ -285,6 +288,7 @@ export const HOME_DATA = {
       'Put together a quick project brief or talk through your current bottlenecks directly with our founders. No sales pressure, just a practical conversation about what makes sense for your team.'
   }
   */
+/*
   closingCta: {
     eyebrow: 'Start a Conversation',
     headingLead: 'Ready for a website that',
@@ -296,7 +300,76 @@ export const HOME_DATA = {
     secondaryTo: '/about'
   }
 };
+*/
+export const HOME_DATA = {
+  eyebrow: 'Web & Systems Studio',
+  headlineLines: ['Systems built', 'for how you', 'actually work.'],
+  lead: 'Custom websites, operations tools, and mobile apps engineered directly by our founding team.',
+  primaryCta: { label: 'Start a Project', to: '/contact' },
+  secondaryCta: { label: 'Selected Work', to: '/projects' },
+  marqueeWords: ['web platforms', 'operations systems', 'mobile field apps', 'digital portals', 'harmony'],
+  capabilitiesSection: {
+    eyebrow: 'Capabilities',
+    headingLead: 'Built around',
+    headingAccent: 'real workflows.',
+    items: [
+      {
+        id: 'web',
+        num: '01',
+        title: 'Web Platforms',
+        tag: 'Public & Client Web',
+        summary:
+          'Fast, responsive websites and customer portals engineered for clarity, search visibility, and effortless self-service.',
+        deliverables: ['Custom Vue & Web SPAs', 'Serviceability & Signup Flows', 'Performance & SEO']
+      },
+      {
+        id: 'operations',
+        num: '02',
+        title: 'Operations Systems',
+        tag: 'Admin & Workflows',
+        summary:
+          'Authenticated internal consoles uniting subscriber records, plans, dispatch, and daily operations in one workspace.',
+        deliverables: ['Operations Dashboards', 'Role-Based Admin Portals', 'REST API Architecture']
+      },
+      {
+        id: 'mobile',
+        num: '03',
+        title: 'Mobile Field Apps',
+        tag: 'On-Site Teams',
+        summary:
+          'Focused cross-platform mobile terminals that keep field crews connected to live work orders on the go.',
+        deliverables: ['Flutter & Cross-Platform', 'Live Work-Order Sync', 'Offline-First UX']
+      },
+      {
+        id: 'portals',
+        num: '04',
+        title: 'Digital Portals',
+        tag: 'Billing & Revenue',
+        summary:
+          'Clear online onboarding, application status tracking, and digital payment flows built to convert and retain.',
+        deliverables: ['Online Signup & Tracking', 'Digital Billing & Payments', 'Customer Self-Service']
+      }
+    ]
+  },
+  featuredWork: {
+    eyebrow: 'Selected Work',
+    headingLead: 'SwitchFiber',
+    headingAccent: 'Ecosystem.',
+    intro: 'Three connected platforms built for regional fiber operations across web, admin, and field mobile.',
+    projectIds: ['switchfiber-subscriber', 'switchfiber-admin', 'switchfiber-mobile']
+  },
+  closingCta: {
+    eyebrow: 'Start a Project',
+    headingLead: 'Have a system',
+    headingAccent: 'in mind?',
+    primaryLabel: 'Start a Conversation',
+    primaryTo: '/contact',
+    secondaryEmail: SITE_META.email
+  }
+};
 
+// Gene - Nov, 24, 2026: Streamlined ABOUT_DATA with single concise founder role, crisp 1-line bio, and hairline 4-step process
+/*
 export const ABOUT_DATA = {
   hero: {
     eyebrow: 'How We Think',
@@ -305,6 +378,7 @@ export const ABOUT_DATA = {
     titleEnd: 'second.',
     lead: 'We started Harmony IT Consultancy with a straightforward belief: software should fit the way your team works, not force everyone into rigid habits. You work directly with us to build dependable tools that solve everyday bottlenecks and support steady growth.'
   },
+*/
   // Gene - Nov, 24, 2026: Removed redundant mission & quote split section from About Us
   /*
   mission: {
@@ -320,6 +394,7 @@ export const ABOUT_DATA = {
     quoteAuthor: 'Paulo, Gene & Bry (Founding Team)'
   },
   */
+/*
   team: {
     eyebrow: "Who You'll Work With",
     headingSub: 'The people behind',
@@ -448,7 +523,126 @@ export const ABOUT_DATA = {
     primaryTo: '/contact'
   }
 };
+*/
+export const ABOUT_DATA = {
+  hero: {
+    eyebrow: 'About',
+    titleStart: 'Your business first.',
+    titleAccent: 'Technology',
+    titleEnd: 'second.',
+    lead: 'No account managers or handoffs—you work directly with Paulo, Gene, and Bry from first architecture sketch to launch.'
+  },
+  team: {
+    eyebrow: 'Founding Team',
+    headingLead: 'The people behind',
+    headingAccent: 'the work.',
+    founders: [
+      {
+        id: 'paulo',
+        imageKey: 'paulo',
+        imageClass: 'founder-img-paulo',
+        width: 296,
+        height: 296,
+        alt: 'Paulo Antazo, Founder and Backend & Cloud Lead at Harmony IT Consultancy',
+        name: 'Paulo Antazo',
+        role: 'Founder · Backend & Cloud',
+        shortBio: 'Architects dependable APIs, cloud setups, and clean data foundations built to grow smoothly.',
+        bio: 'Guides company direction while designing the backend systems, APIs, and cloud setups our clients rely on every day.',
+        portfolio: null,
+        linkedin: {
+          url: 'https://www.linkedin.com/in/jose-paulo-antazo-2aa86976/',
+          label: 'Paulo Antazo on LinkedIn (opens in new tab)'
+        },
+        github: null
+      },
+      {
+        id: 'gene',
+        imageKey: 'gene',
+        imageClass: 'founder-img-gene',
+        width: 480,
+        height: 480,
+        alt: 'Gene Medel, Co-Founder, Frontend & Systems Lead at Harmony IT Consultancy',
+        name: 'Gene Medel',
+        role: 'Co-Founder · Frontend & Systems',
+        shortBio: 'Builds modern web platforms, Flutter apps, and modular workflow systems since 2011.',
+        bio: 'Software and application developer building reliable web platforms, APIs, and offline-first cross-platform Flutter apps since 2011.',
+        portfolio: {
+          url: 'https://genexis.dev/',
+          text: 'genexis.dev',
+          ariaLabel: "Visit Gene Medel's personal website genexis.dev (opens in new tab)"
+        },
+        linkedin: {
+          url: 'https://www.linkedin.com/in/gene-ray-medel/',
+          label: 'Gene Medel on LinkedIn (opens in new tab)'
+        },
+        github: {
+          url: 'https://github.com/bluegene37',
+          label: 'Gene Medel on GitHub (opens in new tab)'
+        }
+      },
+      {
+        id: 'bry',
+        imageKey: 'bry',
+        imageClass: 'founder-img-bry',
+        width: 532,
+        height: 600,
+        alt: 'Bry Medel, Operations, UX/UI & QA Lead at Harmony IT Consultancy',
+        name: 'Bry Medel',
+        role: 'Operations · UX/UI & QA',
+        shortBio: 'Shapes clear user flows, design systems, thorough QA, and operational playbooks teams adopt fast.',
+        bio: 'Leads day-to-day operations, UX/UI design, quality assurance, documentation, and HR coordination across client projects.',
+        portfolio: {
+          url: 'https://bimwebsite.vercel.app/',
+          text: 'bimwebsite.vercel.app',
+          ariaLabel: "Visit Bry Medel's portfolio bimwebsite.vercel.app (opens in new tab)"
+        },
+        linkedin: {
+          url: 'https://www.linkedin.com/in/blaineimedel/',
+          label: 'Bry Medel on LinkedIn (opens in new tab)'
+        },
+        github: null
+      }
+    ]
+  },
+  process: {
+    eyebrow: 'Process',
+    headingLead: 'Four steps from',
+    headingAccent: 'problem to launch.',
+    steps: [
+      {
+        num: '01',
+        title: 'Discover',
+        desc: 'We map where your team loses time and where manual steps slow daily work.'
+      },
+      {
+        num: '02',
+        title: 'Architect',
+        desc: 'We design clear user flows, readable layouts, and dependable backend structure.'
+      },
+      {
+        num: '03',
+        title: 'Build',
+        desc: 'We engineer clean APIs, responsive web interfaces, and field tools tested end-to-end.'
+      },
+      {
+        num: '04',
+        title: 'Launch',
+        desc: 'We ship cleanly with clear operating guides and direct ongoing support.'
+      }
+    ]
+  },
+  closingCta: {
+    eyebrow: 'Direct Senior Team',
+    headingLead: 'Work directly with',
+    headingAccent: 'Paulo, Gene & Bry.',
+    primaryLabel: 'Start a Conversation',
+    primaryTo: '/contact',
+    secondaryEmail: SITE_META.email
+  }
+};
 
+// Gene - Nov, 24, 2026: Editorial SwitchFiber split-row data with concise summaries and aligned scope IDs
+/*
 export const PROJECTS_DATA = {
   hero: {
     eyebrow: 'Selected Work',
@@ -457,6 +651,7 @@ export const PROJECTS_DATA = {
     titleEnd: 'operations.',
     lead: 'Explore the live platforms we built for SwitchFiber, helping internal teams manage daily fiber operations while giving subscribers across Rizal an easier self-service experience.'
   },
+*/
   // Gene - Nov, 24, 2026: Switched Projects filters to clear platform categories
   /*
   filters: [
@@ -467,6 +662,7 @@ export const PROJECTS_DATA = {
     { id: 'income', label: 'Revenue & Billing' }
   ],
   */
+/*
   filters: [
     { id: 'all', label: 'All Projects' },
     { id: 'web', label: 'Web Portals' },
@@ -588,7 +784,149 @@ export const PROJECTS_DATA = {
     secondaryTo: '/about'
   }
 };
+*/
+export const PROJECTS_DATA = {
+  hero: {
+    eyebrow: 'Selected Work',
+    titleStart: 'Built for',
+    titleAccent: 'real',
+    titleEnd: 'operations.',
+    lead: 'Live web, operations, and field mobile software powering SwitchFiber across Rizal.'
+  },
+  filters: [
+    { id: 'all', label: 'All Projects' },
+    { id: 'web', label: 'Web Portals' },
+    { id: 'admin', label: 'Admin Console' },
+    { id: 'mobile', label: 'Mobile App' }
+  ],
+  projects: [
+    {
+      id: 'switchfiber-admin',
+      indexNum: '01',
+      platform: 'admin',
+      primaryPriority: 'operations',
+      categories: ['problem', 'operations'],
+      imageKey: 'switchfiber-admin',
+      thumbModifier: 'project-thumb--admin',
+      width: 1024,
+      height: 640,
+      alt: 'SwitchFiber Admin distributed fiber network management portal login screen',
+      subtitle: 'Operations Console',
+      categoryLabel: 'Operations System',
+      title: 'SwitchFiber Admin — Network Management',
+      shortDesc:
+        'Authenticated operations console uniting subscriber accounts, plans, technician dispatch, and fiber infrastructure.',
+      desc: 'Internal operations console built for Switch Fiber Network Operations, bringing subscriber records, service plans, technician job orders, and fiber infrastructure tracking into one organized system.',
+      metrics: [
+        { value: '4 Core Modules', label: 'Subscribers, Plans, Jobs, Fiber' },
+        { value: 'Vue 3 · PrimeVue', label: 'Operations Console' }
+      ],
+      tagPill: 'Admin Portal',
+      liveUrl: 'https://admin.switchfiber.ph/switchfiberadmin/login',
+      liveActionLabel: 'Open Portal',
+      caseStudy: {
+        eyebrow: 'OPERATIONS SYSTEM',
+        title: 'SwitchFiber Admin — Network Management',
+        desc: 'An internal operations console built for Switch Fiber Network Operations to bring day-to-day ISP management into one clear workspace.',
+        challenge:
+          'Running a regional fiber network means keeping subscriber records, service plans, field technician job orders, and fiber infrastructure synced cleanly without bouncing between disconnected spreadsheets.',
+        solution:
+          'We built the authenticated SwitchFiber Admin console to bring subscriber accounts, service plan configurations, technician job orders, and fiber network management together inside one responsive web application.',
+        capabilitiesSummary: 'Subscriber, Plan, Job Order & Fiber Management',
+        liveHostText: 'admin.switchfiber.ph/switchfiberadmin/login',
+        tech: 'Vue 3, Vite, PrimeVue, Bootstrap, REST API',
+        techStack: ['Vue 3', 'Vite', 'PrimeVue', 'Bootstrap', 'REST API']
+      }
+    },
+    {
+      id: 'switchfiber-subscriber',
+      indexNum: '02',
+      platform: 'web',
+      primaryPriority: 'web',
+      categories: ['problem', 'promo', 'operations', 'income'],
+      imageKey: 'switchfiber-subscriber',
+      thumbModifier: 'project-thumb--frame',
+      width: 1024,
+      height: 640,
+      alt: 'SwitchFiber Public and Subscriber Website featuring Rizal Fiber Grid serviceability check and fiber plans',
+      subtitle: 'Public Web & Billing',
+      categoryLabel: 'Web Platform · Digital Portal',
+      title: 'SwitchFiber Public & Subscriber Portal',
+      shortDesc:
+        'Public website, Rizal Fiber Grid availability checker, online signup, and digital billing portal serving 9 municipalities.',
+      desc: 'Public website and subscriber portal for SwitchFiber across Binangonan and Rizal, letting visitors check barangay fiber availability, compare FTTH plans starting at ₱699/mo, apply online, track applications, and pay bills digitally.',
+      metrics: [
+        { value: 'From ₱699/mo', label: 'Up to 220 Mbps · 0 Data Cap' },
+        { value: '9 Municipalities', label: 'Rizal Fiber Grid' }
+      ],
+      tagPill: 'Public & Subscriber Web',
+      liveUrl: 'https://switchfiberuser.genexis.dev/',
+      liveActionLabel: 'Visit Site',
+      caseStudy: {
+        eyebrow: 'WEB PLATFORM · DIGITAL PORTAL',
+        title: 'SwitchFiber Public & Subscriber Portal',
+        desc: 'The public website and subscriber portal serving homes and businesses across Binangonan and neighboring towns in Rizal.',
+        challenge:
+          'Future subscribers needed a quick way to check barangay fiber availability, see honest plan pricing up front, apply online without visiting a branch, track installation status, and pay bills from their phone.',
+        solution:
+          'We built a responsive public website and subscriber portal featuring the Rizal Fiber Grid serviceability checker, clear FTTH plan tiers (SwitchLite 50 Mbps ₱699, SwitchConnect 90 Mbps ₱799, SwitchNet 120 Mbps ₱999; up to 220 Mbps with 0 data cap), online signup (/register), application status tracking, router setup guides, and digital bill pay through pay.switchfiber.ph (GCash / QR Ph, Maya, WeChat Pay, Visa/Mastercard).',
+        capabilitiesSummary: '9 Rizal Municipalities Covered · Plans from ₱699/mo',
+        liveHostText: 'switchfiberuser.genexis.dev',
+        tech: 'Modern Web SPA, Rizal Fiber Grid Serviceability Checker, Digital Payments (pay.switchfiber.ph)',
+        techStack: ['Modern Web SPA', 'Rizal Fiber Grid Checker', 'Digital Payments (pay.switchfiber.ph)']
+      }
+    },
+    {
+      id: 'switchfiber-mobile',
+      indexNum: '03',
+      platform: 'mobile',
+      primaryPriority: 'mobile',
+      categories: ['problem', 'operations'],
+      imageKey: 'switchfiber-mobile',
+      thumbModifier: 'project-thumb--mobile',
+      width: 380,
+      height: 787,
+      alt: 'Switch Fiber Field Technician Terminal mobile app Technician Sign In screen connected to admin server',
+      subtitle: 'Field Mobile App',
+      categoryLabel: 'Mobile Field App',
+      title: 'Switch Fiber — Field Technician Terminal',
+      shortDesc:
+        'Focused cross-platform mobile terminal keeping field technicians synced to assigned work orders on site.',
+      desc: 'Dedicated mobile terminal built for Switch Fiber Network Operations field technicians to sign in securely with field credentials, access assigned work orders, and stay synced with the operations server on the go.',
+      metrics: [
+        { value: 'Field Terminal', label: 'Assigned Work Orders' },
+        { value: 'Direct Sync', label: 'SwitchFiber Ops Server' }
+      ],
+      tagPill: 'Mobile Field App',
+      liveUrl: null,
+      liveActionLabel: null,
+      caseStudy: {
+        eyebrow: 'MOBILE FIELD APP',
+        title: 'Switch Fiber — Field Technician Terminal',
+        desc: 'A dedicated mobile field terminal engineered for Switch Fiber Network Operations technicians working out on installations and line maintenance.',
+        challenge:
+          'Field crews away from the office needed a focused, reliable mobile interface to sign in with their technician credentials and review assigned work orders without navigating a full desktop admin console on a phone.',
+        solution:
+          'We built the Switch Fiber Field Technician Terminal mobile app with authenticated technician sign-in, credential persistence ("Remember me"), live backend server connection status (admin.switchfiber.ph), and direct access to assigned field work orders.',
+        capabilitiesSummary: 'Technician Sign-In & Work Order Access · Connected to Switch Fiber Network Operations',
+        liveHostText: null,
+        tech: 'Cross-Platform Mobile App, Authenticated Field Terminal, SwitchFiber Operations REST API',
+        techStack: ['Cross-Platform Mobile', 'Authenticated Field Terminal', 'SwitchFiber REST API']
+      }
+    }
+  ],
+  closingCta: {
+    eyebrow: 'Next Build',
+    headingLead: 'Need a custom',
+    headingAccent: 'platform?',
+    primaryLabel: 'Start a Conversation',
+    primaryTo: '/contact',
+    secondaryEmail: SITE_META.email
+  }
+};
 
+// Gene - Nov, 24, 2026: Architectural Contact split copy and concrete optional scope pills
+/*
 export const CONTACT_DATA = {
   hero: {
     eyebrow: 'Get in Touch',
@@ -651,4 +989,29 @@ export const CONTACT_DATA = {
       desc: 'You talk directly with the people designing and building your site.'
     }
   ]
+};
+*/
+export const CONTACT_DATA = {
+  hero: {
+    eyebrow: 'Contact',
+    titleStart: "Let's build",
+    titleAccent: 'something',
+    titleEnd: 'useful.'
+  },
+  directNote: 'Direct to Paulo, Gene & Bry · Typical reply within 24 hours',
+  briefBuilder: {
+    eyebrow: 'Project Scope',
+    heading: 'Tell us what you are building.',
+    priorities: [
+      { id: 'web', title: 'Web Platform', briefLabel: 'Web Platform' },
+      { id: 'operations', title: 'Operations System', briefLabel: 'Operations System' },
+      { id: 'mobile', title: 'Mobile Field App', briefLabel: 'Mobile Field App' },
+      { id: 'portals', title: 'Digital Portal & Billing', briefLabel: 'Digital Portal & Billing' }
+    ]
+  },
+  directBox: {
+    label: 'Direct Email',
+    email: SITE_META.email,
+    inquirySubject: 'Inquiry regarding HarmonyITC Web Consultancy'
+  }
 };

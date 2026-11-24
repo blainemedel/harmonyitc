@@ -1,6 +1,7 @@
 /* Gene - Nov, 23, 2026: Shared UI components — header, navigation, buttons, frosted/cosmic cards, modal, toast, footer */
 
-/* Sticky Matte Slate-Navy Header */
+/* Gene - Nov, 24, 2026: Floating translucent studio header & dark-mode harmony logo lockup */
+/*
 .site-header {
   position: sticky;
   top: 0;
@@ -11,6 +12,25 @@
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(156, 183, 212, 0.2);
+}
+*/
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: var(--header-height);
+  background: rgba(12, 45, 79, 0.44);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(156, 183, 212, 0.14);
+  transition: background 0.32s var(--ease-out), border-color 0.32s ease, box-shadow 0.32s ease;
+}
+
+.site-header--scrolled {
+  background: rgba(10, 36, 64, 0.88);
+  border-bottom-color: rgba(180, 208, 233, 0.24);
+  box-shadow: 0 14px 36px -16px rgba(1, 10, 39, 0.65);
 }
 
 .header-inner {
@@ -24,6 +44,7 @@
   gap: 2rem;
 }
 
+/*
 .brand-logo {
   display: inline-flex;
   align-items: center;
@@ -55,6 +76,69 @@
 
 .brand-logo:hover .brand-logo-img {
   transform: scale(1.015);
+}
+*/
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.72rem;
+  flex-shrink: 1;
+  min-width: 0;
+  padding: 0.25rem 0;
+  transition: opacity 0.25s ease, transform 0.3s var(--ease-out);
+}
+
+.brand-logo:hover {
+  transform: translateY(-1px);
+}
+
+.brand-mark-wrap {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(186, 207, 229, 0.4);
+  box-shadow: 0 8px 20px -6px rgba(1, 10, 39, 0.58);
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s var(--ease-out);
+}
+
+.brand-logo:hover .brand-icon-img {
+  transform: scale(1.06);
+}
+
+.brand-wordmark-group {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.brand-wordmark {
+  font-size: 1.24rem;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  color: var(--text-primary);
+  text-transform: lowercase;
+}
+
+.brand-subword {
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: var(--text-muted);
+  margin-top: 0.24rem;
+  text-transform: uppercase;
 }
 
 .header-right {
@@ -410,6 +494,27 @@
   box-shadow: 0 32px 64px rgba(1, 10, 39, 0.68), inset 0 1px 0 rgba(186, 207, 229, 0.26);
   transform: translateY(20px) scale(0.97);
   transition: transform 0.3s var(--ease-out);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 183, 212, 0.36) transparent;
+}
+
+/* Gene - Nov, 24, 2026: Styled CaseStudyModal scrollbar to blend cleanly with matte slate-navy card */
+.case-modal-card::-webkit-scrollbar {
+  width: 8px;
+}
+
+.case-modal-card::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 14px 0;
+}
+
+.case-modal-card::-webkit-scrollbar-thumb {
+  background: rgba(156, 183, 212, 0.32);
+  border-radius: 999px;
+}
+
+.case-modal-card::-webkit-scrollbar-thumb:hover {
+  background: rgba(180, 208, 233, 0.52);
 }
 
 .case-modal-backdrop.active .case-modal-card {
@@ -633,7 +738,8 @@
   box-shadow: 0 32px 64px rgba(0, 0, 0, 0.75);
 }
 
-/* Unified Closing CTA Strip */
+/* Gene - Nov, 24, 2026: Open big-text closing band & luminous giant harmony footer continuity */
+/*
 .unified-cta-section {
   padding: 1.5rem 2rem 5.5rem;
   position: relative;
@@ -673,6 +779,85 @@
   color: var(--text-body);
   line-height: 1.65;
   margin-top: 0.75rem;
+}
+*/
+
+.closing-band {
+  padding: 2.5rem 2rem 3.5rem;
+  position: relative;
+}
+
+.closing-band-rule {
+  height: 1px;
+  width: 100%;
+  background: var(--border-hairline-strong);
+  margin-bottom: 3rem;
+}
+
+.closing-band-inner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.closing-band-copy {
+  max-width: 720px;
+}
+
+.closing-band-eyebrow {
+  margin-bottom: 1rem;
+}
+
+.closing-band-heading {
+  font-size: clamp(2.55rem, 5.8vw, 4.95rem);
+  font-weight: 800;
+  line-height: 0.96;
+  letter-spacing: -0.042em;
+  color: var(--text-secondary);
+}
+
+.closing-band-heading strong {
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.unified-cta-desc {
+  font-size: 0.96rem;
+  color: var(--text-body);
+  line-height: 1.65;
+  margin-top: 0.9rem;
+}
+
+.closing-band-actions {
+  gap: 1.35rem;
+}
+
+.closing-email-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid rgba(180, 208, 233, 0.35);
+  transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s var(--ease-out);
+}
+
+.closing-email-link:hover {
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+}
+
+[data-magnetic] {
+  transform: translate3d(var(--mag-x, 0px), var(--mag-y, 0px), 0);
+}
+
+.cta-pill-btn[data-magnetic]:hover,
+.btn-outline-teal[data-magnetic]:hover {
+  transform: translate3d(var(--mag-x, 0px), calc(var(--mag-y, 0px) - 1px), 0);
 }
 
 /* Back to Top Control */
@@ -755,12 +940,21 @@
 }
 
 /* Minimalist Giant Wordmark Footer */
+/*
 .site-footer {
   background: linear-gradient(180deg, #0c3457 0%, #0b2c49 48%, #020b28 100%);
   position: relative;
   z-index: 3;
   border-top: 1px solid rgba(156, 183, 212, 0.22);
   padding-top: 10rem;
+  overflow: hidden;
+}
+*/
+.site-footer {
+  background: linear-gradient(180deg, rgba(12, 52, 87, 0.12) 0%, rgba(11, 44, 73, 0.88) 38%, #020b28 100%);
+  position: relative;
+  z-index: 3;
+  padding-top: 3.25rem;
   overflow: hidden;
 }
 
@@ -770,13 +964,20 @@
   padding: 0 2rem;
 }
 
+.footer-top-rule {
+  height: 1px;
+  width: 100%;
+  background: var(--border-hairline);
+  margin-bottom: 2.25rem;
+}
+
 .footer-micro-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
   flex-wrap: wrap;
-  padding-bottom: 3rem;
+  padding-bottom: 2.5rem;
   font-size: 0.82rem;
   color: var(--text-muted);
 }
@@ -798,13 +999,14 @@
 
 .footer-wordmark-wrap {
   width: 100%;
-  max-width: 1120px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1.25rem;
   text-align: center;
   overflow: hidden;
 }
 
+/*
 .footer-giant-wordmark {
   font-family: var(--font-sans);
   font-weight: 800;
@@ -819,7 +1021,28 @@
   will-change: transform;
   transition: transform 0.25s var(--ease-out);
 }
+*/
+.footer-giant-wordmark {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: clamp(4.8rem, 17.5vw, 15.5rem);
+  line-height: 0.74;
+  letter-spacing: -0.045em;
+  background: linear-gradient(180deg, rgba(253, 255, 255, 0.72) 0%, rgba(180, 208, 233, 0.28) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-transform: lowercase;
+  display: block;
+  transform: translateY(8%);
+  user-select: none;
+  will-change: transform;
+  transition: transform 0.25s var(--ease-out);
+}
 
 .site-footer--home .footer-giant-wordmark {
-  color: #ffffff;
+  background: linear-gradient(180deg, #fdffff 15%, rgba(216, 238, 255, 0.78) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }

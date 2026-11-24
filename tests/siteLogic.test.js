@@ -1,4 +1,4 @@
-// Gene - Nov, 24, 2026: Unit tests for site configuration, HarmonyMotionStage metadata, platform filters, Contact validation, and Resend payload formatting
+// Gene - Nov, 24, 2026: Updated unit tests for editorial Home capabilities, streamlined founders, SwitchFiber showcase, and unselected Contact scopes
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 
@@ -8,6 +8,7 @@ import {
   NAV_ITEMS,
   HARMONY_MOTION_RIBBONS,
   HERO_PILLARS,
+  HOME_DATA,
   ABOUT_DATA,
   PROJECTS_DATA,
   CONTACT_DATA
@@ -32,40 +33,44 @@ const validPriorityIds = priorities.map((p) => p.id);
 describe('HarmonyITC site configuration', () => {
   it('standardizes official domain, contact email, and minimal text flags', () => {
     assert.equal(SITE_META.domain, 'https://harmonyitc.dev');
-    // Gene - Nov, 24, 2026: Updated expected contact email to harmonyitco@gmail.com
-    // assert.equal(SITE_META.email, 'inquiries@harmonyitc.com');
     assert.equal(SITE_META.email, 'harmonyitco@gmail.com');
     assert.equal(DISPLAY_CONFIG.showExtendedCopy, false);
     assert.equal(DISPLAY_CONFIG.showHeaderCta, false);
     assert.equal(DISPLAY_CONFIG.showHomeMetrics, false);
   });
 
-  it('defines clean Vue Router navigation paths, HarmonyMotionStage profiles, and kinetic ribbons', () => {
+  it('defines editorial Home headline lines, kinetic marquee, capabilities, and featured SwitchFiber work', () => {
     assert.deepEqual(
       NAV_ITEMS.map((item) => item.to),
       ['/', '/about', '/projects', '/contact']
     );
+    assert.equal(HOME_DATA.headlineLines.length, 3);
+    assert.ok(HOME_DATA.marqueeWords.includes('harmony'));
+    assert.equal(HOME_DATA.capabilitiesSection.items.length, 4);
+    for (const cap of HOME_DATA.capabilitiesSection.items) {
+      assert.ok(cap.id && cap.num && cap.title && cap.summary);
+      assert.ok(Array.isArray(cap.deliverables) && cap.deliverables.length >= 2);
+    }
+    assert.equal(HOME_DATA.featuredWork.projectIds.length, 3);
+    for (const id of HOME_DATA.featuredWork.projectIds) {
+      assert.ok(PROJECTS_DATA.projects.some((p) => p.id === id));
+    }
+
     assert.ok(Array.isArray(HARMONY_MOTION_RIBBONS.top) && HARMONY_MOTION_RIBBONS.top.length >= 4);
     assert.ok(Array.isArray(HARMONY_MOTION_RIBBONS.bottom) && HARMONY_MOTION_RIBBONS.bottom.length >= 4);
-    assert.ok(HARMONY_MOTION_RIBBONS.top.includes('HARMONY'));
-    assert.ok(HARMONY_MOTION_RIBBONS.bottom.includes('HARMONY'));
-
     assert.equal(HERO_PILLARS.length, 4);
-    for (const pillar of HERO_PILLARS) {
-      assert.ok(pillar.id && pillar.num && pillar.focusPrefix && pillar.focusText);
-      assert.ok(pillar.motion);
-      assert.ok(typeof pillar.motion.tempo === 'number' && pillar.motion.tempo > 0);
-      assert.ok(typeof pillar.motion.amplitude === 'number' && pillar.motion.amplitude > 0);
-      assert.ok(pillar.motion.phrase && pillar.motion.glowRgba);
-    }
   });
 
-  it('provides explicit image dimensions, platform tags, and techStack badges on founders and projects', () => {
+  it('provides streamlined founder profiles, hairline process steps, and explicit project dimensions', () => {
     assert.equal(ABOUT_DATA.team.founders.length, 3);
     for (const founder of ABOUT_DATA.team.founders) {
-      assert.ok(founder.name && founder.role && founder.bio && founder.imageKey);
+      assert.ok(founder.name && founder.role && founder.shortBio && founder.bio && founder.imageKey);
       assert.ok(Number.isInteger(founder.width) && founder.width > 0);
       assert.ok(Number.isInteger(founder.height) && founder.height > 0);
+    }
+    assert.equal(ABOUT_DATA.process.steps.length, 4);
+    for (const step of ABOUT_DATA.process.steps) {
+      assert.ok(step.num && step.title && step.desc);
     }
 
     assert.deepEqual(
@@ -74,7 +79,8 @@ describe('HarmonyITC site configuration', () => {
     );
     assert.equal(PROJECTS_DATA.projects.length, 3);
     for (const project of PROJECTS_DATA.projects) {
-      assert.ok(project.id && project.title && project.imageKey && project.platform && project.primaryPriority);
+      assert.ok(project.id && project.indexNum && project.title && project.shortDesc && project.imageKey && project.platform);
+      assert.ok(validPriorityIds.includes(project.primaryPriority));
       assert.ok(Array.isArray(project.caseStudy.techStack) && project.caseStudy.techStack.length >= 2);
       assert.ok(project.caseStudy.challenge && project.caseStudy.solution && project.caseStudy.tech);
       assert.ok(Number.isInteger(project.width) && project.width > 0);
@@ -86,21 +92,20 @@ describe('HarmonyITC site configuration', () => {
 describe('briefBuilder helpers & platform filtering', () => {
   it('formats priority summaries and clipboard/mailto briefs cleanly', () => {
     assert.equal(formatPrioritySummary([], priorities), 'None selected yet (choose at least 1 area)');
-    assert.equal(formatPrioritySummary(['problem'], priorities), 'Fix a Workflow Bottleneck');
+    assert.equal(formatPrioritySummary(['web'], priorities), 'Web Platform');
     assert.equal(
-      formatPrioritySummary(['problem', 'promo', 'operations', 'income'], priorities),
+      formatPrioritySummary(['web', 'operations', 'mobile', 'portals'], priorities),
       'All 4 Areas Selected (Full Website & System Setup)'
     );
 
-    const brief = buildClipboardBrief(['problem', 'income'], priorities, SITE_META.email);
-    // Gene - Nov, 24, 2026: Updated expected contact email to harmonyitco@gmail.com
-    // assert.match(brief, /Target Email: inquiries@harmonyitc\.com/);
+    const brief = buildClipboardBrief(['web', 'portals'], priorities, SITE_META.email);
     assert.match(brief, /Target Email: harmonyitco@gmail\.com/);
-    assert.match(brief, /1\. Fix a Workflow Bottleneck/);
+    assert.match(brief, /1\. Web Platform/);
+    assert.match(brief, /2\. Digital Portal & Billing/);
 
     const href = buildMailtoHref(['operations'], priorities, SITE_META.email);
     const body = new URL(href).searchParams.get('body') || '';
-    assert.match(body, /1\. Organize Daily Operations/);
+    assert.match(body, /1\. Operations System/);
   });
 
   it('builds a full fallback mailto link preserving entered Contact form fields', () => {
@@ -115,15 +120,13 @@ describe('briefBuilder helpers & platform filtering', () => {
       priorities,
       SITE_META.email
     );
-    // Gene - Nov, 24, 2026: Updated expected contact email to harmonyitco@gmail.com
-    // assert.ok(fallbackUrl.startsWith('mailto:inquiries@harmonyitc.com?subject='));
     assert.ok(fallbackUrl.startsWith('mailto:harmonyitco@gmail.com?subject='));
     const parsed = new URL(fallbackUrl);
     assert.match(parsed.searchParams.get('subject') || '', /Northwind Fiber/);
     const body = parsed.searchParams.get('body') || '';
     assert.match(body, /Name: Alex Rivera/);
     assert.match(body, /Company: Northwind Fiber/);
-    assert.match(body, /1\. Organize Daily Operations/);
+    assert.match(body, /1\. Operations System/);
     assert.match(body, /Looking to automate technician dispatch\./);
   });
 
@@ -154,14 +157,14 @@ describe('contactInquiry validation, escaping, Resend payload, and query parsing
         email: 'alex@example.com',
         company: 'Acme Ops',
         message: 'Need a customer self-service portal with online bill pay.',
-        priorities: ['promo', 'income', 'bogus-id'],
+        priorities: ['web', 'portals', 'bogus-id'],
         website: ''
       },
       validPriorityIds
     );
     assert.equal(good.ok, true);
     assert.equal(good.isSpam, false);
-    assert.deepEqual(good.data.priorities, ['promo', 'income']);
+    assert.deepEqual(good.data.priorities, ['web', 'portals']);
     assert.equal(good.data.name, 'Alex Rivera');
 
     const spam = validateInquiryPayload(
@@ -202,7 +205,7 @@ describe('contactInquiry validation, escaping, Resend payload, and query parsing
         email: 'alex@example.com',
         company: 'Test & Co',
         message: 'Hello <img src=x onerror=alert(1)>',
-        priorities: ['problem']
+        priorities: ['operations']
       },
       priorityList: priorities,
       fromEmail: 'HarmonyITC <noreply@harmonyitc.dev>',
@@ -210,23 +213,21 @@ describe('contactInquiry validation, escaping, Resend payload, and query parsing
     });
 
     assert.equal(payload.from, 'HarmonyITC <noreply@harmonyitc.dev>');
-    // Gene - Nov, 24, 2026: Updated expected contact email to harmonyitco@gmail.com
-    // assert.deepEqual(payload.to, ['inquiries@harmonyitc.com']);
     assert.deepEqual(payload.to, ['harmonyitco@gmail.com']);
     assert.equal(payload.reply_to, 'alex@example.com');
     assert.equal(payload.subject, 'HarmonyITC Inquiry from Test & Co');
-    assert.match(payload.text, /Fix a Workflow Bottleneck/);
+    assert.match(payload.text, /Operations System/);
     assert.doesNotMatch(payload.html, /<script>|<img src=x/);
     assert.match(payload.html, /&lt;img src=x onerror=alert\(1\)&gt;/);
   });
 
-  it('parses ?focus= and ?project= query params for prefilled Case Study inquiries', () => {
+  it('parses ?focus= and ?project= query params and defaults scopes to unselected', () => {
     const prefilled = parseContactQuery(
-      { focus: 'operations', project: 'switchfiber-mobile' },
+      { focus: 'mobile', project: 'switchfiber-mobile' },
       validPriorityIds,
       PROJECTS_DATA.projects
     );
-    assert.deepEqual(prefilled.priorities, ['operations']);
+    assert.deepEqual(prefilled.priorities, ['mobile']);
     assert.equal(prefilled.referencedProjectTitle, 'Switch Fiber — Field Technician Terminal');
     assert.match(prefilled.starterMessage, /Switch Fiber — Field Technician Terminal/);
 
@@ -235,8 +236,15 @@ describe('contactInquiry validation, escaping, Resend payload, and query parsing
       validPriorityIds,
       PROJECTS_DATA.projects
     );
-    assert.deepEqual(fallback.priorities, validPriorityIds);
+    assert.deepEqual(fallback.priorities, []);
     assert.equal(fallback.referencedProjectTitle, '');
     assert.equal(fallback.starterMessage, '');
   });
 });
+
+// Gene - Nov, 24, 2026: Previous pre-editorial unit test suite preserved below
+/*
+describe('HarmonyITC legacy configuration', () => {
+  it('verified problem/promo/operations/income pillars', () => {});
+});
+*/

@@ -121,7 +121,11 @@ export function parseContactQuery(query, validPriorityIds = [], projects = []) {
   const validSet = new Set(validPriorityIds);
 
   const rawFocus = typeof q.focus === 'string' ? q.focus.trim() : '';
+  // Gene - Nov, 24, 2026: Default scope selection to empty unless explicitly passed via ?focus=
+  /*
   const initialPriorities = rawFocus && validSet.has(rawFocus) ? [rawFocus] : [...validPriorityIds];
+  */
+  const initialPriorities = rawFocus && validSet.has(rawFocus) ? [rawFocus] : [];
 
   const rawProjectId = typeof q.project === 'string' ? q.project.trim() : '';
   const matchedProject = rawProjectId ? projects.find((p) => p.id === rawProjectId) : null;

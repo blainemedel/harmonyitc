@@ -11,6 +11,7 @@ export function useParallaxMotion(rootRef) {
   let onMouseMove = null;
   let onScrollOrResize = null;
   const settleTimers = [];
+  const magneticCleanups = [];
 
   function markRevealedAndSettle(el, immediate = false) {
     el.classList.add('is-revealed');
@@ -43,6 +44,7 @@ export function useParallaxMotion(rootRef) {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) return;
 
+    const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
     const root = rootRef?.value || document;
     document.documentElement.classList.add('js-parallax-ready');
 
@@ -59,6 +61,7 @@ export function useParallaxMotion(rootRef) {
       { selector: '.contact-email-box', variant: 'reveal-scale', delay: 80 }
     ];
     */
+    /*
     const revealConfigs = [
       { selector: '.home-pillars-section .page-eyebrow, .home-comparison-section .page-eyebrow, .unified-cta-section .page-eyebrow, .content-section .page-eyebrow', variant: 'reveal-up', delay: 0 },
       { selector: '.home-pillars-section h2, .home-comparison-section h2, .team-heading, .content-section > .section-inner > h2', variant: 'reveal-up', delay: 60 },
@@ -66,6 +69,13 @@ export function useParallaxMotion(rootRef) {
       { selector: '.comparison-card-passive', variant: 'reveal-left', delay: 70 },
       { selector: '.comparison-card-engine', variant: 'reveal-right', delay: 140 },
       { selector: '.contact-info-sidebar', variant: 'reveal-right', delay: 110 }
+    ];
+    */
+    // Gene - Nov, 24, 2026: Editorial reveal targets, staggered rows, hairline draws, and magnetic controls
+    const revealConfigs = [
+      { selector: '.ed-reveal, .closing-band-inner, .contact-editorial-left, .contact-editorial-right', variant: 'reveal-up', delay: 0 },
+      { selector: '.section-heading-group .page-eyebrow, .section-heading-group h2', variant: 'reveal-up', delay: 40 },
+      { selector: '.ed-line-draw', variant: 'reveal-line', delay: 0 }
     ];
 
     revealConfigs.forEach(({ selector, variant, delay }) => {
@@ -78,6 +88,7 @@ export function useParallaxMotion(rootRef) {
       });
     });
 
+    /*
     const gridContainers = [
       { parent: '.home-metrics-grid', child: '.home-metric-card', step: 75, variant: 'reveal-up' },
       { parent: '.pillars-grid-2x2', child: '.pillar-card', step: 85, variant: 'reveal-up' },
@@ -85,6 +96,15 @@ export function useParallaxMotion(rootRef) {
       { parent: '.founders-grid', child: '.founder-profile-card', step: 95, variant: 'reveal-up' },
       { parent: '.gallery-grid-3', child: '.project-card', step: 80, variant: 'reveal-up' },
       { parent: '.priority-chips-grid', child: '.priority-chip', step: 55, variant: 'reveal-up' }
+    ];
+    */
+    const gridContainers = [
+      { parent: '.cap-list', child: '.cap-row', step: 70, variant: 'reveal-up' },
+      { parent: '.bento-grid', child: '.bento-card', step: 85, variant: 'reveal-up' },
+      { parent: '.project-editorial-list', child: '.project-row', step: 90, variant: 'reveal-up' },
+      { parent: '.founders-editorial-grid', child: '.founder-card', step: 90, variant: 'reveal-up' },
+      { parent: '.process-strip', child: '.process-step', step: 75, variant: 'reveal-up' },
+      { parent: '.scope-pill-group', child: '.scope-pill', step: 45, variant: 'reveal-up' }
     ];
 
     gridContainers.forEach(({ parent, child, step, variant }) => {
@@ -103,7 +123,7 @@ export function useParallaxMotion(rootRef) {
     const belowFoldEls = [];
     allRevealEls.forEach((el) => {
       const rect = el.getBoundingClientRect();
-      if (rect.top < vh * 0.92) {
+      if (rect.top < vh * 0.94) {
         markRevealedAndSettle(el, true);
       } else {
         belowFoldEls.push(el);
@@ -123,41 +143,57 @@ export function useParallaxMotion(rootRef) {
               }
             });
           },
-          { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+          { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
         );
         belowFoldEls.forEach((el) => revealObserver.observe(el));
       }
+    }
+
+    // Subtle magnetic CTA controls on fine-pointer desktop devices
+    if (!isCoarsePointer) {
+      root.querySelectorAll('[data-magnetic]').forEach((btn) => {
+        const onMagneticMove = (e) => {
+          const rect = btn.getBoundingClientRect();
+          const relX = e.clientX - (rect.left + rect.width * 0.5);
+          const relY = e.clientY - (rect.top + rect.height * 0.5);
+          const tx = Math.max(-8, Math.min(8, relX * 0.22));
+          const ty = Math.max(-6, Math.min(6, relY * 0.22));
+          btn.style.setProperty('--mag-x', `${tx.toFixed(1)}px`);
+          btn.style.setProperty('--mag-y', `${ty.toFixed(1)}px`);
+        };
+        const onMagneticLeave = () => {
+          btn.style.setProperty('--mag-x', '0px');
+          btn.style.setProperty('--mag-y', '0px');
+        };
+        btn.addEventListener('pointermove', onMagneticMove, { passive: true });
+        btn.addEventListener('pointerleave', onMagneticLeave);
+        magneticCleanups.push(() => {
+          btn.removeEventListener('pointermove', onMagneticMove);
+          btn.removeEventListener('pointerleave', onMagneticLeave);
+          btn.style.removeProperty('--mag-x');
+          btn.style.removeProperty('--mag-y');
+        });
+      });
     }
 
     // Continuous Scroll & Pointer Parallax
     const cornerCoil = document.querySelector('.ambient-corner-coil');
     const footerWordmark = document.querySelector('.footer-giant-wordmark');
     const footerEl = document.querySelector('.site-footer');
+    const marqueeTrack = root.querySelector('.kinetic-marquee-inner');
 
-    // Gene - Nov, 24, 2026: Updated depth parallax targets for HeroWorkPreview and Contact sidebar
+    // Gene - Nov, 24, 2026: Updated depth parallax targets for editorial work media and portraits
     /*
-    const autoDepthTargets = [
-      { selector: '.hero-artwork-stage', speed: -0.075 },
-      { selector: '.cosmic-quote-card', speed: 0.055 },
-      { selector: '.comparison-card-engine', speed: 0.045 },
-      { selector: '.founder-portrait-frame', speed: -0.04 },
-      { selector: '.contact-email-box', speed: 0.04 }
-    ];
-    */
-    // Gene - Nov, 24, 2026: Updated depth parallax target to .harmony-motion-stage-card
-    /*
-    const autoDepthTargets = [
-      { selector: '.hero-preview-card', speed: -0.05 },
-      { selector: '.comparison-card-engine', speed: 0.045 },
-      { selector: '.founder-portrait-frame', speed: -0.04 },
-      { selector: '.contact-info-sidebar', speed: 0.04 }
-    ];
-    */
     const autoDepthTargets = [
       { selector: '.harmony-motion-stage-card', speed: -0.05 },
       { selector: '.comparison-card-engine', speed: 0.045 },
       { selector: '.founder-portrait-frame', speed: -0.04 },
       { selector: '.contact-info-sidebar', speed: 0.04 }
+    ];
+    */
+    const autoDepthTargets = [
+      { selector: '.founder-portrait-frame', speed: -0.035 },
+      { selector: '.work-media-parallax', speed: -0.03 }
     ];
 
     autoDepthTargets.forEach(({ selector, speed }) => {
@@ -198,7 +234,7 @@ export function useParallaxMotion(rootRef) {
           const rect = item.node.getBoundingClientRect();
           if (rect.bottom < -120 || rect.top > viewportH + 120) return null;
           const centerOffset = rect.top + rect.height * 0.5 - viewportH * 0.5;
-          return Math.max(-36, Math.min(36, centerOffset * item.speed));
+          return Math.max(-32, Math.min(32, centerOffset * item.speed));
         });
       }
 
@@ -211,6 +247,11 @@ export function useParallaxMotion(rootRef) {
         const cx = currentMouseX * 20;
         const crot = scrollY * 0.045 + currentMouseX * 12;
         cornerCoil.style.transform = `translate3d(${cx.toFixed(1)}px, ${cy.toFixed(1)}px, 0) rotate(${crot.toFixed(2)}deg)`;
+      }
+
+      if (scrollDirty && marqueeTrack) {
+        const shift = -Math.min(180, scrollY * 0.08);
+        marqueeTrack.style.transform = `translate3d(${shift.toFixed(1)}px, 0, 0)`;
       }
 
       if (scrollDirty && nodeOffsets) {
@@ -228,8 +269,8 @@ export function useParallaxMotion(rootRef) {
 
       if (footerWordmark && footerRect && footerRect.top < viewportH) {
         const progress = Math.min(1, Math.max(0, (viewportH - footerRect.top) / Math.max(1, footerRect.height)));
-        const yPct = 26 - progress * 20;
-        footerWordmark.style.transform = `translate3d(${(currentMouseX * -14).toFixed(1)}px, ${yPct.toFixed(2)}%, 0)`;
+        const yPct = 22 - progress * 18;
+        footerWordmark.style.transform = `translate3d(${(currentMouseX * -16).toFixed(1)}px, ${yPct.toFixed(2)}%, 0)`;
       }
 
       scrollDirty = false;
@@ -277,6 +318,8 @@ export function useParallaxMotion(rootRef) {
     }
     settleTimers.forEach((timerId) => clearTimeout(timerId));
     settleTimers.length = 0;
+    magneticCleanups.forEach((fn) => fn());
+    magneticCleanups.length = 0;
     if (onMouseMove) window.removeEventListener('mousemove', onMouseMove);
     if (onScrollOrResize) {
       window.removeEventListener('scroll', onScrollOrResize);

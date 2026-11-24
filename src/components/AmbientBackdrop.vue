@@ -43,14 +43,18 @@ onMounted(() => {
       vy: (-0.08 - Math.random() * 0.24) * depth,
       baseR: 1.05 + Math.random() * 1.55 * depth,
       depth,
-      alpha: 0.22 + Math.random() * 0.4,
+      // Gene - Nov, 24, 2026: Quieted ambient particle alpha so monumental hero waves and editorial typography read crisply
+      /* alpha: 0.22 + Math.random() * 0.4, */
+      alpha: 0.14 + Math.random() * 0.24,
       phase: Math.random() * Math.PI * 2,
       color: col
     };
   }
 
   function syncParticleCount() {
-    const targetCount = Math.min(72, Math.max(24, Math.round((width * height) / 22000)));
+    // Gene - Nov, 24, 2026: Reduced particle density ~35% for cleaner studio backdrop breathing room
+    /* const targetCount = Math.min(72, Math.max(24, Math.round((width * height) / 22000))); */
+    const targetCount = Math.min(46, Math.max(16, Math.round((width * height) / 34000)));
     while (particles.length < targetCount) {
       particles.push(createParticle(true));
     }

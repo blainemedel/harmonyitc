@@ -66,7 +66,9 @@
 
   /* Elevation & Borders */
   --border-hairline: rgba(156, 183, 212, 0.22);
+  --border-hairline-strong: rgba(180, 208, 233, 0.34);
   --border-glass: rgba(156, 183, 212, 0.38);
+  --accent-amber: #ff8442;
   --shadow-soft: 0 22px 48px -16px rgba(1, 10, 39, 0.52);
   --shadow-card: 0 24px 50px -14px rgba(1, 10, 39, 0.62);
 
@@ -78,6 +80,7 @@
 
   /* Layout */
   --container-max: 1200px;
-  --header-height: 76px;
+  /* --header-height: 76px; */
+  --header-height: 72px;
   --transition: all 0.28s var(--ease-out);
 }

@@ -9,6 +9,12 @@ import { setBodyScrollLock } from '@/composables/useScrollLock';
 const route = useRoute();
 const menuOpen = ref(false);
 const toggleBtnRef = ref(null);
+// Gene - Nov, 24, 2026: Added scroll-aware translucent glass header state
+const isScrolled = ref(false);
+
+function updateScrollState() {
+  isScrolled.value = (window.scrollY || document.documentElement.scrollTop || 0) > 24;
+}
 
 function isNavActive(to) {
   return route.path === to;
@@ -43,18 +49,23 @@ watch(
 
 onMounted(() => {
   document.addEventListener('keydown', onKeyDown);
+  window.addEventListener('scroll', updateScrollState, { passive: true });
+  updateScrollState();
 });
 
 onBeforeUnmount(() => {
   document.removeEventListener('keydown', onKeyDown);
+  window.removeEventListener('scroll', updateScrollState);
   setBodyScrollLock('mobile-drawer', false);
 });
 </script>
 
 <template>
-  <header class="site-header">
+  <header class="site-header" :class="{ 'site-header--scrolled': isScrolled }">
     <div class="header-inner">
       <RouterLink to="/" class="brand-logo" aria-label="Harmony IT Consultancy Home">
+        <!-- Gene - Nov, 24, 2026: Replaced white rectangular brand pill with sleek dark-mode harmony icon + lowercase wordmark lockup -->
+        <!--
         <img
           :src="BRAND_ASSETS.logo"
           alt="Harmony IT Consultancy"
@@ -64,6 +75,22 @@ onBeforeUnmount(() => {
           fetchpriority="high"
           decoding="async"
         />
+        -->
+        <span class="brand-mark-wrap" aria-hidden="true">
+          <img
+            :src="BRAND_ASSETS.icon"
+            alt=""
+            class="brand-icon-img"
+            width="64"
+            height="64"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </span>
+        <span class="brand-wordmark-group">
+          <span class="brand-wordmark">harmony</span>
+          <span class="brand-subword">IT CONSULTANCY</span>
+        </span>
       </RouterLink>
 
       <div class="header-right">

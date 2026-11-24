@@ -1,43 +1,69 @@
-<!-- Gene - Nov, 24, 2026: Replaced HeroWorkPreview with HarmonyMotionStage synchronized kinetic typography showcase -->
+<!-- Gene - Nov, 24, 2026: Monumental editorial Home with full-bleed HeroWaveField, kinetic marquee, interactive capability rows, asymmetric SwitchFiber work bento, and CaseStudyModal -->
 <script setup>
 import { ref, computed } from 'vue';
 import { RouterLink } from 'vue-router';
-import { DISPLAY_CONFIG, HERO_PILLARS, HOME_DATA } from '@/data/siteContent';
-// Gene - Nov, 24, 2026: Replaced HeroWorkPreview import with HarmonyMotionStage
-// import HeroWorkPreview from '@/components/HeroWorkPreview.vue';
-import HarmonyMotionStage from '@/components/HarmonyMotionStage.vue';
-// Gene - Nov, 24, 2026: Commented out PillarArtwork import after removing the Four Ways pillars section from HomeView
-// import PillarArtwork from '@/components/PillarArtwork.vue';
+import { HOME_DATA, PROJECTS_DATA } from '@/data/siteContent';
+import { PROJECT_THUMBNAILS } from '@/data/mediaAssets';
+import HeroWaveField from '@/components/HeroWaveField.vue';
 import UnifiedCtaStrip from '@/components/UnifiedCtaStrip.vue';
+import CaseStudyModal from '@/components/CaseStudyModal.vue';
 import { useParallaxMotion } from '@/composables/useParallaxMotion';
 import { useCardTilt } from '@/composables/useCardTilt';
 
-const viewRef = ref(null);
-useParallaxMotion(viewRef);
-useCardTilt(viewRef);
-
+// Gene - Nov, 24, 2026: Superseded interactive 4-pillar HeroWorkPreview / HarmonyMotionStage script state
+/*
+import { DISPLAY_CONFIG, HERO_PILLARS, HOME_DATA } from '@/data/siteContent';
+import HarmonyMotionStage from '@/components/HarmonyMotionStage.vue';
 const activePillar = ref(HERO_PILLARS[0].id);
 const tabRefs = ref([]);
-
 const currentPillarMeta = computed(
   () => HERO_PILLARS.find((p) => p.id === activePillar.value) || HERO_PILLARS[0]
 );
-
 function selectPillar(id) {
   activePillar.value = id;
 }
-
 function cyclePillar(step) {
   const currentIdx = HERO_PILLARS.findIndex((p) => p.id === activePillar.value);
   const nextIdx = (currentIdx + step + HERO_PILLARS.length) % HERO_PILLARS.length;
   activePillar.value = HERO_PILLARS[nextIdx].id;
   tabRefs.value[nextIdx]?.focus();
 }
+*/
+
+const viewRef = ref(null);
+useParallaxMotion(viewRef);
+useCardTilt(viewRef);
+
+const expandedCapId = ref(HOME_DATA.capabilitiesSection.items[0]?.id || '');
+const activeProject = ref(null);
+let lastTriggerEl = null;
+
+function toggleCapability(id) {
+  expandedCapId.value = expandedCapId.value === id ? '' : id;
+}
+
+const featuredProjects = computed(() =>
+  HOME_DATA.featuredWork.projectIds
+    .map((id) => PROJECTS_DATA.projects.find((p) => p.id === id))
+    .filter(Boolean)
+);
+
+function openCaseStudy(project, event) {
+  lastTriggerEl = event?.currentTarget || null;
+  activeProject.value = project;
+}
+
+function closeCaseStudy() {
+  activeProject.value = null;
+  lastTriggerEl?.focus();
+  lastTriggerEl = null;
+}
 </script>
 
 <template>
   <div ref="viewRef">
-    <!-- Section 1: Hero & Interactive Strategic Value Pitch -->
+    <!-- Gene - Nov, 24, 2026: Superseded 2-column hero with boxed pitch-focus-box and HarmonyMotionStage -->
+    <!--
     <section class="hero-section" aria-label="Introduction">
       <div class="hero-container">
         <div class="hero-copy" data-parallax-speed="0.03">
@@ -50,8 +76,8 @@ function cyclePillar(step) {
           <p v-if="DISPLAY_CONFIG.showExtendedCopy" class="hero-sublead">
             {{ HOME_DATA.sublead }}
           </p>
-
-          <!-- Interactive Pitch Focus Switcher -->
+    -->
+          <!--
           <div class="pitch-focus-box">
             <div class="pitch-focus-label">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -96,18 +122,6 @@ function cyclePillar(step) {
           </div>
 
           <div class="hero-cta-row">
-            <!--
-            <RouterLink to="/#capabilities" class="cta-pill-btn cta-lg">
-              <span>See How We Help</span>
-              <span class="cta-arrow-pocket" aria-hidden="true">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="12" y1="5" x2="12" y2="19" />
-                  <polyline points="19 12 12 19 5 12" />
-                </svg>
-              </span>
-            </RouterLink>
-            -->
-            <!-- Gene - Nov, 24, 2026: Routed hero primary CTA to /contact with active pitch focus after removing #capabilities section -->
             <RouterLink :to="{ path: '/contact', query: { focus: activePillar } }" class="cta-pill-btn cta-lg">
               <span>Start a Conversation</span>
               <span class="cta-arrow-pocket" aria-hidden="true">
@@ -124,124 +138,246 @@ function cyclePillar(step) {
         </div>
 
         <div class="hero-visual">
-          <!-- Gene - Nov, 24, 2026: Replaced Operations Console preview with HarmonyMotionStage -->
-          <!-- <HeroWorkPreview :active-pillar="activePillar" /> -->
           <HarmonyMotionStage :active-pillar="activePillar" />
         </div>
       </div>
     </section>
+          -->
 
-    <!-- Section 2: Business Outcomes Metrics Strip (controlled by DISPLAY_CONFIG.showHomeMetrics) -->
-    <section v-if="DISPLAY_CONFIG.showHomeMetrics" class="home-metrics-section" aria-label="Business Impact Outcomes">
-      <div class="section-inner">
-        <div class="home-metrics-grid">
-          <div v-for="metric in HOME_DATA.metrics" :key="metric.title" class="home-metric-card">
-            <div class="home-metric-val">{{ metric.value }}</div>
-            <div class="home-metric-title">{{ metric.title }}</div>
-            <p v-if="DISPLAY_CONFIG.showExtendedCopy" class="home-metric-desc">{{ metric.desc }}</p>
+    <!-- Section 1: Monumental Full-Width Editorial Hero -->
+    <section class="hero-editorial" aria-label="Introduction">
+      <HeroWaveField />
+
+      <div class="section-inner hero-editorial-inner">
+        <div class="hero-editorial-top">
+          <div class="hero-eyebrow hero-editorial-eyebrow">
+            <span class="ed-live-dot" aria-hidden="true" />
+            <span>{{ HOME_DATA.eyebrow }}</span>
+          </div>
+
+          <h1 class="hero-editorial-title">
+            <span
+              v-for="(line, idx) in HOME_DATA.headlineLines"
+              :key="line"
+              class="reveal-mask"
+            >
+              <span
+                class="reveal-mask-inner"
+                :class="{ 'is-accent': idx === 1, 'is-bright': idx === 2 }"
+                :style="{ '--mask-delay': `${idx * 95}ms` }"
+              >
+                {{ line }}
+              </span>
+            </span>
+          </h1>
+        </div>
+
+        <div class="hero-editorial-foot">
+          <div class="ed-line-draw hero-foot-rule" aria-hidden="true" />
+          <div class="hero-foot-row">
+            <p class="hero-editorial-lead">{{ HOME_DATA.lead }}</p>
+
+            <div class="hero-foot-actions">
+              <div class="action-row">
+                <RouterLink :to="HOME_DATA.primaryCta.to" class="cta-pill-btn cta-lg" data-magnetic>
+                  <span>{{ HOME_DATA.primaryCta.label }}</span>
+                  <span class="cta-arrow-pocket" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                      <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                  </span>
+                </RouterLink>
+
+                <RouterLink :to="HOME_DATA.secondaryCta.to" class="btn-outline-teal" data-magnetic>
+                  <span>{{ HOME_DATA.secondaryCta.label }}</span>
+                  <span aria-hidden="true">&#8599;</span>
+                </RouterLink>
+              </div>
+
+              <div class="hero-scroll-cue" aria-hidden="true">
+                <span class="hero-scroll-label">Scroll</span>
+                <span class="hero-scroll-track">
+                  <span class="hero-scroll-stem" />
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 3: The 4 Core Website Product Pillars -->
-    <!-- Gene - Nov, 24, 2026: Removed "Four ways we build for your business" pillars section pending replacement -->
-    <!--
-    <section id="capabilities" class="home-pillars-section" aria-labelledby="pillars-heading">
+    <!-- Section 2: Kinetic Typographic Marquee -->
+    <section class="kinetic-marquee-band" aria-hidden="true">
+      <div class="kinetic-marquee-inner">
+        <div class="kinetic-marquee-track">
+          <div v-for="copyIdx in 2" :key="`marquee-${copyIdx}`" class="kinetic-marquee-group">
+            <template v-for="word in HOME_DATA.marqueeWords" :key="`${copyIdx}-${word}`">
+              <span class="kinetic-marquee-word" :class="{ 'is-harmony': word === 'harmony' }">
+                {{ word }}
+              </span>
+              <span class="kinetic-marquee-sep">/</span>
+            </template>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Interactive Editorial Capabilities -->
+    <section class="capabilities-section" aria-labelledby="capabilities-heading">
       <div class="section-inner">
-        <div class="pillars-header-row">
-          <div>
-            <div class="page-eyebrow">{{ HOME_DATA.pillarsSection.eyebrow }}</div>
-            <h2 id="pillars-heading" class="section-heading section-heading--lg">
-              {{ HOME_DATA.pillarsSection.headingLead }}
-              <strong>{{ HOME_DATA.pillarsSection.headingAccent }}</strong>
+        <div class="section-header-split ed-reveal">
+          <div class="section-heading-group">
+            <div class="page-eyebrow">{{ HOME_DATA.capabilitiesSection.eyebrow }}</div>
+            <h2 id="capabilities-heading" class="editorial-section-title">
+              <span>{{ HOME_DATA.capabilitiesSection.headingLead }}</span>{{ ' ' }}<strong>{{ HOME_DATA.capabilitiesSection.headingAccent }}</strong>
             </h2>
           </div>
-          <p v-if="DISPLAY_CONFIG.showExtendedCopy" class="team-intro section-subcopy--narrow">
-            {{ HOME_DATA.pillarsSection.intro }}
-          </p>
         </div>
 
-        <div class="pillars-grid-2x2">
-          <article v-for="item in HOME_DATA.pillarsSection.items" :key="item.id" class="pillar-card">
-            <div class="pillar-card-top">
-              <div class="pillar-icon-badge" aria-hidden="true">
-                <svg v-if="item.icon === 'alert'" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="12" y1="8" x2="12" y2="12" />
-                  <line x1="12" y1="16" x2="12.01" y2="16" />
-                </svg>
-                <svg v-else-if="item.icon === 'star'" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                </svg>
-                <svg v-else-if="item.icon === 'monitor'" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-                  <line x1="8" y1="21" x2="16" y2="21" />
-                  <line x1="12" y1="17" x2="12" y2="21" />
-                </svg>
-                <svg v-else width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="12" y1="1" x2="12" y2="23" />
-                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                </svg>
+        <div class="cap-list">
+          <article
+            v-for="cap in HOME_DATA.capabilitiesSection.items"
+            :key="cap.id"
+            class="cap-row"
+            :class="{ 'is-open': expandedCapId === cap.id }"
+          >
+            <button
+              type="button"
+              class="cap-row-trigger"
+              :aria-expanded="String(expandedCapId === cap.id)"
+              :aria-controls="`cap-panel-${cap.id}`"
+              @click="toggleCapability(cap.id)"
+            >
+              <span class="cap-row-num">{{ cap.num }}</span>
+              <span class="cap-row-title">{{ cap.title }}</span>
+              <span class="cap-row-meta">
+                <span class="cap-row-tag">{{ cap.tag }}</span>
+                <span class="cap-row-plus" aria-hidden="true">
+                  <span class="cap-plus-h" />
+                  <span class="cap-plus-v" />
+                </span>
+              </span>
+            </button>
+
+            <div
+              :id="`cap-panel-${cap.id}`"
+              class="cap-row-drawer"
+              :aria-hidden="String(expandedCapId !== cap.id)"
+            >
+              <div class="cap-row-drawer-inner">
+                <div class="cap-drawer-content">
+                  <p class="cap-drawer-summary">{{ cap.summary }}</p>
+                  <div class="cap-drawer-bottom">
+                    <div class="cap-deliverables">
+                      <span v-for="item in cap.deliverables" :key="item" class="cap-deliverable-pill">
+                        {{ item }}
+                      </span>
+                    </div>
+                    <RouterLink
+                      :to="{ path: '/contact', query: { focus: cap.id } }"
+                      class="cap-discuss-link"
+                      :tabindex="expandedCapId === cap.id ? 0 : -1"
+                    >
+                      <span>Discuss this</span>
+                      <span aria-hidden="true">&rarr;</span>
+                    </RouterLink>
+                  </div>
+                </div>
               </div>
-              <span class="pillar-num-tag">{{ item.areaLabel }}</span>
-            </div>
-
-            <PillarArtwork :shape="item.shape" />
-
-            <h3 class="pillar-title">{{ item.title }}</h3>
-            <p v-if="DISPLAY_CONFIG.showExtendedCopy" class="pillar-desc">{{ item.desc }}</p>
-            <div class="pillar-tags">
-              <span v-for="tag in item.tags" :key="tag" class="pillar-tag">{{ tag }}</span>
             </div>
           </article>
         </div>
       </div>
     </section>
-    -->
 
-    <!-- Section 4: Strategic Pitch Comparison Matrix -->
-    <!-- Gene - Nov, 24, 2026: Removed "Why basic template sites fall short" comparison section pending replacement -->
-    <!--
-    <section class="home-comparison-section" aria-labelledby="comparison-heading">
+    <!-- Section 4: Asymmetric SwitchFiber Featured Work Bento -->
+    <section class="featured-work-section" aria-labelledby="featured-work-heading">
       <div class="section-inner">
-        <div class="page-eyebrow">{{ HOME_DATA.comparisonSection.eyebrow }}</div>
-        <h2 id="comparison-heading" class="section-heading section-heading--md">
-          {{ HOME_DATA.comparisonSection.headingLead }}
-          <strong class="ink-strong">{{ HOME_DATA.comparisonSection.headingAccent }}</strong>
-        </h2>
-        <p v-if="DISPLAY_CONFIG.showExtendedCopy" class="section-subcopy">
-          {{ HOME_DATA.comparisonSection.intro }}
-        </p>
-
-        <div class="comparison-grid-2">
-          <div class="comparison-card-passive">
-            <div class="process-tag comparison-tag">{{ HOME_DATA.comparisonSection.passive.tag }}</div>
-            <h3 class="comparison-card-title">{{ HOME_DATA.comparisonSection.passive.title }}</h3>
-            <ul class="comparison-list">
-              <li v-for="line in HOME_DATA.comparisonSection.passive.items" :key="line" class="comparison-item">
-                <span class="comparison-badge-cross" aria-hidden="true">&times;</span>
-                <span>{{ line }}</span>
-              </li>
-            </ul>
+        <div class="section-header-split ed-reveal">
+          <div class="section-heading-group">
+            <div class="page-eyebrow">{{ HOME_DATA.featuredWork.eyebrow }}</div>
+            <h2 id="featured-work-heading" class="editorial-section-title">
+              <span>{{ HOME_DATA.featuredWork.headingLead }}</span>{{ ' ' }}<strong>{{ HOME_DATA.featuredWork.headingAccent }}</strong>
+            </h2>
           </div>
 
-          <div class="comparison-card-engine">
-            <div class="cosmic-eyebrow comparison-tag">{{ HOME_DATA.comparisonSection.engine.tag }}</div>
-            <h3 class="comparison-card-title">{{ HOME_DATA.comparisonSection.engine.title }}</h3>
-            <ul class="comparison-list">
-              <li v-for="item in HOME_DATA.comparisonSection.engine.items" :key="item.lead" class="comparison-item">
-                <span class="comparison-badge-check" aria-hidden="true">&#10003;</span>
-                <span><strong>{{ item.lead }}</strong> {{ item.body }}</span>
-              </li>
-            </ul>
-          </div>
+          <RouterLink to="/projects" class="editorial-inline-link" data-magnetic>
+            <span>All Projects</span>
+            <span aria-hidden="true">&rarr;</span>
+          </RouterLink>
+        </div>
+
+        <div class="bento-grid">
+          <article
+            v-for="(project, idx) in featuredProjects"
+            :key="project.id"
+            class="bento-card"
+            :class="{ 'bento-card--lead': idx === 0 }"
+          >
+            <button
+              type="button"
+              class="bento-media-btn"
+              :class="project.thumbModifier"
+              :aria-label="`Inspect ${project.title} case study`"
+              @click="openCaseStudy(project, $event)"
+            >
+              <img
+                :src="PROJECT_THUMBNAILS[project.imageKey]"
+                :alt="project.alt"
+                :width="project.width"
+                :height="project.height"
+                class="bento-media-img"
+                loading="lazy"
+              />
+              <span class="bento-inspect-chip" aria-hidden="true">Case Study &#8599;</span>
+            </button>
+
+            <div class="bento-card-body">
+              <div class="bento-card-meta">
+                <span class="bento-index">{{ project.indexNum }}</span>
+                <span class="bento-subtitle">{{ project.subtitle }}</span>
+              </div>
+
+              <h3 class="bento-card-title">{{ project.title }}</h3>
+              <p class="bento-card-desc">{{ project.shortDesc }}</p>
+
+              <div class="bento-card-foot">
+                <div class="bento-metric-pair">
+                  <span class="bento-metric-val">{{ project.metrics[0]?.value }}</span>
+                  <span class="bento-metric-lbl">{{ project.metrics[0]?.label }}</span>
+                </div>
+
+                <div class="bento-card-actions">
+                  <a
+                    v-if="project.liveUrl"
+                    :href="project.liveUrl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="editorial-text-link"
+                  >
+                    <span>{{ project.liveActionLabel }}</span>
+                    <span aria-hidden="true">&#8599;</span>
+                  </a>
+                  <button
+                    type="button"
+                    class="editorial-pill-action"
+                    @click="openCaseStudy(project, $event)"
+                  >
+                    <span>Case Study</span>
+                    <span aria-hidden="true">&rarr;</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
-    -->
 
-    <!-- Section 5: Unified Closing Callout -->
+    <!-- Section 5: Seamless Big-Text Closing Band -->
     <UnifiedCtaStrip v-bind="HOME_DATA.closingCta" />
+
+    <CaseStudyModal :project="activeProject" @close="closeCaseStudy" />
   </div>
 </template>
