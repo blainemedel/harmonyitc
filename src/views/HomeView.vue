@@ -1,6 +1,8 @@
 <!-- Gene - Nov, 24, 2026: Monumental editorial Home with full-bleed HeroWaveField, kinetic marquee, interactive capability rows, asymmetric SwitchFiber work bento, and CaseStudyModal -->
 <script setup>
-import { ref, computed } from 'vue';
+// Gene - Nov, 24, 2026: Added lifecycle hooks for kinetic harmonic wave motion on hero headline
+// import { ref, computed } from 'vue';
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { RouterLink } from 'vue-router';
 import { HOME_DATA, PROJECTS_DATA } from '@/data/siteContent';
 import { PROJECT_THUMBNAILS } from '@/data/mediaAssets';
@@ -58,6 +60,200 @@ function closeCaseStudy() {
   lastTriggerEl?.focus();
   lastTriggerEl = null;
 }
+
+// Gene - Nov, 24, 2026: Pre-split hero headline words/characters and run GPU-composited harmonic letter-wave + pointer proximity ripple
+const heroTitleRef = ref(null);
+let cleanupHeadlineMotion = null;
+
+const animatedHeadlineLines = HOME_DATA.headlineLines.map((line, lineIdx) => {
+  let charIndexInLine = 0;
+  const rawWords = line.split(' ');
+  const words = rawWords.map((word, wordIdx) => {
+    const chars = Array.from(word).map((char) => {
+      const charIdx = charIndexInLine;
+      charIndexInLine += 1;
+      return { char, charIdx };
+    });
+    charIndexInLine += 1;
+    return { wordIdx, chars };
+  });
+  return {
+    line,
+    lineIdx,
+    totalChars: Math.max(1, charIndexInLine - 1),
+    words
+  };
+});
+
+onMounted(() => {
+  const titleEl = heroTitleRef.value;
+  if (!titleEl) return;
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) return;
+
+  const charEls = Array.from(titleEl.querySelectorAll('.hero-wave-char'));
+  if (charEls.length === 0) return;
+
+  let isUnmounted = false;
+  const totalLines = Math.max(1, HOME_DATA.headlineLines.length);
+  const charNodes = charEls.map((el) => {
+    const lineIdx = Number(el.dataset.lineIdx || 0);
+    const charIdx = Number(el.dataset.charIdx || 0);
+    const lineLen = Math.max(1, Number(el.dataset.lineLen || 1));
+    return {
+      el,
+      lineIdx,
+      charIdx,
+      nx: (charIdx + 0.5) / lineLen,
+      ny: (lineIdx + 0.5) / totalLines
+    };
+  });
+
+  function measureChars() {
+    const titleRect = titleEl.getBoundingClientRect();
+    const titleW = Math.max(1, titleRect.width);
+    for (let i = 0; i < charNodes.length; i++) {
+      const node = charNodes[i];
+      const r = node.el.getBoundingClientRect();
+      node.nx = (r.left + r.width * 0.5 - titleRect.left) / titleW;
+      node.ny = (node.lineIdx + 0.5) / totalLines;
+    }
+  }
+
+  const heroSection = titleEl.closest('.hero-editorial') || titleEl;
+  let targetPx = 0.5;
+  let targetPy = 0.5;
+  let curPx = 0.5;
+  let curPy = 0.5;
+  let hoverActive = false;
+  let hoverStrength = 0;
+  let isInView = true;
+  let rafId = 0;
+  let io = null;
+  const startedAt = performance.now();
+  let lastTime = startedAt;
+  let phase = 0.35;
+
+  function renderHeadlineFrame(now) {
+    rafId = 0;
+    const dt = Math.min(0.05, Math.max(0.004, (now - lastTime) / 1000));
+    lastTime = now;
+
+    const t = Math.min(1, (now - startedAt) / 900);
+    const easeRamp = t * t * (3 - 2 * t);
+
+    phase += dt * 2.05;
+
+    const targetStrength = hoverActive ? 1 : 0;
+    hoverStrength += (targetStrength - hoverStrength) * Math.min(1, dt * 7);
+    curPx += (targetPx - curPx) * Math.min(1, dt * 9);
+    curPy += (targetPy - curPy) * Math.min(1, dt * 9);
+
+    const isCompact = window.innerWidth < 640;
+    const baseAmp = isCompact ? 3.5 : 5.5;
+    const hoverLift = isCompact ? 5 : 8.5;
+
+    for (let i = 0; i < charNodes.length; i++) {
+      const node = charNodes[i];
+      const waveOffset = phase - node.charIdx * 0.42 - node.lineIdx * 0.75;
+      let y = Math.sin(waveOffset) * baseAmp * easeRamp;
+      let scale = 1 + Math.cos(waveOffset) * 0.02 * easeRamp;
+      let rot = Math.cos(waveOffset) * 1.25 * easeRamp;
+
+      if (hoverStrength > 0.005) {
+        const dx = curPx - node.nx;
+        const dy = (curPy - node.ny) * 0.85;
+        const dist = Math.hypot(dx, dy);
+        if (dist < 0.26) {
+          const proximity = (1 - dist / 0.26) * hoverStrength;
+          y -= proximity * hoverLift;
+          scale += proximity * 0.055;
+          rot += dx * proximity * 6;
+        }
+      }
+
+      node.el.style.transform = `translate3d(0, ${y.toFixed(2)}px, 0) scale(${scale.toFixed(4)}) rotate(${rot.toFixed(2)}deg)`;
+    }
+
+    if (!isUnmounted && isInView && !document.hidden) {
+      rafId = requestAnimationFrame(renderHeadlineFrame);
+    }
+  }
+
+  function syncLoop() {
+    const shouldRun = !isUnmounted && isInView && !document.hidden;
+    if (shouldRun && !rafId) {
+      lastTime = performance.now();
+      rafId = requestAnimationFrame(renderHeadlineFrame);
+    } else if (!shouldRun && rafId) {
+      cancelAnimationFrame(rafId);
+      rafId = 0;
+    }
+  }
+
+  const onPointerMove = (e) => {
+    const titleRect = titleEl.getBoundingClientRect();
+    targetPx = (e.clientX - titleRect.left) / Math.max(1, titleRect.width);
+    targetPy = (e.clientY - titleRect.top) / Math.max(1, titleRect.height);
+    hoverActive = targetPx >= -0.15 && targetPx <= 1.15 && targetPy >= -0.25 && targetPy <= 1.25;
+  };
+
+  const onPointerLeave = () => {
+    hoverActive = false;
+  };
+
+  const onResize = () => measureChars();
+  const onVisibilityChange = () => syncLoop();
+
+  if ('IntersectionObserver' in window) {
+    io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.target === titleEl) {
+            isInView = entry.isIntersecting;
+            syncLoop();
+          }
+        });
+      },
+      { rootMargin: '80px 0px', threshold: 0.01 }
+    );
+    io.observe(titleEl);
+  }
+
+  measureChars();
+  document.fonts?.ready?.then(() => {
+    if (!isUnmounted) measureChars();
+  });
+
+  window.addEventListener('resize', onResize);
+  document.addEventListener('visibilitychange', onVisibilityChange);
+  heroSection.addEventListener('pointermove', onPointerMove, { passive: true });
+  heroSection.addEventListener('pointerleave', onPointerLeave);
+
+  syncLoop();
+
+  cleanupHeadlineMotion = () => {
+    isUnmounted = true;
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+      rafId = 0;
+    }
+    if (io) {
+      io.disconnect();
+      io = null;
+    }
+    window.removeEventListener('resize', onResize);
+    document.removeEventListener('visibilitychange', onVisibilityChange);
+    heroSection.removeEventListener('pointermove', onPointerMove);
+    heroSection.removeEventListener('pointerleave', onPointerLeave);
+  };
+});
+
+onBeforeUnmount(() => {
+  cleanupHeadlineMotion?.();
+  cleanupHeadlineMotion = null;
+});
 </script>
 
 <template>
@@ -155,6 +351,8 @@ function closeCaseStudy() {
             <span>{{ HOME_DATA.eyebrow }}</span>
           </div>
 
+          <!-- Gene - Nov, 24, 2026: Preserved static headline markup and replaced with kinetic character-wave headline -->
+          <!--
           <h1 class="hero-editorial-title">
             <span
               v-for="(line, idx) in HOME_DATA.headlineLines"
@@ -167,6 +365,38 @@ function closeCaseStudy() {
                 :style="{ '--mask-delay': `${idx * 95}ms` }"
               >
                 {{ line }}
+              </span>
+            </span>
+          </h1>
+          -->
+          <h1
+            ref="heroTitleRef"
+            class="hero-editorial-title hero-editorial-title--kinetic"
+            :aria-label="HOME_DATA.headlineLines.join(' ')"
+          >
+            <span
+              v-for="item in animatedHeadlineLines"
+              :key="item.line"
+              class="reveal-mask hero-wave-mask"
+              aria-hidden="true"
+            >
+              <span
+                class="reveal-mask-inner"
+                :class="{ 'is-accent': item.lineIdx === 1, 'is-bright': item.lineIdx === 2 }"
+                :style="{ '--mask-delay': `${item.lineIdx * 95}ms` }"
+              >
+                <template v-for="w in item.words" :key="`${item.lineIdx}-${w.wordIdx}`">
+                  <span class="hero-wave-word">
+                    <span
+                      v-for="c in w.chars"
+                      :key="`${item.lineIdx}-${w.wordIdx}-${c.charIdx}`"
+                      class="hero-wave-char"
+                      :data-line-idx="item.lineIdx"
+                      :data-char-idx="c.charIdx"
+                      :data-line-len="item.totalChars"
+                    >{{ c.char }}</span>
+                  </span><template v-if="w.wordIdx < item.words.length - 1">{{ ' ' }}</template>
+                </template>
               </span>
             </span>
           </h1>

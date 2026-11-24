@@ -329,6 +329,11 @@ html.js-parallax-ready .parallax-reveal.is-settled {
     opacity: 1;
     transform: none;
   }
+  /* Gene - Nov, 24, 2026: Ensure kinetic hero headline characters remain static under reduced motion */
+  .hero-wave-char {
+    transform: none !important;
+    will-change: auto;
+  }
   html.js-parallax-ready .parallax-reveal {
     opacity: 1 !important;
     transform: none !important;

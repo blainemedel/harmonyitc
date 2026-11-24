@@ -1887,12 +1887,38 @@
   margin-bottom: 1.5rem;
 }
 
+/* Gene - Nov, 24, 2026: Slightly increased hero line-height and added unclipped kinetic wave character rules */
+/*
 .hero-editorial-title {
   font-size: clamp(3.1rem, 8.6vw, 7.6rem);
   line-height: 0.94;
   letter-spacing: -0.045em;
   font-weight: 800;
   max-width: 1060px;
+}
+*/
+.hero-editorial-title {
+  font-size: clamp(3.1rem, 8.6vw, 7.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  font-weight: 800;
+  max-width: 1060px;
+}
+
+.hero-editorial-title--kinetic .hero-wave-mask {
+  padding: 0.16em 0.1em 0.2em 0.04em;
+  margin: -0.16em -0.1em -0.2em -0.04em;
+}
+
+.hero-wave-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.hero-wave-char {
+  display: inline-block;
+  will-change: transform;
+  transform-origin: center 70%;
 }
 
 .hero-editorial-title .reveal-mask-inner {
