@@ -7,6 +7,8 @@ import { RouterLink } from 'vue-router';
 import { HOME_DATA, PROJECTS_DATA } from '@/data/siteContent';
 import { PROJECT_THUMBNAILS } from '@/data/mediaAssets';
 import HeroWaveField from '@/components/HeroWaveField.vue';
+// Gene - Nov, 24, 2026: Added interactive 3D HeroParticleOrb backing the editorial hero right/background composition
+import HeroParticleOrb from '@/components/HeroParticleOrb.vue';
 import UnifiedCtaStrip from '@/components/UnifiedCtaStrip.vue';
 import CaseStudyModal from '@/components/CaseStudyModal.vue';
 import { useParallaxMotion } from '@/composables/useParallaxMotion';
@@ -343,6 +345,8 @@ onBeforeUnmount(() => {
     <!-- Section 1: Monumental Full-Width Editorial Hero -->
     <section class="hero-editorial" aria-label="Introduction">
       <HeroWaveField />
+      <!-- Gene - Nov, 24, 2026: Interactive 3D particle orb floating on the right side / background of the hero -->
+      <HeroParticleOrb />
 
       <div class="section-inner hero-editorial-inner">
         <div class="hero-editorial-top">

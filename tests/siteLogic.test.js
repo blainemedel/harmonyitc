@@ -26,6 +26,12 @@ import {
   buildResendEmailPayload,
   parseContactQuery
 } from '../src/utils/contactInquiry.js';
+// Gene - Nov, 24, 2026: Imported particleOrbGeometry helpers for HeroParticleOrb unit tests
+import {
+  computeOrbLayout,
+  createOrbParticles,
+  buildShellEdges
+} from '../src/utils/particleOrbGeometry.js';
 
 const { priorities } = CONTACT_DATA.briefBuilder;
 const validPriorityIds = priorities.map((p) => p.id);
@@ -239,6 +245,62 @@ describe('contactInquiry validation, escaping, Resend payload, and query parsing
     assert.deepEqual(fallback.priorities, []);
     assert.equal(fallback.referencedProjectTitle, '');
     assert.equal(fallback.starterMessage, '');
+  });
+});
+
+// Gene - Nov, 24, 2026: Added unit tests for HeroParticleOrb 3D geometry, shell edges, and responsive layout
+describe('particleOrbGeometry helpers', () => {
+  it('computes responsive right-side desktop, tablet, and compact background orb layouts', () => {
+    const desktop = computeOrbLayout(1440, 820);
+    assert.ok(desktop.cx > 1440 * 0.65);
+    assert.ok(desktop.cx + desktop.radius <= 1440);
+    assert.ok(desktop.cy < 820 * 0.55);
+    assert.equal(desktop.intensity, 1);
+    assert.equal(desktop.isCompact, false);
+
+    const tablet = computeOrbLayout(768, 700);
+    assert.equal(tablet.isCompact, false);
+    assert.ok(tablet.intensity > 0.7 && tablet.intensity < 1);
+
+    const compact = computeOrbLayout(390, 640);
+    assert.equal(compact.isCompact, true);
+    assert.ok(compact.intensity < 0.75);
+    assert.ok(compact.radius >= 96);
+  });
+
+  it('creates deterministic multi-layer particles with unit-sphere shell coordinates', () => {
+    const fullA = createOrbParticles({ compact: false });
+    const fullB = createOrbParticles({ compact: false });
+    const compact = createOrbParticles({ compact: true });
+
+    assert.deepEqual(fullA, fullB);
+    assert.ok(compact.particles.length < fullA.particles.length);
+
+    const layers = new Set(fullA.particles.map((p) => p.layer));
+    assert.equal(layers.has('shell'), true);
+    assert.equal(layers.has('core'), true);
+    assert.equal(layers.has('halo'), true);
+
+    for (let i = 0; i < fullA.shellCount; i++) {
+      const p = fullA.particles[i];
+      assert.equal(p.layer, 'shell');
+      assert.ok(Math.abs(Math.hypot(p.bx, p.by, p.bz) - 1) < 1e-6);
+    }
+  });
+
+  it('builds non-empty deduplicated geodesic shell edges', () => {
+    const { particles, shellCount } = createOrbParticles({ compact: false });
+    const edges = buildShellEdges(particles, shellCount);
+    assert.ok(edges.length > 0);
+
+    const seen = new Set();
+    for (const [a, b] of edges) {
+      assert.ok(Number.isInteger(a) && Number.isInteger(b));
+      assert.ok(a >= 0 && a < b && b < shellCount);
+      const key = `${a}:${b}`;
+      assert.equal(seen.has(key), false);
+      seen.add(key);
+    }
   });
 });
 

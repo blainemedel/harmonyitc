@@ -1870,6 +1870,17 @@
   -webkit-mask-image: radial-gradient(ellipse 92% 85% at 54% 48%, #000 45%, rgba(0, 0, 0, 0.55) 75%, transparent 100%);
 }
 
+/* Gene - Nov, 24, 2026: Full-bleed HeroParticleOrb canvas layered above HeroWaveField (0) and beneath hero editorial typography (2) */
+.hero-orb-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+  z-index: 1;
+}
+
 .hero-editorial-inner {
   position: relative;
   z-index: 2;
@@ -1908,6 +1919,11 @@
 .hero-editorial-title--kinetic .hero-wave-mask {
   padding: 0.16em 0.1em 0.2em 0.04em;
   margin: -0.16em -0.1em -0.2em -0.04em;
+}
+
+/* Gene - Nov, 24, 2026: Subtle studio shadow keeping kinetic hero lettering crisp over background particle orb on narrower viewports */
+.hero-editorial-title--kinetic {
+  text-shadow: 0 10px 34px rgba(6, 20, 40, 0.38);
 }
 
 .hero-wave-word {
