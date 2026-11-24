@@ -75,9 +75,21 @@ html.js-parallax-ready .parallax-reveal.is-settled {
   z-index: 0;
 }
 
+/* Gene - Nov, 24, 2026: Updated tilt specular selectors and added route/preview transitions */
+/*
 .cosmic-quote-card.parallax-tilt-card::before,
 .comparison-card-engine.parallax-tilt-card::before,
 .contact-email-box.parallax-tilt-card::before {
+  background: radial-gradient(
+    460px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(186, 207, 229, 0.16) 0%,
+    rgba(58, 106, 147, 0.1) 40%,
+    transparent 72%
+  );
+}
+*/
+.contact-info-sidebar.parallax-tilt-card::before,
+.comparison-card-engine.parallax-tilt-card::before {
   background: radial-gradient(
     460px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
     rgba(186, 207, 229, 0.16) 0%,
@@ -90,11 +102,43 @@ html.js-parallax-ready .parallax-reveal.is-settled {
   opacity: 1;
 }
 
+/* Vue Route & Hero Preview Transitions */
+.route-fade-enter-active,
+.route-fade-leave-active {
+  transition: opacity 0.2s ease, transform 0.22s var(--ease-out);
+}
+
+.route-fade-enter-from {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.route-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+.preview-swap-enter-active,
+.preview-swap-leave-active {
+  transition: opacity 0.18s ease, transform 0.22s var(--ease-out);
+}
+
+.preview-swap-enter-from {
+  opacity: 0;
+  transform: translateY(6px) scale(0.985);
+}
+
+.preview-swap-leave-to {
+  opacity: 0;
+  transform: translateY(-6px) scale(0.985);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .hero-3d-orbit-ring,
-  .hero-3d-node,
-  .harmony-pulse-ring {
-    animation: none;
+  .route-fade-enter-active,
+  .route-fade-leave-active,
+  .preview-swap-enter-active,
+  .preview-swap-leave-active {
+    transition: none;
   }
   html.js-parallax-ready .parallax-reveal {
     opacity: 1 !important;

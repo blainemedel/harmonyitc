@@ -70,9 +70,10 @@
   --shadow-soft: 0 22px 48px -16px rgba(1, 10, 39, 0.52);
   --shadow-card: 0 24px 50px -14px rgba(1, 10, 39, 0.62);
 
+  /* Gene - Nov, 24, 2026: Removed unused --font-condensed token after dropping KineticCylinder */
   /* Typography & Motion */
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-condensed: 'Anton', 'Oswald', Impact, sans-serif;
+  /* --font-condensed: 'Anton', 'Oswald', Impact, sans-serif; */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Layout */

@@ -1,6 +1,8 @@
 // Gene - Nov, 23, 2026: Interactive 3D magnetic card tilt and specular spotlight composable with clean unmount
 import { onMounted, onBeforeUnmount } from 'vue';
 
+// Gene - Nov, 24, 2026: Updated tilt selectors for HeroWorkPreview and Contact Hub sidebar
+/*
 const CARD_SELECTORS = [
   '.pillar-card',
   '.process-card',
@@ -12,6 +14,18 @@ const CARD_SELECTORS = [
   '.contact-channel-card',
   '.priority-choice-card',
   '.founder-profile-card'
+].join(', ');
+*/
+const CARD_SELECTORS = [
+  '.hero-preview-card',
+  '.pillar-card',
+  '.process-card',
+  '.home-metric-card',
+  '.project-card',
+  '.comparison-card-passive',
+  '.comparison-card-engine',
+  '.founder-profile-card',
+  '.contact-info-sidebar'
 ].join(', ');
 
 /**

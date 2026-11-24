@@ -1,10 +1,11 @@
-<!-- Gene - Nov, 23, 2026: Root application shell with AmbientBackdrop, scroll progress bar, header, RouterView, footer, and toast -->
+<!-- Gene - Nov, 24, 2026: Added route transition, BackToTop, and route-aware scroll progress refresh -->
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { ref, watch, nextTick, onMounted, onBeforeUnmount } from 'vue';
 import { useRoute, RouterView } from 'vue-router';
 import AmbientBackdrop from '@/components/AmbientBackdrop.vue';
 import SiteHeader from '@/components/SiteHeader.vue';
 import SiteFooter from '@/components/SiteFooter.vue';
+import BackToTop from '@/components/BackToTop.vue';
 import { useClipboard } from '@/composables/useClipboard';
 
 const route = useRoute();
@@ -25,6 +26,14 @@ function scheduleProgress() {
     progressRaf = requestAnimationFrame(updateProgress);
   }
 }
+
+watch(
+  () => route.fullPath,
+  async () => {
+    await nextTick();
+    scheduleProgress();
+  }
+);
 
 onMounted(() => {
   window.addEventListener('scroll', scheduleProgress, { passive: true });
@@ -55,10 +64,16 @@ onBeforeUnmount(() => {
     <SiteHeader />
 
     <main>
-      <RouterView />
+      <RouterView v-slot="{ Component }">
+        <Transition name="route-fade" mode="out-in">
+          <component :is="Component" />
+        </Transition>
+      </RouterView>
     </main>
 
     <SiteFooter :is-home="route.name === 'home'" />
+
+    <BackToTop />
 
     <div
       id="copied-toast"

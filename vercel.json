@@ -6,7 +6,7 @@
     { "source": "/contact.html", "destination": "/contact", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/((?!assets/|.*\\..*).*)", "destination": "/index.html" }
+    { "source": "/((?!api/|assets/|.*\\..*).*)", "destination": "/index.html" }
   ],
   "headers": [
     {

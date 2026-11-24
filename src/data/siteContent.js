@@ -26,6 +26,7 @@ export const NAV_ITEMS = [
   { key: 'contact', label: 'Contact Us', to: '/contact' }
 ];
 
+// Gene - Nov, 24, 2026: Added preview metadata per hero pillar for HeroWorkPreview showcase (replacing floating logo hub)
 export const HERO_PILLARS = [
   {
     id: 'problem',
@@ -36,7 +37,18 @@ export const HERO_PILLARS = [
     hubNodeLabel: 'Problem Solving',
     focusPrefix: '01 / Solving Real Problems:',
     focusText:
-      'We look at where your team loses time, misses inquiries, or gets stuck in manual steps, then build straightforward tools that fix the root issue.'
+      'We look at where your team loses time, misses inquiries, or gets stuck in manual steps, then build straightforward tools that fix the root issue.',
+    preview: {
+      projectId: 'switchfiber-admin',
+      imageKey: 'switchfiber-admin',
+      width: 1024,
+      height: 640,
+      thumbModifier: 'preview-shot--admin',
+      badge: 'Operations Console',
+      title: 'SwitchFiber Admin',
+      metricVal: '4 Core Modules',
+      metricSub: 'Subscribers · Plans · Jobs · Fiber'
+    }
   },
   {
     id: 'promo',
@@ -47,7 +59,18 @@ export const HERO_PILLARS = [
     hubNodeLabel: 'Online Presence',
     focusPrefix: '02 / Clear Online Presence:',
     focusText:
-      'A fast, trustworthy website that explains what you do clearly, shows up well in search, and gives potential clients confidence to reach out.'
+      'A fast, trustworthy website that explains what you do clearly, shows up well in search, and gives potential clients confidence to reach out.',
+    preview: {
+      projectId: 'switchfiber-subscriber',
+      imageKey: 'switchfiber-subscriber',
+      width: 1024,
+      height: 640,
+      thumbModifier: 'preview-shot--web',
+      badge: 'Public & Subscriber Web',
+      title: 'SwitchFiber Portal',
+      metricVal: '9 Municipalities',
+      metricSub: 'Rizal Serviceability & Plan Grid'
+    }
   },
   {
     id: 'operations',
@@ -58,7 +81,18 @@ export const HERO_PILLARS = [
     hubNodeLabel: 'Daily Ops',
     focusPrefix: '03 / Smoother Daily Work:',
     focusText:
-      'Replace scattered spreadsheets and long message threads with practical booking tools, client portals, job tracking, and organized dashboards.'
+      'Replace scattered spreadsheets and long message threads with practical booking tools, client portals, job tracking, and organized dashboards.',
+    preview: {
+      projectId: 'switchfiber-mobile',
+      imageKey: 'switchfiber-mobile',
+      width: 380,
+      height: 787,
+      thumbModifier: 'preview-shot--mobile',
+      badge: 'Mobile Field App',
+      title: 'Field Technician Terminal',
+      metricVal: 'Direct Sync',
+      metricSub: 'Assigned Work Orders On-Site'
+    }
   },
   {
     id: 'income',
@@ -69,7 +103,18 @@ export const HERO_PILLARS = [
     hubNodeLabel: 'Steady Growth',
     focusPrefix: '04 / Sustainable Growth:',
     focusText:
-      'Clear customer paths, inquiry forms, service estimators, and online payment options that turn visitors into paying clients.'
+      'Clear customer paths, inquiry forms, service estimators, and online payment options that turn visitors into paying clients.',
+    preview: {
+      projectId: 'switchfiber-subscriber',
+      imageKey: 'switchfiber-subscriber',
+      width: 1024,
+      height: 640,
+      thumbModifier: 'preview-shot--web',
+      badge: 'Online Signup & Billing',
+      title: 'SwitchFiber Digital Pay',
+      metricVal: 'From ₱699/mo',
+      metricSub: 'Online Apply & Bill Payment'
+    }
   }
 ];
 
@@ -189,6 +234,8 @@ export const HOME_DATA = {
       ]
     }
   },
+  // Gene - Nov, 24, 2026: Replaced legacy "THE WAIT" kineticSection with UnifiedCtaStrip closingCta config
+  /*
   kineticSection: {
     srHeading: 'The wait: we promise it will be worth the wait.',
     lines: [
@@ -203,6 +250,17 @@ export const HOME_DATA = {
     ctaDesc:
       'Put together a quick project brief or talk through your current bottlenecks directly with our founders. No sales pressure, just a practical conversation about what makes sense for your team.'
   }
+  */
+  closingCta: {
+    eyebrow: 'Start a Conversation',
+    headingLead: 'Ready for a website that',
+    headingAccent: 'helps run the work?',
+    desc: 'Put together a quick project brief or talk through your current bottlenecks directly with our founders. No sales pressure, just a practical conversation about what makes sense for your team.',
+    primaryLabel: 'Talk With Us',
+    primaryTo: '/contact',
+    secondaryLabel: 'Meet the Team',
+    secondaryTo: '/about'
+  }
 };
 
 export const ABOUT_DATA = {
@@ -213,6 +271,8 @@ export const ABOUT_DATA = {
     titleEnd: 'second.',
     lead: 'We started Harmony IT Consultancy with a straightforward belief: software should fit the way your team works, not force everyone into rigid habits. You work directly with us to build dependable tools that solve everyday bottlenecks and support steady growth.'
   },
+  // Gene - Nov, 24, 2026: Removed redundant mission & quote split section from About Us
+  /*
   mission: {
     eyebrow: 'Why We Do This',
     heading: 'Building software that actually helps people do their jobs.',
@@ -225,6 +285,7 @@ export const ABOUT_DATA = {
       "If a website or system doesn't make everyday work easier and help the business grow, it's just window dressing. We build tools people genuinely use, with clarity, speed, and lasting value.",
     quoteAuthor: 'Paulo, Gene & Bry (Founding Team)'
   },
+  */
   team: {
     eyebrow: "Who You'll Work With",
     headingSub: 'The people behind',
@@ -342,6 +403,15 @@ export const ABOUT_DATA = {
         desc: 'We launch cleanly, hand over clear operating guides for your staff, and stay close to support updates as your business grows.'
       }
     ]
+  },
+  // Gene - Nov, 24, 2026: Moved About Us CTA to bottom unified strip
+  closingCta: {
+    eyebrow: 'Direct Senior Partnership',
+    headingLead: 'Work directly with',
+    headingAccent: 'Paulo, Gene & Bry.',
+    desc: 'No layers of account managers, just a direct working relationship with the team designing, testing, and building your platform.',
+    primaryLabel: 'Start a Conversation',
+    primaryTo: '/contact'
   }
 };
 
@@ -353,6 +423,8 @@ export const PROJECTS_DATA = {
     titleEnd: 'operations.',
     lead: 'Explore the live platforms we built for SwitchFiber, helping internal teams manage daily fiber operations while giving subscribers across Rizal an easier self-service experience.'
   },
+  // Gene - Nov, 24, 2026: Switched Projects filters to clear platform categories
+  /*
   filters: [
     { id: 'all', label: 'All Projects' },
     { id: 'problem', label: 'Problem Solvers' },
@@ -360,9 +432,18 @@ export const PROJECTS_DATA = {
     { id: 'operations', label: 'Daily Operations' },
     { id: 'income', label: 'Revenue & Billing' }
   ],
+  */
+  filters: [
+    { id: 'all', label: 'All Projects' },
+    { id: 'web', label: 'Web Portals' },
+    { id: 'admin', label: 'Admin Console' },
+    { id: 'mobile', label: 'Mobile App' }
+  ],
   projects: [
     {
       id: 'switchfiber-admin',
+      platform: 'admin',
+      primaryPriority: 'problem',
       categories: ['problem', 'operations'],
       imageKey: 'switchfiber-admin',
       thumbModifier: 'project-thumb--admin',
@@ -389,11 +470,14 @@ export const PROJECTS_DATA = {
           'We built the authenticated SwitchFiber Admin console to bring subscriber accounts, service plan configurations, technician job orders, and fiber network management together inside one responsive web application.',
         capabilitiesSummary: 'Subscriber, Plan, Job Order & Fiber Management',
         liveHostText: 'admin.switchfiber.ph/switchfiberadmin/login',
-        tech: 'Vue 3, Vite, PrimeVue, Bootstrap, REST API'
+        tech: 'Vue 3, Vite, PrimeVue, Bootstrap, REST API',
+        techStack: ['Vue 3', 'Vite', 'PrimeVue', 'Bootstrap', 'REST API']
       }
     },
     {
       id: 'switchfiber-subscriber',
+      platform: 'web',
+      primaryPriority: 'promo',
       categories: ['problem', 'promo', 'operations', 'income'],
       imageKey: 'switchfiber-subscriber',
       thumbModifier: 'project-thumb--frame',
@@ -420,11 +504,14 @@ export const PROJECTS_DATA = {
           'We built a responsive public website and subscriber portal featuring the Rizal Fiber Grid serviceability checker, clear FTTH plan tiers (SwitchLite 50 Mbps ₱699, SwitchConnect 90 Mbps ₱799, SwitchNet 120 Mbps ₱999; up to 220 Mbps with 0 data cap), online signup (/register), application status tracking, router setup guides, and digital bill pay through pay.switchfiber.ph (GCash / QR Ph, Maya, WeChat Pay, Visa/Mastercard).',
         capabilitiesSummary: '9 Rizal Municipalities Covered · Plans from ₱699/mo',
         liveHostText: 'switchfiberuser.genexis.dev',
-        tech: 'Modern Web SPA, Rizal Fiber Grid Serviceability Checker, Digital Payments (pay.switchfiber.ph)'
+        tech: 'Modern Web SPA, Rizal Fiber Grid Serviceability Checker, Digital Payments (pay.switchfiber.ph)',
+        techStack: ['Modern Web SPA', 'Rizal Fiber Grid Checker', 'Digital Payments (pay.switchfiber.ph)']
       }
     },
     {
       id: 'switchfiber-mobile',
+      platform: 'mobile',
+      primaryPriority: 'operations',
       categories: ['problem', 'operations'],
       imageKey: 'switchfiber-mobile',
       thumbModifier: 'project-thumb--mobile',
@@ -451,10 +538,21 @@ export const PROJECTS_DATA = {
           'We built the Switch Fiber Field Technician Terminal mobile app with authenticated technician sign-in, credential persistence ("Remember me"), live backend server connection status (admin.switchfiber.ph), and direct access to assigned field work orders.',
         capabilitiesSummary: 'Technician Sign-In & Work Order Access · Connected to Switch Fiber Network Operations',
         liveHostText: null,
-        tech: 'Cross-Platform Mobile App, Authenticated Field Terminal, SwitchFiber Operations REST API'
+        tech: 'Cross-Platform Mobile App, Authenticated Field Terminal, SwitchFiber Operations REST API',
+        techStack: ['Cross-Platform Mobile', 'Authenticated Field Terminal', 'SwitchFiber REST API']
       }
     }
-  ]
+  ],
+  closingCta: {
+    eyebrow: 'Have a Project in Mind?',
+    headingLead: 'Let’s scope your custom',
+    headingAccent: 'web or ops platform.',
+    desc: 'Talk directly with our founding engineering and UX leads about your workflow goals and timeline.',
+    primaryLabel: 'Start a Conversation',
+    primaryTo: '/contact',
+    secondaryLabel: 'Meet the Team',
+    secondaryTo: '/about'
+  }
 };
 
 export const CONTACT_DATA = {

@@ -276,12 +276,13 @@
   border-color: rgba(255, 255, 255, 0.25);
 }
 
+/* Gene - Nov, 24, 2026: Updated frosted/cosmic surface lists for HeroWorkPreview, UnifiedCtaStrip, and Contact Info Sidebar */
 /* Shared Frosted Glass Card Surface & Hover Lift */
+.hero-preview-card,
 .founder-profile-card,
 .frosted-panel,
 .process-card,
 .project-card,
-.contact-channel-card,
 .pitch-focus-box,
 .home-metric-card,
 .pillar-card,
@@ -309,28 +310,12 @@
 }
 
 /* Shared Dark Matte Cosmic Card Surface */
-.cosmic-quote-card,
-.contact-email-box,
+.contact-info-sidebar,
 .comparison-card-engine {
   background: radial-gradient(circle at 70% 32%, var(--cosmic-glow) 0%, var(--cosmic-mid) 48%, var(--cosmic-base) 100%);
   color: var(--text-primary);
   border: 1px solid rgba(156, 183, 212, 0.36);
   box-shadow: var(--shadow-card), inset 0 1px 0 rgba(186, 207, 229, 0.24);
-}
-
-.cosmic-quote-card {
-  border-radius: 16px;
-  padding: 2.5rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.cosmic-quote-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 18% 88%, rgba(58, 106, 147, 0.28) 0%, transparent 55%);
-  pointer-events: none;
 }
 
 .cosmic-eyebrow {
@@ -340,23 +325,6 @@
   text-transform: uppercase;
   color: var(--text-body);
   margin-bottom: 0.85rem;
-  position: relative;
-  z-index: 1;
-}
-
-.cosmic-quote-text {
-  font-size: 1.25rem;
-  font-weight: 600;
-  line-height: 1.48;
-  margin-bottom: 1.25rem;
-  position: relative;
-  z-index: 1;
-}
-
-.cosmic-quote-author {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  font-weight: 600;
   position: relative;
   z-index: 1;
 }
@@ -527,6 +495,209 @@
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 0.86rem;
   color: var(--text-secondary);
+}
+
+/* Gene - Nov, 24, 2026: Added Case Study screenshot banner, lightbox zoom, tech pills, action footer, UnifiedCtaStrip, and BackToTop styles */
+.case-modal-preview-btn {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(186, 207, 229, 0.34);
+  background: radial-gradient(circle at 60% 42%, var(--cosmic-glow) 0%, var(--cosmic-mid) 50%, var(--cosmic-base) 100%);
+  padding: 0;
+  margin-bottom: 1.25rem;
+  cursor: zoom-in;
+  display: block;
+}
+
+.case-modal-preview-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s var(--ease-out);
+}
+
+.case-modal-preview-btn.project-thumb--frame img {
+  object-position: center top;
+}
+
+.case-modal-preview-btn.project-thumb--admin img {
+  object-position: center 45%;
+}
+
+.case-modal-preview-btn.project-thumb--mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+}
+
+.case-modal-preview-btn.project-thumb--mobile img {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 1px solid rgba(186, 207, 229, 0.32);
+}
+
+.case-modal-preview-btn:hover img {
+  transform: scale(1.03);
+}
+
+.case-modal-zoom-chip {
+  position: absolute;
+  right: 0.85rem;
+  bottom: 0.85rem;
+  padding: 0.3rem 0.72rem;
+  border-radius: 8px;
+  background: rgba(11, 44, 73, 0.82);
+  border: 1px solid rgba(186, 207, 229, 0.34);
+  color: var(--text-primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  backdrop-filter: blur(8px);
+}
+
+.modal-tech-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.case-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 1.35rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-hairline);
+}
+
+.case-modal-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 260;
+  background: rgba(1, 10, 39, 0.9);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.case-modal-lightbox-close {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(186, 207, 229, 0.45);
+  background: rgba(15, 50, 84, 0.85);
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.case-modal-lightbox-close:hover {
+  background: var(--accent-surface);
+  border-color: var(--text-primary);
+}
+
+.case-modal-lightbox-img {
+  max-width: min(92vw, 1120px);
+  max-height: 86vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 16px;
+  border: 1px solid rgba(186, 207, 229, 0.35);
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.75);
+}
+
+/* Unified Closing CTA Strip */
+.unified-cta-section {
+  padding: 1.5rem 2rem 5.5rem;
+  position: relative;
+}
+
+.unified-cta-strip {
+  padding: 2.35rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.unified-cta-copy {
+  max-width: 620px;
+}
+
+.unified-cta-eyebrow {
+  margin-bottom: 0.6rem;
+}
+
+.unified-cta-heading {
+  font-size: clamp(1.55rem, 2.7vw, 2.2rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+}
+
+.unified-cta-heading span {
+  color: var(--accent-ice);
+}
+
+.unified-cta-desc {
+  font-size: 0.94rem;
+  color: var(--text-body);
+  line-height: 1.65;
+  margin-top: 0.75rem;
+}
+
+/* Back to Top Control */
+.back-to-top-btn {
+  position: fixed;
+  right: 1.75rem;
+  bottom: 1.75rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(186, 207, 229, 0.42);
+  background: linear-gradient(155deg, rgba(58, 106, 147, 0.92) 0%, rgba(12, 45, 79, 0.95) 100%);
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 14px 28px rgba(1, 10, 39, 0.55);
+  backdrop-filter: blur(10px);
+  z-index: 95;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px);
+  transition: var(--transition);
+}
+
+.back-to-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top-btn:hover {
+  border-color: var(--text-secondary);
+  transform: translateY(-2px);
 }
 
 /* Clipboard Toast & Inline Badge */

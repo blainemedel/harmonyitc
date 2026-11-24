@@ -1,13 +1,17 @@
-<!-- Gene - Nov, 23, 2026: Projects showcase with accessible tab filters, SwitchFiber cards, and Case Study dialog -->
+<!-- Gene - Nov, 24, 2026: Projects view with platform tabs, clickable thumbnails, ?case= deep linking, and UnifiedCtaStrip -->
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import { DISPLAY_CONFIG, PROJECTS_DATA } from '@/data/siteContent';
 import { PROJECT_THUMBNAILS } from '@/data/mediaAssets';
 import { filterProjectsByCategory } from '@/utils/briefBuilder';
 import CaseStudyModal from '@/components/CaseStudyModal.vue';
+import UnifiedCtaStrip from '@/components/UnifiedCtaStrip.vue';
 import { useParallaxMotion } from '@/composables/useParallaxMotion';
 import { useCardTilt } from '@/composables/useCardTilt';
 
+const route = useRoute();
+const router = useRouter();
 const viewRef = ref(null);
 useParallaxMotion(viewRef);
 useCardTilt(viewRef);
@@ -31,14 +35,29 @@ function openCaseStudy(project, event) {
 
 function closeCaseStudy() {
   activeProject.value = null;
+  if (route.query.case) {
+    router.replace({ path: '/projects' });
+  }
   lastTriggerEl?.focus();
   lastTriggerEl = null;
 }
+
+watch(
+  () => route.query.case,
+  (caseId) => {
+    if (!caseId) return;
+    const matched = PROJECTS_DATA.projects.find((p) => p.id === String(caseId));
+    if (matched) {
+      activeProject.value = matched;
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
   <div ref="viewRef">
-    <!-- Projects Intro & Category Filter -->
+    <!-- Projects Intro & Platform Category Filter -->
     <section class="page-hero">
       <div class="section-inner" data-parallax-speed="0.035">
         <div class="page-eyebrow">{{ PROJECTS_DATA.hero.eyebrow }}</div>
@@ -51,7 +70,7 @@ function closeCaseStudy() {
           {{ PROJECTS_DATA.hero.lead }}
         </p>
 
-        <div class="filter-rail" role="tablist" aria-label="Solution Categories">
+        <div class="filter-rail" role="tablist" aria-label="Platform Categories">
           <button
             v-for="tab in PROJECTS_DATA.filters"
             :key="tab.id"
@@ -73,7 +92,13 @@ function closeCaseStudy() {
       <div class="section-inner">
         <div class="gallery-grid-3">
           <article v-for="project in visibleProjects" :key="project.id" class="project-card">
-            <div class="project-thumb" :class="project.thumbModifier">
+            <button
+              type="button"
+              class="project-thumb project-thumb-btn"
+              :class="project.thumbModifier"
+              :aria-label="`Inspect ${project.title} case study`"
+              @click="openCaseStudy(project, $event)"
+            >
               <img
                 :src="PROJECT_THUMBNAILS[project.imageKey]"
                 :alt="project.alt"
@@ -81,7 +106,7 @@ function closeCaseStudy() {
                 :height="project.height"
                 loading="lazy"
               />
-            </div>
+            </button>
 
             <div class="project-body">
               <div class="project-cat">{{ project.categoryLabel }}</div>
@@ -129,6 +154,8 @@ function closeCaseStudy() {
         </div>
       </div>
     </section>
+
+    <UnifiedCtaStrip v-bind="PROJECTS_DATA.closingCta" />
 
     <CaseStudyModal :project="activeProject" @close="closeCaseStudy" />
   </div>

@@ -46,7 +46,8 @@ export function useParallaxMotion(rootRef) {
     const root = rootRef?.value || document;
     document.documentElement.classList.add('js-parallax-ready');
 
-    // Scroll-reveal configuration (excludes above-the-fold hero headings/CTAs for immediate LCP)
+    // Gene - Nov, 24, 2026: Updated scroll-reveal targets for HeroWorkPreview, UnifiedCtaStrip, and Contact Hub
+    /*
     const revealConfigs = [
       { selector: '.home-pillars-section .page-eyebrow, .home-comparison-section .page-eyebrow, .kinetic-section .page-eyebrow, .content-section .page-eyebrow', variant: 'reveal-up', delay: 0 },
       { selector: '.home-pillars-section h2, .home-comparison-section h2, .team-heading, .content-section > .section-inner > h2', variant: 'reveal-up', delay: 60 },
@@ -56,6 +57,15 @@ export function useParallaxMotion(rootRef) {
       { selector: '.comparison-card-engine', variant: 'reveal-right', delay: 140 },
       { selector: '.kinetic-stage', variant: 'reveal-scale', delay: 80 },
       { selector: '.contact-email-box', variant: 'reveal-scale', delay: 80 }
+    ];
+    */
+    const revealConfigs = [
+      { selector: '.home-pillars-section .page-eyebrow, .home-comparison-section .page-eyebrow, .unified-cta-section .page-eyebrow, .content-section .page-eyebrow', variant: 'reveal-up', delay: 0 },
+      { selector: '.home-pillars-section h2, .home-comparison-section h2, .team-heading, .content-section > .section-inner > h2', variant: 'reveal-up', delay: 60 },
+      { selector: '.frosted-panel, .unified-cta-strip, .contact-form-panel', variant: 'reveal-up', delay: 70 },
+      { selector: '.comparison-card-passive', variant: 'reveal-left', delay: 70 },
+      { selector: '.comparison-card-engine', variant: 'reveal-right', delay: 140 },
+      { selector: '.contact-info-sidebar', variant: 'reveal-right', delay: 110 }
     ];
 
     revealConfigs.forEach(({ selector, variant, delay }) => {
@@ -74,8 +84,7 @@ export function useParallaxMotion(rootRef) {
       { parent: '.process-grid-4', child: '.process-card', step: 80, variant: 'reveal-up' },
       { parent: '.founders-grid', child: '.founder-profile-card', step: 95, variant: 'reveal-up' },
       { parent: '.gallery-grid-3', child: '.project-card', step: 80, variant: 'reveal-up' },
-      { parent: '.priority-checklist-grid', child: '.priority-choice-card', step: 65, variant: 'reveal-up' },
-      { parent: '.contact-channels-grid', child: '.contact-channel-card', step: 85, variant: 'reveal-up' }
+      { parent: '.priority-chips-grid', child: '.priority-chip', step: 55, variant: 'reveal-up' }
     ];
 
     gridContainers.forEach(({ parent, child, step, variant }) => {
@@ -125,12 +134,21 @@ export function useParallaxMotion(rootRef) {
     const footerWordmark = document.querySelector('.footer-giant-wordmark');
     const footerEl = document.querySelector('.site-footer');
 
+    // Gene - Nov, 24, 2026: Updated depth parallax targets for HeroWorkPreview and Contact sidebar
+    /*
     const autoDepthTargets = [
       { selector: '.hero-artwork-stage', speed: -0.075 },
       { selector: '.cosmic-quote-card', speed: 0.055 },
       { selector: '.comparison-card-engine', speed: 0.045 },
       { selector: '.founder-portrait-frame', speed: -0.04 },
       { selector: '.contact-email-box', speed: 0.04 }
+    ];
+    */
+    const autoDepthTargets = [
+      { selector: '.hero-preview-card', speed: -0.05 },
+      { selector: '.comparison-card-engine', speed: 0.045 },
+      { selector: '.founder-portrait-frame', speed: -0.04 },
+      { selector: '.contact-info-sidebar', speed: 0.04 }
     ];
 
     autoDepthTargets.forEach(({ selector, speed }) => {

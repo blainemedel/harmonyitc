@@ -1,11 +1,11 @@
-<!-- Gene - Nov, 23, 2026: Home view with interactive Pitch Focus Switcher, HarmonyEcosystemHub, 4 Pillars, Comparison, and WebGL Cylinder -->
+<!-- Gene - Nov, 24, 2026: Home view updated with HeroWorkPreview, keyboard tab navigation, and UnifiedCtaStrip -->
 <script setup>
 import { ref, computed } from 'vue';
 import { RouterLink } from 'vue-router';
 import { DISPLAY_CONFIG, HERO_PILLARS, HOME_DATA } from '@/data/siteContent';
-import HarmonyEcosystemHub from '@/components/HarmonyEcosystemHub.vue';
+import HeroWorkPreview from '@/components/HeroWorkPreview.vue';
 import PillarArtwork from '@/components/PillarArtwork.vue';
-import KineticCylinder from '@/components/KineticCylinder.vue';
+import UnifiedCtaStrip from '@/components/UnifiedCtaStrip.vue';
 import { useParallaxMotion } from '@/composables/useParallaxMotion';
 import { useCardTilt } from '@/composables/useCardTilt';
 
@@ -14,6 +14,7 @@ useParallaxMotion(viewRef);
 useCardTilt(viewRef);
 
 const activePillar = ref(HERO_PILLARS[0].id);
+const tabRefs = ref([]);
 
 const currentPillarMeta = computed(
   () => HERO_PILLARS.find((p) => p.id === activePillar.value) || HERO_PILLARS[0]
@@ -21,6 +22,13 @@ const currentPillarMeta = computed(
 
 function selectPillar(id) {
   activePillar.value = id;
+}
+
+function cyclePillar(step) {
+  const currentIdx = HERO_PILLARS.findIndex((p) => p.id === activePillar.value);
+  const nextIdx = (currentIdx + step + HERO_PILLARS.length) % HERO_PILLARS.length;
+  activePillar.value = HERO_PILLARS[nextIdx].id;
+  tabRefs.value[nextIdx]?.focus();
 }
 </script>
 
@@ -51,21 +59,32 @@ function selectPillar(id) {
 
             <div class="pitch-focus-pills" role="tablist" aria-label="Business Priorities">
               <button
-                v-for="pillar in HERO_PILLARS"
+                v-for="(pillar, idx) in HERO_PILLARS"
                 :key="pillar.id"
+                :ref="(el) => { if (el) tabRefs[idx] = el; }"
+                :id="`hero-tab-${pillar.id}`"
                 type="button"
                 role="tab"
                 class="pitch-focus-btn"
                 :class="{ active: activePillar === pillar.id }"
                 :aria-selected="String(activePillar === pillar.id)"
+                :aria-controls="`hero-tabpanel-${pillar.id}`"
+                :tabindex="activePillar === pillar.id ? 0 : -1"
                 @click="selectPillar(pillar.id)"
+                @keydown.left.prevent="cyclePillar(-1)"
+                @keydown.right.prevent="cyclePillar(1)"
               >
                 <span class="pitch-focus-num">{{ pillar.num }}</span>
                 <span>{{ pillar.buttonLabel }}</span>
               </button>
             </div>
 
-            <div class="pitch-focus-panel" role="tabpanel">
+            <div
+              :id="`hero-tabpanel-${currentPillarMeta.id}`"
+              :aria-labelledby="`hero-tab-${currentPillarMeta.id}`"
+              class="pitch-focus-panel"
+              role="tabpanel"
+            >
               <p>
                 <strong>{{ currentPillarMeta.focusPrefix }}</strong>
                 {{ currentPillarMeta.focusText }}
@@ -90,7 +109,7 @@ function selectPillar(id) {
         </div>
 
         <div class="hero-visual">
-          <HarmonyEcosystemHub :active-pillar="activePillar" />
+          <HeroWorkPreview :active-pillar="activePillar" />
         </div>
       </div>
     </section>
@@ -199,42 +218,7 @@ function selectPillar(id) {
       </div>
     </section>
 
-    <!-- Section 5: Kinetic 3D Typography Cylinder & Conversation Callout -->
-    <section class="kinetic-section" aria-label="Upcoming Platform Promise">
-      <div class="kinetic-split-grid">
-        <div class="kinetic-stage-wrap">
-          <h2 class="sr-only">{{ HOME_DATA.kineticSection.srHeading }}</h2>
-          <KineticCylinder />
-        </div>
-
-        <div class="frosted-panel">
-          <div class="page-eyebrow">{{ HOME_DATA.kineticSection.ctaEyebrow }}</div>
-          <h2
-            class="kinetic-cta-heading"
-            :class="{ 'kinetic-cta-heading--with-copy': DISPLAY_CONFIG.showExtendedCopy }"
-          >
-            {{ HOME_DATA.kineticSection.ctaHeadingLead }}
-            <span>{{ HOME_DATA.kineticSection.ctaHeadingAccent }}</span>
-          </h2>
-          <p v-if="DISPLAY_CONFIG.showExtendedCopy" class="kinetic-cta-desc">
-            {{ HOME_DATA.kineticSection.ctaDesc }}
-          </p>
-          <div class="action-row">
-            <RouterLink to="/contact" class="cta-pill-btn cta-lg">
-              <span>Talk With Us</span>
-              <span class="cta-arrow-pocket" aria-hidden="true">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </span>
-            </RouterLink>
-            <RouterLink to="/about" class="btn-outline-teal">
-              <span>Meet the Team</span>
-            </RouterLink>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Section 5: Unified Closing Callout -->
+    <UnifiedCtaStrip v-bind="HOME_DATA.closingCta" />
   </div>
 </template>

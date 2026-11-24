@@ -1,9 +1,9 @@
-<!-- Gene - Nov, 23, 2026: About view showcasing company philosophy, founding leads, and 4-step process -->
+<!-- Gene - Nov, 24, 2026: Streamlined About Us without mission split card, extended founder bios behind copy toggle, and bottom UnifiedCtaStrip -->
 <script setup>
 import { ref } from 'vue';
-import { RouterLink } from 'vue-router';
 import { ABOUT_DATA, DISPLAY_CONFIG } from '@/data/siteContent';
 import { FOUNDER_PHOTOS } from '@/data/mediaAssets';
+import UnifiedCtaStrip from '@/components/UnifiedCtaStrip.vue';
 import { useParallaxMotion } from '@/composables/useParallaxMotion';
 import { useCardTilt } from '@/composables/useCardTilt';
 
@@ -26,34 +26,6 @@ useCardTilt(viewRef);
         <p v-if="DISPLAY_CONFIG.showExtendedCopy" class="page-lead">
           {{ ABOUT_DATA.hero.lead }}
         </p>
-      </div>
-    </section>
-
-    <!-- Mission & Quote -->
-    <section class="content-section">
-      <div class="section-inner">
-        <div class="frosted-panel split-grid-2">
-          <div>
-            <div class="page-eyebrow">{{ ABOUT_DATA.mission.eyebrow }}</div>
-            <h2
-              class="mission-heading"
-              :class="{ 'mission-heading--with-copy': DISPLAY_CONFIG.showExtendedCopy }"
-            >
-              {{ ABOUT_DATA.mission.heading }}
-            </h2>
-            <template v-if="DISPLAY_CONFIG.showExtendedCopy">
-              <p v-for="para in ABOUT_DATA.mission.paragraphs" :key="para" class="mission-paragraph">
-                {{ para }}
-              </p>
-            </template>
-          </div>
-
-          <div class="cosmic-quote-card">
-            <div class="cosmic-eyebrow">{{ ABOUT_DATA.mission.quoteEyebrow }}</div>
-            <blockquote class="cosmic-quote-text">&ldquo;{{ ABOUT_DATA.mission.quote }}&rdquo;</blockquote>
-            <div class="cosmic-quote-author">&mdash; {{ ABOUT_DATA.mission.quoteAuthor }}</div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -100,7 +72,7 @@ useCardTilt(viewRef);
               </div>
             </div>
 
-            <p class="team-bio">{{ founder.bio }}</p>
+            <p v-if="DISPLAY_CONFIG.showExtendedCopy" class="team-bio">{{ founder.bio }}</p>
 
             <div class="founder-focus-block">
               <span class="founder-focus-label">Core Focus</span>
@@ -157,25 +129,6 @@ useCardTilt(viewRef);
             </div>
           </article>
         </div>
-
-        <div class="founders-cta-strip frosted-panel">
-          <div class="founders-cta-copy">
-            <div class="page-eyebrow founders-cta-eyebrow">{{ ABOUT_DATA.team.ctaEyebrow }}</div>
-            <h3 class="founders-cta-title">{{ ABOUT_DATA.team.ctaTitle }}</h3>
-            <p v-if="DISPLAY_CONFIG.showExtendedCopy" class="founders-cta-desc">
-              {{ ABOUT_DATA.team.ctaDesc }}
-            </p>
-          </div>
-          <RouterLink to="/contact" class="cta-pill-btn cta-lg">
-            <span>Start a Conversation</span>
-            <span class="cta-arrow-pocket" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </span>
-          </RouterLink>
-        </div>
       </div>
     </section>
 
@@ -198,5 +151,8 @@ useCardTilt(viewRef);
         </div>
       </div>
     </section>
+
+    <!-- Unified Closing Callout -->
+    <UnifiedCtaStrip v-bind="ABOUT_DATA.closingCta" />
   </div>
 </template>

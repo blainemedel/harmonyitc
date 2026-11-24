@@ -1,21 +1,21 @@
 # Harmony IT Consultancy (`harmonyitc.dev`)
 
-Company website and client showcase for **Harmony IT Consultancy**, built with **Vue 3**, **Vite**, and **Vue Router 4** and deployed to **Vercel** via GitHub integration.
+Company website and client showcase for **Harmony IT Consultancy**, built with **Vue 3**, **Vite**, **Vue Router 4**, and a **Vercel Function** inquiry endpoint, deployed to **Vercel** via GitHub integration.
 
 ## Routes
 
 | Path | View | Description |
 | :--- | :--- | :--- |
-| `/` | `HomeView` | Hero with interactive Pitch Focus Switcher, Harmony Ecosystem Hub, 4 Core Pillars, Comparison Matrix, and WebGL 3D Kinetic Cylinder |
-| `/about` | `AboutView` | Philosophy & quote split card, Founding Team showcase (Paulo, Gene, Bry), and 4-step working process |
-| `/projects` | `ProjectsView` | Filterable SwitchFiber portfolio (`Admin Console`, `Public & Subscriber Portal`, `Field Technician Terminal`) and accessible Case Study modal |
-| `/contact` | `ContactView` | Interactive Quick Project Brief builder (clipboard copy + `mailto:` brief), direct email copy, and availability cards |
+| `/` | `HomeView` | Hero with Pitch Focus Switcher + `HeroWorkPreview` deliverable showcase, 4 Core Pillars, Comparison Matrix, and unified closing CTA |
+| `/about` | `AboutView` | Founding Team showcase (Paulo, Gene, Bry), 4-step working process, and unified bottom CTA |
+| `/projects` | `ProjectsView` | Platform-filtered SwitchFiber portfolio (`Web Portals`, `Admin Console`, `Mobile App`), deep-link support (`?case=<id>`), and Case Study modal with screenshot zoom + prefilled Contact CTA |
+| `/contact` | `ContactView` | Unified 2-column Contact Hub with validated Inquiry Form (`/api/contact`), graceful email fallback, and Direct Info sidebar |
 
 ## Minimal Text Toggle
 
-All copy, links, founder profiles, project case studies, and display flags live in `src/data/siteContent.js`.
+All copy, links, founder profiles, project case studies, and display flags live in [`src/data/siteContent.js`](src/data/siteContent.js).
 
-- Set `DISPLAY_CONFIG.showExtendedCopy` to `false` (default) to keep the minimal layout with verbose descriptions and subleads hidden.
+- Set `DISPLAY_CONFIG.showExtendedCopy` to `false` (default) to keep the minimal layout with verbose descriptions, subleads, and long founder bios hidden.
 - Set `DISPLAY_CONFIG.showExtendedCopy` to `true` to display full explanatory paragraphs across all views.
 - `DISPLAY_CONFIG.showHeaderCta` and `DISPLAY_CONFIG.showHomeMetrics` toggle the header CTA button and home impact strip.
 
@@ -23,24 +23,28 @@ All copy, links, founder profiles, project case studies, and display flags live 
 
 ```text
 harmonyitc/
-├── index.html                  # Vite SPA entry point (SEO, Open Graph, favicons, fonts)
-├── package.json                # Vue 3 + Vite scripts & dependencies
+├── api/
+│   └── contact.js              # Vercel Node Function (Resend email delivery + Custom Metrics)
+├── index.html                  # Vite SPA entry point (SEO, Open Graph, favicons, Plus Jakarta Sans)
+├── package.json                # Vue 3, Vue Router 4, @vercel/functions, Vite scripts
 ├── vite.config.js              # Vite configuration (@ alias -> src/)
-├── vercel.json                 # Legacy .html -> clean route 301 redirects, SPA rewrite, headers
+├── vercel.json                 # Legacy .html -> clean route 301 redirects, SPA rewrite (excluding /api/), headers
 ├── public/                     # Static root files (favicons, OG logo, robots.txt, sitemap.xml)
 ├── src/
 │   ├── main.js                 # App mount + modular CSS imports
-│   ├── App.vue                 # Root shell (scroll progress bar, backdrop, header, footer, toast)
+│   ├── App.vue                 # Root shell (scroll progress bar, backdrop, header, route transition, footer, BackToTop, toast)
 │   ├── router/index.js         # History routes + per-route canonical/meta updates
 │   ├── data/
 │   │   ├── siteContent.js      # Single source of truth for text, team, projects, and toggles
 │   │   └── mediaAssets.js      # Vite-bundled image imports
-│   ├── utils/briefBuilder.js   # Pure brief formatting and project filtering utilities
+│   ├── utils/
+│   │   ├── briefBuilder.js     # Brief formatting, fallback mailto builder, and platform filtering
+│   │   └── contactInquiry.js   # Form validation, HTML escaping, Resend payload builder, query parsing
 │   ├── composables/            # Clipboard toast, scroll lock, scroll-reveal/parallax, 3D tilt
-│   ├── components/             # AmbientBackdrop, SiteHeader, SiteFooter, HarmonyEcosystemHub, PillarArtwork, KineticCylinder, CaseStudyModal
+│   ├── components/             # AmbientBackdrop, SiteHeader, SiteFooter, HeroWorkPreview, PillarArtwork, UnifiedCtaStrip, CaseStudyModal, BackToTop
 │   ├── views/                  # HomeView, AboutView, ProjectsView, ContactView, NotFoundView
 │   └── styles/                 # Modular CSS (tokens, base, components, pages, motion)
-└── tests/siteLogic.test.js     # Node built-in unit tests for content config and brief/filter logic
+└── tests/siteLogic.test.js     # Node built-in unit tests for content config, inquiry validation, and filters
 ```
 
 ## Development
@@ -69,7 +73,12 @@ npm run preview
 - **Framework Preset:** `Vite`
 - **Build Command:** `npm run build`
 - **Output Directory:** `dist`
-- `vercel.json` redirects legacy `/about.html`, `/projects.html`, `/contact.html`, and `/index.html` URLs with HTTP `301` to their clean Vue Router paths and handles SPA history rewrites while keeping `/assets/*` and static files intact.
+- **Environment Variables (for `/api/contact` email delivery via Resend):**
+  - `RESEND_API_KEY` — Resend API key
+  - `CONTACT_FROM_EMAIL` — Verified sender address on Resend (e.g. `HarmonyITC Website <noreply@harmonyitc.dev>`)
+  - `CONTACT_TO_EMAIL` *(optional)* — Recipient address (defaults to `inquiries@harmonyitc.com`)
+- If `RESEND_API_KEY` or `CONTACT_FROM_EMAIL` are not configured yet, the Contact form falls back cleanly to 1-click **Open Prefilled Email** and **Copy Brief**.
+- `api/contact.js` emits low-cardinality Vercel Custom Metrics: `contact.submissions` and `contact.resend_duration_ms`.
 
 ## Contact
 
