@@ -102,6 +102,7 @@ html.js-parallax-ready .parallax-reveal.is-settled {
   opacity: 1;
 }
 
+/* Gene - Nov, 24, 2026: Added counter-flowing HarmonyMotionStage ribbon keyframes + paused & reduced-motion safeguards */
 /* Vue Route & Hero Preview Transitions */
 .route-fade-enter-active,
 .route-fade-leave-active {
@@ -133,11 +134,44 @@ html.js-parallax-ready .parallax-reveal.is-settled {
   transform: translateY(-6px) scale(0.985);
 }
 
+@keyframes harmonyRibbonLeft {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes harmonyRibbonRight {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.harmony-ribbon-track--left {
+  animation: harmonyRibbonLeft 26s linear infinite;
+}
+
+.harmony-ribbon-track--right {
+  animation: harmonyRibbonRight 28s linear infinite;
+}
+
+.harmony-motion-stage-card.is-paused .harmony-ribbon-track {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .route-fade-enter-active,
   .route-fade-leave-active,
   .preview-swap-enter-active,
-  .preview-swap-leave-active {
+  .preview-swap-leave-active,
+  .harmony-ribbon-track--left,
+  .harmony-ribbon-track--right {
+    animation: none;
     transition: none;
   }
   html.js-parallax-ready .parallax-reveal {

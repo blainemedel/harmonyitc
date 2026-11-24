@@ -26,7 +26,12 @@ export const NAV_ITEMS = [
   { key: 'contact', label: 'Contact Us', to: '/contact' }
 ];
 
-// Gene - Nov, 24, 2026: Added preview metadata per hero pillar for HeroWorkPreview showcase (replacing floating logo hub)
+// Gene - Nov, 24, 2026: Added harmonic motion profiles per pillar and kinetic typography ribbon sets for HarmonyMotionStage
+export const HARMONY_MOTION_RIBBONS = {
+  top: ['CLARITY', 'SYSTEMS', 'WORKFLOW', 'HARMONY', 'SCALE', 'PRECISION'],
+  bottom: ['DESIGN', 'STRATEGY', 'OPERATIONS', 'HARMONY', 'GROWTH', 'RELIABILITY']
+};
+
 export const HERO_PILLARS = [
   {
     id: 'problem',
@@ -38,6 +43,12 @@ export const HERO_PILLARS = [
     focusPrefix: '01 / Solving Real Problems:',
     focusText:
       'We look at where your team loses time, misses inquiries, or gets stuck in manual steps, then build straightforward tools that fix the root issue.',
+    motion: {
+      tempo: 1.0,
+      amplitude: 11,
+      glowRgba: 'rgba(180, 208, 233, 0.22)',
+      phrase: 'Problems & systems in sync'
+    },
     preview: {
       projectId: 'switchfiber-admin',
       imageKey: 'switchfiber-admin',
@@ -60,6 +71,12 @@ export const HERO_PILLARS = [
     focusPrefix: '02 / Clear Online Presence:',
     focusText:
       'A fast, trustworthy website that explains what you do clearly, shows up well in search, and gives potential clients confidence to reach out.',
+    motion: {
+      tempo: 0.85,
+      amplitude: 13,
+      glowRgba: 'rgba(216, 238, 255, 0.24)',
+      phrase: 'Clarity & presence in sync'
+    },
     preview: {
       projectId: 'switchfiber-subscriber',
       imageKey: 'switchfiber-subscriber',
@@ -82,6 +99,12 @@ export const HERO_PILLARS = [
     focusPrefix: '03 / Smoother Daily Work:',
     focusText:
       'Replace scattered spreadsheets and long message threads with practical booking tools, client portals, job tracking, and organized dashboards.',
+    motion: {
+      tempo: 1.15,
+      amplitude: 10,
+      glowRgba: 'rgba(126, 178, 224, 0.24)',
+      phrase: 'Teams & workflows in sync'
+    },
     preview: {
       projectId: 'switchfiber-mobile',
       imageKey: 'switchfiber-mobile',
@@ -104,6 +127,12 @@ export const HERO_PILLARS = [
     focusPrefix: '04 / Sustainable Growth:',
     focusText:
       'Clear customer paths, inquiry forms, service estimators, and online payment options that turn visitors into paying clients.',
+    motion: {
+      tempo: 1.05,
+      amplitude: 12,
+      glowRgba: 'rgba(255, 152, 92, 0.22)',
+      phrase: 'Strategy & growth in sync'
+    },
     preview: {
       projectId: 'switchfiber-subscriber',
       imageKey: 'switchfiber-subscriber',

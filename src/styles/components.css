@@ -276,9 +276,8 @@
   border-color: rgba(255, 255, 255, 0.25);
 }
 
-/* Gene - Nov, 24, 2026: Updated frosted/cosmic surface lists for HeroWorkPreview, UnifiedCtaStrip, and Contact Info Sidebar */
+/* Gene - Nov, 24, 2026: Moved Hero motion stage onto shared matte dark-cosmic surface for crisp kinetic typography contrast */
 /* Shared Frosted Glass Card Surface & Hover Lift */
-.hero-preview-card,
 .founder-profile-card,
 .frosted-panel,
 .process-card,
@@ -310,6 +309,7 @@
 }
 
 /* Shared Dark Matte Cosmic Card Surface */
+.harmony-motion-stage-card,
 .contact-info-sidebar,
 .comparison-card-engine {
   background: radial-gradient(circle at 70% 32%, var(--cosmic-glow) 0%, var(--cosmic-mid) 48%, var(--cosmic-base) 100%);

@@ -16,8 +16,9 @@ const CARD_SELECTORS = [
   '.founder-profile-card'
 ].join(', ');
 */
+// Gene - Nov, 24, 2026: Replaced .hero-preview-card tilt selector with .harmony-motion-stage-card
 const CARD_SELECTORS = [
-  '.hero-preview-card',
+  '.harmony-motion-stage-card',
   '.pillar-card',
   '.process-card',
   '.home-metric-card',

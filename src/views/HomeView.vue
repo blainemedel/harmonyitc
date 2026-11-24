@@ -1,9 +1,11 @@
-<!-- Gene - Nov, 24, 2026: Home view updated with HeroWorkPreview, keyboard tab navigation, and UnifiedCtaStrip -->
+<!-- Gene - Nov, 24, 2026: Replaced HeroWorkPreview with HarmonyMotionStage synchronized kinetic typography showcase -->
 <script setup>
 import { ref, computed } from 'vue';
 import { RouterLink } from 'vue-router';
 import { DISPLAY_CONFIG, HERO_PILLARS, HOME_DATA } from '@/data/siteContent';
-import HeroWorkPreview from '@/components/HeroWorkPreview.vue';
+// Gene - Nov, 24, 2026: Replaced HeroWorkPreview import with HarmonyMotionStage
+// import HeroWorkPreview from '@/components/HeroWorkPreview.vue';
+import HarmonyMotionStage from '@/components/HarmonyMotionStage.vue';
 import PillarArtwork from '@/components/PillarArtwork.vue';
 import UnifiedCtaStrip from '@/components/UnifiedCtaStrip.vue';
 import { useParallaxMotion } from '@/composables/useParallaxMotion';
@@ -109,7 +111,9 @@ function cyclePillar(step) {
         </div>
 
         <div class="hero-visual">
-          <HeroWorkPreview :active-pillar="activePillar" />
+          <!-- Gene - Nov, 24, 2026: Replaced Operations Console preview with HarmonyMotionStage -->
+          <!-- <HeroWorkPreview :active-pillar="activePillar" /> -->
+          <HarmonyMotionStage :active-pillar="activePillar" />
         </div>
       </div>
     </section>

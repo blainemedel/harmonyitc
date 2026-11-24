@@ -144,8 +144,17 @@ export function useParallaxMotion(rootRef) {
       { selector: '.contact-email-box', speed: 0.04 }
     ];
     */
+    // Gene - Nov, 24, 2026: Updated depth parallax target to .harmony-motion-stage-card
+    /*
     const autoDepthTargets = [
       { selector: '.hero-preview-card', speed: -0.05 },
+      { selector: '.comparison-card-engine', speed: 0.045 },
+      { selector: '.founder-portrait-frame', speed: -0.04 },
+      { selector: '.contact-info-sidebar', speed: 0.04 }
+    ];
+    */
+    const autoDepthTargets = [
+      { selector: '.harmony-motion-stage-card', speed: -0.05 },
       { selector: '.comparison-card-engine', speed: 0.045 },
       { selector: '.founder-portrait-frame', speed: -0.04 },
       { selector: '.contact-info-sidebar', speed: 0.04 }

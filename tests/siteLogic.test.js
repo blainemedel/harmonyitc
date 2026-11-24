@@ -1,4 +1,4 @@
-// Gene - Nov, 24, 2026: Unit tests for site configuration, Hero preview metadata, platform filters, Contact validation, and Resend payload formatting
+// Gene - Nov, 24, 2026: Unit tests for site configuration, HarmonyMotionStage metadata, platform filters, Contact validation, and Resend payload formatting
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 
@@ -6,6 +6,7 @@ import {
   SITE_META,
   DISPLAY_CONFIG,
   NAV_ITEMS,
+  HARMONY_MOTION_RIBBONS,
   HERO_PILLARS,
   ABOUT_DATA,
   PROJECTS_DATA,
@@ -37,19 +38,23 @@ describe('HarmonyITC site configuration', () => {
     assert.equal(DISPLAY_CONFIG.showHomeMetrics, false);
   });
 
-  it('defines clean Vue Router navigation paths and HeroWorkPreview deliverable metadata', () => {
+  it('defines clean Vue Router navigation paths, HarmonyMotionStage profiles, and kinetic ribbons', () => {
     assert.deepEqual(
       NAV_ITEMS.map((item) => item.to),
       ['/', '/about', '/projects', '/contact']
     );
+    assert.ok(Array.isArray(HARMONY_MOTION_RIBBONS.top) && HARMONY_MOTION_RIBBONS.top.length >= 4);
+    assert.ok(Array.isArray(HARMONY_MOTION_RIBBONS.bottom) && HARMONY_MOTION_RIBBONS.bottom.length >= 4);
+    assert.ok(HARMONY_MOTION_RIBBONS.top.includes('HARMONY'));
+    assert.ok(HARMONY_MOTION_RIBBONS.bottom.includes('HARMONY'));
+
     assert.equal(HERO_PILLARS.length, 4);
     for (const pillar of HERO_PILLARS) {
       assert.ok(pillar.id && pillar.num && pillar.focusPrefix && pillar.focusText);
-      assert.ok(pillar.preview);
-      assert.ok(pillar.preview.projectId && pillar.preview.imageKey);
-      assert.ok(pillar.preview.title && pillar.preview.badge && pillar.preview.metricVal);
-      assert.ok(Number.isInteger(pillar.preview.width) && pillar.preview.width > 0);
-      assert.ok(Number.isInteger(pillar.preview.height) && pillar.preview.height > 0);
+      assert.ok(pillar.motion);
+      assert.ok(typeof pillar.motion.tempo === 'number' && pillar.motion.tempo > 0);
+      assert.ok(typeof pillar.motion.amplitude === 'number' && pillar.motion.amplitude > 0);
+      assert.ok(pillar.motion.phrase && pillar.motion.glowRgba);
     }
   });
 

@@ -6,7 +6,7 @@ Company website and client showcase for **Harmony IT Consultancy**, built with *
 
 | Path | View | Description |
 | :--- | :--- | :--- |
-| `/` | `HomeView` | Hero with Pitch Focus Switcher + `HeroWorkPreview` deliverable showcase, 4 Core Pillars, Comparison Matrix, and unified closing CTA |
+| `/` | `HomeView` | Hero with Pitch Focus Switcher + `HarmonyMotionStage` kinetic showcase, 4 Core Pillars, Comparison Matrix, and unified closing CTA |
 | `/about` | `AboutView` | Founding Team showcase (Paulo, Gene, Bry), 4-step working process, and unified bottom CTA |
 | `/projects` | `ProjectsView` | Platform-filtered SwitchFiber portfolio (`Web Portals`, `Admin Console`, `Mobile App`), deep-link support (`?case=<id>`), and Case Study modal with screenshot zoom + prefilled Contact CTA |
 | `/contact` | `ContactView` | Unified 2-column Contact Hub with validated Inquiry Form (`/api/contact`), graceful email fallback, and Direct Info sidebar |
@@ -41,7 +41,7 @@ harmonyitc/
 │   │   ├── briefBuilder.js     # Brief formatting, fallback mailto builder, and platform filtering
 │   │   └── contactInquiry.js   # Form validation, HTML escaping, Resend payload builder, query parsing
 │   ├── composables/            # Clipboard toast, scroll lock, scroll-reveal/parallax, 3D tilt
-│   ├── components/             # AmbientBackdrop, SiteHeader, SiteFooter, HeroWorkPreview, PillarArtwork, UnifiedCtaStrip, CaseStudyModal, BackToTop
+│   ├── components/             # AmbientBackdrop, SiteHeader, SiteFooter, HarmonyMotionStage, PillarArtwork, UnifiedCtaStrip, CaseStudyModal, BackToTop
 │   ├── views/                  # HomeView, AboutView, ProjectsView, ContactView, NotFoundView
 │   └── styles/                 # Modular CSS (tokens, base, components, pages, motion)
 └── tests/siteLogic.test.js     # Node built-in unit tests for content config, inquiry validation, and filters
